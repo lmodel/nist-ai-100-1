@@ -1,0 +1,2132 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix gist_linkml: <https://w3id.org/lmodel/gist/> .
+@prefix iso27001: <https://w3id.org/lmodel/iso27001/> .
+@prefix iso29100: <https://w3id.org/lmodel/iso29100/> .
+@prefix linkml: <https://w3id.org/linkml/> .
+@prefix nist_ai_100_1: <https://w3id.org/lmodel/nist-ai-100-1/> .
+@prefix nist_csf: <https://w3id.org/lmodel/nist-csf-v2/> .
+@prefix nist_sp_800_53: <https://w3id.org/lmodel/nist-sp-800-53/> .
+@prefix oscal_catalog: <https://w3id.org/lmodel/oscal_catalog/> .
+@prefix oscal_profile: <https://w3id.org/lmodel/oscal_profile/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema1: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix stix: <https://w3id.org/lmodel/stix/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/lmodel/nist-ai-100-1.owl.ttl> a owl:Ontology ;
+    rdfs:label "nist-ai-100-1" ;
+    dcterms:license "Apache-2.0" ;
+    dcterms:source <https://doi.org/10.6028/NIST.AI.100-1> ;
+    dcterms:title "NIST AI Risk Management Framework (AI RMF 1.0)" ;
+    pav:version "1.0.0" ;
+    rdfs:seeAlso <https://doi.org/10.6028/NIST.AI.100-1>,
+        <https://w3id.org/lmodel/nist-ai-100-1>,
+        <https://www.nist.gov/itl/ai-risk-management-framework> ;
+    skos:definition """LinkML schema for the NIST AI Risk Management Framework
+(AI RMF 1.0), published as NIST AI 100-1 (January 2023).
+
+Provides the structured, machine-readable taxonomy of the
+Framework's foundational concepts (risk, impact, harm, AI system,
+AI actor, lifecycle), the seven characteristics of trustworthy AI,
+and the four Core functions (GOVERN, MAP, MEASURE, MANAGE) together
+with their categories and subcategories. It also models AI RMF
+Profiles (use-case, temporal, cross-sectoral), the design
+attributes of the Framework, and the AI RMF Playbook companion
+data shape.""" .
+
+nist_ai_100_1:PlaybookCollection a owl:Class ;
+    rdfs:label "PlaybookCollection" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:entries ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:PlaybookEntry ;
+            owl:onProperty nist_ai_100_1:entries ] ;
+    skos:definition """A container for a set of PlaybookEntry instances - the
+serialisation root for an AI RMF Playbook companion document.
+Validate with ``linkml-validate --target-class PlaybookCollection``;
+the canonical tree-root for the schema is ``AiRmfFramework``.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:ResidualRisk a owl:Class ;
+    rdfs:label "ResidualRisk" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:is_residual ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:is_residual ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:is_residual ],
+        nist_ai_100_1:Risk ;
+    skos:definition """Risk remaining after risk treatment (ISO Guide 73). Documenting
+residual risks helps system providers consider risks of deploying
+the AI product and informs end users about potential negative
+impacts.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
+    skos:narrowMatch iso27001:Risk .
+
+nist_ai_100_1:category_code a owl:DatatypeProperty ;
+    rdfs:label "category_code" ;
+    rdfs:range xsd:string ;
+    skos:definition """Compact category code in the form "FUNCTION-N" (e.g.,
+"GOVERN-1") as used in the AI RMF Playbook.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:function_kind a owl:ObjectProperty ;
+    rdfs:label "function_kind" ;
+    rdfs:range nist_ai_100_1:FunctionEnum ;
+    skos:definition "The AI RMF Core function this entry pertains to." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:AiActor a owl:Class ;
+    rdfs:label "AiActor" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AudienceEnum ;
+            owl:onProperty nist_ai_100_1:audience ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:is_tevv ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:is_tevv ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty nist_ai_100_1:is_tevv ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:lifecycle_stage ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:actor_task ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:audience ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiLifecycleStageEnum ;
+            owl:onProperty nist_ai_100_1:lifecycle_stage ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:audience ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiActorTaskEnum ;
+            owl:onProperty nist_ai_100_1:actor_task ],
+        nist_ai_100_1:NamedThing ;
+    skos:closeMatch prov:Agent,
+        foaf:Agent ;
+    skos:definition """An organization or individual that plays an active role in the AI
+system lifecycle. AI actors include those who deploy or operate
+AI as well as those who inform via formal or quasi-formal norms
+and guidance (OECD 2019).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
+    skos:relatedMatch iso27001:InterestedParty,
+        stix:Identity .
+
+nist_ai_100_1:AiRmfFramework a owl:Class ;
+    rdfs:label "AiRmfFramework" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiRmfProfile ;
+            owl:onProperty nist_ai_100_1:profiles ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:functions ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:attributes_ ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:RmfAttribute ;
+            owl:onProperty nist_ai_100_1:attributes_ ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:actor_tasks ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:dimensions ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:lifecycle_stages ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:human_ai_interaction_issues ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:risk_measurement_challenges ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:document ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:ai_specific_risks ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:HumanAiInteractionIssue ;
+            owl:onProperty nist_ai_100_1:human_ai_interaction_issues ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:trustworthiness_characteristics ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiSystemDimension ;
+            owl:onProperty nist_ai_100_1:dimensions ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:profiles ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:RiskMeasurementChallenge ;
+            owl:onProperty nist_ai_100_1:risk_measurement_challenges ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:Function ;
+            owl:onProperty nist_ai_100_1:functions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:TrustworthinessCharacteristic ;
+            owl:onProperty nist_ai_100_1:trustworthiness_characteristics ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiSpecificRisk ;
+            owl:onProperty nist_ai_100_1:ai_specific_risks ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:document ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiLifecycleStage ;
+            owl:onProperty nist_ai_100_1:lifecycle_stages ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiActorTask ;
+            owl:onProperty nist_ai_100_1:actor_tasks ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiRmfDocument ;
+            owl:onProperty nist_ai_100_1:document ],
+        nist_ai_100_1:NamedThing ;
+    skos:closeMatch nist_csf:CSFDocument,
+        nist_sp_800_53:Catalog,
+        oscal_catalog:Catalog ;
+    skos:definition """Root container that bundles the AI RMF Core (Functions) with
+foundational concepts (trustworthiness characteristics,
+lifecycle, actors, risks, harms), profiles, and Framework
+attributes. Designed for serialising the Framework or a tailored
+instance of it as a single JSON / YAML document.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:Bias a owl:Class ;
+    rdfs:label "Bias" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:bias_category ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:BiasCategoryEnum ;
+            owl:onProperty nist_ai_100_1:bias_category ],
+        nist_ai_100_1:NamedThing ;
+    skos:definition """A form of AI bias - a deviation that may be perpetuated or
+amplified by AI systems. NIST identifies three major categories:
+systemic, computational/statistical, and human-cognitive
+(Part 1 §3.7; NIST SP 1270).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
+    skos:relatedMatch iso29100:PrivacyPrinciple .
+
+nist_ai_100_1:Harm a owl:Class ;
+    rdfs:label "Harm" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:HarmCategoryEnum ;
+            owl:onProperty nist_ai_100_1:harm_category ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:magnitude ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:harm_category ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:affects ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:harm_to_people_subcategory ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:harm_to_people_subcategory ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:NamedThing ;
+            owl:onProperty nist_ai_100_1:affects ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:harm_category ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:HarmToPeopleSubcategoryEnum ;
+            owl:onProperty nist_ai_100_1:harm_to_people_subcategory ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:magnitude ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:magnitude ],
+        nist_ai_100_1:NamedThing ;
+    skos:definition """A negative impact that may be experienced by individuals,
+groups, communities, organizations, society, the environment, or
+the planet (Figure 1).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:RiskTolerance a owl:Class ;
+    rdfs:label "RiskTolerance" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:legal_basis ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:legal_basis ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:legal_basis ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:tolerance_statement ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:tolerance_statement ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:tolerance_statement ],
+        nist_ai_100_1:NamedThing ;
+    skos:closeMatch iso27001:RiskLevel ;
+    skos:definition """The organization's or AI actor's readiness to bear risk in order
+to achieve its objectives (Adapted from ISO Guide 73). Risk
+tolerance is highly contextual and application- and use-case
+specific.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#AFFECTED_INDIVIDUALS_OR_COMMUNITIES> a owl:Class ;
+    rdfs:label "AFFECTED_INDIVIDUALS_OR_COMMUNITIES" ;
+    rdfs:subClassOf nist_ai_100_1:AiActorTaskEnum ;
+    skos:definition """All individuals, groups, communities, or organizations directly
+or indirectly affected by AI systems or decisions based on the
+output of AI systems.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#AI_DEPLOYMENT> a owl:Class ;
+    rdfs:label "AI_DEPLOYMENT" ;
+    rdfs:subClassOf nist_ai_100_1:AiActorTaskEnum ;
+    skos:definition """Performed during the Task and Output phase; responsible for
+contextual decisions on how the AI system is used and for
+assuring deployment into production.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#AI_DESIGN> a owl:Class ;
+    rdfs:label "AI_DESIGN" ;
+    rdfs:subClassOf nist_ai_100_1:AiActorTaskEnum ;
+    skos:definition """Performed during the Application Context and Data and Input
+phases; create the concept and objectives of AI systems and are
+responsible for planning, design, and data collection.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#AI_DEVELOPMENT> a owl:Class ;
+    rdfs:label "AI_DEVELOPMENT" ;
+    rdfs:subClassOf nist_ai_100_1:AiActorTaskEnum ;
+    skos:definition """Performed during the AI Model phase; provide the initial
+infrastructure of AI systems (model building, selection,
+calibration, training, testing).""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#AI_IMPACT_ASSESSMENT> a owl:Class ;
+    rdfs:label "AI_IMPACT_ASSESSMENT" ;
+    rdfs:subClassOf nist_ai_100_1:AiActorTaskEnum ;
+    skos:definition """Assess and evaluate requirements for AI system accountability,
+combat harmful bias, examine impacts, product safety, liability,
+and security.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#DOMAIN_EXPERT> a owl:Class ;
+    rdfs:label "DOMAIN_EXPERT" ;
+    rdfs:subClassOf nist_ai_100_1:AiActorTaskEnum ;
+    skos:definition """Input from multidisciplinary practitioners or scholars who
+provide knowledge or expertise in - and about - an industry
+sector, context, or application area.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#END_USERS> a owl:Class ;
+    rdfs:label "END_USERS" ;
+    rdfs:subClassOf nist_ai_100_1:AiActorTaskEnum ;
+    skos:definition """Individuals or groups that use the AI system for specific
+purposes; range in competency from AI experts to first-time
+users.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#GENERAL_PUBLIC> a owl:Class ;
+    rdfs:label "GENERAL_PUBLIC" ;
+    rdfs:subClassOf nist_ai_100_1:AiActorTaskEnum ;
+    skos:definition """Most likely to directly experience positive and negative impacts
+of AI technologies; provides motivation for actions taken by
+other AI actors.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#GOVERNANCE_AND_OVERSIGHT> a owl:Class ;
+    rdfs:label "GOVERNANCE_AND_OVERSIGHT" ;
+    rdfs:subClassOf nist_ai_100_1:AiActorTaskEnum ;
+    skos:definition """Assumed by AI actors with management, fiduciary, and legal
+authority for the organization, including senior leadership and
+the Board of Directors.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#HUMAN_FACTORS> a owl:Class ;
+    rdfs:label "HUMAN_FACTORS" ;
+    rdfs:subClassOf nist_ai_100_1:AiActorTaskEnum ;
+    skos:definition """Human-centered design practices and methodologies; promoting
+active involvement of end users and other interested parties;
+incorporating context-specific norms and values.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#OPERATION_AND_MONITORING> a owl:Class ;
+    rdfs:label "OPERATION_AND_MONITORING" ;
+    rdfs:subClassOf nist_ai_100_1:AiActorTaskEnum ;
+    skos:definition """Performed in the Application Context / Operate and Monitor
+phase; operating the AI system and regularly assessing system
+output and impacts.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#OTHER_AI_ACTORS> a owl:Class ;
+    rdfs:label "OTHER_AI_ACTORS" ;
+    rdfs:subClassOf nist_ai_100_1:AiActorTaskEnum ;
+    skos:definition """Provide formal or quasi-formal norms or guidance - includes
+trade associations, standards developing organizations, advocacy
+groups, researchers, environmental groups, and civil society
+organizations.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#PROCUREMENT> a owl:Class ;
+    rdfs:label "PROCUREMENT" ;
+    rdfs:subClassOf nist_ai_100_1:AiActorTaskEnum ;
+    skos:definition """Conducted by AI actors with financial, legal, or policy
+management authority for acquisition of AI models, products, or
+services from a third party.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#TEVV> a owl:Class ;
+    rdfs:label "TEVV" ;
+    rdfs:subClassOf nist_ai_100_1:AiActorTaskEnum ;
+    skos:definition """Test, Evaluation, Verification, and Validation tasks performed
+throughout the AI lifecycle; examine the AI system or its
+components, and detect and remediate problems.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#THIRD_PARTY_ENTITIES> a owl:Class ;
+    rdfs:label "THIRD_PARTY_ENTITIES" ;
+    rdfs:subClassOf nist_ai_100_1:AiActorTaskEnum ;
+    skos:definition """Providers, developers, vendors, and evaluators of data,
+algorithms, models, and/or systems and related services external
+to the deploying organization.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum#BUILD_AND_USE_MODEL> a owl:Class ;
+    rdfs:label "BUILD_AND_USE_MODEL" ;
+    rdfs:subClassOf nist_ai_100_1:AiLifecycleStageEnum ;
+    skos:definition "Create or select algorithms; train models (AI Model dimension)." .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum#COLLECT_AND_PROCESS_DATA> a owl:Class ;
+    rdfs:label "COLLECT_AND_PROCESS_DATA" ;
+    rdfs:subClassOf nist_ai_100_1:AiLifecycleStageEnum ;
+    skos:definition """Gather, validate, and clean data and document the metadata and
+characteristics of the dataset (Data and Input dimension).""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum#DEPLOY_AND_USE> a owl:Class ;
+    rdfs:label "DEPLOY_AND_USE" ;
+    rdfs:subClassOf nist_ai_100_1:AiLifecycleStageEnum ;
+    skos:definition """Pilot; check compatibility with legacy systems; verify regulatory
+compliance; manage organizational change; and evaluate user
+experience (Task and Output dimension).""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum#OPERATE_AND_MONITOR> a owl:Class ;
+    rdfs:label "OPERATE_AND_MONITOR" ;
+    rdfs:subClassOf nist_ai_100_1:AiLifecycleStageEnum ;
+    skos:definition """Operate the AI system and continuously assess its recommendations
+and impacts (both intended and unintended) in light of objectives,
+legal and regulatory requirements, and ethical considerations
+(Application Context dimension).""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum#PLAN_AND_DESIGN> a owl:Class ;
+    rdfs:label "PLAN_AND_DESIGN" ;
+    rdfs:subClassOf nist_ai_100_1:AiLifecycleStageEnum ;
+    skos:definition """Articulate and document the system's concept and objectives,
+underlying assumptions, context, and requirements (Application
+Context dimension).""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum#VERIFY_AND_VALIDATE> a owl:Class ;
+    rdfs:label "VERIFY_AND_VALIDATE" ;
+    rdfs:subClassOf nist_ai_100_1:AiLifecycleStageEnum ;
+    skos:definition """Verify, validate, calibrate, and interpret model output
+(AI Model dimension).""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiSystemDimensionEnum#AI_MODEL> a owl:Class ;
+    rdfs:label "AI_MODEL" ;
+    rdfs:subClassOf nist_ai_100_1:AiSystemDimensionEnum ;
+    skos:definition "The model(s) and algorithms at the heart of an AI system." .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiSystemDimensionEnum#APPLICATION_CONTEXT> a owl:Class ;
+    rdfs:label "APPLICATION_CONTEXT" ;
+    rdfs:subClassOf nist_ai_100_1:AiSystemDimensionEnum ;
+    skos:definition """The setting in which an AI system is deployed - includes legal,
+regulatory, ethical, and societal considerations.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiSystemDimensionEnum#DATA_AND_INPUT> a owl:Class ;
+    rdfs:label "DATA_AND_INPUT" ;
+    rdfs:subClassOf nist_ai_100_1:AiSystemDimensionEnum ;
+    skos:definition """The data and inputs an AI system uses, including training,
+validation, test data, and operational inputs.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiSystemDimensionEnum#PEOPLE_AND_PLANET> a owl:Class ;
+    rdfs:label "PEOPLE_AND_PLANET" ;
+    rdfs:subClassOf nist_ai_100_1:AiSystemDimensionEnum ;
+    skos:definition """Human rights and the broader well-being of society and the
+planet - centred in Figure 2.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AiSystemDimensionEnum#TASK_AND_OUTPUT> a owl:Class ;
+    rdfs:label "TASK_AND_OUTPUT" ;
+    rdfs:subClassOf nist_ai_100_1:AiSystemDimensionEnum ;
+    skos:definition """The task the AI system is designed to perform and the outputs
+it produces (predictions, recommendations, decisions).""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AudienceEnum#INFORMING> a owl:Class ;
+    rdfs:label "INFORMING" ;
+    rdfs:subClassOf nist_ai_100_1:AudienceEnum ;
+    skos:definition """AI actors in the People and Planet dimension who *inform* the
+primary audience - trade associations, standards developers,
+researchers, advocacy groups, civil society organisations,
+end users, and impacted individuals or communities.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/AudienceEnum#PRIMARY> a owl:Class ;
+    rdfs:label "PRIMARY" ;
+    rdfs:subClassOf nist_ai_100_1:AudienceEnum ;
+    skos:definition """AI actors who perform or manage the design, development,
+deployment, evaluation, and use of AI systems and drive AI
+risk management efforts.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/BiasCategoryEnum#COMPUTATIONAL_AND_STATISTICAL> a owl:Class ;
+    rdfs:label "COMPUTATIONAL_AND_STATISTICAL" ;
+    rdfs:subClassOf nist_ai_100_1:BiasCategoryEnum ;
+    skos:definition """Bias present in AI datasets and algorithmic processes; often
+stems from systematic errors due to non-representative samples.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/BiasCategoryEnum#HUMAN_COGNITIVE> a owl:Class ;
+    rdfs:label "HUMAN_COGNITIVE" ;
+    rdfs:subClassOf nist_ai_100_1:BiasCategoryEnum ;
+    skos:definition """Bias related to how an individual or group perceives AI system
+information to make a decision or fill in missing information;
+omnipresent in decision-making across the AI lifecycle.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/BiasCategoryEnum#SYSTEMIC> a owl:Class ;
+    rdfs:label "SYSTEMIC" ;
+    rdfs:subClassOf nist_ai_100_1:BiasCategoryEnum ;
+    skos:definition """Bias present in AI datasets, organizational norms, practices,
+and processes across the AI lifecycle, and the broader society
+that uses AI systems.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/FunctionEnum#GOVERN> a owl:Class ;
+    rdfs:label "GOVERN" ;
+    rdfs:subClassOf nist_ai_100_1:FunctionEnum ;
+    skos:definition """Cultivates and implements a culture of risk management; outlines
+processes, documents, and organizational schemes that anticipate,
+identify, and manage AI risks.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/FunctionEnum#MANAGE> a owl:Class ;
+    rdfs:label "MANAGE" ;
+    rdfs:subClassOf nist_ai_100_1:FunctionEnum ;
+    skos:definition """Allocates risk resources to mapped and measured risks on a
+regular basis and as defined by the GOVERN function; risk
+treatment includes plans to respond to, recover from, and
+communicate about incidents or events.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/FunctionEnum#MAP> a owl:Class ;
+    rdfs:label "MAP" ;
+    rdfs:subClassOf nist_ai_100_1:FunctionEnum ;
+    skos:definition """Establishes the context to frame risks related to an AI system;
+identifies risks based on intended purposes, capabilities, and
+contextual factors.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/FunctionEnum#MEASURE> a owl:Class ;
+    rdfs:label "MEASURE" ;
+    rdfs:subClassOf nist_ai_100_1:FunctionEnum ;
+    skos:definition """Employs quantitative, qualitative, or mixed-method tools to
+analyze, assess, benchmark, and monitor AI risk and related impacts.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/HarmCategoryEnum#HARM_TO_AN_ECOSYSTEM> a owl:Class ;
+    rdfs:label "HARM_TO_AN_ECOSYSTEM" ;
+    rdfs:subClassOf nist_ai_100_1:HarmCategoryEnum ;
+    skos:definition """Harm to interconnected and interdependent elements and
+resources, the global financial system, supply chain, natural
+resources, the environment, and the planet.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/HarmCategoryEnum#HARM_TO_AN_ORGANIZATION> a owl:Class ;
+    rdfs:label "HARM_TO_AN_ORGANIZATION" ;
+    rdfs:subClassOf nist_ai_100_1:HarmCategoryEnum ;
+    skos:definition """Harm to an organization's business operations, security
+breaches or monetary loss, or reputation.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/HarmCategoryEnum#HARM_TO_PEOPLE> a owl:Class ;
+    rdfs:label "HARM_TO_PEOPLE" ;
+    rdfs:subClassOf nist_ai_100_1:HarmCategoryEnum ;
+    skos:definition """Harm to individuals, groups/communities, or society at large
+(including civil liberties, rights, physical or psychological
+safety, economic opportunity, democratic participation, and
+educational access).""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/HarmToPeopleSubcategoryEnum#GROUP_OR_COMMUNITY> a owl:Class ;
+    rdfs:label "GROUP_OR_COMMUNITY" ;
+    rdfs:subClassOf nist_ai_100_1:HarmToPeopleSubcategoryEnum ;
+    skos:definition """Harm to a group such as discrimination against a population
+sub-group.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/HarmToPeopleSubcategoryEnum#INDIVIDUAL> a owl:Class ;
+    rdfs:label "INDIVIDUAL" ;
+    rdfs:subClassOf nist_ai_100_1:HarmToPeopleSubcategoryEnum ;
+    skos:definition """Harm to a person's civil liberties, rights, physical or
+psychological safety, or economic opportunity.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/HarmToPeopleSubcategoryEnum#SOCIETAL> a owl:Class ;
+    rdfs:label "SOCIETAL" ;
+    rdfs:subClassOf nist_ai_100_1:HarmToPeopleSubcategoryEnum ;
+    skos:definition "Harm to democratic participation or educational access." .
+
+<https://w3id.org/lmodel/nist-ai-100-1/ImpactSignEnum#MIXED> a owl:Class ;
+    rdfs:label "MIXED" ;
+    rdfs:subClassOf nist_ai_100_1:ImpactSignEnum ;
+    skos:definition "An impact that is both positive and negative." .
+
+<https://w3id.org/lmodel/nist-ai-100-1/ImpactSignEnum#NEGATIVE> a owl:Class ;
+    rdfs:label "NEGATIVE" ;
+    rdfs:subClassOf nist_ai_100_1:ImpactSignEnum ;
+    skos:definition "A harmful impact or threat." .
+
+<https://w3id.org/lmodel/nist-ai-100-1/ImpactSignEnum#POSITIVE> a owl:Class ;
+    rdfs:label "POSITIVE" ;
+    rdfs:subClassOf nist_ai_100_1:ImpactSignEnum ;
+    skos:definition "A beneficial impact or opportunity." .
+
+nist_ai_100_1:PlaybookEntry a owl:Class ;
+    rdfs:label "PlaybookEntry" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:section_ref ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:section_ref ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:section_about ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:section_about ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:title ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:category ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:ai_actors ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:section_ref ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:topic ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:ai_actors ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:category ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:section_doc ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:title ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:section_actions ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:section_doc ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:section_actions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:section_doc ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:category ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:title ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:topic ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:section_actions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:section_about ] ;
+    owl:hasKey ( nist_ai_100_1:title ) ;
+    skos:closeMatch nist_csf:CSFSubcategory ;
+    skos:definition """A single AI RMF Playbook entry - an enrichment of a Core
+subcategory with prose discussion, suggested actions,
+documentation questions, references, and topic tags.
+
+Attribute names use the same identifiers found in the published
+NIST AI RMF Playbook JSON (e.g., `section_about`,
+`section_actions`) so that the data can be loaded directly.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+<https://w3id.org/lmodel/nist-ai-100-1/ProfileTypeEnum#CROSS_SECTORAL> a owl:Class ;
+    rdfs:label "CROSS_SECTORAL" ;
+    rdfs:subClassOf nist_ai_100_1:ProfileTypeEnum ;
+    skos:definition """Risks of models or applications used across use cases or
+sectors (e.g., large language models, cloud-based services,
+acquisition).""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/ProfileTypeEnum#TEMPORAL_CURRENT> a owl:Class ;
+    rdfs:label "TEMPORAL_CURRENT" ;
+    rdfs:subClassOf nist_ai_100_1:ProfileTypeEnum ;
+    skos:definition """Description of the current state of AI risk management
+activities within a sector, industry, organization, or
+application context.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/ProfileTypeEnum#TEMPORAL_TARGET> a owl:Class ;
+    rdfs:label "TEMPORAL_TARGET" ;
+    rdfs:subClassOf nist_ai_100_1:ProfileTypeEnum ;
+    skos:definition """Description of the desired or target state of AI risk
+management activities.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/ProfileTypeEnum#USE_CASE> a owl:Class ;
+    rdfs:label "USE_CASE" ;
+    rdfs:subClassOf nist_ai_100_1:ProfileTypeEnum ;
+    skos:definition """Implementation of the AI RMF Core for a specific setting or
+application (e.g., a hiring profile, a fair housing profile).""" .
+
+nist_ai_100_1:Risk a owl:Class ;
+    rdfs:label "Risk" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:risk_response ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:risk_response ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:likelihood ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:TrustworthinessCharacteristicEnum ;
+            owl:onProperty nist_ai_100_1:trustworthiness_characteristic ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:magnitude ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:magnitude ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:magnitude ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:trustworthiness_characteristic ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:is_residual ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:impact_sign ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:likelihood ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:related_impacts ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:affects_system ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:Impact ;
+            owl:onProperty nist_ai_100_1:related_impacts ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiLifecycleStageEnum ;
+            owl:onProperty nist_ai_100_1:lifecycle_stage ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:impact_sign ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:is_residual ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( xsd:float [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:float ;
+                                owl:withRestrictions ( [ xsd:minInclusive 0e+00 ] ) ] [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:float ;
+                                owl:withRestrictions ( [ xsd:maxInclusive 1e+00 ] ) ] ) ] ;
+            owl:onProperty nist_ai_100_1:likelihood ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:affects_system ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:RiskResponseEnum ;
+            owl:onProperty nist_ai_100_1:risk_response ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiSystem ;
+            owl:onProperty nist_ai_100_1:affects_system ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:lifecycle_stage ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:ImpactSignEnum ;
+            owl:onProperty nist_ai_100_1:impact_sign ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty nist_ai_100_1:is_residual ],
+        nist_ai_100_1:NamedThing ;
+    skos:definition """The composite measure of an event's probability of occurring and
+the magnitude or degree of the consequences of that event. When
+considering negative impact, risk is a function of (1) the
+negative impact or magnitude of harm and (2) the likelihood of
+occurrence (Adapted from ISO 31000:2018; OMB Circular A-130:2016).""" ;
+    skos:exactMatch iso27001:Risk ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
+    skos:relatedMatch iso29100:PrivacyRisk .
+
+<https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum#AVAILABILITY_OF_RELIABLE_METRICS> a owl:Class ;
+    rdfs:label "AVAILABILITY_OF_RELIABLE_METRICS" ;
+    rdfs:subClassOf nist_ai_100_1:RiskMeasurementChallengeEnum ;
+    skos:definition """Lack of consensus on robust and verifiable measurement methods
+for risk and trustworthiness, and their applicability to
+different use cases.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum#HUMAN_BASELINE> a owl:Class ;
+    rdfs:label "HUMAN_BASELINE" ;
+    rdfs:subClassOf nist_ai_100_1:RiskMeasurementChallengeEnum ;
+    skos:definition """AI systems intended to augment or replace human activity
+require a human baseline for comparison, which is difficult to
+systematize.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum#INSCRUTABILITY> a owl:Class ;
+    rdfs:label "INSCRUTABILITY" ;
+    rdfs:subClassOf nist_ai_100_1:RiskMeasurementChallengeEnum ;
+    skos:definition """Opaque systems with limited explainability or interpretability,
+poor documentation, or inherent uncertainty complicate risk
+measurement.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum#RISK_AT_DIFFERENT_LIFECYCLE_STAGES> a owl:Class ;
+    rdfs:label "RISK_AT_DIFFERENT_LIFECYCLE_STAGES" ;
+    rdfs:subClassOf nist_ai_100_1:RiskMeasurementChallengeEnum ;
+    skos:definition """Measuring risk at different stages may yield different results;
+some risks may be latent and increase as systems adapt and
+evolve.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum#RISK_IN_REAL_WORLD_SETTINGS> a owl:Class ;
+    rdfs:label "RISK_IN_REAL_WORLD_SETTINGS" ;
+    rdfs:subClassOf nist_ai_100_1:RiskMeasurementChallengeEnum ;
+    skos:definition """Lab measurements may differ from risks that emerge in
+operational, real-world settings.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum#THIRD_PARTY_SOFTWARE_HARDWARE_AND_DATA> a owl:Class ;
+    rdfs:label "THIRD_PARTY_SOFTWARE_HARDWARE_AND_DATA" ;
+    rdfs:subClassOf nist_ai_100_1:RiskMeasurementChallengeEnum ;
+    skos:definition """Risks related to third-party software, hardware, and data,
+including misalignment of risk metrics or methodologies between
+developers, deployers, and operators.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum#TRACKING_EMERGENT_RISKS> a owl:Class ;
+    rdfs:label "TRACKING_EMERGENT_RISKS" ;
+    rdfs:subClassOf nist_ai_100_1:RiskMeasurementChallengeEnum ;
+    skos:definition """Identifying and tracking emergent risks and considering
+techniques for measuring them; impact assessment helps
+understand context-specific harms.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/RiskResponseEnum#ACCEPTING> a owl:Class ;
+    rdfs:label "ACCEPTING" ;
+    rdfs:subClassOf nist_ai_100_1:RiskResponseEnum ;
+    skos:definition "Acknowledging the risk and taking no further action." .
+
+<https://w3id.org/lmodel/nist-ai-100-1/RiskResponseEnum#AVOIDING> a owl:Class ;
+    rdfs:label "AVOIDING" ;
+    rdfs:subClassOf nist_ai_100_1:RiskResponseEnum ;
+    skos:definition "Choosing not to engage in the activity that creates the risk." .
+
+<https://w3id.org/lmodel/nist-ai-100-1/RiskResponseEnum#MITIGATING> a owl:Class ;
+    rdfs:label "MITIGATING" ;
+    rdfs:subClassOf nist_ai_100_1:RiskResponseEnum ;
+    skos:definition "Reducing the likelihood or magnitude of the risk." .
+
+<https://w3id.org/lmodel/nist-ai-100-1/RiskResponseEnum#TRANSFERRING> a owl:Class ;
+    rdfs:label "TRANSFERRING" ;
+    rdfs:subClassOf nist_ai_100_1:RiskResponseEnum ;
+    skos:definition "Shifting the risk to another party (e.g., via insurance or contract)." .
+
+<https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#ACCOUNTABLE_AND_TRANSPARENT> a owl:Class ;
+    rdfs:label "ACCOUNTABLE_AND_TRANSPARENT" ;
+    rdfs:subClassOf nist_ai_100_1:TrustworthinessCharacteristicEnum ;
+    skos:definition """Trustworthy AI depends on accountability, which presupposes
+transparency - the extent to which information about an AI
+system and its outputs is available to those interacting with
+it.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#EXPLAINABLE_AND_INTERPRETABLE> a owl:Class ;
+    rdfs:label "EXPLAINABLE_AND_INTERPRETABLE" ;
+    rdfs:subClassOf nist_ai_100_1:TrustworthinessCharacteristicEnum ;
+    skos:definition """Explainability concerns the mechanisms underlying an AI system's
+operation; interpretability concerns the meaning of its output
+in context.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#FAIR_WITH_HARMFUL_BIAS_MANAGED> a owl:Class ;
+    rdfs:label "FAIR_WITH_HARMFUL_BIAS_MANAGED" ;
+    rdfs:subClassOf nist_ai_100_1:TrustworthinessCharacteristicEnum ;
+    skos:definition """Concerns for equality and equity by addressing issues such as
+harmful bias and discrimination, and recognising that
+perceptions of fairness differ across cultures and
+applications.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#PRIVACY_ENHANCED> a owl:Class ;
+    rdfs:label "PRIVACY_ENHANCED" ;
+    rdfs:subClassOf nist_ai_100_1:TrustworthinessCharacteristicEnum ;
+    skos:definition """Norms and practices that help safeguard human autonomy,
+identity, and dignity - including anonymity, confidentiality,
+and control over personal information.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#SAFE> a owl:Class ;
+    rdfs:label "SAFE" ;
+    rdfs:subClassOf nist_ai_100_1:TrustworthinessCharacteristicEnum ;
+    skos:definition """The system does not, under defined conditions, lead to a state
+in which human life, health, property, or the environment is
+endangered.""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#SECURE_AND_RESILIENT> a owl:Class ;
+    rdfs:label "SECURE_AND_RESILIENT" ;
+    rdfs:subClassOf nist_ai_100_1:TrustworthinessCharacteristicEnum ;
+    skos:definition """The system can withstand unexpected adverse events or changes
+(resilient) and maintain confidentiality, integrity, and
+availability through protection mechanisms (secure).""" .
+
+<https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#VALID_AND_RELIABLE> a owl:Class ;
+    rdfs:label "VALID_AND_RELIABLE" ;
+    rdfs:subClassOf nist_ai_100_1:TrustworthinessCharacteristicEnum ;
+    skos:definition """Confirmation that requirements for a specific intended use have
+been fulfilled (validation) and that the system performs as
+required without failure (reliability). A necessary condition of
+trustworthiness and the base for other characteristics.""" .
+
+nist_ai_100_1:actor_task a owl:ObjectProperty ;
+    rdfs:label "actor_task" ;
+    rdfs:range nist_ai_100_1:AiActorTaskEnum ;
+    skos:definition "AI actor task category." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:actor_tasks a owl:ObjectProperty ;
+    rdfs:label "actor_tasks" ;
+    rdfs:range nist_ai_100_1:AiActorTask ;
+    skos:definition "AI actor task categories (Appendix A)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:addresses a owl:ObjectProperty ;
+    rdfs:label "addresses" ;
+    rdfs:range nist_ai_100_1:Subcategory ;
+    skos:definition "Subcategories that a profile implements or addresses." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:ai_actor_categories a owl:DatatypeProperty ;
+    rdfs:label "ai_actor_categories" ;
+    rdfs:range xsd:string ;
+    skos:definition """Free-text list of AI Actor categories the entry applies to,
+preserving the original case used in the AI RMF Playbook
+(e.g., "Governance and Oversight", "TEVV"). For controlled
+enum values see `actor_task` (range AiActorTaskEnum).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:ai_actors a owl:DatatypeProperty ;
+    rdfs:label "ai_actors" ;
+    skos:definition """AI actor categories the entry applies to. Free-text to
+preserve the casing of the source data (e.g., "Governance
+and Oversight").""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:ai_specific_risks a owl:ObjectProperty ;
+    rdfs:label "ai_specific_risks" ;
+    rdfs:range nist_ai_100_1:AiSpecificRisk ;
+    skos:definition "AI-specific risks compared to traditional software (Appendix B)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:attributes_ a owl:ObjectProperty ;
+    rdfs:label "attributes_" ;
+    rdfs:range nist_ai_100_1:RmfAttribute ;
+    skos:altLabel "rmf_attributes" ;
+    skos:definition "Design attributes of the AI RMF (Appendix D)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:bias_category a owl:ObjectProperty ;
+    rdfs:label "bias_category" ;
+    rdfs:range nist_ai_100_1:BiasCategoryEnum ;
+    skos:definition "Category or categories of bias addressed." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:categories a owl:ObjectProperty ;
+    rdfs:label "categories" ;
+    rdfs:range nist_ai_100_1:Category ;
+    skos:definition "Categories that belong to a Function." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:dimensions a owl:ObjectProperty ;
+    rdfs:label "dimensions" ;
+    rdfs:range nist_ai_100_1:AiSystemDimension ;
+    skos:definition "The AI system dimensions (Figure 2)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:entries a owl:ObjectProperty ;
+    rdfs:label "entries" ;
+    rdfs:range nist_ai_100_1:PlaybookEntry ;
+    skos:definition "The Playbook entries in a `PlaybookCollection`." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:functions a owl:ObjectProperty ;
+    rdfs:label "functions" ;
+    rdfs:range nist_ai_100_1:Function ;
+    skos:definition "The four AI RMF Core functions and their content." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:human_ai_interaction_issues a owl:ObjectProperty ;
+    rdfs:label "human_ai_interaction_issues" ;
+    rdfs:range nist_ai_100_1:HumanAiInteractionIssue ;
+    skos:definition "Human-AI interaction considerations (Appendix C)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:lifecycle_stages a owl:ObjectProperty ;
+    rdfs:label "lifecycle_stages" ;
+    rdfs:range nist_ai_100_1:AiLifecycleStage ;
+    skos:definition "The AI lifecycle stages (Figure 2)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:profiles a owl:ObjectProperty ;
+    rdfs:label "profiles" ;
+    rdfs:range nist_ai_100_1:AiRmfProfile ;
+    skos:definition "AI RMF profiles defined alongside this Framework instance." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:related_impacts a owl:ObjectProperty ;
+    rdfs:label "related_impacts" ;
+    rdfs:range nist_ai_100_1:Impact ;
+    skos:definition "The impacts that contribute to a risk." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:risk_measurement_challenges a owl:ObjectProperty ;
+    rdfs:label "risk_measurement_challenges" ;
+    rdfs:range nist_ai_100_1:RiskMeasurementChallenge ;
+    skos:definition "Identified challenges in measuring AI risk." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:see_also a owl:DatatypeProperty ;
+    rdfs:label "see_also" ;
+    rdfs:range xsd:anyURI ;
+    skos:definition "Related references." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:subcategories a owl:ObjectProperty ;
+    rdfs:label "subcategories" ;
+    rdfs:range nist_ai_100_1:Subcategory ;
+    skos:definition "Subcategories that belong to a Category." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:topic a owl:DatatypeProperty ;
+    rdfs:label "topic" ;
+    skos:definition """Topic tags (e.g., "Legal and Regulatory", "Validity and
+Reliability").""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:topics a owl:DatatypeProperty ;
+    rdfs:label "topics" ;
+    rdfs:range xsd:string ;
+    skos:definition """Free-text topic tags applied to a playbook entry (e.g.,
+"Governance", "Trustworthy Characteristics", "Validity and
+Reliability").""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:trustworthiness_characteristics a owl:ObjectProperty ;
+    rdfs:label "trustworthiness_characteristics" ;
+    rdfs:range nist_ai_100_1:TrustworthinessCharacteristic ;
+    skos:definition "The seven characteristics of trustworthy AI." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:typical_actors a owl:DatatypeProperty ;
+    rdfs:label "typical_actors" ;
+    rdfs:range xsd:string ;
+    skos:definition "Representative actor roles that perform an AI actor task." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:AiActorTask a owl:Class ;
+    rdfs:label "AiActorTask" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:ai_dimension ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiLifecycleStageEnum ;
+            owl:onProperty nist_ai_100_1:lifecycle_stage ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty nist_ai_100_1:task_kind ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiSystemDimensionEnum ;
+            owl:onProperty nist_ai_100_1:ai_dimension ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:typical_actors ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiActorTaskEnum ;
+            owl:onProperty nist_ai_100_1:task_kind ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:lifecycle_stage ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:typical_actors ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:task_kind ],
+        nist_ai_100_1:NamedThing ;
+    skos:definition """A category of task performed by AI actors (Appendix A). Each
+task is associated with one or more lifecycle stages and a
+typical set of actor roles.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:AiLifecycleStage a owl:Class ;
+    rdfs:label "AiLifecycleStage" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:includes_tevv ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:includes_tevv ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:stage_kind ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty nist_ai_100_1:includes_tevv ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiLifecycleStageEnum ;
+            owl:onProperty nist_ai_100_1:stage_kind ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty nist_ai_100_1:stage_kind ],
+        nist_ai_100_1:NamedThing ;
+    skos:definition """A stage of the AI lifecycle (Figure 2): Plan and Design,
+Collect and Process Data, Build and Use Model, Verify and
+Validate, Deploy and Use, or Operate and Monitor.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:AiRmfDocument a owl:Class ;
+    rdfs:label "AiRmfDocument" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:version ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:publisher ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty nist_ai_100_1:source ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:published_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:version ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:publisher ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:publisher ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:published_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:doi ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:source ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:version ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:doi ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty nist_ai_100_1:doi ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty nist_ai_100_1:published_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:source ],
+        nist_ai_100_1:NamedThing ;
+    skos:closeMatch nist_csf:CSFMetadata ;
+    skos:definition """Publication metadata for an instance of the AI RMF (e.g., NIST
+AI 100-1, January 2023). The Framework is intended to be a
+living document, employing a two-number versioning system (major.minor).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
+    skos:relatedMatch schema1:CreativeWork .
+
+nist_ai_100_1:AiRmfProfile a owl:Class ;
+    rdfs:label "AiRmfProfile" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:sector ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:sector ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:current_state ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:target_state ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty nist_ai_100_1:profile_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:addresses ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:profile_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:target_state ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:ProfileTypeEnum ;
+            owl:onProperty nist_ai_100_1:profile_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:current_state ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:target_state ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:current_state ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:Subcategory ;
+            owl:onProperty nist_ai_100_1:addresses ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:sector ],
+        nist_ai_100_1:NamedThing ;
+    skos:closeMatch nist_sp_800_53:ProfileDocument ;
+    skos:definition """An implementation of the AI RMF Functions, Categories, and
+Subcategories for a specific setting or application based on the
+requirements, risk tolerance, and resources of the user (§6).
+Profiles may be use-case-specific, temporal (current or target),
+or cross-sectoral.""" ;
+    skos:exactMatch oscal_profile:Profile ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:AiSpecificRisk a owl:Class ;
+    rdfs:label "AiSpecificRisk" ;
+    rdfs:subClassOf nist_ai_100_1:NamedThing ;
+    skos:broadMatch iso27001:Risk ;
+    skos:definition """A risk that is new or increased for AI-based technology compared
+to traditional software (Appendix B) - e.g., data quality, model
+drift, opacity, scale and complexity, pre-trained model
+uncertainty, emergent properties, privacy aggregation, or
+environmental cost.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:AiSystem a owl:Class ;
+    rdfs:label "AiSystem" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiSystemDimensionEnum ;
+            owl:onProperty nist_ai_100_1:ai_dimension ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiLifecycleStageEnum ;
+            owl:onProperty nist_ai_100_1:lifecycle_stage ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:lifecycle_stage ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:ai_dimension ],
+        nist_ai_100_1:NamedThing ;
+    skos:closeMatch schema1:SoftwareApplication ;
+    skos:definition """An engineered or machine-based system that can, for a given set
+of objectives, generate outputs such as predictions,
+recommendations, or decisions influencing real or virtual
+environments. AI systems are designed to operate with varying
+levels of autonomy (Adapted from OECD Recommendation on AI:2019;
+ISO/IEC 22989:2022).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:AiSystemDimension a owl:Class ;
+    rdfs:label "AiSystemDimension" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty nist_ai_100_1:dimension_kind ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiSystemDimensionEnum ;
+            owl:onProperty nist_ai_100_1:dimension_kind ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:dimension_kind ],
+        nist_ai_100_1:NamedThing ;
+    skos:definition """A socio-technical dimension of an AI system (Figure 2):
+Application Context, Data and Input, AI Model, Task and Output,
+or People and Planet.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:Category a owl:Class ;
+    rdfs:label "Category" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:Subcategory ;
+            owl:onProperty nist_ai_100_1:subcategories ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:category_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:category_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:outcome ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:outcome ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty nist_ai_100_1:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:category_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:subcategories ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:outcome ],
+        nist_ai_100_1:NamedThing ;
+    skos:definition """A category within an AI RMF Core function (e.g., "GOVERN 1:
+Policies, processes, procedures, and practices ... are in place,
+transparent, and implemented effectively"). Categories group
+related subcategories.""" ;
+    skos:exactMatch nist_csf:CSFCategory ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:Function a owl:Class ;
+    rdfs:label "Function" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:Category ;
+            owl:onProperty nist_ai_100_1:categories ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:function_code ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty nist_ai_100_1:function_code ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:categories ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:function_code ],
+        nist_ai_100_1:NamedThing ;
+    skos:definition """A top-level AI RMF Core function. Each function organizes AI risk
+management activities at the highest level. GOVERN applies across
+all stages; MAP, MEASURE, and MANAGE apply to AI-system-specific
+contexts and lifecycle stages.""" ;
+    skos:exactMatch nist_csf:CSFFunction ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
+    skos:relatedMatch gist_linkml:Function .
+
+nist_ai_100_1:HumanAiInteractionIssue a owl:Class ;
+    rdfs:label "HumanAiInteractionIssue" ;
+    rdfs:subClassOf nist_ai_100_1:NamedThing ;
+    skos:definition """An issue that merits further consideration in human-AI
+interaction (Appendix C) - e.g., clear human roles and
+responsibilities, systemic and human-cognitive biases in design,
+variability of human-AI interaction outcomes, complexity of
+presenting AI system information to humans.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
+    skos:relatedMatch iso27001:InterestedParty .
+
+nist_ai_100_1:Impact a owl:Class ;
+    rdfs:label "Impact" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:affects ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:impact_sign ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:likelihood ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:magnitude ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:likelihood ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:magnitude ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:magnitude ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( xsd:float [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:float ;
+                                owl:withRestrictions ( [ xsd:minInclusive 0e+00 ] ) ] [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:float ;
+                                owl:withRestrictions ( [ xsd:maxInclusive 1e+00 ] ) ] ) ] ;
+            owl:onProperty nist_ai_100_1:likelihood ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:impact_sign ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:NamedThing ;
+            owl:onProperty nist_ai_100_1:affects ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:ImpactSignEnum ;
+            owl:onProperty nist_ai_100_1:impact_sign ],
+        nist_ai_100_1:NamedThing ;
+    skos:definition """A positive, negative, or both consequence of an AI system. Impacts
+can manifest as opportunities (positive) or threats (negative).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
+    skos:narrowMatch iso27001:ImpactRating .
+
+nist_ai_100_1:RiskMeasurementChallenge a owl:Class ;
+    rdfs:label "RiskMeasurementChallenge" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty nist_ai_100_1:challenge_kind ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:challenge_kind ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:RiskMeasurementChallengeEnum ;
+            owl:onProperty nist_ai_100_1:challenge_kind ],
+        nist_ai_100_1:NamedThing ;
+    skos:definition """A challenge that complicates measurement of AI risks
+(Part 1 §1.2.1).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:RmfAttribute a owl:Class ;
+    rdfs:label "RmfAttribute" ;
+    rdfs:subClassOf nist_ai_100_1:NamedThing ;
+    skos:definition """A design attribute of the AI RMF (Appendix D) - one of the
+qualities the Framework strives to embody (e.g., risk-based,
+consensus-driven, plain language, common language, easily usable,
+universally applicable, outcome-focused, leveraging existing
+standards, law- and regulation-agnostic, living document).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
+    skos:relatedMatch nist_csf:CSFProperty .
+
+nist_ai_100_1:TrustworthinessCharacteristic a owl:Class ;
+    rdfs:label "TrustworthinessCharacteristic" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:is_base_condition ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:TrustworthinessCharacteristicEnum ;
+            owl:onProperty nist_ai_100_1:characteristic_kind ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty nist_ai_100_1:is_cross_cutting ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:is_base_condition ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:characteristic_kind ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty nist_ai_100_1:characteristic_kind ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:is_cross_cutting ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty nist_ai_100_1:is_base_condition ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:is_cross_cutting ],
+        nist_ai_100_1:NamedThing ;
+    skos:definition """A characteristic of a trustworthy AI system (Figure 4 / Part 1
+§3). The seven characteristics are inter-related; addressing them
+individually does not guarantee trustworthiness, and tradeoffs
+are usually involved.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:about_text a owl:DatatypeProperty ;
+    rdfs:label "about_text" ;
+    rdfs:range xsd:string ;
+    skos:definition """Free-text discussion of the subcategory or related concept.
+Corresponds to the AI RMF Playbook "About" section.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:affects_system a owl:ObjectProperty ;
+    rdfs:label "affects_system" ;
+    rdfs:range nist_ai_100_1:AiSystem ;
+    skos:definition "The AI system a risk pertains to." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:audience a owl:ObjectProperty ;
+    rdfs:label "audience" ;
+    rdfs:range nist_ai_100_1:AudienceEnum ;
+    skos:definition """Whether the actor is part of the *primary* AI RMF audience or the
+*informing* People-and-Planet audience.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:category a owl:DatatypeProperty ;
+    rdfs:label "category" ;
+    skos:definition """Category code in the form "FUNCTION-N" (e.g., "GOVERN-1")
+as used in the Playbook.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:category_id a owl:DatatypeProperty ;
+    rdfs:label "category_id" ;
+    rdfs:range xsd:string ;
+    skos:definition "Identifier of a Category (e.g., \"GOVERN 1\")." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:challenge_kind a owl:ObjectProperty ;
+    rdfs:label "challenge_kind" ;
+    rdfs:range nist_ai_100_1:RiskMeasurementChallengeEnum ;
+    skos:definition "Which risk-measurement challenge a `RiskMeasurementChallenge` represents." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:characteristic_kind a owl:ObjectProperty ;
+    rdfs:label "characteristic_kind" ;
+    rdfs:range nist_ai_100_1:TrustworthinessCharacteristicEnum ;
+    skos:definition "Which trustworthiness characteristic a `TrustworthinessCharacteristic` represents." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:current_state a owl:DatatypeProperty ;
+    rdfs:label "current_state" ;
+    rdfs:range xsd:string ;
+    skos:definition """For temporal current profiles - how AI is currently being managed
+and related risks in terms of current outcomes.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:dimension_kind a owl:ObjectProperty ;
+    rdfs:label "dimension_kind" ;
+    rdfs:range nist_ai_100_1:AiSystemDimensionEnum ;
+    skos:definition "Which AI system dimension an `AiSystemDimension` instance represents." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:document a owl:ObjectProperty ;
+    rdfs:label "document" ;
+    rdfs:range nist_ai_100_1:AiRmfDocument ;
+    skos:definition "Publication metadata of the framework instance." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:documentation_questions a owl:DatatypeProperty ;
+    rdfs:label "documentation_questions" ;
+    rdfs:range xsd:string ;
+    skos:definition """Free-text documentation questions and transparency resources.
+Corresponds to the AI RMF Playbook "Documentation" section.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:doi a owl:DatatypeProperty ;
+    rdfs:label "doi" ;
+    rdfs:range xsd:anyURI ;
+    skos:definition "Digital Object Identifier for the document." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:function_code a owl:DatatypeProperty ;
+    rdfs:label "function_code" ;
+    rdfs:range xsd:string ;
+    skos:definition "The function code (GOVERN, MAP, MEASURE, or MANAGE)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:harm_category a owl:ObjectProperty ;
+    rdfs:label "harm_category" ;
+    rdfs:range nist_ai_100_1:HarmCategoryEnum ;
+    skos:definition "The high-level harm category (people / organization / ecosystem)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:harm_to_people_subcategory a owl:ObjectProperty ;
+    rdfs:label "harm_to_people_subcategory" ;
+    rdfs:range nist_ai_100_1:HarmToPeopleSubcategoryEnum ;
+    skos:definition "The sub-category when harm is to people (individual / group / societal)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:includes_tevv a owl:DatatypeProperty ;
+    rdfs:label "includes_tevv" ;
+    rdfs:range xsd:boolean ;
+    skos:definition "Whether the lifecycle stage incorporates TEVV activities." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:is_base_condition a owl:DatatypeProperty ;
+    rdfs:label "is_base_condition" ;
+    rdfs:range xsd:boolean ;
+    skos:definition """True when this characteristic is a necessary condition for
+trustworthiness (per Figure 4 - Valid and Reliable is the base
+of all others).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:is_cross_cutting a owl:DatatypeProperty ;
+    rdfs:label "is_cross_cutting" ;
+    rdfs:range xsd:boolean ;
+    skos:definition """True when this characteristic relates to all others
+(Accountable and Transparent; shown vertically in Figure 4).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:is_tevv a owl:DatatypeProperty ;
+    rdfs:label "is_tevv" ;
+    rdfs:range xsd:boolean ;
+    skos:definition """Whether the actor or task is a Test, Evaluation, Verification, and
+Validation (TEVV) actor / task.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:legal_basis a owl:DatatypeProperty ;
+    rdfs:label "legal_basis" ;
+    rdfs:range xsd:string ;
+    skos:definition "Legal or regulatory requirements influencing a risk tolerance." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:name a owl:DatatypeProperty ;
+    rdfs:label "name" ;
+    rdfs:range xsd:string ;
+    skos:definition "A short human-readable name." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:profile_type a owl:ObjectProperty ;
+    rdfs:label "profile_type" ;
+    rdfs:range nist_ai_100_1:ProfileTypeEnum ;
+    skos:definition "The kind of AI RMF Profile." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:published_date a owl:DatatypeProperty ;
+    rdfs:label "published_date" ;
+    rdfs:range xsd:date ;
+    skos:definition "Date the document was published." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:publisher a owl:DatatypeProperty ;
+    rdfs:label "publisher" ;
+    rdfs:range xsd:string ;
+    skos:definition "The publisher of the document (e.g., NIST)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:references_text a owl:DatatypeProperty ;
+    rdfs:label "references_text" ;
+    rdfs:range xsd:string ;
+    skos:definition """Free-text list of references, citations, and supporting
+resources. Corresponds to the AI RMF Playbook "References"
+section.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:risk_response a owl:ObjectProperty ;
+    rdfs:label "risk_response" ;
+    rdfs:range nist_ai_100_1:RiskResponseEnum ;
+    skos:definition "The chosen risk treatment option." ;
+    skos:exactMatch iso27001:RiskTreatmentOption ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:section_about a owl:DatatypeProperty ;
+    rdfs:label "section_about" ;
+    skos:definition "Free-text discussion (\"About\" section)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:section_actions a owl:DatatypeProperty ;
+    rdfs:label "section_actions" ;
+    skos:definition "Bulleted suggested actions (\"Actions\" section)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:section_doc a owl:DatatypeProperty ;
+    rdfs:label "section_doc" ;
+    skos:definition """Documentation questions and transparency resources
+("Documentation" section).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:section_ref a owl:DatatypeProperty ;
+    rdfs:label "section_ref" ;
+    skos:definition "References and citations (\"References\" section)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:sector a owl:DatatypeProperty ;
+    rdfs:label "sector" ;
+    rdfs:range xsd:string ;
+    skos:definition """The sector, industry, technology, or end-use application a
+profile addresses (e.g., "hiring", "fair housing").""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:source a owl:DatatypeProperty ;
+    rdfs:label "source" ;
+    rdfs:range xsd:anyURI ;
+    skos:definition """Reference to the source of the element (typically the document
+or section it originated from).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:stage_kind a owl:ObjectProperty ;
+    rdfs:label "stage_kind" ;
+    rdfs:range nist_ai_100_1:AiLifecycleStageEnum ;
+    skos:definition "Which AI lifecycle stage an `AiLifecycleStage` instance represents." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:subcategory_id a owl:DatatypeProperty ;
+    rdfs:label "subcategory_id" ;
+    rdfs:range xsd:string ;
+    skos:definition "Identifier of a Subcategory (e.g., \"GOVERN 1.1\")." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:suggested_actions_text a owl:DatatypeProperty ;
+    rdfs:label "suggested_actions_text" ;
+    rdfs:range xsd:string ;
+    skos:definition """Free-text bulleted list of suggested actions an organization can
+take. Corresponds to the AI RMF Playbook "Actions" section.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:target_state a owl:DatatypeProperty ;
+    rdfs:label "target_state" ;
+    rdfs:range xsd:string ;
+    skos:definition """For temporal target profiles - the outcomes needed to achieve the
+desired AI risk management goals.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:task_kind a owl:ObjectProperty ;
+    rdfs:label "task_kind" ;
+    rdfs:range nist_ai_100_1:AiActorTaskEnum ;
+    skos:definition "Which AI actor task category an `AiActorTask` instance represents." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:tolerance_statement a owl:DatatypeProperty ;
+    rdfs:label "tolerance_statement" ;
+    rdfs:range xsd:string ;
+    skos:definition "Free-text statement of a risk tolerance level or threshold." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:type a owl:DatatypeProperty ;
+    rdfs:label "type" ;
+    skos:definition """Function label as serialised in the published Playbook JSON
+(Title case - "Govern", "Map", "Measure", "Manage"). For
+the controlled enum see `function_kind`.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:version a owl:DatatypeProperty ;
+    rdfs:label "version" ;
+    rdfs:range xsd:string ;
+    skos:definition "Version identifier of the document." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:AudienceEnum a owl:Class ;
+    rdfs:label "AudienceEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-100-1/AudienceEnum#PRIMARY> <https://w3id.org/lmodel/nist-ai-100-1/AudienceEnum#INFORMING> ) ;
+    skos:definition "Audience categorisation for the AI RMF (Part 1 §2)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-100-1/AudienceEnum#INFORMING>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AudienceEnum#PRIMARY> .
+
+nist_ai_100_1:affects a owl:ObjectProperty ;
+    rdfs:label "affects" ;
+    rdfs:range nist_ai_100_1:NamedThing ;
+    skos:definition """Entities (people, organizations, ecosystems) the risk or harm
+may affect.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:ai_dimension a owl:ObjectProperty ;
+    rdfs:label "ai_dimension" ;
+    rdfs:range nist_ai_100_1:AiSystemDimensionEnum ;
+    skos:definition "The AI system dimension the element applies to." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:trustworthiness_characteristic a owl:ObjectProperty ;
+    rdfs:label "trustworthiness_characteristic" ;
+    rdfs:range nist_ai_100_1:TrustworthinessCharacteristicEnum ;
+    skos:definition "Trustworthiness characteristic(s) the element pertains to." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:BiasCategoryEnum a owl:Class ;
+    rdfs:label "BiasCategoryEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-100-1/BiasCategoryEnum#SYSTEMIC> <https://w3id.org/lmodel/nist-ai-100-1/BiasCategoryEnum#COMPUTATIONAL_AND_STATISTICAL> <https://w3id.org/lmodel/nist-ai-100-1/BiasCategoryEnum#HUMAN_COGNITIVE> ) ;
+    skos:definition """The three major categories of AI bias identified by NIST
+(Part 1 §3.7; see NIST SP 1270).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-100-1/BiasCategoryEnum#COMPUTATIONAL_AND_STATISTICAL>,
+        <https://w3id.org/lmodel/nist-ai-100-1/BiasCategoryEnum#HUMAN_COGNITIVE>,
+        <https://w3id.org/lmodel/nist-ai-100-1/BiasCategoryEnum#SYSTEMIC> .
+
+nist_ai_100_1:FunctionEnum a owl:Class ;
+    rdfs:label "FunctionEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-100-1/FunctionEnum#GOVERN> <https://w3id.org/lmodel/nist-ai-100-1/FunctionEnum#MAP> <https://w3id.org/lmodel/nist-ai-100-1/FunctionEnum#MEASURE> <https://w3id.org/lmodel/nist-ai-100-1/FunctionEnum#MANAGE> ) ;
+    skos:definition """The four high-level AI RMF Core functions. GOVERN is a
+cross-cutting function applied throughout; MAP, MEASURE, and MANAGE
+operate on specific AI systems and lifecycle stages.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-100-1/FunctionEnum#GOVERN>,
+        <https://w3id.org/lmodel/nist-ai-100-1/FunctionEnum#MANAGE>,
+        <https://w3id.org/lmodel/nist-ai-100-1/FunctionEnum#MAP>,
+        <https://w3id.org/lmodel/nist-ai-100-1/FunctionEnum#MEASURE> .
+
+nist_ai_100_1:HarmCategoryEnum a owl:Class ;
+    rdfs:label "HarmCategoryEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-100-1/HarmCategoryEnum#HARM_TO_PEOPLE> <https://w3id.org/lmodel/nist-ai-100-1/HarmCategoryEnum#HARM_TO_AN_ORGANIZATION> <https://w3id.org/lmodel/nist-ai-100-1/HarmCategoryEnum#HARM_TO_AN_ECOSYSTEM> ) ;
+    skos:definition "High-level categories of harm related to AI systems (Figure 1)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-100-1/HarmCategoryEnum#HARM_TO_AN_ECOSYSTEM>,
+        <https://w3id.org/lmodel/nist-ai-100-1/HarmCategoryEnum#HARM_TO_AN_ORGANIZATION>,
+        <https://w3id.org/lmodel/nist-ai-100-1/HarmCategoryEnum#HARM_TO_PEOPLE> .
+
+nist_ai_100_1:HarmToPeopleSubcategoryEnum a owl:Class ;
+    rdfs:label "HarmToPeopleSubcategoryEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-100-1/HarmToPeopleSubcategoryEnum#INDIVIDUAL> <https://w3id.org/lmodel/nist-ai-100-1/HarmToPeopleSubcategoryEnum#GROUP_OR_COMMUNITY> <https://w3id.org/lmodel/nist-ai-100-1/HarmToPeopleSubcategoryEnum#SOCIETAL> ) ;
+    skos:definition "Sub-categories of harm to people, per Figure 1." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-100-1/HarmToPeopleSubcategoryEnum#GROUP_OR_COMMUNITY>,
+        <https://w3id.org/lmodel/nist-ai-100-1/HarmToPeopleSubcategoryEnum#INDIVIDUAL>,
+        <https://w3id.org/lmodel/nist-ai-100-1/HarmToPeopleSubcategoryEnum#SOCIETAL> .
+
+nist_ai_100_1:Subcategory a owl:Class ;
+    rdfs:label "Subcategory" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:suggested_actions_text ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:outcome ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:documentation_questions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:subcategory_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:ai_actor_categories ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:references_text ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:suggested_actions_text ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiLifecycleStageEnum ;
+            owl:onProperty nist_ai_100_1:lifecycle_stage ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:topics ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:about_text ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty nist_ai_100_1:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:ai_actor_categories ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:suggested_actions_text ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:about_text ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:references_text ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:subcategory_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:lifecycle_stage ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:documentation_questions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:outcome ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:topics ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:trustworthiness_characteristic ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:subcategory_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:TrustworthinessCharacteristicEnum ;
+            owl:onProperty nist_ai_100_1:trustworthiness_characteristic ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:about_text ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:outcome ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:documentation_questions ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:references_text ],
+        nist_ai_100_1:NamedThing ;
+    skos:closeMatch nist_sp_800_53:Control,
+        oscal_catalog:Control ;
+    skos:definition """A subcategory within an AI RMF Core category (e.g., "GOVERN 1.1:
+Legal and regulatory requirements involving AI are understood,
+managed, and documented"). Subcategories express specific
+outcomes.""" ;
+    skos:exactMatch nist_csf:CSFSubcategory ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:ImpactSignEnum a owl:Class ;
+    rdfs:label "ImpactSignEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-100-1/ImpactSignEnum#POSITIVE> <https://w3id.org/lmodel/nist-ai-100-1/ImpactSignEnum#NEGATIVE> <https://w3id.org/lmodel/nist-ai-100-1/ImpactSignEnum#MIXED> ) ;
+    skos:definition """Whether an impact of an AI system is positive, negative, or both
+(Part 1 §1.1).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-100-1/ImpactSignEnum#MIXED>,
+        <https://w3id.org/lmodel/nist-ai-100-1/ImpactSignEnum#NEGATIVE>,
+        <https://w3id.org/lmodel/nist-ai-100-1/ImpactSignEnum#POSITIVE> .
+
+nist_ai_100_1:ProfileTypeEnum a owl:Class ;
+    rdfs:label "ProfileTypeEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-100-1/ProfileTypeEnum#USE_CASE> <https://w3id.org/lmodel/nist-ai-100-1/ProfileTypeEnum#TEMPORAL_CURRENT> <https://w3id.org/lmodel/nist-ai-100-1/ProfileTypeEnum#TEMPORAL_TARGET> <https://w3id.org/lmodel/nist-ai-100-1/ProfileTypeEnum#CROSS_SECTORAL> ) ;
+    skos:definition "Types of AI RMF Profile (§6)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-100-1/ProfileTypeEnum#CROSS_SECTORAL>,
+        <https://w3id.org/lmodel/nist-ai-100-1/ProfileTypeEnum#TEMPORAL_CURRENT>,
+        <https://w3id.org/lmodel/nist-ai-100-1/ProfileTypeEnum#TEMPORAL_TARGET>,
+        <https://w3id.org/lmodel/nist-ai-100-1/ProfileTypeEnum#USE_CASE> .
+
+nist_ai_100_1:RiskResponseEnum a owl:Class ;
+    rdfs:label "RiskResponseEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-100-1/RiskResponseEnum#MITIGATING> <https://w3id.org/lmodel/nist-ai-100-1/RiskResponseEnum#TRANSFERRING> <https://w3id.org/lmodel/nist-ai-100-1/RiskResponseEnum#AVOIDING> <https://w3id.org/lmodel/nist-ai-100-1/RiskResponseEnum#ACCEPTING> ) ;
+    skos:definition "Treatment options for AI risks (MANAGE 1.3)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-100-1/RiskResponseEnum#ACCEPTING>,
+        <https://w3id.org/lmodel/nist-ai-100-1/RiskResponseEnum#AVOIDING>,
+        <https://w3id.org/lmodel/nist-ai-100-1/RiskResponseEnum#MITIGATING>,
+        <https://w3id.org/lmodel/nist-ai-100-1/RiskResponseEnum#TRANSFERRING> .
+
+nist_ai_100_1:description a owl:DatatypeProperty ;
+    rdfs:label "description" ;
+    rdfs:range xsd:string ;
+    skos:definition "A human-readable description.",
+        "Outcome statement of the subcategory." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:impact_sign a owl:ObjectProperty ;
+    rdfs:label "impact_sign" ;
+    rdfs:range nist_ai_100_1:ImpactSignEnum ;
+    skos:definition "Whether the impact is positive, negative, or both." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:is_residual a owl:DatatypeProperty ;
+    rdfs:label "is_residual" ;
+    rdfs:range xsd:boolean ;
+    skos:definition """Whether this risk represents risk remaining after risk treatment
+(residual risk per ISO Guide 73).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:likelihood a owl:DatatypeProperty ;
+    rdfs:label "likelihood" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:float [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:float ;
+                        owl:withRestrictions ( [ xsd:minInclusive 0e+00 ] ) ] [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:float ;
+                        owl:withRestrictions ( [ xsd:maxInclusive 1e+00 ] ) ] ) ] ;
+    skos:closeMatch iso27001:LikelihoodRating ;
+    skos:definition """Estimated probability of the event occurring (0.0 to 1.0). The
+AI RMF leaves quantification approaches to the implementer.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:outcome a owl:DatatypeProperty ;
+    rdfs:label "outcome" ;
+    rdfs:range xsd:string ;
+    skos:closeMatch nist_csf:prose ;
+    skos:definition """The outcome statement of a Category or Subcategory - the desired
+result of carrying out its actions.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:title a owl:DatatypeProperty ;
+    rdfs:label "title" ;
+    rdfs:range xsd:string ;
+    skos:definition "A human-readable title.",
+        """Subcategory identifier (e.g., "GOVERN 1.1"). Mirrors the
+AI RMF Subcategory `subcategory_id`.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:RiskMeasurementChallengeEnum a owl:Class ;
+    rdfs:label "RiskMeasurementChallengeEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum#THIRD_PARTY_SOFTWARE_HARDWARE_AND_DATA> <https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum#TRACKING_EMERGENT_RISKS> <https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum#AVAILABILITY_OF_RELIABLE_METRICS> <https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum#RISK_AT_DIFFERENT_LIFECYCLE_STAGES> <https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum#RISK_IN_REAL_WORLD_SETTINGS> <https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum#INSCRUTABILITY> <https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum#HUMAN_BASELINE> ) ;
+    skos:definition "Challenges that complicate AI risk measurement (Part 1 §1.2.1)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum#AVAILABILITY_OF_RELIABLE_METRICS>,
+        <https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum#HUMAN_BASELINE>,
+        <https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum#INSCRUTABILITY>,
+        <https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum#RISK_AT_DIFFERENT_LIFECYCLE_STAGES>,
+        <https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum#RISK_IN_REAL_WORLD_SETTINGS>,
+        <https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum#THIRD_PARTY_SOFTWARE_HARDWARE_AND_DATA>,
+        <https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum#TRACKING_EMERGENT_RISKS> .
+
+nist_ai_100_1:id a owl:DatatypeProperty ;
+    rdfs:label "id" ;
+    rdfs:range xsd:anyURI ;
+    skos:definition "A unique identifier for an element." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:magnitude a owl:DatatypeProperty ;
+    rdfs:label "magnitude" ;
+    rdfs:range xsd:string ;
+    skos:closeMatch iso27001:ImpactRating ;
+    skos:definition """Magnitude or degree of consequences if the event occurs (free
+text or qualitative scale).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:AiSystemDimensionEnum a owl:Class ;
+    rdfs:label "AiSystemDimensionEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-100-1/AiSystemDimensionEnum#APPLICATION_CONTEXT> <https://w3id.org/lmodel/nist-ai-100-1/AiSystemDimensionEnum#DATA_AND_INPUT> <https://w3id.org/lmodel/nist-ai-100-1/AiSystemDimensionEnum#AI_MODEL> <https://w3id.org/lmodel/nist-ai-100-1/AiSystemDimensionEnum#TASK_AND_OUTPUT> <https://w3id.org/lmodel/nist-ai-100-1/AiSystemDimensionEnum#PEOPLE_AND_PLANET> ) ;
+    skos:definition """Key socio-technical dimensions of an AI system (Figure 2).
+People and Planet sits at the centre representing human and
+societal well-being.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-100-1/AiSystemDimensionEnum#AI_MODEL>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiSystemDimensionEnum#APPLICATION_CONTEXT>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiSystemDimensionEnum#DATA_AND_INPUT>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiSystemDimensionEnum#PEOPLE_AND_PLANET>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiSystemDimensionEnum#TASK_AND_OUTPUT> .
+
+nist_ai_100_1:lifecycle_stage a owl:ObjectProperty ;
+    rdfs:label "lifecycle_stage" ;
+    rdfs:range nist_ai_100_1:AiLifecycleStageEnum ;
+    skos:definition "The AI lifecycle stage(s) the element applies to." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+nist_ai_100_1:TrustworthinessCharacteristicEnum a owl:Class ;
+    rdfs:label "TrustworthinessCharacteristicEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#VALID_AND_RELIABLE> <https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#SAFE> <https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#SECURE_AND_RESILIENT> <https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#ACCOUNTABLE_AND_TRANSPARENT> <https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#EXPLAINABLE_AND_INTERPRETABLE> <https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#PRIVACY_ENHANCED> <https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#FAIR_WITH_HARMFUL_BIAS_MANAGED> ) ;
+    skos:definition """The seven characteristics of trustworthy AI systems described in
+Figure 4 and Part 1 §3.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#ACCOUNTABLE_AND_TRANSPARENT>,
+        <https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#EXPLAINABLE_AND_INTERPRETABLE>,
+        <https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#FAIR_WITH_HARMFUL_BIAS_MANAGED>,
+        <https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#PRIVACY_ENHANCED>,
+        <https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#SAFE>,
+        <https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#SECURE_AND_RESILIENT>,
+        <https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#VALID_AND_RELIABLE> .
+
+nist_ai_100_1:AiLifecycleStageEnum a owl:Class ;
+    rdfs:label "AiLifecycleStageEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum#PLAN_AND_DESIGN> <https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum#COLLECT_AND_PROCESS_DATA> <https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum#BUILD_AND_USE_MODEL> <https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum#VERIFY_AND_VALIDATE> <https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum#DEPLOY_AND_USE> <https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum#OPERATE_AND_MONITOR> ) ;
+    skos:definition """AI lifecycle stages as defined in Figure 2 (modified from
+OECD 2022). Each stage corresponds to one of the AI system
+dimensions (see AiSystemDimensionEnum).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum#BUILD_AND_USE_MODEL>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum#COLLECT_AND_PROCESS_DATA>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum#DEPLOY_AND_USE>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum#OPERATE_AND_MONITOR>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum#PLAN_AND_DESIGN>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum#VERIFY_AND_VALIDATE> .
+
+nist_ai_100_1:AiActorTaskEnum a owl:Class ;
+    rdfs:label "AiActorTaskEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#AI_DESIGN> <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#AI_DEVELOPMENT> <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#AI_DEPLOYMENT> <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#OPERATION_AND_MONITORING> <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#TEVV> <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#HUMAN_FACTORS> <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#DOMAIN_EXPERT> <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#AI_IMPACT_ASSESSMENT> <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#PROCUREMENT> <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#GOVERNANCE_AND_OVERSIGHT> <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#THIRD_PARTY_ENTITIES> <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#END_USERS> <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#AFFECTED_INDIVIDUALS_OR_COMMUNITIES> <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#OTHER_AI_ACTORS> <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#GENERAL_PUBLIC> ) ;
+    skos:definition """Categories of AI actor tasks as described in Appendix A and
+illustrated in Figure 3.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#AFFECTED_INDIVIDUALS_OR_COMMUNITIES>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#AI_DEPLOYMENT>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#AI_DESIGN>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#AI_DEVELOPMENT>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#AI_IMPACT_ASSESSMENT>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#DOMAIN_EXPERT>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#END_USERS>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#GENERAL_PUBLIC>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#GOVERNANCE_AND_OVERSIGHT>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#HUMAN_FACTORS>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#OPERATION_AND_MONITORING>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#OTHER_AI_ACTORS>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#PROCUREMENT>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#TEVV>,
+        <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#THIRD_PARTY_ENTITIES> .
+
+nist_ai_100_1:NamedThing a owl:Class ;
+    rdfs:label "NamedThing" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty nist_ai_100_1:id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:title ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty nist_ai_100_1:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty nist_ai_100_1:see_also ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:title ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:name ],
+        [ owl:unionOf ( nist_ai_100_1:AiActor nist_ai_100_1:AiActorTask nist_ai_100_1:AiLifecycleStage nist_ai_100_1:AiRmfDocument nist_ai_100_1:AiRmfFramework nist_ai_100_1:AiRmfProfile nist_ai_100_1:AiSpecificRisk nist_ai_100_1:AiSystem nist_ai_100_1:AiSystemDimension nist_ai_100_1:Bias nist_ai_100_1:Category nist_ai_100_1:Function nist_ai_100_1:Harm nist_ai_100_1:HumanAiInteractionIssue nist_ai_100_1:Impact nist_ai_100_1:Risk nist_ai_100_1:RiskMeasurementChallenge nist_ai_100_1:RiskTolerance nist_ai_100_1:RmfAttribute nist_ai_100_1:Subcategory nist_ai_100_1:TrustworthinessCharacteristic ) ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:title ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:see_also ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:description ] ;
+    skos:closeMatch schema1:Thing ;
+    skos:definition "A generic grouping for any identifiable AI RMF element." ;
+    skos:exactMatch schema1:Thing ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
+
+xsd:string a rdfs:Datatype ;
+    owl:equivalentClass [ a rdfs:Datatype ;
+            owl:onDatatype xsd:string ;
+            owl:withRestrictions ( [ xsd:pattern "^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+\\.[0-9]+$" ] ) ],
+        [ a rdfs:Datatype ;
+            owl:onDatatype xsd:string ;
+            owl:withRestrictions ( [ xsd:pattern "^(GOVERN|MAP|MEASURE|MANAGE)$" ] ) ],
+        [ a rdfs:Datatype ;
+            owl:onDatatype xsd:string ;
+            owl:withRestrictions ( [ xsd:pattern "^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+$" ] ) ] .
+
+

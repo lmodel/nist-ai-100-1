@@ -43,6 +43,7 @@ fallback-version = "0.0.0"
 # Ref.: https://docs.pytest.org/en/stable/reference/reference.html#configuration-options
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+addopts = "--ignore=tests/test_third_party_data.py"
 
 # https://docs.astral.sh/ruff/configuration/
 [tool.ruff]

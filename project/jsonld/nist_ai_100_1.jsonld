@@ -1,0 +1,3149 @@
+{
+  "name": "nist-ai-100-1",
+  "description": "LinkML schema for the NIST AI Risk Management Framework\n(AI RMF 1.0), published as NIST AI 100-1 (January 2023).\n\nProvides the structured, machine-readable taxonomy of the\nFramework's foundational concepts (risk, impact, harm, AI system,\nAI actor, lifecycle), the seven characteristics of trustworthy AI,\nand the four Core functions (GOVERN, MAP, MEASURE, MANAGE) together\nwith their categories and subcategories. It also models AI RMF\nProfiles (use-case, temporal, cross-sectoral), the design\nattributes of the Framework, and the AI RMF Playbook companion\ndata shape.",
+  "title": "NIST AI Risk Management Framework (AI RMF 1.0)",
+  "source": "https://doi.org/10.6028/NIST.AI.100-1",
+  "see_also": [
+    "https://w3id.org/lmodel/nist-ai-100-1",
+    "https://doi.org/10.6028/NIST.AI.100-1",
+    "https://www.nist.gov/itl/ai-risk-management-framework"
+  ],
+  "id": "https://w3id.org/lmodel/nist-ai-100-1",
+  "version": "1.0.0",
+  "imports": [
+    "linkml:types"
+  ],
+  "license": "Apache-2.0",
+  "prefixes": [
+    {
+      "prefix_prefix": "nist_ai_100_1",
+      "prefix_reference": "https://w3id.org/lmodel/nist-ai-100-1/"
+    },
+    {
+      "prefix_prefix": "linkml",
+      "prefix_reference": "https://w3id.org/linkml/"
+    },
+    {
+      "prefix_prefix": "rdf",
+      "prefix_reference": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    },
+    {
+      "prefix_prefix": "rdfs",
+      "prefix_reference": "http://www.w3.org/2000/01/rdf-schema#"
+    },
+    {
+      "prefix_prefix": "skos",
+      "prefix_reference": "http://www.w3.org/2004/02/skos/core#"
+    },
+    {
+      "prefix_prefix": "schema",
+      "prefix_reference": "http://schema.org/"
+    },
+    {
+      "prefix_prefix": "dcterms",
+      "prefix_reference": "http://purl.org/dc/terms/"
+    },
+    {
+      "prefix_prefix": "prov",
+      "prefix_reference": "http://www.w3.org/ns/prov#"
+    },
+    {
+      "prefix_prefix": "foaf",
+      "prefix_reference": "http://xmlns.com/foaf/0.1/"
+    },
+    {
+      "prefix_prefix": "xsd",
+      "prefix_reference": "http://www.w3.org/2001/XMLSchema#"
+    },
+    {
+      "prefix_prefix": "nist_csf",
+      "prefix_reference": "https://w3id.org/lmodel/nist-csf-v2/"
+    },
+    {
+      "prefix_prefix": "nist_sp_800_53",
+      "prefix_reference": "https://w3id.org/lmodel/nist-sp-800-53/"
+    },
+    {
+      "prefix_prefix": "nist_sp_800_218",
+      "prefix_reference": "https://w3id.org/lmodel/nist-sp-800-218/"
+    },
+    {
+      "prefix_prefix": "oscal_catalog",
+      "prefix_reference": "https://w3id.org/lmodel/oscal_catalog/"
+    },
+    {
+      "prefix_prefix": "oscal_profile",
+      "prefix_reference": "https://w3id.org/lmodel/oscal_profile/"
+    },
+    {
+      "prefix_prefix": "iso27001",
+      "prefix_reference": "https://w3id.org/lmodel/iso27001/"
+    },
+    {
+      "prefix_prefix": "iso29100",
+      "prefix_reference": "https://w3id.org/lmodel/iso29100/"
+    },
+    {
+      "prefix_prefix": "gist_linkml",
+      "prefix_reference": "https://w3id.org/lmodel/gist/"
+    },
+    {
+      "prefix_prefix": "stix",
+      "prefix_reference": "https://w3id.org/lmodel/stix/"
+    },
+    {
+      "prefix_prefix": "doi",
+      "prefix_reference": "https://doi.org/"
+    }
+  ],
+  "default_prefix": "nist_ai_100_1",
+  "default_range": "string",
+  "subsets": [
+    {
+      "name": "base",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/Base",
+      "description": "Schema-infrastructure elements shared across the framework:\nidentifier slots, the abstract `NamedThing` root, publication\nmetadata, and the top-level `AiRmfFramework` container. Not a\nsection of NIST AI 100-1 itself - distinct from `framework_core`\n(Part 2, \u00a75 \"AI RMF Core\").",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "@type": "SubsetDefinition"
+    },
+    {
+      "name": "framework_core",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/FrameworkCore",
+      "description": "The AI RMF Core (Part 2, \u00a75): the four high-level Functions\n(GOVERN, MAP, MEASURE, MANAGE) and their Categories and\nSubcategories - the catalog backbone of the Framework.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "@type": "SubsetDefinition"
+    },
+    {
+      "name": "trustworthiness",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/Trustworthiness",
+      "description": "Characteristics of trustworthy AI systems (Part 1, \u00a73):\nValid and Reliable, Safe, Secure and Resilient, Accountable and\nTransparent, Explainable and Interpretable, Privacy-Enhanced, and\nFair with Harmful Bias Managed.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "@type": "SubsetDefinition"
+    },
+    {
+      "name": "lifecycle",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/Lifecycle",
+      "description": "AI system lifecycle stages, key dimensions, AI actor categories,\nand AI actor tasks (Part 1, \u00a72 Audience; Figures 2 and 3;\nAppendix A \"Descriptions of AI Actor Tasks\").",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "@type": "SubsetDefinition"
+    },
+    {
+      "name": "risk_and_harm",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/RiskAndHarm",
+      "description": "Risk, impact, harm, residual risk, risk tolerance, risk\nmeasurement challenges, and risk response options (Part 1, \u00a71\n\"Framing Risk\", incl. \u00a71.2 Challenges).",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "@type": "SubsetDefinition"
+    },
+    {
+      "name": "profiles",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/Profiles",
+      "description": "AI RMF profile constructs (Part 2, \u00a76): use-case profiles,\ntemporal (current / target) profiles, and cross-sectoral profiles.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "@type": "SubsetDefinition"
+    },
+    {
+      "name": "attributes",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/Attributes",
+      "description": "Design attributes of the AI RMF (Appendix D \"Attributes of the\nAI RMF\") - the qualities the Framework strives to embody.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "@type": "SubsetDefinition"
+    },
+    {
+      "name": "ai_risk_distinctions",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiRiskDistinctions",
+      "description": "Appendix B \"How AI Risks Differ from Traditional Software Risks\" -\nrisks that are new or increased for AI-based technology (e.g.,\ndata quality, model drift, opacity, scale and complexity,\npre-trained model uncertainty, emergent properties, privacy\naggregation, environmental cost).",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "@type": "SubsetDefinition"
+    },
+    {
+      "name": "human_ai_interaction",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/HumanAiInteraction",
+      "description": "Appendix C \"AI Risk Management and Human-AI Interaction\" -\nconsiderations for human roles and responsibilities, cognitive\nand systemic biases in design, variability of interaction\noutcomes, and presentation of AI information to humans.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "@type": "SubsetDefinition"
+    },
+    {
+      "name": "playbook",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/Playbook",
+      "description": "Companion-resource enrichment of an AI RMF subcategory with\nfree-text discussion (\"about\"), suggested actions, documentation\nquestions, and references - modelled after the NIST AI RMF\nPlaybook JSON shape. (Not part of NIST AI 100-1 itself; cross-\nreferenced in Part 2, \u00a75.)",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "@type": "SubsetDefinition"
+    }
+  ],
+  "types": [
+    {
+      "name": "FunctionCode",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/FunctionCode",
+      "description": "Identifier of one of the four AI RMF Core functions.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "typeof": "string",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "pattern": "^(GOVERN|MAP|MEASURE|MANAGE)$",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "CategoryCode",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/CategoryCode",
+      "description": "Identifier for a Core category (e.g., \"GOVERN 1\", \"MAP 3\").",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "typeof": "string",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "pattern": "^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+$",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "SubcategoryCode",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/SubcategoryCode",
+      "description": "Identifier for a Core subcategory (e.g., \"GOVERN 1.1\").",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "typeof": "string",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "pattern": "^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+\\.[0-9]+$",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "string",
+      "definition_uri": "https://w3id.org/linkml/String",
+      "description": "A character string",
+      "notes": [
+        "In RDF serializations, a slot with range of string is treated as a literal or type xsd:string. If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"string\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Text"
+      ],
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "integer",
+      "definition_uri": "https://w3id.org/linkml/Integer",
+      "description": "An integer",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"integer\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Integer"
+      ],
+      "base": "int",
+      "uri": "http://www.w3.org/2001/XMLSchema#integer",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "boolean",
+      "definition_uri": "https://w3id.org/linkml/Boolean",
+      "description": "A binary (true or false) value",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"boolean\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Boolean"
+      ],
+      "base": "Bool",
+      "uri": "http://www.w3.org/2001/XMLSchema#boolean",
+      "repr": "bool",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "float",
+      "definition_uri": "https://w3id.org/linkml/Float",
+      "description": "A real number that conforms to the xsd:float specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"float\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Float"
+      ],
+      "base": "float",
+      "uri": "http://www.w3.org/2001/XMLSchema#float",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "double",
+      "definition_uri": "https://w3id.org/linkml/Double",
+      "description": "A real number that conforms to the xsd:double specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"double\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "close_mappings": [
+        "schema:Float"
+      ],
+      "base": "float",
+      "uri": "http://www.w3.org/2001/XMLSchema#double",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "decimal",
+      "definition_uri": "https://w3id.org/linkml/Decimal",
+      "description": "A real number with arbitrary precision that conforms to the xsd:decimal specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"decimal\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "broad_mappings": [
+        "schema:Number"
+      ],
+      "base": "Decimal",
+      "uri": "http://www.w3.org/2001/XMLSchema#decimal",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "time",
+      "definition_uri": "https://w3id.org/linkml/Time",
+      "description": "A time object represents a (local) time of day, independent of any particular day",
+      "notes": [
+        "URI is dateTime because OWL reasoners do not work with straight date or time",
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"time\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Time"
+      ],
+      "base": "XSDTime",
+      "uri": "http://www.w3.org/2001/XMLSchema#time",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "date",
+      "definition_uri": "https://w3id.org/linkml/Date",
+      "description": "a date (year, month and day) in an idealized calendar",
+      "notes": [
+        "URI is dateTime because OWL reasoners don't work with straight date or time",
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Date"
+      ],
+      "base": "XSDDate",
+      "uri": "http://www.w3.org/2001/XMLSchema#date",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "datetime",
+      "definition_uri": "https://w3id.org/linkml/Datetime",
+      "description": "The combination of a date and time",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"datetime\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:DateTime"
+      ],
+      "base": "XSDDateTime",
+      "uri": "http://www.w3.org/2001/XMLSchema#dateTime",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "date_or_datetime",
+      "definition_uri": "https://w3id.org/linkml/DateOrDatetime",
+      "description": "Either a date or a datetime",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date_or_datetime\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "https://w3id.org/linkml/DateOrDatetime",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "uriorcurie",
+      "definition_uri": "https://w3id.org/linkml/Uriorcurie",
+      "description": "a URI or a CURIE",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uriorcurie\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "URIorCURIE",
+      "uri": "http://www.w3.org/2001/XMLSchema#anyURI",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "curie",
+      "definition_uri": "https://w3id.org/linkml/Curie",
+      "conforms_to": "https://www.w3.org/TR/curie/",
+      "description": "a compact URI",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"curie\"."
+      ],
+      "comments": [
+        "in RDF serializations this MUST be expanded to a URI",
+        "in non-RDF serializations MAY be serialized as the compact representation"
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "Curie",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "uri",
+      "definition_uri": "https://w3id.org/linkml/Uri",
+      "conforms_to": "https://www.ietf.org/rfc/rfc3987.txt",
+      "description": "a complete URI",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uri\"."
+      ],
+      "comments": [
+        "in RDF serializations a slot with range of uri is treated as a literal or type xsd:anyURI unless it is an identifier or a reference to an identifier, in which case it is translated directly to a node"
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "close_mappings": [
+        "schema:URL"
+      ],
+      "base": "URI",
+      "uri": "http://www.w3.org/2001/XMLSchema#anyURI",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "ncname",
+      "definition_uri": "https://w3id.org/linkml/Ncname",
+      "description": "Prefix part of CURIE",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"ncname\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "NCName",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "objectidentifier",
+      "definition_uri": "https://w3id.org/linkml/Objectidentifier",
+      "description": "A URI or CURIE that represents an object in the model.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"objectidentifier\"."
+      ],
+      "comments": [
+        "Used for inheritance and type checking"
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "ElementIdentifier",
+      "uri": "http://www.w3.org/ns/shex#iri",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "nodeidentifier",
+      "definition_uri": "https://w3id.org/linkml/Nodeidentifier",
+      "description": "A URI, CURIE or BNODE that represents a node in a model.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"nodeidentifier\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "NodeIdentifier",
+      "uri": "http://www.w3.org/ns/shex#nonLiteral",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "jsonpointer",
+      "definition_uri": "https://w3id.org/linkml/Jsonpointer",
+      "conforms_to": "https://datatracker.ietf.org/doc/html/rfc6901",
+      "description": "A string encoding a JSON Pointer. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to a valid object within the current instance document when encoded in tree form.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpointer\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "jsonpath",
+      "definition_uri": "https://w3id.org/linkml/Jsonpath",
+      "conforms_to": "https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html",
+      "description": "A string encoding a JSON Path. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded in tree form.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpath\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "sparqlpath",
+      "definition_uri": "https://w3id.org/linkml/Sparqlpath",
+      "conforms_to": "https://www.w3.org/TR/sparql11-query/#propertypaths",
+      "description": "A string encoding a SPARQL Property Path. The value of the string MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded as RDF.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"sparqlpath\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    }
+  ],
+  "enums": [
+    {
+      "name": "FunctionEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/FunctionEnum",
+      "description": "The four high-level AI RMF Core functions. GOVERN is a\ncross-cutting function applied throughout; MAP, MEASURE, and MANAGE\noperate on specific AI systems and lifecycle stages.",
+      "in_subset": [
+        "framework_core"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "permissible_values": [
+        {
+          "text": "GOVERN",
+          "description": "Cultivates and implements a culture of risk management; outlines\nprocesses, documents, and organizational schemes that anticipate,\nidentify, and manage AI risks."
+        },
+        {
+          "text": "MAP",
+          "description": "Establishes the context to frame risks related to an AI system;\nidentifies risks based on intended purposes, capabilities, and\ncontextual factors."
+        },
+        {
+          "text": "MEASURE",
+          "description": "Employs quantitative, qualitative, or mixed-method tools to\nanalyze, assess, benchmark, and monitor AI risk and related impacts."
+        },
+        {
+          "text": "MANAGE",
+          "description": "Allocates risk resources to mapped and measured risks on a\nregular basis and as defined by the GOVERN function; risk\ntreatment includes plans to respond to, recover from, and\ncommunicate about incidents or events."
+        }
+      ]
+    },
+    {
+      "name": "AiLifecycleStageEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum",
+      "description": "AI lifecycle stages as defined in Figure 2 (modified from\nOECD 2022). Each stage corresponds to one of the AI system\ndimensions (see AiSystemDimensionEnum).",
+      "in_subset": [
+        "lifecycle"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "permissible_values": [
+        {
+          "text": "PLAN_AND_DESIGN",
+          "description": "Articulate and document the system's concept and objectives,\nunderlying assumptions, context, and requirements (Application\nContext dimension)."
+        },
+        {
+          "text": "COLLECT_AND_PROCESS_DATA",
+          "description": "Gather, validate, and clean data and document the metadata and\ncharacteristics of the dataset (Data and Input dimension)."
+        },
+        {
+          "text": "BUILD_AND_USE_MODEL",
+          "description": "Create or select algorithms; train models (AI Model dimension)."
+        },
+        {
+          "text": "VERIFY_AND_VALIDATE",
+          "description": "Verify, validate, calibrate, and interpret model output\n(AI Model dimension)."
+        },
+        {
+          "text": "DEPLOY_AND_USE",
+          "description": "Pilot; check compatibility with legacy systems; verify regulatory\ncompliance; manage organizational change; and evaluate user\nexperience (Task and Output dimension)."
+        },
+        {
+          "text": "OPERATE_AND_MONITOR",
+          "description": "Operate the AI system and continuously assess its recommendations\nand impacts (both intended and unintended) in light of objectives,\nlegal and regulatory requirements, and ethical considerations\n(Application Context dimension)."
+        }
+      ]
+    },
+    {
+      "name": "AiSystemDimensionEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiSystemDimensionEnum",
+      "description": "Key socio-technical dimensions of an AI system (Figure 2).\nPeople and Planet sits at the centre representing human and\nsocietal well-being.",
+      "in_subset": [
+        "lifecycle"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "permissible_values": [
+        {
+          "text": "APPLICATION_CONTEXT",
+          "description": "The setting in which an AI system is deployed - includes legal,\nregulatory, ethical, and societal considerations."
+        },
+        {
+          "text": "DATA_AND_INPUT",
+          "description": "The data and inputs an AI system uses, including training,\nvalidation, test data, and operational inputs."
+        },
+        {
+          "text": "AI_MODEL",
+          "description": "The model(s) and algorithms at the heart of an AI system."
+        },
+        {
+          "text": "TASK_AND_OUTPUT",
+          "description": "The task the AI system is designed to perform and the outputs\nit produces (predictions, recommendations, decisions)."
+        },
+        {
+          "text": "PEOPLE_AND_PLANET",
+          "description": "Human rights and the broader well-being of society and the\nplanet - centred in Figure 2."
+        }
+      ]
+    },
+    {
+      "name": "AiActorTaskEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum",
+      "description": "Categories of AI actor tasks as described in Appendix A and\nillustrated in Figure 3.",
+      "in_subset": [
+        "lifecycle"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "permissible_values": [
+        {
+          "text": "AI_DESIGN",
+          "description": "Performed during the Application Context and Data and Input\nphases; create the concept and objectives of AI systems and are\nresponsible for planning, design, and data collection."
+        },
+        {
+          "text": "AI_DEVELOPMENT",
+          "description": "Performed during the AI Model phase; provide the initial\ninfrastructure of AI systems (model building, selection,\ncalibration, training, testing)."
+        },
+        {
+          "text": "AI_DEPLOYMENT",
+          "description": "Performed during the Task and Output phase; responsible for\ncontextual decisions on how the AI system is used and for\nassuring deployment into production."
+        },
+        {
+          "text": "OPERATION_AND_MONITORING",
+          "description": "Performed in the Application Context / Operate and Monitor\nphase; operating the AI system and regularly assessing system\noutput and impacts."
+        },
+        {
+          "text": "TEVV",
+          "description": "Test, Evaluation, Verification, and Validation tasks performed\nthroughout the AI lifecycle; examine the AI system or its\ncomponents, and detect and remediate problems."
+        },
+        {
+          "text": "HUMAN_FACTORS",
+          "description": "Human-centered design practices and methodologies; promoting\nactive involvement of end users and other interested parties;\nincorporating context-specific norms and values."
+        },
+        {
+          "text": "DOMAIN_EXPERT",
+          "description": "Input from multidisciplinary practitioners or scholars who\nprovide knowledge or expertise in - and about - an industry\nsector, context, or application area."
+        },
+        {
+          "text": "AI_IMPACT_ASSESSMENT",
+          "description": "Assess and evaluate requirements for AI system accountability,\ncombat harmful bias, examine impacts, product safety, liability,\nand security."
+        },
+        {
+          "text": "PROCUREMENT",
+          "description": "Conducted by AI actors with financial, legal, or policy\nmanagement authority for acquisition of AI models, products, or\nservices from a third party."
+        },
+        {
+          "text": "GOVERNANCE_AND_OVERSIGHT",
+          "description": "Assumed by AI actors with management, fiduciary, and legal\nauthority for the organization, including senior leadership and\nthe Board of Directors."
+        },
+        {
+          "text": "THIRD_PARTY_ENTITIES",
+          "description": "Providers, developers, vendors, and evaluators of data,\nalgorithms, models, and/or systems and related services external\nto the deploying organization."
+        },
+        {
+          "text": "END_USERS",
+          "description": "Individuals or groups that use the AI system for specific\npurposes; range in competency from AI experts to first-time\nusers."
+        },
+        {
+          "text": "AFFECTED_INDIVIDUALS_OR_COMMUNITIES",
+          "description": "All individuals, groups, communities, or organizations directly\nor indirectly affected by AI systems or decisions based on the\noutput of AI systems."
+        },
+        {
+          "text": "OTHER_AI_ACTORS",
+          "description": "Provide formal or quasi-formal norms or guidance - includes\ntrade associations, standards developing organizations, advocacy\ngroups, researchers, environmental groups, and civil society\norganizations."
+        },
+        {
+          "text": "GENERAL_PUBLIC",
+          "description": "Most likely to directly experience positive and negative impacts\nof AI technologies; provides motivation for actions taken by\nother AI actors."
+        }
+      ]
+    },
+    {
+      "name": "TrustworthinessCharacteristicEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum",
+      "description": "The seven characteristics of trustworthy AI systems described in\nFigure 4 and Part 1 \u00a73.",
+      "in_subset": [
+        "trustworthiness"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "permissible_values": [
+        {
+          "text": "VALID_AND_RELIABLE",
+          "description": "Confirmation that requirements for a specific intended use have\nbeen fulfilled (validation) and that the system performs as\nrequired without failure (reliability). A necessary condition of\ntrustworthiness and the base for other characteristics."
+        },
+        {
+          "text": "SAFE",
+          "description": "The system does not, under defined conditions, lead to a state\nin which human life, health, property, or the environment is\nendangered."
+        },
+        {
+          "text": "SECURE_AND_RESILIENT",
+          "description": "The system can withstand unexpected adverse events or changes\n(resilient) and maintain confidentiality, integrity, and\navailability through protection mechanisms (secure)."
+        },
+        {
+          "text": "ACCOUNTABLE_AND_TRANSPARENT",
+          "description": "Trustworthy AI depends on accountability, which presupposes\ntransparency - the extent to which information about an AI\nsystem and its outputs is available to those interacting with\nit."
+        },
+        {
+          "text": "EXPLAINABLE_AND_INTERPRETABLE",
+          "description": "Explainability concerns the mechanisms underlying an AI system's\noperation; interpretability concerns the meaning of its output\nin context."
+        },
+        {
+          "text": "PRIVACY_ENHANCED",
+          "description": "Norms and practices that help safeguard human autonomy,\nidentity, and dignity - including anonymity, confidentiality,\nand control over personal information."
+        },
+        {
+          "text": "FAIR_WITH_HARMFUL_BIAS_MANAGED",
+          "description": "Concerns for equality and equity by addressing issues such as\nharmful bias and discrimination, and recognising that\nperceptions of fairness differ across cultures and\napplications."
+        }
+      ]
+    },
+    {
+      "name": "HarmCategoryEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/HarmCategoryEnum",
+      "description": "High-level categories of harm related to AI systems (Figure 1).",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "permissible_values": [
+        {
+          "text": "HARM_TO_PEOPLE",
+          "description": "Harm to individuals, groups/communities, or society at large\n(including civil liberties, rights, physical or psychological\nsafety, economic opportunity, democratic participation, and\neducational access)."
+        },
+        {
+          "text": "HARM_TO_AN_ORGANIZATION",
+          "description": "Harm to an organization's business operations, security\nbreaches or monetary loss, or reputation."
+        },
+        {
+          "text": "HARM_TO_AN_ECOSYSTEM",
+          "description": "Harm to interconnected and interdependent elements and\nresources, the global financial system, supply chain, natural\nresources, the environment, and the planet."
+        }
+      ]
+    },
+    {
+      "name": "HarmToPeopleSubcategoryEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/HarmToPeopleSubcategoryEnum",
+      "description": "Sub-categories of harm to people, per Figure 1.",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "permissible_values": [
+        {
+          "text": "INDIVIDUAL",
+          "description": "Harm to a person's civil liberties, rights, physical or\npsychological safety, or economic opportunity."
+        },
+        {
+          "text": "GROUP_OR_COMMUNITY",
+          "description": "Harm to a group such as discrimination against a population\nsub-group."
+        },
+        {
+          "text": "SOCIETAL",
+          "description": "Harm to democratic participation or educational access."
+        }
+      ]
+    },
+    {
+      "name": "BiasCategoryEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/BiasCategoryEnum",
+      "description": "The three major categories of AI bias identified by NIST\n(Part 1 \u00a73.7; see NIST SP 1270).",
+      "in_subset": [
+        "trustworthiness"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "permissible_values": [
+        {
+          "text": "SYSTEMIC",
+          "description": "Bias present in AI datasets, organizational norms, practices,\nand processes across the AI lifecycle, and the broader society\nthat uses AI systems."
+        },
+        {
+          "text": "COMPUTATIONAL_AND_STATISTICAL",
+          "description": "Bias present in AI datasets and algorithmic processes; often\nstems from systematic errors due to non-representative samples."
+        },
+        {
+          "text": "HUMAN_COGNITIVE",
+          "description": "Bias related to how an individual or group perceives AI system\ninformation to make a decision or fill in missing information;\nomnipresent in decision-making across the AI lifecycle."
+        }
+      ]
+    },
+    {
+      "name": "RiskMeasurementChallengeEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum",
+      "description": "Challenges that complicate AI risk measurement (Part 1 \u00a71.2.1).",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "permissible_values": [
+        {
+          "text": "THIRD_PARTY_SOFTWARE_HARDWARE_AND_DATA",
+          "description": "Risks related to third-party software, hardware, and data,\nincluding misalignment of risk metrics or methodologies between\ndevelopers, deployers, and operators."
+        },
+        {
+          "text": "TRACKING_EMERGENT_RISKS",
+          "description": "Identifying and tracking emergent risks and considering\ntechniques for measuring them; impact assessment helps\nunderstand context-specific harms."
+        },
+        {
+          "text": "AVAILABILITY_OF_RELIABLE_METRICS",
+          "description": "Lack of consensus on robust and verifiable measurement methods\nfor risk and trustworthiness, and their applicability to\ndifferent use cases."
+        },
+        {
+          "text": "RISK_AT_DIFFERENT_LIFECYCLE_STAGES",
+          "description": "Measuring risk at different stages may yield different results;\nsome risks may be latent and increase as systems adapt and\nevolve."
+        },
+        {
+          "text": "RISK_IN_REAL_WORLD_SETTINGS",
+          "description": "Lab measurements may differ from risks that emerge in\noperational, real-world settings."
+        },
+        {
+          "text": "INSCRUTABILITY",
+          "description": "Opaque systems with limited explainability or interpretability,\npoor documentation, or inherent uncertainty complicate risk\nmeasurement."
+        },
+        {
+          "text": "HUMAN_BASELINE",
+          "description": "AI systems intended to augment or replace human activity\nrequire a human baseline for comparison, which is difficult to\nsystematize."
+        }
+      ]
+    },
+    {
+      "name": "RiskResponseEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/RiskResponseEnum",
+      "description": "Treatment options for AI risks (MANAGE 1.3).",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "permissible_values": [
+        {
+          "text": "MITIGATING",
+          "description": "Reducing the likelihood or magnitude of the risk."
+        },
+        {
+          "text": "TRANSFERRING",
+          "description": "Shifting the risk to another party (e.g., via insurance or contract)."
+        },
+        {
+          "text": "AVOIDING",
+          "description": "Choosing not to engage in the activity that creates the risk."
+        },
+        {
+          "text": "ACCEPTING",
+          "description": "Acknowledging the risk and taking no further action."
+        }
+      ]
+    },
+    {
+      "name": "ProfileTypeEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/ProfileTypeEnum",
+      "description": "Types of AI RMF Profile (\u00a76).",
+      "in_subset": [
+        "profiles"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "permissible_values": [
+        {
+          "text": "USE_CASE",
+          "description": "Implementation of the AI RMF Core for a specific setting or\napplication (e.g., a hiring profile, a fair housing profile)."
+        },
+        {
+          "text": "TEMPORAL_CURRENT",
+          "description": "Description of the current state of AI risk management\nactivities within a sector, industry, organization, or\napplication context."
+        },
+        {
+          "text": "TEMPORAL_TARGET",
+          "description": "Description of the desired or target state of AI risk\nmanagement activities."
+        },
+        {
+          "text": "CROSS_SECTORAL",
+          "description": "Risks of models or applications used across use cases or\nsectors (e.g., large language models, cloud-based services,\nacquisition)."
+        }
+      ]
+    },
+    {
+      "name": "AudienceEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/AudienceEnum",
+      "description": "Audience categorisation for the AI RMF (Part 1 \u00a72).",
+      "in_subset": [
+        "lifecycle"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "permissible_values": [
+        {
+          "text": "PRIMARY",
+          "description": "AI actors who perform or manage the design, development,\ndeployment, evaluation, and use of AI systems and drive AI\nrisk management efforts."
+        },
+        {
+          "text": "INFORMING",
+          "description": "AI actors in the People and Planet dimension who *inform* the\nprimary audience - trade associations, standards developers,\nresearchers, advocacy groups, civil society organisations,\nend users, and impacted individuals or communities."
+        }
+      ]
+    },
+    {
+      "name": "ImpactSignEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/ImpactSignEnum",
+      "description": "Whether an impact of an AI system is positive, negative, or both\n(Part 1 \u00a71.1).",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "permissible_values": [
+        {
+          "text": "POSITIVE",
+          "description": "A beneficial impact or opportunity."
+        },
+        {
+          "text": "NEGATIVE",
+          "description": "A harmful impact or threat."
+        },
+        {
+          "text": "MIXED",
+          "description": "An impact that is both positive and negative."
+        }
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "name": "id",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/id",
+      "description": "A unique identifier for an element.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "mappings": [
+        "http://schema.org/identifier"
+      ],
+      "slot_uri": "http://schema.org/identifier",
+      "identifier": true,
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "range": "uriorcurie",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "name",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/name",
+      "description": "A short human-readable name.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "mappings": [
+        "http://www.w3.org/2000/01/rdf-schema#label"
+      ],
+      "slot_uri": "http://www.w3.org/2000/01/rdf-schema#label",
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "title",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/title",
+      "description": "A human-readable title.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "mappings": [
+        "http://purl.org/dc/terms/title"
+      ],
+      "slot_uri": "http://purl.org/dc/terms/title",
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "description",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/description",
+      "description": "A human-readable description.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "mappings": [
+        "http://purl.org/dc/terms/description"
+      ],
+      "slot_uri": "http://purl.org/dc/terms/description",
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "source",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/source",
+      "description": "Reference to the source of the element (typically the document\nor section it originated from).",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "mappings": [
+        "http://purl.org/dc/terms/source"
+      ],
+      "slot_uri": "http://purl.org/dc/terms/source",
+      "owner": "AiRmfDocument",
+      "domain_of": [
+        "AiRmfDocument"
+      ],
+      "range": "uriorcurie",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "see_also",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/see_also",
+      "description": "Related references.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "mappings": [
+        "http://www.w3.org/2000/01/rdf-schema#seeAlso"
+      ],
+      "slot_uri": "http://www.w3.org/2000/01/rdf-schema#seeAlso",
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "range": "uriorcurie",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "function_code",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/function_code",
+      "description": "The function code (GOVERN, MAP, MEASURE, or MANAGE).",
+      "in_subset": [
+        "framework_core"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/function_code",
+      "owner": "Function",
+      "domain_of": [
+        "Function"
+      ],
+      "range": "FunctionCode",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "categories",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/categories",
+      "description": "Categories that belong to a Function.",
+      "in_subset": [
+        "framework_core"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/categories",
+      "owner": "Function",
+      "domain_of": [
+        "Function"
+      ],
+      "range": "Category",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "subcategories",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/subcategories",
+      "description": "Subcategories that belong to a Category.",
+      "in_subset": [
+        "framework_core"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/subcategories",
+      "owner": "Category",
+      "domain_of": [
+        "Category"
+      ],
+      "range": "Subcategory",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "category_id",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/category_id",
+      "description": "Identifier of a Category (e.g., \"GOVERN 1\").",
+      "in_subset": [
+        "framework_core"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/category_id",
+      "owner": "Category",
+      "domain_of": [
+        "Category"
+      ],
+      "range": "CategoryCode",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "subcategory_id",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/subcategory_id",
+      "description": "Identifier of a Subcategory (e.g., \"GOVERN 1.1\").",
+      "in_subset": [
+        "framework_core"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/subcategory_id",
+      "owner": "Subcategory",
+      "domain_of": [
+        "Subcategory"
+      ],
+      "range": "SubcategoryCode",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "outcome",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/outcome",
+      "description": "The outcome statement of a Category or Subcategory - the desired\nresult of carrying out its actions.",
+      "in_subset": [
+        "framework_core"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "close_mappings": [
+        "https://w3id.org/lmodel/nist-csf-v2/prose"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/outcome",
+      "owner": "Subcategory",
+      "domain_of": [
+        "Category",
+        "Subcategory"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "impact_sign",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/impact_sign",
+      "description": "Whether the impact is positive, negative, or both.",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/impact_sign",
+      "owner": "Impact",
+      "domain_of": [
+        "Risk",
+        "Impact"
+      ],
+      "range": "ImpactSignEnum",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "likelihood",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/likelihood",
+      "description": "Estimated probability of the event occurring (0.0 to 1.0). The\nAI RMF leaves quantification approaches to the implementer.",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "close_mappings": [
+        "https://w3id.org/lmodel/iso27001/LikelihoodRating"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/likelihood",
+      "owner": "Impact",
+      "domain_of": [
+        "Risk",
+        "Impact"
+      ],
+      "range": "float",
+      "minimum_value": 0.0,
+      "maximum_value": 1.0,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "magnitude",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/magnitude",
+      "description": "Magnitude or degree of consequences if the event occurs (free\ntext or qualitative scale).",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "close_mappings": [
+        "https://w3id.org/lmodel/iso27001/ImpactRating"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/magnitude",
+      "owner": "Harm",
+      "domain_of": [
+        "Risk",
+        "Impact",
+        "Harm"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "harm_category",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/harm_category",
+      "description": "The high-level harm category (people / organization / ecosystem).",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/harm_category",
+      "owner": "Harm",
+      "domain_of": [
+        "Harm"
+      ],
+      "range": "HarmCategoryEnum",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "harm_to_people_subcategory",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/harm_to_people_subcategory",
+      "description": "The sub-category when harm is to people (individual / group / societal).",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/harm_to_people_subcategory",
+      "owner": "Harm",
+      "domain_of": [
+        "Harm"
+      ],
+      "range": "HarmToPeopleSubcategoryEnum",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "affects",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/affects",
+      "description": "Entities (people, organizations, ecosystems) the risk or harm\nmay affect.",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/affects",
+      "owner": "Harm",
+      "domain_of": [
+        "Impact",
+        "Harm"
+      ],
+      "range": "NamedThing",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "risk_response",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/risk_response",
+      "description": "The chosen risk treatment option.",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso27001/RiskTreatmentOption"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/risk_response",
+      "owner": "Risk",
+      "domain_of": [
+        "Risk"
+      ],
+      "range": "RiskResponseEnum",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "is_residual",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/is_residual",
+      "description": "Whether this risk represents risk remaining after risk treatment\n(residual risk per ISO Guide 73).",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/is_residual",
+      "owner": "Risk",
+      "domain_of": [
+        "Risk"
+      ],
+      "range": "boolean",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "lifecycle_stage",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/lifecycle_stage",
+      "description": "The AI lifecycle stage(s) the element applies to.",
+      "in_subset": [
+        "lifecycle"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/lifecycle_stage",
+      "owner": "Subcategory",
+      "domain_of": [
+        "AiSystem",
+        "AiActor",
+        "AiActorTask",
+        "Risk",
+        "Subcategory"
+      ],
+      "range": "AiLifecycleStageEnum",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "ai_dimension",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/ai_dimension",
+      "description": "The AI system dimension the element applies to.",
+      "in_subset": [
+        "lifecycle"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/ai_dimension",
+      "owner": "AiActorTask",
+      "domain_of": [
+        "AiSystem",
+        "AiActorTask"
+      ],
+      "range": "AiSystemDimensionEnum",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "actor_task",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/actor_task",
+      "description": "AI actor task category.",
+      "in_subset": [
+        "lifecycle"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/actor_task",
+      "owner": "AiActor",
+      "domain_of": [
+        "AiActor"
+      ],
+      "range": "AiActorTaskEnum",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "is_tevv",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/is_tevv",
+      "description": "Whether the actor or task is a Test, Evaluation, Verification, and\nValidation (TEVV) actor / task.",
+      "in_subset": [
+        "lifecycle"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/is_tevv",
+      "owner": "AiActor",
+      "domain_of": [
+        "AiActor"
+      ],
+      "range": "boolean",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "audience",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/audience",
+      "description": "Whether the actor is part of the *primary* AI RMF audience or the\n*informing* People-and-Planet audience.",
+      "in_subset": [
+        "lifecycle"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/audience",
+      "owner": "AiActor",
+      "domain_of": [
+        "AiActor"
+      ],
+      "range": "AudienceEnum",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "trustworthiness_characteristic",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/trustworthiness_characteristic",
+      "description": "Trustworthiness characteristic(s) the element pertains to.",
+      "in_subset": [
+        "trustworthiness"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/trustworthiness_characteristic",
+      "owner": "Subcategory",
+      "domain_of": [
+        "Risk",
+        "Subcategory"
+      ],
+      "range": "TrustworthinessCharacteristicEnum",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "bias_category",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/bias_category",
+      "description": "Category or categories of bias addressed.",
+      "in_subset": [
+        "trustworthiness"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/bias_category",
+      "owner": "Bias",
+      "domain_of": [
+        "Bias"
+      ],
+      "range": "BiasCategoryEnum",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "profile_type",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/profile_type",
+      "description": "The kind of AI RMF Profile.",
+      "in_subset": [
+        "profiles"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/profile_type",
+      "owner": "AiRmfProfile",
+      "domain_of": [
+        "AiRmfProfile"
+      ],
+      "range": "ProfileTypeEnum",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "target_state",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/target_state",
+      "description": "For temporal target profiles - the outcomes needed to achieve the\ndesired AI risk management goals.",
+      "in_subset": [
+        "profiles"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/target_state",
+      "owner": "AiRmfProfile",
+      "domain_of": [
+        "AiRmfProfile"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "current_state",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/current_state",
+      "description": "For temporal current profiles - how AI is currently being managed\nand related risks in terms of current outcomes.",
+      "in_subset": [
+        "profiles"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/current_state",
+      "owner": "AiRmfProfile",
+      "domain_of": [
+        "AiRmfProfile"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "publisher",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/publisher",
+      "description": "The publisher of the document (e.g., NIST).",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "mappings": [
+        "http://purl.org/dc/terms/publisher"
+      ],
+      "slot_uri": "http://purl.org/dc/terms/publisher",
+      "owner": "AiRmfDocument",
+      "domain_of": [
+        "AiRmfDocument"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "doi",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/doi",
+      "description": "Digital Object Identifier for the document.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/doi",
+      "owner": "AiRmfDocument",
+      "domain_of": [
+        "AiRmfDocument"
+      ],
+      "range": "uriorcurie",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "published_date",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/published_date",
+      "description": "Date the document was published.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "mappings": [
+        "http://purl.org/dc/terms/issued"
+      ],
+      "slot_uri": "http://purl.org/dc/terms/issued",
+      "owner": "AiRmfDocument",
+      "domain_of": [
+        "AiRmfDocument"
+      ],
+      "range": "date",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "version",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/version",
+      "description": "Version identifier of the document.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "mappings": [
+        "http://schema.org/version"
+      ],
+      "slot_uri": "http://schema.org/version",
+      "owner": "AiRmfDocument",
+      "domain_of": [
+        "AiRmfDocument"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "about_text",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/about_text",
+      "description": "Free-text discussion of the subcategory or related concept.\nCorresponds to the AI RMF Playbook \"About\" section.",
+      "in_subset": [
+        "playbook"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/about_text",
+      "owner": "Subcategory",
+      "domain_of": [
+        "Subcategory"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "suggested_actions_text",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/suggested_actions_text",
+      "description": "Free-text bulleted list of suggested actions an organization can\ntake. Corresponds to the AI RMF Playbook \"Actions\" section.",
+      "in_subset": [
+        "playbook"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/suggested_actions_text",
+      "owner": "Subcategory",
+      "domain_of": [
+        "Subcategory"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "documentation_questions",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/documentation_questions",
+      "description": "Free-text documentation questions and transparency resources.\nCorresponds to the AI RMF Playbook \"Documentation\" section.",
+      "in_subset": [
+        "playbook"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/documentation_questions",
+      "owner": "Subcategory",
+      "domain_of": [
+        "Subcategory"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "references_text",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/references_text",
+      "description": "Free-text list of references, citations, and supporting\nresources. Corresponds to the AI RMF Playbook \"References\"\nsection.",
+      "in_subset": [
+        "playbook"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/references_text",
+      "owner": "Subcategory",
+      "domain_of": [
+        "Subcategory"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "topics",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/topics",
+      "description": "Free-text topic tags applied to a playbook entry (e.g.,\n\"Governance\", \"Trustworthy Characteristics\", \"Validity and\nReliability\").",
+      "in_subset": [
+        "playbook"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/topics",
+      "owner": "Subcategory",
+      "domain_of": [
+        "Subcategory"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "ai_actor_categories",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/ai_actor_categories",
+      "description": "Free-text list of AI Actor categories the entry applies to,\npreserving the original case used in the AI RMF Playbook\n(e.g., \"Governance and Oversight\", \"TEVV\"). For controlled\nenum values see `actor_task` (range AiActorTaskEnum).",
+      "in_subset": [
+        "playbook"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/ai_actor_categories",
+      "owner": "Subcategory",
+      "domain_of": [
+        "Subcategory"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "function_kind",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/function_kind",
+      "description": "The AI RMF Core function this entry pertains to.",
+      "in_subset": [
+        "framework_core"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/function_kind",
+      "range": "FunctionEnum",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "category_code",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/category_code",
+      "description": "Compact category code in the form \"FUNCTION-N\" (e.g.,\n\"GOVERN-1\") as used in the AI RMF Playbook.",
+      "in_subset": [
+        "playbook"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/category_code",
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "dimension_kind",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/dimension_kind",
+      "description": "Which AI system dimension an `AiSystemDimension` instance represents.",
+      "in_subset": [
+        "lifecycle"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/dimension_kind",
+      "owner": "AiSystemDimension",
+      "domain_of": [
+        "AiSystemDimension"
+      ],
+      "range": "AiSystemDimensionEnum",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "stage_kind",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/stage_kind",
+      "description": "Which AI lifecycle stage an `AiLifecycleStage` instance represents.",
+      "in_subset": [
+        "lifecycle"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/stage_kind",
+      "owner": "AiLifecycleStage",
+      "domain_of": [
+        "AiLifecycleStage"
+      ],
+      "range": "AiLifecycleStageEnum",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "includes_tevv",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/includes_tevv",
+      "description": "Whether the lifecycle stage incorporates TEVV activities.",
+      "in_subset": [
+        "lifecycle"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/includes_tevv",
+      "owner": "AiLifecycleStage",
+      "domain_of": [
+        "AiLifecycleStage"
+      ],
+      "range": "boolean",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "task_kind",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/task_kind",
+      "description": "Which AI actor task category an `AiActorTask` instance represents.",
+      "in_subset": [
+        "lifecycle"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/task_kind",
+      "owner": "AiActorTask",
+      "domain_of": [
+        "AiActorTask"
+      ],
+      "range": "AiActorTaskEnum",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "typical_actors",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/typical_actors",
+      "description": "Representative actor roles that perform an AI actor task.",
+      "in_subset": [
+        "lifecycle"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/typical_actors",
+      "owner": "AiActorTask",
+      "domain_of": [
+        "AiActorTask"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "challenge_kind",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/challenge_kind",
+      "description": "Which risk-measurement challenge a `RiskMeasurementChallenge` represents.",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/challenge_kind",
+      "owner": "RiskMeasurementChallenge",
+      "domain_of": [
+        "RiskMeasurementChallenge"
+      ],
+      "range": "RiskMeasurementChallengeEnum",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "characteristic_kind",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/characteristic_kind",
+      "description": "Which trustworthiness characteristic a `TrustworthinessCharacteristic` represents.",
+      "in_subset": [
+        "trustworthiness"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/characteristic_kind",
+      "owner": "TrustworthinessCharacteristic",
+      "domain_of": [
+        "TrustworthinessCharacteristic"
+      ],
+      "range": "TrustworthinessCharacteristicEnum",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "is_base_condition",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/is_base_condition",
+      "description": "True when this characteristic is a necessary condition for\ntrustworthiness (per Figure 4 - Valid and Reliable is the base\nof all others).",
+      "in_subset": [
+        "trustworthiness"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/is_base_condition",
+      "owner": "TrustworthinessCharacteristic",
+      "domain_of": [
+        "TrustworthinessCharacteristic"
+      ],
+      "range": "boolean",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "is_cross_cutting",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/is_cross_cutting",
+      "description": "True when this characteristic relates to all others\n(Accountable and Transparent; shown vertically in Figure 4).",
+      "in_subset": [
+        "trustworthiness"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/is_cross_cutting",
+      "owner": "TrustworthinessCharacteristic",
+      "domain_of": [
+        "TrustworthinessCharacteristic"
+      ],
+      "range": "boolean",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "related_impacts",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/related_impacts",
+      "description": "The impacts that contribute to a risk.",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/related_impacts",
+      "owner": "Risk",
+      "domain_of": [
+        "Risk"
+      ],
+      "range": "Impact",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "affects_system",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/affects_system",
+      "description": "The AI system a risk pertains to.",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/affects_system",
+      "owner": "Risk",
+      "domain_of": [
+        "Risk"
+      ],
+      "range": "AiSystem",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "tolerance_statement",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/tolerance_statement",
+      "description": "Free-text statement of a risk tolerance level or threshold.",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/tolerance_statement",
+      "owner": "RiskTolerance",
+      "domain_of": [
+        "RiskTolerance"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "legal_basis",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/legal_basis",
+      "description": "Legal or regulatory requirements influencing a risk tolerance.",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/legal_basis",
+      "owner": "RiskTolerance",
+      "domain_of": [
+        "RiskTolerance"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "sector",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/sector",
+      "description": "The sector, industry, technology, or end-use application a\nprofile addresses (e.g., \"hiring\", \"fair housing\").",
+      "in_subset": [
+        "profiles"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/sector",
+      "owner": "AiRmfProfile",
+      "domain_of": [
+        "AiRmfProfile"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "addresses",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/addresses",
+      "description": "Subcategories that a profile implements or addresses.",
+      "in_subset": [
+        "profiles"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/addresses",
+      "owner": "AiRmfProfile",
+      "domain_of": [
+        "AiRmfProfile"
+      ],
+      "range": "Subcategory",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "entries",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/entries",
+      "description": "The Playbook entries in a `PlaybookCollection`.",
+      "in_subset": [
+        "playbook"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/entries",
+      "owner": "PlaybookCollection",
+      "domain_of": [
+        "PlaybookCollection"
+      ],
+      "range": "PlaybookEntry",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "document",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/document",
+      "description": "Publication metadata of the framework instance.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/document",
+      "owner": "AiRmfFramework",
+      "domain_of": [
+        "AiRmfFramework"
+      ],
+      "range": "AiRmfDocument",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "functions",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/functions",
+      "description": "The four AI RMF Core functions and their content.",
+      "in_subset": [
+        "framework_core"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/functions",
+      "owner": "AiRmfFramework",
+      "domain_of": [
+        "AiRmfFramework"
+      ],
+      "range": "Function",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "trustworthiness_characteristics",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/trustworthiness_characteristics",
+      "description": "The seven characteristics of trustworthy AI.",
+      "in_subset": [
+        "trustworthiness"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/trustworthiness_characteristics",
+      "owner": "AiRmfFramework",
+      "domain_of": [
+        "AiRmfFramework"
+      ],
+      "range": "TrustworthinessCharacteristic",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "lifecycle_stages",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/lifecycle_stages",
+      "description": "The AI lifecycle stages (Figure 2).",
+      "in_subset": [
+        "lifecycle"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/lifecycle_stages",
+      "owner": "AiRmfFramework",
+      "domain_of": [
+        "AiRmfFramework"
+      ],
+      "range": "AiLifecycleStage",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "dimensions",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/dimensions",
+      "description": "The AI system dimensions (Figure 2).",
+      "in_subset": [
+        "lifecycle"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/dimensions",
+      "owner": "AiRmfFramework",
+      "domain_of": [
+        "AiRmfFramework"
+      ],
+      "range": "AiSystemDimension",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "actor_tasks",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/actor_tasks",
+      "description": "AI actor task categories (Appendix A).",
+      "in_subset": [
+        "lifecycle"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/actor_tasks",
+      "owner": "AiRmfFramework",
+      "domain_of": [
+        "AiRmfFramework"
+      ],
+      "range": "AiActorTask",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "profiles",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/profiles",
+      "description": "AI RMF profiles defined alongside this Framework instance.",
+      "in_subset": [
+        "profiles"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/profiles",
+      "owner": "AiRmfFramework",
+      "domain_of": [
+        "AiRmfFramework"
+      ],
+      "range": "AiRmfProfile",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "attributes_",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/attributes_",
+      "description": "Design attributes of the AI RMF (Appendix D).",
+      "in_subset": [
+        "attributes"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "aliases": [
+        "rmf_attributes"
+      ],
+      "mappings": [
+        "https://w3id.org/lmodel/nist-ai-100-1/attributes"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/attributes",
+      "owner": "AiRmfFramework",
+      "domain_of": [
+        "AiRmfFramework"
+      ],
+      "range": "RmfAttribute",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "risk_measurement_challenges",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/risk_measurement_challenges",
+      "description": "Identified challenges in measuring AI risk.",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/risk_measurement_challenges",
+      "owner": "AiRmfFramework",
+      "domain_of": [
+        "AiRmfFramework"
+      ],
+      "range": "RiskMeasurementChallenge",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "ai_specific_risks",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/ai_specific_risks",
+      "description": "AI-specific risks compared to traditional software (Appendix B).",
+      "in_subset": [
+        "ai_risk_distinctions"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/ai_specific_risks",
+      "owner": "AiRmfFramework",
+      "domain_of": [
+        "AiRmfFramework"
+      ],
+      "range": "AiSpecificRisk",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "human_ai_interaction_issues",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/human_ai_interaction_issues",
+      "description": "Human-AI interaction considerations (Appendix C).",
+      "in_subset": [
+        "human_ai_interaction"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/human_ai_interaction_issues",
+      "owner": "AiRmfFramework",
+      "domain_of": [
+        "AiRmfFramework"
+      ],
+      "range": "HumanAiInteractionIssue",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "playbookEntry__type",
+      "description": "Function label as serialised in the published Playbook JSON\n(Title case - \"Govern\", \"Map\", \"Measure\", \"Manage\"). For\nthe controlled enum see `function_kind`.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/type",
+      "alias": "type",
+      "owner": "PlaybookEntry",
+      "domain_of": [
+        "PlaybookEntry"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "playbookEntry__title",
+      "description": "Subcategory identifier (e.g., \"GOVERN 1.1\"). Mirrors the\nAI RMF Subcategory `subcategory_id`.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/title",
+      "alias": "title",
+      "owner": "PlaybookEntry",
+      "domain_of": [
+        "PlaybookEntry"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "playbookEntry__category",
+      "description": "Category code in the form \"FUNCTION-N\" (e.g., \"GOVERN-1\")\nas used in the Playbook.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/category",
+      "alias": "category",
+      "owner": "PlaybookEntry",
+      "domain_of": [
+        "PlaybookEntry"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "playbookEntry__description",
+      "description": "Outcome statement of the subcategory.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/description",
+      "alias": "description",
+      "owner": "PlaybookEntry",
+      "domain_of": [
+        "PlaybookEntry"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "playbookEntry__section_about",
+      "description": "Free-text discussion (\"About\" section).",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/section_about",
+      "alias": "section_about",
+      "owner": "PlaybookEntry",
+      "domain_of": [
+        "PlaybookEntry"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "playbookEntry__section_actions",
+      "description": "Bulleted suggested actions (\"Actions\" section).",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/section_actions",
+      "alias": "section_actions",
+      "owner": "PlaybookEntry",
+      "domain_of": [
+        "PlaybookEntry"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "playbookEntry__section_doc",
+      "description": "Documentation questions and transparency resources\n(\"Documentation\" section).",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/section_doc",
+      "alias": "section_doc",
+      "owner": "PlaybookEntry",
+      "domain_of": [
+        "PlaybookEntry"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "playbookEntry__section_ref",
+      "description": "References and citations (\"References\" section).",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/section_ref",
+      "alias": "section_ref",
+      "owner": "PlaybookEntry",
+      "domain_of": [
+        "PlaybookEntry"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "playbookEntry__ai_actors",
+      "description": "AI actor categories the entry applies to. Free-text to\npreserve the casing of the source data (e.g., \"Governance\nand Oversight\").",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/ai_actors",
+      "alias": "ai_actors",
+      "owner": "PlaybookEntry",
+      "domain_of": [
+        "PlaybookEntry"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "playbookEntry__topic",
+      "description": "Topic tags (e.g., \"Legal and Regulatory\", \"Validity and\nReliability\").",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/topic",
+      "alias": "topic",
+      "owner": "PlaybookEntry",
+      "domain_of": [
+        "PlaybookEntry"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "ResidualRisk_is_residual",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/is_residual",
+      "description": "Whether this risk represents risk remaining after risk treatment\n(residual risk per ISO Guide 73).",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "is_a": "is_residual",
+      "domain": "ResidualRisk",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/is_residual",
+      "ifabsent": "True",
+      "alias": "is_residual",
+      "owner": "ResidualRisk",
+      "domain_of": [
+        "ResidualRisk"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "is_residual",
+      "range": "boolean",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Function_categories",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/categories",
+      "description": "Categories that belong to a Function.",
+      "in_subset": [
+        "framework_core"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "is_a": "categories",
+      "domain": "Function",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/categories",
+      "alias": "categories",
+      "owner": "Function",
+      "domain_of": [
+        "Function"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "categories",
+      "range": "Category",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Category_id",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/id",
+      "description": "Identifier for the category, typically using the\n\"FUNCTION N\" form (e.g., \"GOVERN 1\").",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "mappings": [
+        "http://schema.org/identifier"
+      ],
+      "is_a": "id",
+      "domain": "Category",
+      "slot_uri": "http://schema.org/identifier",
+      "identifier": true,
+      "alias": "id",
+      "owner": "Category",
+      "domain_of": [
+        "Category"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "id",
+      "range": "uriorcurie",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Category_subcategories",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/subcategories",
+      "description": "Subcategories that belong to a Category.",
+      "in_subset": [
+        "framework_core"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "is_a": "subcategories",
+      "domain": "Category",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/subcategories",
+      "alias": "subcategories",
+      "owner": "Category",
+      "domain_of": [
+        "Category"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "subcategories",
+      "range": "Subcategory",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Subcategory_id",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/id",
+      "description": "Identifier for the subcategory in the \"FUNCTION N.M\" form\n(e.g., \"GOVERN 1.1\").",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "mappings": [
+        "http://schema.org/identifier"
+      ],
+      "is_a": "id",
+      "domain": "Subcategory",
+      "slot_uri": "http://schema.org/identifier",
+      "identifier": true,
+      "alias": "id",
+      "owner": "Subcategory",
+      "domain_of": [
+        "Subcategory"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "id",
+      "range": "uriorcurie",
+      "required": true,
+      "@type": "SlotDefinition"
+    }
+  ],
+  "classes": [
+    {
+      "name": "NamedThing",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/NamedThing",
+      "description": "A generic grouping for any identifiable AI RMF element.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "mappings": [
+        "schema:Thing"
+      ],
+      "close_mappings": [
+        "schema:Thing"
+      ],
+      "abstract": true,
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also"
+      ],
+      "slot_usage": {},
+      "class_uri": "http://schema.org/Thing",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "AiSystem",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiSystem",
+      "description": "An engineered or machine-based system that can, for a given set\nof objectives, generate outputs such as predictions,\nrecommendations, or decisions influencing real or virtual\nenvironments. AI systems are designed to operate with varying\nlevels of autonomy (Adapted from OECD Recommendation on AI:2019;\nISO/IEC 22989:2022).",
+      "in_subset": [
+        "lifecycle"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "close_mappings": [
+        "schema:SoftwareApplication"
+      ],
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also",
+        "lifecycle_stage",
+        "ai_dimension"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiSystem",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "AiSystemDimension",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiSystemDimension",
+      "description": "A socio-technical dimension of an AI system (Figure 2):\nApplication Context, Data and Input, AI Model, Task and Output,\nor People and Planet.",
+      "in_subset": [
+        "lifecycle"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also",
+        "dimension_kind"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiSystemDimension",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "AiLifecycleStage",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStage",
+      "description": "A stage of the AI lifecycle (Figure 2): Plan and Design,\nCollect and Process Data, Build and Use Model, Verify and\nValidate, Deploy and Use, or Operate and Monitor.",
+      "in_subset": [
+        "lifecycle"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also",
+        "stage_kind",
+        "includes_tevv"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStage",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "AiActor",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiActor",
+      "description": "An organization or individual that plays an active role in the AI\nsystem lifecycle. AI actors include those who deploy or operate\nAI as well as those who inform via formal or quasi-formal norms\nand guidance (OECD 2019).",
+      "in_subset": [
+        "lifecycle"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "close_mappings": [
+        "prov:Agent",
+        "foaf:Agent"
+      ],
+      "related_mappings": [
+        "stix:Identity",
+        "iso27001:InterestedParty"
+      ],
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also",
+        "actor_task",
+        "lifecycle_stage",
+        "is_tevv",
+        "audience"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiActor",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "AiActorTask",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiActorTask",
+      "description": "A category of task performed by AI actors (Appendix A). Each\ntask is associated with one or more lifecycle stages and a\ntypical set of actor roles.",
+      "in_subset": [
+        "lifecycle"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also",
+        "task_kind",
+        "typical_actors",
+        "lifecycle_stage",
+        "ai_dimension"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiActorTask",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Risk",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/Risk",
+      "description": "The composite measure of an event's probability of occurring and\nthe magnitude or degree of the consequences of that event. When\nconsidering negative impact, risk is a function of (1) the\nnegative impact or magnitude of harm and (2) the likelihood of\noccurrence (Adapted from ISO 31000:2018; OMB Circular A-130:2016).",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "exact_mappings": [
+        "iso27001:Risk"
+      ],
+      "related_mappings": [
+        "iso29100:PrivacyRisk"
+      ],
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also",
+        "likelihood",
+        "magnitude",
+        "impact_sign",
+        "is_residual",
+        "risk_response",
+        "lifecycle_stage",
+        "trustworthiness_characteristic",
+        "related_impacts",
+        "affects_system"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/Risk",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Impact",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/Impact",
+      "description": "A positive, negative, or both consequence of an AI system. Impacts\ncan manifest as opportunities (positive) or threats (negative).",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "narrow_mappings": [
+        "iso27001:ImpactRating"
+      ],
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also",
+        "impact_sign",
+        "magnitude",
+        "likelihood",
+        "affects"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/Impact",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Harm",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/Harm",
+      "description": "A negative impact that may be experienced by individuals,\ngroups, communities, organizations, society, the environment, or\nthe planet (Figure 1).",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also",
+        "harm_category",
+        "harm_to_people_subcategory",
+        "magnitude",
+        "affects"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/Harm",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "ResidualRisk",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/ResidualRisk",
+      "description": "Risk remaining after risk treatment (ISO Guide 73). Documenting\nresidual risks helps system providers consider risks of deploying\nthe AI product and informs end users about potential negative\nimpacts.",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "narrow_mappings": [
+        "iso27001:Risk"
+      ],
+      "is_a": "Risk",
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also",
+        "likelihood",
+        "magnitude",
+        "impact_sign",
+        "risk_response",
+        "lifecycle_stage",
+        "trustworthiness_characteristic",
+        "related_impacts",
+        "affects_system",
+        "ResidualRisk_is_residual"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/ResidualRisk",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "RiskTolerance",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/RiskTolerance",
+      "description": "The organization's or AI actor's readiness to bear risk in order\nto achieve its objectives (Adapted from ISO Guide 73). Risk\ntolerance is highly contextual and application- and use-case\nspecific.",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "close_mappings": [
+        "iso27001:RiskLevel"
+      ],
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also",
+        "tolerance_statement",
+        "legal_basis"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/RiskTolerance",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "RiskMeasurementChallenge",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallenge",
+      "description": "A challenge that complicates measurement of AI risks\n(Part 1 \u00a71.2.1).",
+      "in_subset": [
+        "risk_and_harm"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also",
+        "challenge_kind"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallenge",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "TrustworthinessCharacteristic",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristic",
+      "description": "A characteristic of a trustworthy AI system (Figure 4 / Part 1\n\u00a73). The seven characteristics are inter-related; addressing them\nindividually does not guarantee trustworthiness, and tradeoffs\nare usually involved.",
+      "in_subset": [
+        "trustworthiness"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also",
+        "characteristic_kind",
+        "is_base_condition",
+        "is_cross_cutting"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristic",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Bias",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/Bias",
+      "description": "A form of AI bias - a deviation that may be perpetuated or\namplified by AI systems. NIST identifies three major categories:\nsystemic, computational/statistical, and human-cognitive\n(Part 1 \u00a73.7; NIST SP 1270).",
+      "in_subset": [
+        "trustworthiness"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "related_mappings": [
+        "iso29100:PrivacyPrinciple"
+      ],
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also",
+        "bias_category"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/Bias",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Function",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/Function",
+      "description": "A top-level AI RMF Core function. Each function organizes AI risk\nmanagement activities at the highest level. GOVERN applies across\nall stages; MAP, MEASURE, and MANAGE apply to AI-system-specific\ncontexts and lifecycle stages.",
+      "in_subset": [
+        "framework_core"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "exact_mappings": [
+        "nist_csf:CSFFunction"
+      ],
+      "related_mappings": [
+        "gist_linkml:Function"
+      ],
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also",
+        "function_code",
+        "Function_categories"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/Function",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Category",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/Category",
+      "description": "A category within an AI RMF Core function (e.g., \"GOVERN 1:\nPolicies, processes, procedures, and practices ... are in place,\ntransparent, and implemented effectively\"). Categories group\nrelated subcategories.",
+      "in_subset": [
+        "framework_core"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "exact_mappings": [
+        "nist_csf:CSFCategory"
+      ],
+      "is_a": "NamedThing",
+      "slots": [
+        "name",
+        "title",
+        "description",
+        "see_also",
+        "category_id",
+        "outcome",
+        "Category_subcategories",
+        "Category_id"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/Category",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Subcategory",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/Subcategory",
+      "description": "A subcategory within an AI RMF Core category (e.g., \"GOVERN 1.1:\nLegal and regulatory requirements involving AI are understood,\nmanaged, and documented\"). Subcategories express specific\noutcomes.",
+      "in_subset": [
+        "framework_core"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "exact_mappings": [
+        "nist_csf:CSFSubcategory"
+      ],
+      "close_mappings": [
+        "oscal_catalog:Control",
+        "nist_sp_800_53:Control"
+      ],
+      "is_a": "NamedThing",
+      "slots": [
+        "name",
+        "title",
+        "description",
+        "see_also",
+        "subcategory_id",
+        "outcome",
+        "trustworthiness_characteristic",
+        "lifecycle_stage",
+        "about_text",
+        "suggested_actions_text",
+        "documentation_questions",
+        "references_text",
+        "topics",
+        "ai_actor_categories",
+        "Subcategory_id"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/Subcategory",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "AiRmfProfile",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiRmfProfile",
+      "description": "An implementation of the AI RMF Functions, Categories, and\nSubcategories for a specific setting or application based on the\nrequirements, risk tolerance, and resources of the user (\u00a76).\nProfiles may be use-case-specific, temporal (current or target),\nor cross-sectoral.",
+      "in_subset": [
+        "profiles"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "exact_mappings": [
+        "oscal_profile:Profile"
+      ],
+      "close_mappings": [
+        "nist_sp_800_53:ProfileDocument"
+      ],
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also",
+        "profile_type",
+        "current_state",
+        "target_state",
+        "sector",
+        "addresses"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiRmfProfile",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "RmfAttribute",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/RmfAttribute",
+      "description": "A design attribute of the AI RMF (Appendix D) - one of the\nqualities the Framework strives to embody (e.g., risk-based,\nconsensus-driven, plain language, common language, easily usable,\nuniversally applicable, outcome-focused, leveraging existing\nstandards, law- and regulation-agnostic, living document).",
+      "in_subset": [
+        "attributes"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "related_mappings": [
+        "nist_csf:CSFProperty"
+      ],
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/RmfAttribute",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "AiSpecificRisk",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiSpecificRisk",
+      "description": "A risk that is new or increased for AI-based technology compared\nto traditional software (Appendix B) - e.g., data quality, model\ndrift, opacity, scale and complexity, pre-trained model\nuncertainty, emergent properties, privacy aggregation, or\nenvironmental cost.",
+      "in_subset": [
+        "ai_risk_distinctions"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "broad_mappings": [
+        "iso27001:Risk"
+      ],
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiSpecificRisk",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "HumanAiInteractionIssue",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/HumanAiInteractionIssue",
+      "description": "An issue that merits further consideration in human-AI\ninteraction (Appendix C) - e.g., clear human roles and\nresponsibilities, systemic and human-cognitive biases in design,\nvariability of human-AI interaction outcomes, complexity of\npresenting AI system information to humans.",
+      "in_subset": [
+        "human_ai_interaction"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "related_mappings": [
+        "iso27001:InterestedParty"
+      ],
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/HumanAiInteractionIssue",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "PlaybookEntry",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/PlaybookEntry",
+      "description": "A single AI RMF Playbook entry - an enrichment of a Core\nsubcategory with prose discussion, suggested actions,\ndocumentation questions, references, and topic tags.\n\nAttribute names use the same identifiers found in the published\nNIST AI RMF Playbook JSON (e.g., `section_about`,\n`section_actions`) so that the data can be loaded directly.",
+      "in_subset": [
+        "playbook"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "close_mappings": [
+        "nist_csf:CSFSubcategory"
+      ],
+      "slots": [
+        "playbookEntry__type",
+        "playbookEntry__title",
+        "playbookEntry__category",
+        "playbookEntry__description",
+        "playbookEntry__section_about",
+        "playbookEntry__section_actions",
+        "playbookEntry__section_doc",
+        "playbookEntry__section_ref",
+        "playbookEntry__ai_actors",
+        "playbookEntry__topic"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "type",
+          "description": "Function label as serialised in the published Playbook JSON\n(Title case - \"Govern\", \"Map\", \"Measure\", \"Manage\"). For\nthe controlled enum see `function_kind`.",
+          "range": "string",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "title",
+          "description": "Subcategory identifier (e.g., \"GOVERN 1.1\"). Mirrors the\nAI RMF Subcategory `subcategory_id`.",
+          "range": "string",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "category",
+          "description": "Category code in the form \"FUNCTION-N\" (e.g., \"GOVERN-1\")\nas used in the Playbook.",
+          "range": "string",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "description",
+          "description": "Outcome statement of the subcategory.",
+          "range": "string",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "section_about",
+          "description": "Free-text discussion (\"About\" section).",
+          "range": "string",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "section_actions",
+          "description": "Bulleted suggested actions (\"Actions\" section).",
+          "range": "string",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "section_doc",
+          "description": "Documentation questions and transparency resources\n(\"Documentation\" section).",
+          "range": "string",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "section_ref",
+          "description": "References and citations (\"References\" section).",
+          "range": "string",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "ai_actors",
+          "description": "AI actor categories the entry applies to. Free-text to\npreserve the casing of the source data (e.g., \"Governance\nand Oversight\").",
+          "range": "string",
+          "multivalued": true,
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "topic",
+          "description": "Topic tags (e.g., \"Legal and Regulatory\", \"Validity and\nReliability\").",
+          "range": "string",
+          "multivalued": true,
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/PlaybookEntry",
+      "unique_keys": [
+        {
+          "unique_key_name": "primary",
+          "unique_key_slots": [
+            "title"
+          ],
+          "@type": "UniqueKey"
+        }
+      ],
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "PlaybookCollection",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/PlaybookCollection",
+      "description": "A container for a set of PlaybookEntry instances - the\nserialisation root for an AI RMF Playbook companion document.\nValidate with ``linkml-validate --target-class PlaybookCollection``;\nthe canonical tree-root for the schema is ``AiRmfFramework``.",
+      "in_subset": [
+        "playbook"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "slots": [
+        "entries"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/PlaybookCollection",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "AiRmfDocument",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiRmfDocument",
+      "description": "Publication metadata for an instance of the AI RMF (e.g., NIST\nAI 100-1, January 2023). The Framework is intended to be a\nliving document, employing a two-number versioning system (major.minor).",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "close_mappings": [
+        "nist_csf:CSFMetadata"
+      ],
+      "related_mappings": [
+        "schema:CreativeWork"
+      ],
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also",
+        "version",
+        "publisher",
+        "doi",
+        "published_date",
+        "source"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiRmfDocument",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "AiRmfFramework",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiRmfFramework",
+      "description": "Root container that bundles the AI RMF Core (Functions) with\nfoundational concepts (trustworthiness characteristics,\nlifecycle, actors, risks, harms), profiles, and Framework\nattributes. Designed for serialising the Framework or a tailored\ninstance of it as a single JSON / YAML document.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "close_mappings": [
+        "nist_csf:CSFDocument",
+        "oscal_catalog:Catalog",
+        "nist_sp_800_53:Catalog"
+      ],
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also",
+        "document",
+        "functions",
+        "trustworthiness_characteristics",
+        "lifecycle_stages",
+        "dimensions",
+        "actor_tasks",
+        "profiles",
+        "attributes_",
+        "risk_measurement_challenges",
+        "ai_specific_risks",
+        "human_ai_interaction_issues"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiRmfFramework",
+      "tree_root": true,
+      "@type": "ClassDefinition"
+    }
+  ],
+  "metamodel_version": "1.11.0",
+  "source_file": "nist_ai_100_1.yaml",
+  "source_file_date": "2026-05-29T06:34:48",
+  "source_file_size": 51436,
+  "generation_date": "2026-05-29T06:45:54",
+  "@type": "SchemaDefinition",
+  "@context": [
+    "project/jsonld/nist_ai_100_1.context.jsonld",
+    "https://w3id.org/linkml/types.context.jsonld",
+    {
+      "@base": "https://w3id.org/lmodel/nist-ai-100-1/"
+    }
+  ]
+}
