@@ -29,7 +29,7 @@ id: https://w3id.org/lmodel/nist-ai-100-1
 version: 1.0.0
 imports:
 - linkml:types
-- nist_ai_rmf_common
+- nist_ai_100_1:/schema/nist_ai_rmf_common
 license: Apache-2.0
 prefixes:
   nist_ai_100_1:
@@ -2952,7 +2952,7 @@ classes:
     class_uri: schema:Thing
 metamodel_version: 1.11.0
 source_file: nist_ai_100_1.yaml
-source_file_date: '2026-05-31T02:38:18'
-source_file_size: 47960
-generation_date: '2026-05-31T03:00:24'
+source_file_date: '2026-05-31T12:51:35'
+source_file_size: 48047
+generation_date: '2026-05-31T12:53:04'
 

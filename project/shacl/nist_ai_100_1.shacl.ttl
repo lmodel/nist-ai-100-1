@@ -13,54 +13,54 @@ AI as well as those who inform via formal or quasi-formal norms
 and guidance (OECD 2019).""" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:boolean ;
-            sh:description """Whether the actor or task is a Test, Evaluation, Verification, and
-Validation (TEVV) actor / task.""" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path nist_ai_100_1:is_tevv ],
-        [ sh:description "Related references." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 8 ;
-            sh:path rdfs:seeAlso ],
+    sh:property [ sh:description "The AI lifecycle stage(s) the element applies to." ;
+            sh:in ( "PLAN_AND_DESIGN" "COLLECT_AND_PROCESS_DATA" "BUILD_AND_USE_MODEL" "VERIFY_AND_VALIDATE" "DEPLOY_AND_USE" "OPERATE_AND_MONITOR" ) ;
+            sh:order 1 ;
+            sh:path nist_ai_100_1:lifecycle_stage ],
         [ sh:description "AI actor task category." ;
             sh:in ( "AI_DESIGN" "AI_DEVELOPMENT" "AI_DEPLOYMENT" "OPERATION_AND_MONITORING" "TEVV" "HUMAN_FACTORS" "DOMAIN_EXPERT" "AI_IMPACT_ASSESSMENT" "PROCUREMENT" "GOVERNANCE_AND_OVERSIGHT" "THIRD_PARTY_ENTITIES" "END_USERS" "AFFECTED_INDIVIDUALS_OR_COMMUNITIES" "OTHER_AI_ACTORS" "GENERAL_PUBLIC" ) ;
             sh:order 0 ;
             sh:path nist_ai_100_1:actor_task ],
-        [ sh:description "A unique identifier for an element." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 4 ;
-            sh:path schema1:identifier ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable title." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path dcterms:title ],
-        [ sh:description """Whether the actor is part of the *primary* AI RMF audience or the
-*informing* People-and-Planet audience.""" ;
-            sh:in ( "PRIMARY" "INFORMING" ) ;
-            sh:maxCount 1 ;
-            sh:order 3 ;
-            sh:path nist_ai_100_1:audience ],
-        [ sh:datatype xsd:string ;
-            sh:description "A short human-readable name." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path rdfs:label ],
         [ sh:datatype xsd:string ;
             sh:description "A human-readable description." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 7 ;
             sh:path dcterms:description ],
-        [ sh:description "The AI lifecycle stage(s) the element applies to." ;
-            sh:in ( "PLAN_AND_DESIGN" "COLLECT_AND_PROCESS_DATA" "BUILD_AND_USE_MODEL" "VERIFY_AND_VALIDATE" "DEPLOY_AND_USE" "OPERATE_AND_MONITOR" ) ;
-            sh:order 1 ;
-            sh:path nist_ai_100_1:lifecycle_stage ] ;
+        [ sh:datatype xsd:string ;
+            sh:description "A short human-readable name." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path rdfs:label ],
+        [ sh:description """Whether the actor is part of the *primary* AI RMF audience or the
+*informing* People-and-Planet audience.""" ;
+            sh:in ( "PRIMARY" "INFORMING" ) ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path nist_ai_100_1:audience ],
+        [ sh:description "A unique identifier for an element." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """Whether the actor or task is a Test, Evaluation, Verification, and
+Validation (TEVV) actor / task.""" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path nist_ai_100_1:is_tevv ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path dcterms:title ],
+        [ sh:description "Related references." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 8 ;
+            sh:path rdfs:seeAlso ] ;
     sh:targetClass nist_ai_100_1:AiActor .
 
 nist_ai_100_1:AiRmfFramework a sh:NodeShape ;
@@ -71,89 +71,89 @@ attributes. Designed for serialising the Framework or a tailored
 instance of it as a single JSON / YAML document.""" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:class nist_ai_100_1:AiLifecycleStage ;
-            sh:description "The AI lifecycle stages (Figure 2)." ;
+    sh:property [ sh:class nist_ai_100_1:HumanAiInteractionIssue ;
+            sh:description "Human-AI interaction considerations (Appendix C)." ;
             sh:nodeKind sh:IRI ;
-            sh:order 3 ;
-            sh:path nist_ai_100_1:lifecycle_stages ],
+            sh:order 10 ;
+            sh:path nist_ai_100_1:human_ai_interaction_issues ],
+        [ sh:description "Related references." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 15 ;
+            sh:path rdfs:seeAlso ],
         [ sh:class nist_ai_100_1:AiRmfProfile ;
             sh:description "AI RMF profiles defined alongside this Framework instance." ;
             sh:nodeKind sh:IRI ;
             sh:order 6 ;
             sh:path nist_ai_100_1:profiles ],
-        [ sh:class nist_ai_100_1:HumanAiInteractionIssue ;
-            sh:description "Human-AI interaction considerations (Appendix C)." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 10 ;
-            sh:path nist_ai_100_1:human_ai_interaction_issues ],
-        [ sh:class nist_ai_100_1:AiSpecificRisk ;
-            sh:description "AI-specific risks compared to traditional software (Appendix B)." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 9 ;
-            sh:path nist_ai_100_1:ai_specific_risks ],
-        [ sh:class nist_ai_100_1:RiskMeasurementChallenge ;
-            sh:description "Identified challenges in measuring AI risk." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 8 ;
-            sh:path nist_ai_100_1:risk_measurement_challenges ],
-        [ sh:description "Related references." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 15 ;
-            sh:path rdfs:seeAlso ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable title." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 13 ;
-            sh:path dcterms:title ],
-        [ sh:datatype xsd:string ;
-            sh:description "A short human-readable name." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 12 ;
-            sh:path rdfs:label ],
-        [ sh:class nist_ai_100_1:RmfAttribute ;
-            sh:description "Design attributes of the AI RMF (Appendix D)." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 7 ;
-            sh:path nist_ai_100_1:attributes ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable description." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 14 ;
-            sh:path dcterms:description ],
-        [ sh:description "A unique identifier for an element." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 11 ;
-            sh:path schema1:identifier ],
         [ sh:class nist_ai_100_1:AiRmfDocument ;
             sh:description "Publication metadata of the framework instance." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:IRI ;
             sh:order 0 ;
             sh:path nist_ai_100_1:document ],
+        [ sh:class nist_ai_100_1:RmfAttribute ;
+            sh:description "Design attributes of the AI RMF (Appendix D)." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path nist_ai_100_1:attributes ],
+        [ sh:class nist_ai_100_1:RiskMeasurementChallenge ;
+            sh:description "Identified challenges in measuring AI risk." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 8 ;
+            sh:path nist_ai_100_1:risk_measurement_challenges ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path dcterms:description ],
         [ sh:class nist_ai_100_1:AiActorTask ;
             sh:description "AI actor task categories (Appendix A)." ;
             sh:nodeKind sh:IRI ;
             sh:order 5 ;
             sh:path nist_ai_100_1:actor_tasks ],
-        [ sh:class nist_ai_100_1:AiSystemDimension ;
-            sh:description "The AI system dimensions (Figure 2)." ;
+        [ sh:description "A unique identifier for an element." ;
+            sh:maxCount 1 ;
             sh:nodeKind sh:IRI ;
-            sh:order 4 ;
-            sh:path nist_ai_100_1:dimensions ],
+            sh:order 11 ;
+            sh:path schema1:identifier ],
+        [ sh:class nist_ai_100_1:TrustworthinessCharacteristic ;
+            sh:description "The seven characteristics of trustworthy AI." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 2 ;
+            sh:path nist_ai_100_1:trustworthiness_characteristics ],
         [ sh:class nist_ai_100_1:Function ;
             sh:description "The four AI RMF Core functions and their content." ;
             sh:nodeKind sh:IRI ;
             sh:order 1 ;
             sh:path nist_ai_100_1:functions ],
-        [ sh:class nist_ai_100_1:TrustworthinessCharacteristic ;
-            sh:description "The seven characteristics of trustworthy AI." ;
+        [ sh:class nist_ai_100_1:AiLifecycleStage ;
+            sh:description "The AI lifecycle stages (Figure 2)." ;
             sh:nodeKind sh:IRI ;
-            sh:order 2 ;
-            sh:path nist_ai_100_1:trustworthiness_characteristics ] ;
+            sh:order 3 ;
+            sh:path nist_ai_100_1:lifecycle_stages ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path dcterms:title ],
+        [ sh:class nist_ai_100_1:AiSystemDimension ;
+            sh:description "The AI system dimensions (Figure 2)." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path nist_ai_100_1:dimensions ],
+        [ sh:class nist_ai_100_1:AiSpecificRisk ;
+            sh:description "AI-specific risks compared to traditional software (Appendix B)." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 9 ;
+            sh:path nist_ai_100_1:ai_specific_risks ],
+        [ sh:datatype xsd:string ;
+            sh:description "A short human-readable name." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path rdfs:label ] ;
     sh:targetClass nist_ai_100_1:AiRmfFramework .
 
 nist_ai_100_1:Bias a sh:NodeShape ;
@@ -163,37 +163,37 @@ systemic, computational/statistical, and human-cognitive
 (Part 1 §3.7; NIST SP 1270).""" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description "Category or categories of bias addressed." ;
-            sh:in ( "SYSTEMIC" "COMPUTATIONAL_AND_STATISTICAL" "HUMAN_COGNITIVE" ) ;
-            sh:order 0 ;
-            sh:path nist_ai_100_1:bias_category ],
-        [ sh:datatype xsd:string ;
-            sh:description "A short human-readable name." ;
+    sh:property [ sh:description "A unique identifier for an element." ;
             sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path rdfs:label ],
-        [ sh:description "Related references." ;
             sh:nodeKind sh:IRI ;
-            sh:order 5 ;
-            sh:path rdfs:seeAlso ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable description." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path dcterms:description ],
+            sh:order 1 ;
+            sh:path schema1:identifier ],
         [ sh:datatype xsd:string ;
             sh:description "A human-readable title." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 3 ;
             sh:path dcterms:title ],
-        [ sh:description "A unique identifier for an element." ;
-            sh:maxCount 1 ;
+        [ sh:description "Category or categories of bias addressed." ;
+            sh:in ( "SYSTEMIC" "COMPUTATIONAL_AND_STATISTICAL" "HUMAN_COGNITIVE" ) ;
+            sh:order 0 ;
+            sh:path nist_ai_100_1:bias_category ],
+        [ sh:description "Related references." ;
             sh:nodeKind sh:IRI ;
-            sh:order 1 ;
-            sh:path schema1:identifier ] ;
+            sh:order 5 ;
+            sh:path rdfs:seeAlso ],
+        [ sh:datatype xsd:string ;
+            sh:description "A short human-readable name." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path rdfs:label ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path dcterms:description ] ;
     sh:targetClass nist_ai_100_1:Bias .
 
 nist_ai_100_1:Harm a sh:NodeShape ;
@@ -202,56 +202,56 @@ groups, communities, organizations, society, the environment, or
 the planet (Figure 1).""" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description "Related references." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 8 ;
-            sh:path rdfs:seeAlso ],
-        [ sh:datatype xsd:string ;
+    sh:property [ sh:datatype xsd:string ;
             sh:description """Magnitude or degree of consequences if the event occurs (free
 text or qualitative scale).""" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 2 ;
             sh:path nist_ai_100_1:magnitude ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable title." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path dcterms:title ],
         [ sh:description "A unique identifier for an element." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:IRI ;
             sh:order 4 ;
             sh:path schema1:identifier ],
-        [ sh:class schema1:Thing ;
-            sh:description """Entities (people, organizations, ecosystems) the risk or harm
-may affect.""" ;
-            sh:nodeKind sh:IRI ;
-            sh:order 3 ;
-            sh:path nist_ai_100_1:affects ],
-        [ sh:datatype xsd:string ;
-            sh:description "A short human-readable name." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path rdfs:label ],
         [ sh:datatype xsd:string ;
             sh:description "A human-readable description." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 7 ;
             sh:path dcterms:description ],
+        [ sh:class schema1:Thing ;
+            sh:description """Entities (people, organizations, ecosystems) the risk or harm
+may affect.""" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path nist_ai_100_1:affects ],
+        [ sh:description "Related references." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 8 ;
+            sh:path rdfs:seeAlso ],
+        [ sh:description "The high-level harm category (people / organization / ecosystem)." ;
+            sh:in ( "HARM_TO_PEOPLE" "HARM_TO_AN_ORGANIZATION" "HARM_TO_AN_ECOSYSTEM" ) ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path nist_ai_100_1:harm_category ],
+        [ sh:datatype xsd:string ;
+            sh:description "A short human-readable name." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path rdfs:label ],
         [ sh:description "The sub-category when harm is to people (individual / group / societal)." ;
             sh:in ( "INDIVIDUAL" "GROUP_OR_COMMUNITY" "SOCIETAL" ) ;
             sh:maxCount 1 ;
             sh:order 1 ;
             sh:path nist_ai_100_1:harm_to_people_subcategory ],
-        [ sh:description "The high-level harm category (people / organization / ecosystem)." ;
-            sh:in ( "HARM_TO_PEOPLE" "HARM_TO_AN_ORGANIZATION" "HARM_TO_AN_ECOSYSTEM" ) ;
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable title." ;
             sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path nist_ai_100_1:harm_category ] ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path dcterms:title ] ;
     sh:targetClass nist_ai_100_1:Harm .
 
 nist_ai_100_1:PlaybookCollection a sh:NodeShape ;
@@ -275,7 +275,58 @@ the AI product and informs end users about potential negative
 impacts.""" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:boolean ;
+    sh:property [ sh:class nist_ai_100_1:Impact ;
+            sh:description "The impacts that contribute to a risk." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path nist_ai_100_1:related_impacts ],
+        [ sh:datatype xsd:string ;
+            sh:description """Magnitude or degree of consequences if the event occurs (free
+text or qualitative scale).""" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path nist_ai_100_1:magnitude ],
+        [ sh:description "The chosen risk treatment option." ;
+            sh:in ( "MITIGATING" "TRANSFERRING" "AVOIDING" "ACCEPTING" ) ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path nist_ai_100_1:risk_response ],
+        [ sh:description "Whether the impact is positive, negative, or both." ;
+            sh:in ( "POSITIVE" "NEGATIVE" "MIXED" ) ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path nist_ai_100_1:impact_sign ],
+        [ sh:description "The AI lifecycle stage(s) the element applies to." ;
+            sh:in ( "PLAN_AND_DESIGN" "COLLECT_AND_PROCESS_DATA" "BUILD_AND_USE_MODEL" "VERIFY_AND_VALIDATE" "DEPLOY_AND_USE" "OPERATE_AND_MONITOR" ) ;
+            sh:order 5 ;
+            sh:path nist_ai_100_1:lifecycle_stage ],
+        [ sh:description "Related references." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 13 ;
+            sh:path rdfs:seeAlso ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path dcterms:description ],
+        [ sh:description "Trustworthiness characteristic(s) the element pertains to." ;
+            sh:in ( "VALID_AND_RELIABLE" "SAFE" "SECURE_AND_RESILIENT" "ACCOUNTABLE_AND_TRANSPARENT" "EXPLAINABLE_AND_INTERPRETABLE" "PRIVACY_ENHANCED" "FAIR_WITH_HARMFUL_BIAS_MANAGED" ) ;
+            sh:order 6 ;
+            sh:path nist_ai_100_1:trustworthiness_characteristic ],
+        [ sh:description "A unique identifier for an element." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 9 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:description "A short human-readable name." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path rdfs:label ],
+        [ sh:datatype xsd:boolean ;
             sh:defaultValue true ;
             sh:description """Whether this risk represents risk remaining after risk treatment
 (residual risk per ISO Guide 73).""" ;
@@ -283,39 +334,18 @@ impacts.""" ;
             sh:nodeKind sh:Literal ;
             sh:order 3 ;
             sh:path nist_ai_100_1:is_residual ],
-        [ sh:description "The AI lifecycle stage(s) the element applies to." ;
-            sh:in ( "PLAN_AND_DESIGN" "COLLECT_AND_PROCESS_DATA" "BUILD_AND_USE_MODEL" "VERIFY_AND_VALIDATE" "DEPLOY_AND_USE" "OPERATE_AND_MONITOR" ) ;
-            sh:order 5 ;
-            sh:path nist_ai_100_1:lifecycle_stage ],
-        [ sh:description "Whether the impact is positive, negative, or both." ;
-            sh:in ( "POSITIVE" "NEGATIVE" "MIXED" ) ;
-            sh:maxCount 1 ;
-            sh:order 2 ;
-            sh:path nist_ai_100_1:impact_sign ],
         [ sh:datatype xsd:string ;
             sh:description "A human-readable title." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 11 ;
             sh:path dcterms:title ],
-        [ sh:description "A unique identifier for an element." ;
+        [ sh:class nist_ai_100_1:AiSystem ;
+            sh:description "The AI system a risk pertains to." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:IRI ;
-            sh:order 9 ;
-            sh:path schema1:identifier ],
-        [ sh:class nist_ai_100_1:Impact ;
-            sh:description "The impacts that contribute to a risk." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 7 ;
-            sh:path nist_ai_100_1:related_impacts ],
-        [ sh:description "Trustworthiness characteristic(s) the element pertains to." ;
-            sh:in ( "VALID_AND_RELIABLE" "SAFE" "SECURE_AND_RESILIENT" "ACCOUNTABLE_AND_TRANSPARENT" "EXPLAINABLE_AND_INTERPRETABLE" "PRIVACY_ENHANCED" "FAIR_WITH_HARMFUL_BIAS_MANAGED" ) ;
-            sh:order 6 ;
-            sh:path nist_ai_100_1:trustworthiness_characteristic ],
-        [ sh:description "Related references." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 13 ;
-            sh:path rdfs:seeAlso ],
+            sh:order 8 ;
+            sh:path nist_ai_100_1:affects_system ],
         [ sh:datatype xsd:float ;
             sh:description """Estimated probability of the event occurring (0.0 to 1.0). The
 AI RMF leaves quantification approaches to the implementer.""" ;
@@ -324,37 +354,7 @@ AI RMF leaves quantification approaches to the implementer.""" ;
             sh:minInclusive 0e+00 ;
             sh:nodeKind sh:Literal ;
             sh:order 0 ;
-            sh:path nist_ai_100_1:likelihood ],
-        [ sh:datatype xsd:string ;
-            sh:description "A short human-readable name." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 10 ;
-            sh:path rdfs:label ],
-        [ sh:description "The chosen risk treatment option." ;
-            sh:in ( "MITIGATING" "TRANSFERRING" "AVOIDING" "ACCEPTING" ) ;
-            sh:maxCount 1 ;
-            sh:order 4 ;
-            sh:path nist_ai_100_1:risk_response ],
-        [ sh:datatype xsd:string ;
-            sh:description """Magnitude or degree of consequences if the event occurs (free
-text or qualitative scale).""" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path nist_ai_100_1:magnitude ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable description." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 12 ;
-            sh:path dcterms:description ],
-        [ sh:class nist_ai_100_1:AiSystem ;
-            sh:description "The AI system a risk pertains to." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 8 ;
-            sh:path nist_ai_100_1:affects_system ] ;
+            sh:path nist_ai_100_1:likelihood ] ;
     sh:targetClass nist_ai_100_1:ResidualRisk .
 
 nist_ai_100_1:Risk a sh:NodeShape ;
@@ -365,7 +365,57 @@ negative impact or magnitude of harm and (2) the likelihood of
 occurrence (Adapted from ISO 31000:2018; OMB Circular A-130:2016).""" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description "A unique identifier for an element." ;
+    sh:property [ sh:datatype xsd:boolean ;
+            sh:description """Whether this risk represents risk remaining after risk treatment
+(residual risk per ISO Guide 73).""" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path nist_ai_100_1:is_residual ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path dcterms:title ],
+        [ sh:description "Whether the impact is positive, negative, or both." ;
+            sh:in ( "POSITIVE" "NEGATIVE" "MIXED" ) ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path nist_ai_100_1:impact_sign ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path dcterms:description ],
+        [ sh:datatype xsd:string ;
+            sh:description """Magnitude or degree of consequences if the event occurs (free
+text or qualitative scale).""" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path nist_ai_100_1:magnitude ],
+        [ sh:datatype xsd:string ;
+            sh:description "A short human-readable name." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path rdfs:label ],
+        [ sh:description "The chosen risk treatment option." ;
+            sh:in ( "MITIGATING" "TRANSFERRING" "AVOIDING" "ACCEPTING" ) ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path nist_ai_100_1:risk_response ],
+        [ sh:description "The AI lifecycle stage(s) the element applies to." ;
+            sh:in ( "PLAN_AND_DESIGN" "COLLECT_AND_PROCESS_DATA" "BUILD_AND_USE_MODEL" "VERIFY_AND_VALIDATE" "DEPLOY_AND_USE" "OPERATE_AND_MONITOR" ) ;
+            sh:order 5 ;
+            sh:path nist_ai_100_1:lifecycle_stage ],
+        [ sh:description "Trustworthiness characteristic(s) the element pertains to." ;
+            sh:in ( "VALID_AND_RELIABLE" "SAFE" "SECURE_AND_RESILIENT" "ACCOUNTABLE_AND_TRANSPARENT" "EXPLAINABLE_AND_INTERPRETABLE" "PRIVACY_ENHANCED" "FAIR_WITH_HARMFUL_BIAS_MANAGED" ) ;
+            sh:order 6 ;
+            sh:path nist_ai_100_1:trustworthiness_characteristic ],
+        [ sh:description "A unique identifier for an element." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:IRI ;
             sh:order 9 ;
@@ -375,37 +425,12 @@ occurrence (Adapted from ISO 31000:2018; OMB Circular A-130:2016).""" ;
             sh:nodeKind sh:IRI ;
             sh:order 7 ;
             sh:path nist_ai_100_1:related_impacts ],
-        [ sh:datatype xsd:string ;
-            sh:description "A short human-readable name." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 10 ;
-            sh:path rdfs:label ],
-        [ sh:description "Trustworthiness characteristic(s) the element pertains to." ;
-            sh:in ( "VALID_AND_RELIABLE" "SAFE" "SECURE_AND_RESILIENT" "ACCOUNTABLE_AND_TRANSPARENT" "EXPLAINABLE_AND_INTERPRETABLE" "PRIVACY_ENHANCED" "FAIR_WITH_HARMFUL_BIAS_MANAGED" ) ;
-            sh:order 6 ;
-            sh:path nist_ai_100_1:trustworthiness_characteristic ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable title." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 11 ;
-            sh:path dcterms:title ],
-        [ sh:description "The chosen risk treatment option." ;
-            sh:in ( "MITIGATING" "TRANSFERRING" "AVOIDING" "ACCEPTING" ) ;
-            sh:maxCount 1 ;
-            sh:order 4 ;
-            sh:path nist_ai_100_1:risk_response ],
         [ sh:class nist_ai_100_1:AiSystem ;
             sh:description "The AI system a risk pertains to." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:IRI ;
             sh:order 8 ;
             sh:path nist_ai_100_1:affects_system ],
-        [ sh:description "The AI lifecycle stage(s) the element applies to." ;
-            sh:in ( "PLAN_AND_DESIGN" "COLLECT_AND_PROCESS_DATA" "BUILD_AND_USE_MODEL" "VERIFY_AND_VALIDATE" "DEPLOY_AND_USE" "OPERATE_AND_MONITOR" ) ;
-            sh:order 5 ;
-            sh:path nist_ai_100_1:lifecycle_stage ],
         [ sh:datatype xsd:float ;
             sh:description """Estimated probability of the event occurring (0.0 to 1.0). The
 AI RMF leaves quantification approaches to the implementer.""" ;
@@ -415,35 +440,10 @@ AI RMF leaves quantification approaches to the implementer.""" ;
             sh:nodeKind sh:Literal ;
             sh:order 0 ;
             sh:path nist_ai_100_1:likelihood ],
-        [ sh:description "Whether the impact is positive, negative, or both." ;
-            sh:in ( "POSITIVE" "NEGATIVE" "MIXED" ) ;
-            sh:maxCount 1 ;
-            sh:order 2 ;
-            sh:path nist_ai_100_1:impact_sign ],
-        [ sh:datatype xsd:boolean ;
-            sh:description """Whether this risk represents risk remaining after risk treatment
-(residual risk per ISO Guide 73).""" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path nist_ai_100_1:is_residual ],
         [ sh:description "Related references." ;
             sh:nodeKind sh:IRI ;
             sh:order 13 ;
-            sh:path rdfs:seeAlso ],
-        [ sh:datatype xsd:string ;
-            sh:description """Magnitude or degree of consequences if the event occurs (free
-text or qualitative scale).""" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path nist_ai_100_1:magnitude ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable description." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 12 ;
-            sh:path dcterms:description ] ;
+            sh:path rdfs:seeAlso ] ;
     sh:targetClass nist_ai_100_1:Risk .
 
 nist_ai_100_1:RiskTolerance a sh:NodeShape ;
@@ -454,44 +454,44 @@ specific.""" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
+            sh:description "Free-text statement of a risk tolerance level or threshold." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path nist_ai_100_1:tolerance_statement ],
+        [ sh:datatype xsd:string ;
             sh:description "A short human-readable name." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 3 ;
             sh:path rdfs:label ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable description." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path dcterms:description ],
         [ sh:description "A unique identifier for an element." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:IRI ;
             sh:order 2 ;
             sh:path schema1:identifier ],
         [ sh:datatype xsd:string ;
-            sh:description "A human-readable title." ;
+            sh:description "A human-readable description." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path dcterms:title ],
-        [ sh:description "Related references." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 6 ;
-            sh:path rdfs:seeAlso ],
+            sh:order 5 ;
+            sh:path dcterms:description ],
         [ sh:datatype xsd:string ;
             sh:description "Legal or regulatory requirements influencing a risk tolerance." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 1 ;
             sh:path nist_ai_100_1:legal_basis ],
+        [ sh:description "Related references." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path rdfs:seeAlso ],
         [ sh:datatype xsd:string ;
-            sh:description "Free-text statement of a risk tolerance level or threshold." ;
+            sh:description "A human-readable title." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path nist_ai_100_1:tolerance_statement ] ;
+            sh:order 4 ;
+            sh:path dcterms:title ] ;
     sh:targetClass nist_ai_100_1:RiskTolerance .
 
 nist_ai_100_1:AiActorTask a sh:NodeShape ;
@@ -500,31 +500,10 @@ task is associated with one or more lifecycle stages and a
 typical set of actor roles.""" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description "A human-readable title." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path dcterms:title ],
-        [ sh:datatype xsd:string ;
-            sh:description "Representative actor roles that perform an AI actor task." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path nist_ai_100_1:typical_actors ],
-        [ sh:description "The AI lifecycle stage(s) the element applies to." ;
+    sh:property [ sh:description "The AI lifecycle stage(s) the element applies to." ;
             sh:in ( "PLAN_AND_DESIGN" "COLLECT_AND_PROCESS_DATA" "BUILD_AND_USE_MODEL" "VERIFY_AND_VALIDATE" "DEPLOY_AND_USE" "OPERATE_AND_MONITOR" ) ;
             sh:order 2 ;
             sh:path nist_ai_100_1:lifecycle_stage ],
-        [ sh:description "The AI system dimension the element applies to." ;
-            sh:in ( "APPLICATION_CONTEXT" "DATA_AND_INPUT" "AI_MODEL" "TASK_AND_OUTPUT" "PEOPLE_AND_PLANET" ) ;
-            sh:order 3 ;
-            sh:path nist_ai_100_1:ai_dimension ],
-        [ sh:description "Which AI actor task category an `AiActorTask` instance represents." ;
-            sh:in ( "AI_DESIGN" "AI_DEVELOPMENT" "AI_DEPLOYMENT" "OPERATION_AND_MONITORING" "TEVV" "HUMAN_FACTORS" "DOMAIN_EXPERT" "AI_IMPACT_ASSESSMENT" "PROCUREMENT" "GOVERNANCE_AND_OVERSIGHT" "THIRD_PARTY_ENTITIES" "END_USERS" "AFFECTED_INDIVIDUALS_OR_COMMUNITIES" "OTHER_AI_ACTORS" "GENERAL_PUBLIC" ) ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 0 ;
-            sh:path nist_ai_100_1:task_kind ],
         [ sh:datatype xsd:string ;
             sh:description "A human-readable description." ;
             sh:maxCount 1 ;
@@ -536,16 +515,37 @@ typical set of actor roles.""" ;
             sh:order 8 ;
             sh:path rdfs:seeAlso ],
         [ sh:datatype xsd:string ;
+            sh:description "Representative actor roles that perform an AI actor task." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path nist_ai_100_1:typical_actors ],
+        [ sh:description "A unique identifier for an element." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path schema1:identifier ],
+        [ sh:description "Which AI actor task category an `AiActorTask` instance represents." ;
+            sh:in ( "AI_DESIGN" "AI_DEVELOPMENT" "AI_DEPLOYMENT" "OPERATION_AND_MONITORING" "TEVV" "HUMAN_FACTORS" "DOMAIN_EXPERT" "AI_IMPACT_ASSESSMENT" "PROCUREMENT" "GOVERNANCE_AND_OVERSIGHT" "THIRD_PARTY_ENTITIES" "END_USERS" "AFFECTED_INDIVIDUALS_OR_COMMUNITIES" "OTHER_AI_ACTORS" "GENERAL_PUBLIC" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path nist_ai_100_1:task_kind ],
+        [ sh:description "The AI system dimension the element applies to." ;
+            sh:in ( "APPLICATION_CONTEXT" "DATA_AND_INPUT" "AI_MODEL" "TASK_AND_OUTPUT" "PEOPLE_AND_PLANET" ) ;
+            sh:order 3 ;
+            sh:path nist_ai_100_1:ai_dimension ],
+        [ sh:datatype xsd:string ;
             sh:description "A short human-readable name." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 5 ;
             sh:path rdfs:label ],
-        [ sh:description "A unique identifier for an element." ;
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable title." ;
             sh:maxCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 4 ;
-            sh:path schema1:identifier ] ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path dcterms:title ] ;
     sh:targetClass nist_ai_100_1:AiActorTask .
 
 nist_ai_100_1:AiLifecycleStage a sh:NodeShape ;
@@ -555,6 +555,24 @@ Validate, Deploy and Use, or Operate and Monitor.""" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
+            sh:description "A human-readable title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path dcterms:title ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "Whether the lifecycle stage incorporates TEVV activities." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path nist_ai_100_1:includes_tevv ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path dcterms:description ],
+        [ sh:datatype xsd:string ;
             sh:description "A short human-readable name." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
@@ -566,33 +584,15 @@ Validate, Deploy and Use, or Operate and Monitor.""" ;
             sh:minCount 1 ;
             sh:order 0 ;
             sh:path nist_ai_100_1:stage_kind ],
-        [ sh:description "A unique identifier for an element." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 2 ;
-            sh:path schema1:identifier ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable title." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path dcterms:title ],
         [ sh:description "Related references." ;
             sh:nodeKind sh:IRI ;
             sh:order 6 ;
             sh:path rdfs:seeAlso ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable description." ;
+        [ sh:description "A unique identifier for an element." ;
             sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path dcterms:description ],
-        [ sh:datatype xsd:boolean ;
-            sh:description "Whether the lifecycle stage incorporates TEVV activities." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path nist_ai_100_1:includes_tevv ] ;
+            sh:nodeKind sh:IRI ;
+            sh:order 2 ;
+            sh:path schema1:identifier ] ;
     sh:targetClass nist_ai_100_1:AiLifecycleStage .
 
 nist_ai_100_1:AiRmfDocument a sh:NodeShape ;
@@ -601,39 +601,44 @@ AI 100-1, January 2023). The Framework is intended to be a
 living document, employing a two-number versioning system (major.minor).""" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description """Reference to the source of the element (typically the document
-or section it originated from).""" ;
+    sh:property [ sh:description "A unique identifier for an element." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:IRI ;
-            sh:order 4 ;
-            sh:path dcterms:source ],
+            sh:order 5 ;
+            sh:path schema1:identifier ],
         [ sh:datatype xsd:string ;
-            sh:description "A human-readable title." ;
+            sh:description "The publisher of the document (e.g., NIST)." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path dcterms:title ],
+            sh:order 1 ;
+            sh:path dcterms:publisher ],
         [ sh:datatype xsd:string ;
             sh:description "A short human-readable name." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 6 ;
             sh:path rdfs:label ],
-        [ sh:datatype xsd:string ;
-            sh:description "Version identifier of the document." ;
+        [ sh:description """Reference to the source of the element (typically the document
+or section it originated from).""" ;
             sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path schema1:version ],
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path dcterms:source ],
+        [ sh:description "Digital Object Identifier for the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 2 ;
+            sh:path nist_ai_100_1:doi ],
         [ sh:description "Related references." ;
             sh:nodeKind sh:IRI ;
             sh:order 9 ;
             sh:path rdfs:seeAlso ],
-        [ sh:description "A unique identifier for an element." ;
+        [ sh:datatype xsd:date ;
+            sh:description "Date the document was published." ;
             sh:maxCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 5 ;
-            sh:path schema1:identifier ],
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path dcterms:issued ],
         [ sh:datatype xsd:string ;
             sh:description "A human-readable description." ;
             sh:maxCount 1 ;
@@ -641,22 +646,17 @@ or section it originated from).""" ;
             sh:order 8 ;
             sh:path dcterms:description ],
         [ sh:datatype xsd:string ;
-            sh:description "The publisher of the document (e.g., NIST)." ;
+            sh:description "A human-readable title." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path dcterms:publisher ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date the document was published." ;
+            sh:order 7 ;
+            sh:path dcterms:title ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier of the document." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path dcterms:issued ],
-        [ sh:description "Digital Object Identifier for the document." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 2 ;
-            sh:path nist_ai_100_1:doi ] ;
+            sh:order 0 ;
+            sh:path schema1:version ] ;
     sh:targetClass nist_ai_100_1:AiRmfDocument .
 
 nist_ai_100_1:AiRmfProfile a sh:NodeShape ;
@@ -668,6 +668,47 @@ or cross-sectoral.""" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
+            sh:description "A human-readable title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path dcterms:title ],
+        [ sh:description "Related references." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 9 ;
+            sh:path rdfs:seeAlso ],
+        [ sh:datatype xsd:string ;
+            sh:description """The sector, industry, technology, or end-use application a
+profile addresses (e.g., "hiring", "fair housing").""" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path nist_ai_100_1:sector ],
+        [ sh:description "The kind of AI RMF Profile." ;
+            sh:in ( "USE_CASE" "TEMPORAL_CURRENT" "TEMPORAL_TARGET" "CROSS_SECTORAL" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path nist_ai_100_1:profile_type ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path dcterms:description ],
+        [ sh:description "A unique identifier for an element." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:description """For temporal current profiles - how AI is currently being managed
+and related risks in terms of current outcomes.""" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path nist_ai_100_1:current_state ],
+        [ sh:datatype xsd:string ;
             sh:description """For temporal target profiles - the outcomes needed to achieve the
 desired AI risk management goals.""" ;
             sh:maxCount 1 ;
@@ -680,52 +721,11 @@ desired AI risk management goals.""" ;
             sh:order 4 ;
             sh:path nist_ai_100_1:addresses ],
         [ sh:datatype xsd:string ;
-            sh:description "A human-readable description." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path dcterms:description ],
-        [ sh:description "The kind of AI RMF Profile." ;
-            sh:in ( "USE_CASE" "TEMPORAL_CURRENT" "TEMPORAL_TARGET" "CROSS_SECTORAL" ) ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 0 ;
-            sh:path nist_ai_100_1:profile_type ],
-        [ sh:datatype xsd:string ;
-            sh:description """For temporal current profiles - how AI is currently being managed
-and related risks in terms of current outcomes.""" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path nist_ai_100_1:current_state ],
-        [ sh:datatype xsd:string ;
             sh:description "A short human-readable name." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 6 ;
-            sh:path rdfs:label ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable title." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path dcterms:title ],
-        [ sh:datatype xsd:string ;
-            sh:description """The sector, industry, technology, or end-use application a
-profile addresses (e.g., "hiring", "fair housing").""" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path nist_ai_100_1:sector ],
-        [ sh:description "A unique identifier for an element." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 5 ;
-            sh:path schema1:identifier ],
-        [ sh:description "Related references." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 9 ;
-            sh:path rdfs:seeAlso ] ;
+            sh:path rdfs:label ] ;
     sh:targetClass nist_ai_100_1:AiRmfProfile .
 
 nist_ai_100_1:AiSpecificRisk a sh:NodeShape ;
@@ -736,33 +736,33 @@ uncertainty, emergent properties, privacy aggregation, or
 environmental cost.""" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
+    sh:property [ sh:description "A unique identifier for an element." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:description "Related references." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path rdfs:seeAlso ],
+        [ sh:datatype xsd:string ;
             sh:description "A short human-readable name." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 1 ;
             sh:path rdfs:label ],
-        [ sh:description "Related references." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 4 ;
-            sh:path rdfs:seeAlso ],
-        [ sh:description "A unique identifier for an element." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 0 ;
-            sh:path schema1:identifier ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable description." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path dcterms:description ],
         [ sh:datatype xsd:string ;
             sh:description "A human-readable title." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 2 ;
-            sh:path dcterms:title ] ;
+            sh:path dcterms:title ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path dcterms:description ] ;
     sh:targetClass nist_ai_100_1:AiSpecificRisk .
 
 nist_ai_100_1:AiSystemDimension a sh:NodeShape ;
@@ -771,11 +771,16 @@ Application Context, Data and Input, AI Model, Task and Output,
 or People and Planet.""" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description "A unique identifier for an element." ;
-            sh:maxCount 1 ;
+    sh:property [ sh:description "Related references." ;
             sh:nodeKind sh:IRI ;
-            sh:order 1 ;
-            sh:path schema1:identifier ],
+            sh:order 5 ;
+            sh:path rdfs:seeAlso ],
+        [ sh:description "Which AI system dimension an `AiSystemDimension` instance represents." ;
+            sh:in ( "APPLICATION_CONTEXT" "DATA_AND_INPUT" "AI_MODEL" "TASK_AND_OUTPUT" "PEOPLE_AND_PLANET" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path nist_ai_100_1:dimension_kind ],
         [ sh:datatype xsd:string ;
             sh:description "A human-readable title." ;
             sh:maxCount 1 ;
@@ -788,16 +793,11 @@ or People and Planet.""" ;
             sh:nodeKind sh:Literal ;
             sh:order 2 ;
             sh:path rdfs:label ],
-        [ sh:description "Which AI system dimension an `AiSystemDimension` instance represents." ;
-            sh:in ( "APPLICATION_CONTEXT" "DATA_AND_INPUT" "AI_MODEL" "TASK_AND_OUTPUT" "PEOPLE_AND_PLANET" ) ;
+        [ sh:description "A unique identifier for an element." ;
             sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 0 ;
-            sh:path nist_ai_100_1:dimension_kind ],
-        [ sh:description "Related references." ;
             sh:nodeKind sh:IRI ;
-            sh:order 5 ;
-            sh:path rdfs:seeAlso ],
+            sh:order 1 ;
+            sh:path schema1:identifier ],
         [ sh:datatype xsd:string ;
             sh:description "A human-readable description." ;
             sh:maxCount 1 ;
@@ -826,40 +826,40 @@ related subcategories.""" ;
             sh:nodeKind sh:Literal ;
             sh:order 5 ;
             sh:path dcterms:title ],
-        [ sh:description """Identifier for the category, typically using the
-"FUNCTION N" form (e.g., "GOVERN 1").""" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 3 ;
-            sh:path schema1:identifier ],
         [ sh:datatype xsd:string ;
             sh:description "A short human-readable name." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 4 ;
             sh:path rdfs:label ],
-        [ sh:datatype xsd:string ;
-            sh:description """The outcome statement of a Category or Subcategory - the desired
-result of carrying out its actions.""" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path nist_ai_100_1:outcome ],
         [ sh:description "Related references." ;
             sh:nodeKind sh:IRI ;
             sh:order 7 ;
             sh:path rdfs:seeAlso ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path dcterms:description ],
+        [ sh:description """Identifier for the category, typically using the
+"FUNCTION N" form (e.g., "GOVERN 1").""" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path schema1:identifier ],
         [ sh:class nist_ai_100_1:Subcategory ;
             sh:description "Subcategories that belong to a Category." ;
             sh:nodeKind sh:IRI ;
             sh:order 2 ;
             sh:path nist_ai_100_1:subcategories ],
         [ sh:datatype xsd:string ;
-            sh:description "A human-readable description." ;
+            sh:description """The outcome statement of a Category or Subcategory - the desired
+result of carrying out its actions.""" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path dcterms:description ] ;
+            sh:order 1 ;
+            sh:path nist_ai_100_1:outcome ] ;
     sh:targetClass nist_ai_100_1:Category .
 
 nist_ai_100_1:Function a sh:NodeShape ;
@@ -870,20 +870,22 @@ contexts and lifecycle stages.""" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
-            sh:description "A short human-readable name." ;
+            sh:description "A human-readable description." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path rdfs:label ],
+            sh:order 5 ;
+            sh:path dcterms:description ],
         [ sh:class nist_ai_100_1:Category ;
             sh:description "Categories that belong to a Function." ;
             sh:nodeKind sh:IRI ;
             sh:order 1 ;
             sh:path nist_ai_100_1:categories ],
-        [ sh:description "Related references." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 6 ;
-            sh:path rdfs:seeAlso ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path dcterms:title ],
         [ sh:datatype xsd:string ;
             sh:description "The function code (GOVERN, MAP, MEASURE, or MANAGE)." ;
             sh:maxCount 1 ;
@@ -892,23 +894,21 @@ contexts and lifecycle stages.""" ;
             sh:order 0 ;
             sh:path nist_ai_100_1:function_code ;
             sh:pattern "^(GOVERN|MAP|MEASURE|MANAGE)$" ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable title." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path dcterms:title ],
         [ sh:description "A unique identifier for an element." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:IRI ;
             sh:order 2 ;
             sh:path schema1:identifier ],
+        [ sh:description "Related references." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path rdfs:seeAlso ],
         [ sh:datatype xsd:string ;
-            sh:description "A human-readable description." ;
+            sh:description "A short human-readable name." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path dcterms:description ] ;
+            sh:order 3 ;
+            sh:path rdfs:label ] ;
     sh:targetClass nist_ai_100_1:Function .
 
 nist_ai_100_1:HumanAiInteractionIssue a sh:NodeShape ;
@@ -920,12 +920,6 @@ presenting AI system information to humans.""" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
-            sh:description "A short human-readable name." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path rdfs:label ],
-        [ sh:datatype xsd:string ;
             sh:description "A human-readable title." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
@@ -937,15 +931,21 @@ presenting AI system information to humans.""" ;
             sh:nodeKind sh:Literal ;
             sh:order 3 ;
             sh:path dcterms:description ],
+        [ sh:description "Related references." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path rdfs:seeAlso ],
+        [ sh:datatype xsd:string ;
+            sh:description "A short human-readable name." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path rdfs:label ],
         [ sh:description "A unique identifier for an element." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:IRI ;
             sh:order 0 ;
-            sh:path schema1:identifier ],
-        [ sh:description "Related references." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 4 ;
-            sh:path rdfs:seeAlso ] ;
+            sh:path schema1:identifier ] ;
     sh:targetClass nist_ai_100_1:HumanAiInteractionIssue .
 
 nist_ai_100_1:PlaybookEntry a sh:NodeShape ;
@@ -959,19 +959,24 @@ NIST AI RMF Playbook JSON (e.g., `section_about`,
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
-            sh:description """Function label as serialised in the published Playbook JSON
-(Title case - "Govern", "Map", "Measure", "Manage"). For
-the controlled enum see `function_kind`.""" ;
+            sh:description """Category code in the form "FUNCTION-N" (e.g., "GOVERN-1")
+as used in the Playbook.""" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path nist_ai_100_1:type ],
+            sh:order 2 ;
+            sh:path nist_ai_100_1:category ],
         [ sh:datatype xsd:string ;
-            sh:description "Bulleted suggested actions (\"Actions\" section)." ;
+            sh:description "Outcome statement of the subcategory." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path nist_ai_100_1:section_actions ],
+            sh:order 3 ;
+            sh:path nist_ai_100_1:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Free-text discussion (\"About\" section)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path nist_ai_100_1:section_about ],
         [ sh:datatype xsd:string ;
             sh:description """Documentation questions and transparency resources
 ("Documentation" section).""" ;
@@ -980,30 +985,26 @@ the controlled enum see `function_kind`.""" ;
             sh:order 6 ;
             sh:path nist_ai_100_1:section_doc ],
         [ sh:datatype xsd:string ;
-            sh:description "Free-text discussion (\"About\" section)." ;
+            sh:description "Bulleted suggested actions (\"Actions\" section)." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path nist_ai_100_1:section_about ],
+            sh:order 5 ;
+            sh:path nist_ai_100_1:section_actions ],
         [ sh:datatype xsd:string ;
-            sh:description """Subcategory identifier (e.g., "GOVERN 1.1"). Mirrors the
-AI RMF Subcategory `subcategory_id`.""" ;
+            sh:description """Function label as serialised in the published Playbook JSON
+(Title case - "Govern", "Map", "Measure", "Manage"). For
+the controlled enum see `function_kind`.""" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path nist_ai_100_1:title ],
+            sh:order 0 ;
+            sh:path nist_ai_100_1:type ],
         [ sh:datatype xsd:string ;
-            sh:description "References and citations (\"References\" section)." ;
-            sh:maxCount 1 ;
+            sh:description """AI actor categories the entry applies to. Free-text to
+preserve the casing of the source data (e.g., "Governance
+and Oversight").""" ;
             sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path nist_ai_100_1:section_ref ],
-        [ sh:datatype xsd:string ;
-            sh:description "Outcome statement of the subcategory." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path nist_ai_100_1:description ],
+            sh:order 8 ;
+            sh:path nist_ai_100_1:ai_actors ],
         [ sh:datatype xsd:string ;
             sh:description """Topic tags (e.g., "Legal and Regulatory", "Validity and
 Reliability").""" ;
@@ -1011,19 +1012,18 @@ Reliability").""" ;
             sh:order 9 ;
             sh:path nist_ai_100_1:topic ],
         [ sh:datatype xsd:string ;
-            sh:description """Category code in the form "FUNCTION-N" (e.g., "GOVERN-1")
-as used in the Playbook.""" ;
+            sh:description "References and citations (\"References\" section)." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path nist_ai_100_1:category ],
+            sh:order 7 ;
+            sh:path nist_ai_100_1:section_ref ],
         [ sh:datatype xsd:string ;
-            sh:description """AI actor categories the entry applies to. Free-text to
-preserve the casing of the source data (e.g., "Governance
-and Oversight").""" ;
+            sh:description """Subcategory identifier (e.g., "GOVERN 1.1"). Mirrors the
+AI RMF Subcategory `subcategory_id`.""" ;
+            sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path nist_ai_100_1:ai_actors ] ;
+            sh:order 1 ;
+            sh:path nist_ai_100_1:title ] ;
     sh:targetClass nist_ai_100_1:PlaybookEntry .
 
 nist_ai_100_1:RiskMeasurementChallenge a sh:NodeShape ;
@@ -1031,39 +1031,39 @@ nist_ai_100_1:RiskMeasurementChallenge a sh:NodeShape ;
 (Part 1 §1.2.1).""" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description "A unique identifier for an element." ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A short human-readable name." ;
             sh:maxCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 1 ;
-            sh:path schema1:identifier ],
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path rdfs:label ],
         [ sh:datatype xsd:string ;
             sh:description "A human-readable description." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 4 ;
             sh:path dcterms:description ],
-        [ sh:datatype xsd:string ;
-            sh:description "A short human-readable name." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path rdfs:label ],
         [ sh:description "Related references." ;
             sh:nodeKind sh:IRI ;
             sh:order 5 ;
             sh:path rdfs:seeAlso ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable title." ;
+        [ sh:description "A unique identifier for an element." ;
             sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path dcterms:title ],
+            sh:nodeKind sh:IRI ;
+            sh:order 1 ;
+            sh:path schema1:identifier ],
         [ sh:description "Which risk-measurement challenge a `RiskMeasurementChallenge` represents." ;
             sh:in ( "THIRD_PARTY_SOFTWARE_HARDWARE_AND_DATA" "TRACKING_EMERGENT_RISKS" "AVAILABILITY_OF_RELIABLE_METRICS" "RISK_AT_DIFFERENT_LIFECYCLE_STAGES" "RISK_IN_REAL_WORLD_SETTINGS" "INSCRUTABILITY" "HUMAN_BASELINE" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:order 0 ;
-            sh:path nist_ai_100_1:challenge_kind ] ;
+            sh:path nist_ai_100_1:challenge_kind ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path dcterms:title ] ;
     sh:targetClass nist_ai_100_1:RiskMeasurementChallenge .
 
 nist_ai_100_1:RmfAttribute a sh:NodeShape ;
@@ -1079,16 +1079,6 @@ standards, law- and regulation-agnostic, living document).""" ;
             sh:nodeKind sh:IRI ;
             sh:order 0 ;
             sh:path schema1:identifier ],
-        [ sh:description "Related references." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 4 ;
-            sh:path rdfs:seeAlso ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable title." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path dcterms:title ],
         [ sh:datatype xsd:string ;
             sh:description "A short human-readable name." ;
             sh:maxCount 1 ;
@@ -1100,7 +1090,17 @@ standards, law- and regulation-agnostic, living document).""" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 3 ;
-            sh:path dcterms:description ] ;
+            sh:path dcterms:description ],
+        [ sh:description "Related references." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path rdfs:seeAlso ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:title ] ;
     sh:targetClass nist_ai_100_1:RmfAttribute .
 
 nist_ai_100_1:TrustworthinessCharacteristic a sh:NodeShape ;
@@ -1110,16 +1110,7 @@ individually does not guarantee trustworthiness, and tradeoffs
 are usually involved.""" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description "Related references." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 7 ;
-            sh:path rdfs:seeAlso ],
-        [ sh:description "A unique identifier for an element." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 3 ;
-            sh:path schema1:identifier ],
-        [ sh:datatype xsd:boolean ;
+    sh:property [ sh:datatype xsd:boolean ;
             sh:description """True when this characteristic is a necessary condition for
 trustworthiness (per Figure 4 - Valid and Reliable is the base
 of all others).""" ;
@@ -1127,12 +1118,23 @@ of all others).""" ;
             sh:nodeKind sh:Literal ;
             sh:order 1 ;
             sh:path nist_ai_100_1:is_base_condition ],
+        [ sh:description "A unique identifier for an element." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path schema1:identifier ],
         [ sh:datatype xsd:string ;
             sh:description "A short human-readable name." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 4 ;
             sh:path rdfs:label ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path dcterms:description ],
         [ sh:datatype xsd:string ;
             sh:description "A human-readable title." ;
             sh:maxCount 1 ;
@@ -1146,39 +1148,37 @@ of all others).""" ;
             sh:nodeKind sh:Literal ;
             sh:order 2 ;
             sh:path nist_ai_100_1:is_cross_cutting ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable description." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path dcterms:description ],
         [ sh:description "Which trustworthiness characteristic a `TrustworthinessCharacteristic` represents." ;
             sh:in ( "VALID_AND_RELIABLE" "SAFE" "SECURE_AND_RESILIENT" "ACCOUNTABLE_AND_TRANSPARENT" "EXPLAINABLE_AND_INTERPRETABLE" "PRIVACY_ENHANCED" "FAIR_WITH_HARMFUL_BIAS_MANAGED" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:order 0 ;
-            sh:path nist_ai_100_1:characteristic_kind ] ;
+            sh:path nist_ai_100_1:characteristic_kind ],
+        [ sh:description "Related references." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path rdfs:seeAlso ] ;
     sh:targetClass nist_ai_100_1:TrustworthinessCharacteristic .
 
 schema1:Thing a sh:NodeShape ;
     rdfs:comment "A generic grouping for any identifiable AI RMF element." ;
     sh:closed false ;
-    sh:ignoredProperties ( nist_ai_100_1:dimensions nist_ai_100_1:magnitude nist_ai_100_1:addresses nist_ai_100_1:audience nist_ai_100_1:tolerance_statement nist_ai_100_1:task_kind nist_ai_100_1:bias_category nist_ai_100_1:is_residual nist_ai_100_1:function_code nist_ai_100_1:is_cross_cutting nist_ai_100_1:stage_kind nist_ai_100_1:lifecycle_stages nist_ai_100_1:sector nist_ai_100_1:actor_tasks nist_ai_100_1:typical_actors nist_ai_100_1:outcome nist_ai_100_1:topics nist_ai_100_1:impact_sign nist_ai_100_1:suggested_actions_text nist_ai_100_1:risk_response dcterms:source nist_ai_100_1:attributes nist_ai_100_1:harm_to_people_subcategory nist_ai_100_1:functions nist_ai_100_1:subcategories nist_ai_100_1:is_tevv nist_ai_100_1:current_state nist_ai_100_1:trustworthiness_characteristic nist_ai_100_1:about_text nist_ai_100_1:ai_dimension nist_ai_100_1:subcategory_id nist_ai_100_1:likelihood nist_ai_100_1:categories nist_ai_100_1:legal_basis schema1:version nist_ai_100_1:is_base_condition nist_ai_100_1:affects nist_ai_100_1:ai_specific_risks nist_ai_100_1:affects_system nist_ai_100_1:trustworthiness_characteristics nist_ai_100_1:human_ai_interaction_issues nist_ai_100_1:documentation_questions nist_ai_100_1:profile_type rdf:type nist_ai_100_1:ai_actor_categories nist_ai_100_1:profiles nist_ai_100_1:document nist_ai_100_1:related_impacts dcterms:publisher dcterms:issued nist_ai_100_1:references_text nist_ai_100_1:harm_category nist_ai_100_1:actor_task nist_ai_100_1:risk_measurement_challenges nist_ai_100_1:doi nist_ai_100_1:characteristic_kind nist_ai_100_1:lifecycle_stage nist_ai_100_1:target_state nist_ai_100_1:category_id nist_ai_100_1:includes_tevv nist_ai_100_1:challenge_kind nist_ai_100_1:dimension_kind ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description "A human-readable description." ;
+    sh:ignoredProperties ( nist_ai_100_1:is_tevv nist_ai_100_1:magnitude nist_ai_100_1:trustworthiness_characteristic nist_ai_100_1:functions dcterms:issued nist_ai_100_1:audience nist_ai_100_1:typical_actors nist_ai_100_1:tolerance_statement nist_ai_100_1:target_state nist_ai_100_1:actor_task nist_ai_100_1:is_base_condition nist_ai_100_1:legal_basis nist_ai_100_1:is_cross_cutting nist_ai_100_1:categories nist_ai_100_1:attributes nist_ai_100_1:dimensions nist_ai_100_1:lifecycle_stages nist_ai_100_1:ai_actor_categories nist_ai_100_1:ai_dimension dcterms:source nist_ai_100_1:is_residual nist_ai_100_1:harm_to_people_subcategory nist_ai_100_1:stage_kind nist_ai_100_1:harm_category nist_ai_100_1:profile_type nist_ai_100_1:risk_measurement_challenges nist_ai_100_1:topics nist_ai_100_1:includes_tevv nist_ai_100_1:characteristic_kind nist_ai_100_1:function_code nist_ai_100_1:sector nist_ai_100_1:dimension_kind nist_ai_100_1:likelihood nist_ai_100_1:subcategory_id nist_ai_100_1:doi nist_ai_100_1:risk_response nist_ai_100_1:category_id nist_ai_100_1:about_text nist_ai_100_1:document nist_ai_100_1:challenge_kind nist_ai_100_1:affects nist_ai_100_1:references_text nist_ai_100_1:current_state nist_ai_100_1:human_ai_interaction_issues nist_ai_100_1:suggested_actions_text nist_ai_100_1:bias_category nist_ai_100_1:ai_specific_risks nist_ai_100_1:subcategories nist_ai_100_1:affects_system nist_ai_100_1:task_kind nist_ai_100_1:addresses nist_ai_100_1:outcome nist_ai_100_1:documentation_questions nist_ai_100_1:trustworthiness_characteristics nist_ai_100_1:lifecycle_stage nist_ai_100_1:profiles nist_ai_100_1:actor_tasks dcterms:publisher nist_ai_100_1:related_impacts rdf:type nist_ai_100_1:impact_sign schema1:version ) ;
+    sh:property [ sh:description "Related references." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path rdfs:seeAlso ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable title." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path dcterms:description ],
+            sh:order 2 ;
+            sh:path dcterms:title ],
         [ sh:description "A unique identifier for an element." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:IRI ;
             sh:order 0 ;
             sh:path schema1:identifier ],
-        [ sh:description "Related references." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 4 ;
-            sh:path rdfs:seeAlso ],
         [ sh:datatype xsd:string ;
             sh:description "A short human-readable name." ;
             sh:maxCount 1 ;
@@ -1186,11 +1186,11 @@ schema1:Thing a sh:NodeShape ;
             sh:order 1 ;
             sh:path rdfs:label ],
         [ sh:datatype xsd:string ;
-            sh:description "A human-readable title." ;
+            sh:description "A human-readable description." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path dcterms:title ] ;
+            sh:order 3 ;
+            sh:path dcterms:description ] ;
     sh:targetClass schema1:Thing .
 
 nist_ai_100_1:AiSystem a sh:NodeShape ;
@@ -1206,37 +1206,37 @@ ISO/IEC 22989:2022).""" ;
             sh:in ( "APPLICATION_CONTEXT" "DATA_AND_INPUT" "AI_MODEL" "TASK_AND_OUTPUT" "PEOPLE_AND_PLANET" ) ;
             sh:order 1 ;
             sh:path nist_ai_100_1:ai_dimension ],
-        [ sh:description "The AI lifecycle stage(s) the element applies to." ;
-            sh:in ( "PLAN_AND_DESIGN" "COLLECT_AND_PROCESS_DATA" "BUILD_AND_USE_MODEL" "VERIFY_AND_VALIDATE" "DEPLOY_AND_USE" "OPERATE_AND_MONITOR" ) ;
-            sh:order 0 ;
-            sh:path nist_ai_100_1:lifecycle_stage ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable description." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path dcterms:description ],
         [ sh:datatype xsd:string ;
             sh:description "A short human-readable name." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 3 ;
             sh:path rdfs:label ],
+        [ sh:description "The AI lifecycle stage(s) the element applies to." ;
+            sh:in ( "PLAN_AND_DESIGN" "COLLECT_AND_PROCESS_DATA" "BUILD_AND_USE_MODEL" "VERIFY_AND_VALIDATE" "DEPLOY_AND_USE" "OPERATE_AND_MONITOR" ) ;
+            sh:order 0 ;
+            sh:path nist_ai_100_1:lifecycle_stage ],
+        [ sh:description "Related references." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path rdfs:seeAlso ],
         [ sh:datatype xsd:string ;
             sh:description "A human-readable title." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 4 ;
             sh:path dcterms:title ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path dcterms:description ],
         [ sh:description "A unique identifier for an element." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:IRI ;
             sh:order 2 ;
-            sh:path schema1:identifier ],
-        [ sh:description "Related references." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 6 ;
-            sh:path rdfs:seeAlso ] ;
+            sh:path schema1:identifier ] ;
     sh:targetClass nist_ai_100_1:AiSystem .
 
 nist_ai_100_1:Impact a sh:NodeShape ;
@@ -1245,44 +1245,20 @@ can manifest as opportunities (positive) or threats (negative).""" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
-            sh:description """Magnitude or degree of consequences if the event occurs (free
-text or qualitative scale).""" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path nist_ai_100_1:magnitude ],
-        [ sh:datatype xsd:string ;
             sh:description "A short human-readable name." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 5 ;
             sh:path rdfs:label ],
-        [ sh:description "A unique identifier for an element." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 4 ;
-            sh:path schema1:identifier ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable title." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path dcterms:title ],
-        [ sh:description "Related references." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 8 ;
-            sh:path rdfs:seeAlso ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable description." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path dcterms:description ],
         [ sh:description "Whether the impact is positive, negative, or both." ;
             sh:in ( "POSITIVE" "NEGATIVE" "MIXED" ) ;
             sh:maxCount 1 ;
             sh:order 0 ;
             sh:path nist_ai_100_1:impact_sign ],
+        [ sh:description "Related references." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 8 ;
+            sh:path rdfs:seeAlso ],
         [ sh:class schema1:Thing ;
             sh:description """Entities (people, organizations, ecosystems) the risk or harm
 may affect.""" ;
@@ -1297,7 +1273,31 @@ AI RMF leaves quantification approaches to the implementer.""" ;
             sh:minInclusive 0e+00 ;
             sh:nodeKind sh:Literal ;
             sh:order 2 ;
-            sh:path nist_ai_100_1:likelihood ] ;
+            sh:path nist_ai_100_1:likelihood ],
+        [ sh:datatype xsd:string ;
+            sh:description """Magnitude or degree of consequences if the event occurs (free
+text or qualitative scale).""" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path nist_ai_100_1:magnitude ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path dcterms:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path dcterms:title ],
+        [ sh:description "A unique identifier for an element." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path schema1:identifier ] ;
     sh:targetClass nist_ai_100_1:Impact .
 
 nist_ai_100_1:Subcategory a sh:NodeShape ;
@@ -1307,63 +1307,16 @@ managed, and documented"). Subcategories express specific
 outcomes.""" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description """Free-text list of AI Actor categories the entry applies to,
-preserving the original case used in the AI RMF Playbook
-(e.g., "Governance and Oversight", "TEVV"). For controlled
-enum values see `actor_task` (range AiActorTaskEnum).""" ;
-            sh:nodeKind sh:Literal ;
-            sh:order 9 ;
-            sh:path nist_ai_100_1:ai_actor_categories ],
-        [ sh:datatype xsd:string ;
-            sh:description """The outcome statement of a Category or Subcategory - the desired
-result of carrying out its actions.""" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path nist_ai_100_1:outcome ],
-        [ sh:datatype xsd:string ;
-            sh:description """Free-text topic tags applied to a playbook entry (e.g.,
-"Governance", "Trustworthy Characteristics", "Validity and
-Reliability").""" ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path nist_ai_100_1:topics ],
-        [ sh:description "Trustworthiness characteristic(s) the element pertains to." ;
-            sh:in ( "VALID_AND_RELIABLE" "SAFE" "SECURE_AND_RESILIENT" "ACCOUNTABLE_AND_TRANSPARENT" "EXPLAINABLE_AND_INTERPRETABLE" "PRIVACY_ENHANCED" "FAIR_WITH_HARMFUL_BIAS_MANAGED" ) ;
-            sh:order 2 ;
-            sh:path nist_ai_100_1:trustworthiness_characteristic ],
-        [ sh:datatype xsd:string ;
-            sh:description "A short human-readable name." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 11 ;
-            sh:path rdfs:label ],
-        [ sh:datatype xsd:string ;
-            sh:description """Free-text list of references, citations, and supporting
-resources. Corresponds to the AI RMF Playbook "References"
-section.""" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path nist_ai_100_1:references_text ],
-        [ sh:description "The AI lifecycle stage(s) the element applies to." ;
-            sh:in ( "PLAN_AND_DESIGN" "COLLECT_AND_PROCESS_DATA" "BUILD_AND_USE_MODEL" "VERIFY_AND_VALIDATE" "DEPLOY_AND_USE" "OPERATE_AND_MONITOR" ) ;
-            sh:order 3 ;
-            sh:path nist_ai_100_1:lifecycle_stage ],
-        [ sh:description """Identifier for the subcategory in the "FUNCTION N.M" form
+    sh:property [ sh:description """Identifier for the subcategory in the "FUNCTION N.M" form
 (e.g., "GOVERN 1.1").""" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:IRI ;
             sh:order 10 ;
             sh:path schema1:identifier ],
-        [ sh:datatype xsd:string ;
-            sh:description "Identifier of a Subcategory (e.g., \"GOVERN 1.1\")." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path nist_ai_100_1:subcategory_id ;
-            sh:pattern "^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+\\.[0-9]+$" ],
+        [ sh:description "Related references." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 14 ;
+            sh:path rdfs:seeAlso ],
         [ sh:datatype xsd:string ;
             sh:description """Free-text discussion of the subcategory or related concept.
 Corresponds to the AI RMF Playbook "About" section.""" ;
@@ -1372,12 +1325,32 @@ Corresponds to the AI RMF Playbook "About" section.""" ;
             sh:order 4 ;
             sh:path nist_ai_100_1:about_text ],
         [ sh:datatype xsd:string ;
-            sh:description """Free-text bulleted list of suggested actions an organization can
-take. Corresponds to the AI RMF Playbook "Actions" section.""" ;
+            sh:description """Free-text list of references, citations, and supporting
+resources. Corresponds to the AI RMF Playbook "References"
+section.""" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path nist_ai_100_1:suggested_actions_text ],
+            sh:order 7 ;
+            sh:path nist_ai_100_1:references_text ],
+        [ sh:datatype xsd:string ;
+            sh:description "Identifier of a Subcategory (e.g., \"GOVERN 1.1\")." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path nist_ai_100_1:subcategory_id ;
+            sh:pattern "^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+\\.[0-9]+$" ],
+        [ sh:description "The AI lifecycle stage(s) the element applies to." ;
+            sh:in ( "PLAN_AND_DESIGN" "COLLECT_AND_PROCESS_DATA" "BUILD_AND_USE_MODEL" "VERIFY_AND_VALIDATE" "DEPLOY_AND_USE" "OPERATE_AND_MONITOR" ) ;
+            sh:order 3 ;
+            sh:path nist_ai_100_1:lifecycle_stage ],
+        [ sh:datatype xsd:string ;
+            sh:description """Free-text list of AI Actor categories the entry applies to,
+preserving the original case used in the AI RMF Playbook
+(e.g., "Governance and Oversight", "TEVV"). For controlled
+enum values see `actor_task` (range AiActorTaskEnum).""" ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path nist_ai_100_1:ai_actor_categories ],
         [ sh:datatype xsd:string ;
             sh:description "A human-readable description." ;
             sh:maxCount 1 ;
@@ -1385,21 +1358,48 @@ take. Corresponds to the AI RMF Playbook "Actions" section.""" ;
             sh:order 13 ;
             sh:path dcterms:description ],
         [ sh:datatype xsd:string ;
+            sh:description """Free-text bulleted list of suggested actions an organization can
+take. Corresponds to the AI RMF Playbook "Actions" section.""" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path nist_ai_100_1:suggested_actions_text ],
+        [ sh:datatype xsd:string ;
             sh:description "A human-readable title." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 12 ;
             sh:path dcterms:title ],
-        [ sh:description "Related references." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 14 ;
-            sh:path rdfs:seeAlso ],
+        [ sh:datatype xsd:string ;
+            sh:description "A short human-readable name." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path rdfs:label ],
         [ sh:datatype xsd:string ;
             sh:description """Free-text documentation questions and transparency resources.
 Corresponds to the AI RMF Playbook "Documentation" section.""" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 6 ;
-            sh:path nist_ai_100_1:documentation_questions ] ;
+            sh:path nist_ai_100_1:documentation_questions ],
+        [ sh:datatype xsd:string ;
+            sh:description """The outcome statement of a Category or Subcategory - the desired
+result of carrying out its actions.""" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path nist_ai_100_1:outcome ],
+        [ sh:description "Trustworthiness characteristic(s) the element pertains to." ;
+            sh:in ( "VALID_AND_RELIABLE" "SAFE" "SECURE_AND_RESILIENT" "ACCOUNTABLE_AND_TRANSPARENT" "EXPLAINABLE_AND_INTERPRETABLE" "PRIVACY_ENHANCED" "FAIR_WITH_HARMFUL_BIAS_MANAGED" ) ;
+            sh:order 2 ;
+            sh:path nist_ai_100_1:trustworthiness_characteristic ],
+        [ sh:datatype xsd:string ;
+            sh:description """Free-text topic tags applied to a playbook entry (e.g.,
+"Governance", "Trustworthy Characteristics", "Validity and
+Reliability").""" ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path nist_ai_100_1:topics ] ;
     sh:targetClass nist_ai_100_1:Subcategory .
 

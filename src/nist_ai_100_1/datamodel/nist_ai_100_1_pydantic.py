@@ -85,7 +85,7 @@ linkml_meta = LinkMLMeta({'default_prefix': 'nist_ai_100_1',
                     'companion\n'
                     'data shape.',
      'id': 'https://w3id.org/lmodel/nist-ai-100-1',
-     'imports': ['linkml:types', 'nist_ai_rmf_common'],
+     'imports': ['linkml:types', 'nist_ai_100_1:/schema/nist_ai_rmf_common'],
      'license': 'Apache-2.0',
      'name': 'nist-ai-100-1',
      'prefixes': {'dcterms': {'prefix_prefix': 'dcterms',
