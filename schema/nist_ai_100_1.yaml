@@ -29,6 +29,7 @@ id: https://w3id.org/lmodel/nist-ai-100-1
 version: 1.0.0
 imports:
 - linkml:types
+- nist_ai_rmf_common
 license: Apache-2.0
 prefixes:
   nist_ai_100_1:
@@ -94,27 +95,12 @@ prefixes:
 default_prefix: nist_ai_100_1
 default_range: string
 subsets:
-  base:
-    name: base
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/Base
-    description: "Schema-infrastructure elements shared across the framework:\nidentifier\
-      \ slots, the abstract `NamedThingRMF` root, publication\nmetadata, and the top-level\
-      \ `AiRmfFramework` container. Not a\nsection of NIST AI 100-1 itself - distinct\
-      \ from `framework_core`\n(Part 2, \xA75 \"AI RMF Core\")."
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1
   framework_core:
     name: framework_core
     definition_uri: https://w3id.org/lmodel/nist-ai-100-1/FrameworkCore
     description: "The AI RMF Core (Part 2, \xA75): the four high-level Functions\n\
       (GOVERN, MAP, MEASURE, MANAGE) and their Categories and\nSubcategories - the\
       \ catalog backbone of the Framework."
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1
-  trustworthiness:
-    name: trustworthiness
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/Trustworthiness
-    description: "Characteristics of trustworthy AI systems (Part 1, \xA73):\nValid\
-      \ and Reliable, Safe, Secure and Resilient, Accountable and\nTransparent, Explainable\
-      \ and Interpretable, Privacy-Enhanced, and\nFair with Harmful Bias Managed."
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
   lifecycle:
     name: lifecycle
@@ -176,6 +162,21 @@ subsets:
       \ - modelled after the NIST AI RMF\nPlaybook JSON shape. (Not part of NIST AI\
       \ 100-1 itself; cross-\nreferenced in Part 2, \xA75.)"
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
+  base:
+    name: base
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/Base
+    description: 'Schema-infrastructure elements shared across the framework:
+
+      identifier slots and the abstract `NamedThing` root.'
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
+  trustworthiness:
+    name: trustworthiness
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/Trustworthiness
+    description: "Characteristics of trustworthy AI systems (NIST AI 100-1 Part 1,\n\
+      \xA73): Valid and Reliable, Safe, Secure and Resilient, Accountable\nand Transparent,\
+      \ Explainable and Interpretable, Privacy-Enhanced,\nand Fair with Harmful Bias\
+      \ Managed."
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
 types:
   FunctionCode:
     name: FunctionCode
@@ -195,15 +196,6 @@ types:
     base: str
     uri: xsd:string
     pattern: ^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+$
-  SubcategoryCode:
-    name: SubcategoryCode
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/SubcategoryCode
-    description: Identifier for a Core subcategory (e.g., "GOVERN 1.1").
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1
-    typeof: string
-    base: str
-    uri: xsd:string
-    pattern: ^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+\.[0-9]+$
   string:
     name: string
     definition_uri: https://w3id.org/linkml/String
@@ -472,6 +464,15 @@ types:
     base: str
     uri: xsd:string
     repr: str
+  SubcategoryCode:
+    name: SubcategoryCode
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/SubcategoryCode
+    description: Identifier for a Core subcategory (e.g., "GOVERN 1.1").
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
+    typeof: string
+    base: str
+    uri: xsd:string
+    pattern: ^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+\.[0-9]+$
 enums:
   FunctionEnum:
     name: FunctionEnum
@@ -713,70 +714,6 @@ enums:
           of AI technologies; provides motivation for actions taken by
 
           other AI actors.'
-  TrustworthinessCharacteristicEnum:
-    name: TrustworthinessCharacteristicEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum
-    description: "The seven characteristics of trustworthy AI systems described in\n\
-      Figure 4 and Part 1 \xA73."
-    in_subset:
-    - trustworthiness
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1
-    permissible_values:
-      VALID_AND_RELIABLE:
-        text: VALID_AND_RELIABLE
-        description: 'Confirmation that requirements for a specific intended use have
-
-          been fulfilled (validation) and that the system performs as
-
-          required without failure (reliability). A necessary condition of
-
-          trustworthiness and the base for other characteristics.'
-      SAFE:
-        text: SAFE
-        description: 'The system does not, under defined conditions, lead to a state
-
-          in which human life, health, property, or the environment is
-
-          endangered.'
-      SECURE_AND_RESILIENT:
-        text: SECURE_AND_RESILIENT
-        description: 'The system can withstand unexpected adverse events or changes
-
-          (resilient) and maintain confidentiality, integrity, and
-
-          availability through protection mechanisms (secure).'
-      ACCOUNTABLE_AND_TRANSPARENT:
-        text: ACCOUNTABLE_AND_TRANSPARENT
-        description: 'Trustworthy AI depends on accountability, which presupposes
-
-          transparency - the extent to which information about an AI
-
-          system and its outputs is available to those interacting with
-
-          it.'
-      EXPLAINABLE_AND_INTERPRETABLE:
-        text: EXPLAINABLE_AND_INTERPRETABLE
-        description: 'Explainability concerns the mechanisms underlying an AI system''s
-
-          operation; interpretability concerns the meaning of its output
-
-          in context.'
-      PRIVACY_ENHANCED:
-        text: PRIVACY_ENHANCED
-        description: 'Norms and practices that help safeguard human autonomy,
-
-          identity, and dignity - including anonymity, confidentiality,
-
-          and control over personal information.'
-      FAIR_WITH_HARMFUL_BIAS_MANAGED:
-        text: FAIR_WITH_HARMFUL_BIAS_MANAGED
-        description: 'Concerns for equality and equity by addressing issues such as
-
-          harmful bias and discrimination, and recognising that
-
-          perceptions of fairness differ across cultures and
-
-          applications.'
   HarmCategoryEnum:
     name: HarmCategoryEnum
     definition_uri: https://w3id.org/lmodel/nist-ai-100-1/HarmCategoryEnum
@@ -1004,65 +941,71 @@ enums:
       MIXED:
         text: MIXED
         description: An impact that is both positive and negative.
+  TrustworthinessCharacteristicEnum:
+    name: TrustworthinessCharacteristicEnum
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum
+    description: "The seven characteristics of trustworthy AI systems described in\n\
+      Figure 4 and Part 1 \xA73."
+    in_subset:
+    - trustworthiness
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
+    permissible_values:
+      VALID_AND_RELIABLE:
+        text: VALID_AND_RELIABLE
+        description: 'Confirmation that requirements for a specific intended use have
+
+          been fulfilled (validation) and that the system performs as
+
+          required without failure (reliability). A necessary condition of
+
+          trustworthiness and the base for other characteristics.'
+      SAFE:
+        text: SAFE
+        description: 'The system does not, under defined conditions, lead to a state
+
+          in which human life, health, property, or the environment is
+
+          endangered.'
+      SECURE_AND_RESILIENT:
+        text: SECURE_AND_RESILIENT
+        description: 'The system can withstand unexpected adverse events or changes
+
+          (resilient) and maintain confidentiality, integrity, and
+
+          availability through protection mechanisms (secure).'
+      ACCOUNTABLE_AND_TRANSPARENT:
+        text: ACCOUNTABLE_AND_TRANSPARENT
+        description: 'Trustworthy AI depends on accountability, which presupposes
+
+          transparency - the extent to which information about an AI
+
+          system and its outputs is available to those interacting with
+
+          it.'
+      EXPLAINABLE_AND_INTERPRETABLE:
+        text: EXPLAINABLE_AND_INTERPRETABLE
+        description: 'Explainability concerns the mechanisms underlying an AI system''s
+
+          operation; interpretability concerns the meaning of its output
+
+          in context.'
+      PRIVACY_ENHANCED:
+        text: PRIVACY_ENHANCED
+        description: 'Norms and practices that help safeguard human autonomy,
+
+          identity, and dignity - including anonymity, confidentiality,
+
+          and control over personal information.'
+      FAIR_WITH_HARMFUL_BIAS_MANAGED:
+        text: FAIR_WITH_HARMFUL_BIAS_MANAGED
+        description: 'Concerns for equality and equity by addressing issues such as
+
+          harmful bias and discrimination, and recognising that
+
+          perceptions of fairness differ across cultures and
+
+          applications.'
 slots:
-  id:
-    name: id
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/id
-    description: A unique identifier for an element.
-    in_subset:
-    - base
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1
-    mappings:
-    - schema:identifier
-    slot_uri: schema:identifier
-    identifier: true
-    owner: NamedThingRMF
-    domain_of:
-    - NamedThingRMF
-    range: uriorcurie
-    required: true
-  name:
-    name: name
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/name
-    description: A short human-readable name.
-    in_subset:
-    - base
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1
-    mappings:
-    - rdfs:label
-    slot_uri: rdfs:label
-    owner: NamedThingRMF
-    domain_of:
-    - NamedThingRMF
-    range: string
-  title:
-    name: title
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/title
-    description: A human-readable title.
-    in_subset:
-    - base
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1
-    mappings:
-    - dcterms:title
-    slot_uri: dcterms:title
-    owner: NamedThingRMF
-    domain_of:
-    - NamedThingRMF
-    range: string
-  description:
-    name: description
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/description
-    description: A human-readable description.
-    in_subset:
-    - base
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1
-    mappings:
-    - dcterms:description
-    slot_uri: dcterms:description
-    owner: NamedThingRMF
-    domain_of:
-    - NamedThingRMF
-    range: string
   source:
     name: source
     definition_uri: https://w3id.org/lmodel/nist-ai-100-1/source
@@ -1079,21 +1022,6 @@ slots:
     domain_of:
     - AiRmfDocument
     range: uriorcurie
-  see_also:
-    name: see_also
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/see_also
-    description: Related references.
-    in_subset:
-    - base
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1
-    mappings:
-    - rdfs:seeAlso
-    slot_uri: rdfs:seeAlso
-    owner: NamedThingRMF
-    domain_of:
-    - NamedThingRMF
-    range: uriorcurie
-    multivalued: true
   function_code:
     name: function_code
     definition_uri: https://w3id.org/lmodel/nist-ai-100-1/function_code
@@ -1266,7 +1194,7 @@ slots:
     domain_of:
     - Impact
     - Harm
-    range: NamedThingRMF
+    range: NamedThing
     multivalued: true
   risk_response:
     name: risk_response
@@ -1368,20 +1296,6 @@ slots:
     domain_of:
     - AiActor
     range: AudienceEnum
-  trustworthiness_characteristic:
-    name: trustworthiness_characteristic
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/trustworthiness_characteristic
-    description: Trustworthiness characteristic(s) the element pertains to.
-    in_subset:
-    - trustworthiness
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1
-    slot_uri: nist_ai_100_1:trustworthiness_characteristic
-    owner: Subcategory
-    domain_of:
-    - Risk
-    - Subcategory
-    range: TrustworthinessCharacteristicEnum
-    multivalued: true
   bias_category:
     name: bias_category
     definition_uri: https://w3id.org/lmodel/nist-ai-100-1/bias_category
@@ -1986,6 +1900,93 @@ slots:
     multivalued: true
     inlined: true
     inlined_as_list: true
+  id:
+    name: id
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/id
+    description: A unique identifier for an element.
+    in_subset:
+    - base
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
+    mappings:
+    - schema:identifier
+    slot_uri: schema:identifier
+    identifier: true
+    owner: NamedThing
+    domain_of:
+    - NamedThing
+    range: uriorcurie
+    required: true
+  name:
+    name: name
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/name
+    description: A short human-readable name.
+    in_subset:
+    - base
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
+    mappings:
+    - rdfs:label
+    slot_uri: rdfs:label
+    owner: NamedThing
+    domain_of:
+    - NamedThing
+    range: string
+  title:
+    name: title
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/title
+    description: A human-readable title.
+    in_subset:
+    - base
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
+    mappings:
+    - dcterms:title
+    slot_uri: dcterms:title
+    owner: NamedThing
+    domain_of:
+    - NamedThing
+    range: string
+  description:
+    name: description
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/description
+    description: A human-readable description.
+    in_subset:
+    - base
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
+    mappings:
+    - dcterms:description
+    slot_uri: dcterms:description
+    owner: NamedThing
+    domain_of:
+    - NamedThing
+    range: string
+  see_also:
+    name: see_also
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/see_also
+    description: Related references.
+    in_subset:
+    - base
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
+    mappings:
+    - rdfs:seeAlso
+    slot_uri: rdfs:seeAlso
+    owner: NamedThing
+    domain_of:
+    - NamedThing
+    range: uriorcurie
+    multivalued: true
+  trustworthiness_characteristic:
+    name: trustworthiness_characteristic
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/trustworthiness_characteristic
+    description: Trustworthiness characteristic(s) the element pertains to.
+    in_subset:
+    - trustworthiness
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
+    slot_uri: nist_ai_100_1:trustworthiness_characteristic
+    owner: Subcategory
+    domain_of:
+    - Risk
+    - Subcategory
+    range: TrustworthinessCharacteristicEnum
+    multivalued: true
   playbookEntry__type:
     name: playbookEntry__type
     description: 'Function label as serialised in the published Playbook JSON
@@ -2152,7 +2153,7 @@ slots:
       "FUNCTION N" form (e.g., "GOVERN 1").'
     in_subset:
     - base
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
     mappings:
     - schema:identifier
     is_a: id
@@ -2195,7 +2196,7 @@ slots:
       (e.g., "GOVERN 1.1").'
     in_subset:
     - base
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
     mappings:
     - schema:identifier
     is_a: id
@@ -2211,25 +2212,6 @@ slots:
     range: uriorcurie
     required: true
 classes:
-  NamedThingRMF:
-    name: NamedThingRMF
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/NamedThingRMF
-    description: A generic grouping for any identifiable AI RMF element.
-    in_subset:
-    - base
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1
-    mappings:
-    - schema:Thing
-    close_mappings:
-    - schema:Thing
-    abstract: true
-    slots:
-    - id
-    - name
-    - title
-    - description
-    - see_also
-    class_uri: schema:Thing
   AiSystem:
     name: AiSystem
     definition_uri: https://w3id.org/lmodel/nist-ai-100-1/AiSystem
@@ -2249,7 +2231,7 @@ classes:
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
     close_mappings:
     - schema:SoftwareApplication
-    is_a: NamedThingRMF
+    is_a: NamedThing
     slots:
     - id
     - name
@@ -2270,7 +2252,7 @@ classes:
     in_subset:
     - lifecycle
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
-    is_a: NamedThingRMF
+    is_a: NamedThing
     slots:
     - id
     - name
@@ -2290,7 +2272,7 @@ classes:
     in_subset:
     - lifecycle
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
-    is_a: NamedThingRMF
+    is_a: NamedThing
     slots:
     - id
     - name
@@ -2319,7 +2301,7 @@ classes:
     related_mappings:
     - stix:Identity
     - iso27001:InterestedParty
-    is_a: NamedThingRMF
+    is_a: NamedThing
     slots:
     - id
     - name
@@ -2342,7 +2324,7 @@ classes:
     in_subset:
     - lifecycle
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
-    is_a: NamedThingRMF
+    is_a: NamedThing
     slots:
     - id
     - name
@@ -2373,7 +2355,7 @@ classes:
     - iso27001:Risk
     related_mappings:
     - iso29100:PrivacyRisk
-    is_a: NamedThingRMF
+    is_a: NamedThing
     slots:
     - id
     - name
@@ -2401,7 +2383,7 @@ classes:
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
     narrow_mappings:
     - iso27001:ImpactRating
-    is_a: NamedThingRMF
+    is_a: NamedThing
     slots:
     - id
     - name
@@ -2424,7 +2406,7 @@ classes:
     in_subset:
     - risk_and_harm
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
-    is_a: NamedThingRMF
+    is_a: NamedThing
     slots:
     - id
     - name
@@ -2487,7 +2469,7 @@ classes:
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
     close_mappings:
     - iso27001:RiskLevel
-    is_a: NamedThingRMF
+    is_a: NamedThing
     slots:
     - id
     - name
@@ -2505,7 +2487,7 @@ classes:
     in_subset:
     - risk_and_harm
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
-    is_a: NamedThingRMF
+    is_a: NamedThing
     slots:
     - id
     - name
@@ -2523,7 +2505,7 @@ classes:
     in_subset:
     - trustworthiness
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
-    is_a: NamedThingRMF
+    is_a: NamedThing
     slots:
     - id
     - name
@@ -2545,7 +2527,7 @@ classes:
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
     related_mappings:
     - iso29100:PrivacyPrinciple
-    is_a: NamedThingRMF
+    is_a: NamedThing
     slots:
     - id
     - name
@@ -2571,7 +2553,7 @@ classes:
     - nist_csf:CSFFunction
     related_mappings:
     - gist_linkml:Function
-    is_a: NamedThingRMF
+    is_a: NamedThing
     slots:
     - id
     - name
@@ -2603,7 +2585,7 @@ classes:
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_csf:CSFCategory
-    is_a: NamedThingRMF
+    is_a: NamedThing
     slots:
     - name
     - title
@@ -2644,7 +2626,7 @@ classes:
     close_mappings:
     - oscal_catalog:Control
     - nist_sp_800_53:Control
-    is_a: NamedThingRMF
+    is_a: NamedThing
     slots:
     - name
     - title
@@ -2682,7 +2664,7 @@ classes:
     - oscal_profile:Profile
     close_mappings:
     - nist_sp_800_53:ProfileDocument
-    is_a: NamedThingRMF
+    is_a: NamedThing
     slots:
     - id
     - name
@@ -2712,7 +2694,7 @@ classes:
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
     related_mappings:
     - nist_csf:CSFProperty
-    is_a: NamedThingRMF
+    is_a: NamedThing
     slots:
     - id
     - name
@@ -2737,7 +2719,7 @@ classes:
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
     broad_mappings:
     - iso27001:Risk
-    is_a: NamedThingRMF
+    is_a: NamedThing
     slots:
     - id
     - name
@@ -2762,7 +2744,7 @@ classes:
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
     related_mappings:
     - iso27001:InterestedParty
-    is_a: NamedThingRMF
+    is_a: NamedThing
     slots:
     - id
     - name
@@ -2897,7 +2879,7 @@ classes:
     - nist_csf:CSFMetadata
     related_mappings:
     - schema:CreativeWork
-    is_a: NamedThingRMF
+    is_a: NamedThing
     slots:
     - id
     - name
@@ -2929,7 +2911,7 @@ classes:
     - nist_csf:CSFDocument
     - oscal_catalog:Catalog
     - nist_sp_800_53:Catalog
-    is_a: NamedThingRMF
+    is_a: NamedThing
     slots:
     - id
     - name
@@ -2949,9 +2931,28 @@ classes:
     - human_ai_interaction_issues
     class_uri: nist_ai_100_1:AiRmfFramework
     tree_root: true
+  NamedThing:
+    name: NamedThing
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/NamedThing
+    description: A generic grouping for any identifiable AI RMF element.
+    in_subset:
+    - base
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
+    mappings:
+    - schema:Thing
+    close_mappings:
+    - schema:Thing
+    abstract: true
+    slots:
+    - id
+    - name
+    - title
+    - description
+    - see_also
+    class_uri: schema:Thing
 metamodel_version: 1.11.0
 source_file: nist_ai_100_1.yaml
-source_file_date: '2026-05-31T01:02:32'
-source_file_size: 51508
-generation_date: '2026-05-31T01:02:43'
+source_file_date: '2026-05-31T02:02:29'
+source_file_size: 47960
+generation_date: '2026-05-31T02:02:39'
 

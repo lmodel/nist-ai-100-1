@@ -380,6 +380,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#status" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -447,6 +458,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#status" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -502,10 +524,13 @@
 
 <h1 id="about-nist-ai-100-1">About nist-ai-100-1</h1>
 <p>LinkML schema for the <strong>NIST Artificial Intelligence Risk Management Framework (AI RMF 1.0)</strong>, published as <a href="https://doi.org/10.6028/NIST.AI.100-1">NIST AI 100-1</a> (January 2023).</p>
-<p>This is a standalone module covering the AI RMF 1.0 core publication
-only. The Generative AI Profile (NIST AI 600-1) lives in the sibling
-<code>nist-ai-600-1</code> repository, and the umbrella distribution that bundles
-both lives in <code>nist-ai-rmf</code>.</p>
+<p>This module covers the AI RMF 1.0 core publication. The Generative AI Profile (NIST AI 600-1) lives in the sibling <code>nist-ai-600-1</code> repository, and the umbrella distribution that bundles both lives in <code>nist-ai-rmf</code>.</p>
+<h2 id="design">Design</h2>
+<p>The schema is split into two import modules so the framework has one canonical base instead of colliding copies re-inlined per repo:</p>
+<ul>
+<li><strong><code>nist_ai_rmf_common</code></strong> (<a href="https://github.com/lmodel/nist-ai-100-1/blob/main/src/nist_ai_100_1/schema/nist_ai_rmf_common.yaml"><code>schema/nist_ai_rmf_common.yaml</code></a>) — the shared base vocabulary: the abstract <code>NamedThing</code> root, the <code>id</code>/<code>name</code>/<code>title</code>/<code>description</code>/<code>see_also</code> slots, the <code>SubcategoryCode</code> type, and <code>TrustworthinessCharacteristicEnum</code>. Hosted here and imported by <code>nist-ai-600-1</code> and the <code>nist-ai-rmf</code> umbrella.</li>
+<li><strong><code>nist_ai_100_1</code></strong> — the AI RMF 1.0 content, importing common. All concept classes derive from <code>NamedThing</code>.</li>
+</ul>
 <h2 id="status">Status</h2>
 <table>
 <thead>
@@ -558,8 +583,7 @@ both lives in <code>nist-ai-rmf</code>.</p>
 </tbody>
 </table>
 <h2 id="subsets">Subsets</h2>
-<p>The schema is partitioned into ten subsets so consumers can adopt only
-the parts they need:</p>
+<p>The schema is partitioned into ten subsets so consumers can adopt only the parts they need:</p>
 <ul>
 <li><code>base</code>, <code>framework_core</code> (Part 2 §5),</li>
 <li><code>trustworthiness</code> (Part 1 §3),</li>
