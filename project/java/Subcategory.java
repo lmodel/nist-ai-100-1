@@ -17,7 +17,7 @@ outcomes.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class Subcategory extends NamedThing {
+public class Subcategory extends NamedThingRMF {
 
   private String subcategoryId;
   private String outcome;

@@ -16,7 +16,7 @@ living document, employing a two-number versioning system (major.minor).
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class AiRmfDocument extends NamedThing {
+public class AiRmfDocument extends NamedThingRMF {
 
   private String version;
   private String publisher;

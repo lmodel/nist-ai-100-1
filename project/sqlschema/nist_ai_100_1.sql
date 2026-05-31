@@ -1,4 +1,4 @@
--- # Abstract Class: NamedThing Description: A generic grouping for any identifiable AI RMF element.
+-- # Abstract Class: NamedThingRMF Description: A generic grouping for any identifiable AI RMF element.
 --     * Slot: id Description: A unique identifier for an element.
 --     * Slot: name Description: A short human-readable name.
 --     * Slot: title Description: A human-readable title.
@@ -189,8 +189,8 @@
 --     * Slot: title Description: A human-readable title.
 --     * Slot: description Description: A human-readable description.
 --     * Slot: document_id Description: Publication metadata of the framework instance.
--- # Class: NamedThing_see_also
---     * Slot: NamedThing_id Description: Autocreated FK slot
+-- # Class: NamedThingRMF_see_also
+--     * Slot: NamedThingRMF_id Description: Autocreated FK slot
 --     * Slot: see_also Description: Related references.
 -- # Class: AiSystem_lifecycle_stage
 --     * Slot: AiSystem_id Description: Autocreated FK slot
@@ -322,14 +322,14 @@
 --     * Slot: AiRmfFramework_id Description: Autocreated FK slot
 --     * Slot: see_also Description: Related references.
 
-CREATE TABLE "NamedThing" (
+CREATE TABLE "NamedThingRMF" (
 	id TEXT NOT NULL,
 	name TEXT,
 	title TEXT,
 	description TEXT,
 	PRIMARY KEY (id)
 );
-CREATE INDEX "ix_NamedThing_id" ON "NamedThing" (id);
+CREATE INDEX "ix_NamedThingRMF_id" ON "NamedThingRMF" (id);
 
 CREATE TABLE "AiSystem" (
 	id TEXT NOT NULL,
@@ -464,14 +464,14 @@ CREATE TABLE "AiRmfFramework" (
 );
 CREATE INDEX "ix_AiRmfFramework_id" ON "AiRmfFramework" (id);
 
-CREATE TABLE "NamedThing_see_also" (
-	"NamedThing_id" TEXT,
+CREATE TABLE "NamedThingRMF_see_also" (
+	"NamedThingRMF_id" TEXT,
 	see_also TEXT,
-	PRIMARY KEY ("NamedThing_id", see_also),
-	FOREIGN KEY("NamedThing_id") REFERENCES "NamedThing" (id)
+	PRIMARY KEY ("NamedThingRMF_id", see_also),
+	FOREIGN KEY("NamedThingRMF_id") REFERENCES "NamedThingRMF" (id)
 );
-CREATE INDEX "ix_NamedThing_see_also_NamedThing_id" ON "NamedThing_see_also" ("NamedThing_id");
-CREATE INDEX "ix_NamedThing_see_also_see_also" ON "NamedThing_see_also" (see_also);
+CREATE INDEX "ix_NamedThingRMF_see_also_NamedThingRMF_id" ON "NamedThingRMF_see_also" ("NamedThingRMF_id");
+CREATE INDEX "ix_NamedThingRMF_see_also_see_also" ON "NamedThingRMF_see_also" (see_also);
 
 CREATE TABLE "AiSystem_lifecycle_stage" (
 	"AiSystem_id" TEXT,
@@ -479,8 +479,8 @@ CREATE TABLE "AiSystem_lifecycle_stage" (
 	PRIMARY KEY ("AiSystem_id", lifecycle_stage),
 	FOREIGN KEY("AiSystem_id") REFERENCES "AiSystem" (id)
 );
-CREATE INDEX "ix_AiSystem_lifecycle_stage_lifecycle_stage" ON "AiSystem_lifecycle_stage" (lifecycle_stage);
 CREATE INDEX "ix_AiSystem_lifecycle_stage_AiSystem_id" ON "AiSystem_lifecycle_stage" ("AiSystem_id");
+CREATE INDEX "ix_AiSystem_lifecycle_stage_lifecycle_stage" ON "AiSystem_lifecycle_stage" (lifecycle_stage);
 
 CREATE TABLE "AiSystem_ai_dimension" (
 	"AiSystem_id" TEXT,
@@ -488,8 +488,8 @@ CREATE TABLE "AiSystem_ai_dimension" (
 	PRIMARY KEY ("AiSystem_id", ai_dimension),
 	FOREIGN KEY("AiSystem_id") REFERENCES "AiSystem" (id)
 );
-CREATE INDEX "ix_AiSystem_ai_dimension_ai_dimension" ON "AiSystem_ai_dimension" (ai_dimension);
 CREATE INDEX "ix_AiSystem_ai_dimension_AiSystem_id" ON "AiSystem_ai_dimension" ("AiSystem_id");
+CREATE INDEX "ix_AiSystem_ai_dimension_ai_dimension" ON "AiSystem_ai_dimension" (ai_dimension);
 
 CREATE TABLE "AiSystem_see_also" (
 	"AiSystem_id" TEXT,
@@ -532,10 +532,10 @@ CREATE TABLE "Harm_affects" (
 	affects_id TEXT,
 	PRIMARY KEY ("Harm_id", affects_id),
 	FOREIGN KEY("Harm_id") REFERENCES "Harm" (id),
-	FOREIGN KEY(affects_id) REFERENCES "NamedThing" (id)
+	FOREIGN KEY(affects_id) REFERENCES "NamedThingRMF" (id)
 );
-CREATE INDEX "ix_Harm_affects_affects_id" ON "Harm_affects" (affects_id);
 CREATE INDEX "ix_Harm_affects_Harm_id" ON "Harm_affects" ("Harm_id");
+CREATE INDEX "ix_Harm_affects_affects_id" ON "Harm_affects" (affects_id);
 
 CREATE TABLE "Harm_see_also" (
 	"Harm_id" TEXT,
@@ -561,8 +561,8 @@ CREATE TABLE "Bias_bias_category" (
 	PRIMARY KEY ("Bias_id", bias_category),
 	FOREIGN KEY("Bias_id") REFERENCES "Bias" (id)
 );
-CREATE INDEX "ix_Bias_bias_category_bias_category" ON "Bias_bias_category" (bias_category);
 CREATE INDEX "ix_Bias_bias_category_Bias_id" ON "Bias_bias_category" ("Bias_id");
+CREATE INDEX "ix_Bias_bias_category_bias_category" ON "Bias_bias_category" (bias_category);
 
 CREATE TABLE "Bias_see_also" (
 	"Bias_id" TEXT,
@@ -727,8 +727,8 @@ CREATE TABLE "Risk_lifecycle_stage" (
 	PRIMARY KEY ("Risk_id", lifecycle_stage),
 	FOREIGN KEY("Risk_id") REFERENCES "Risk" (id)
 );
-CREATE INDEX "ix_Risk_lifecycle_stage_lifecycle_stage" ON "Risk_lifecycle_stage" (lifecycle_stage);
 CREATE INDEX "ix_Risk_lifecycle_stage_Risk_id" ON "Risk_lifecycle_stage" ("Risk_id");
+CREATE INDEX "ix_Risk_lifecycle_stage_lifecycle_stage" ON "Risk_lifecycle_stage" (lifecycle_stage);
 
 CREATE TABLE "Risk_trustworthiness_characteristic" (
 	"Risk_id" TEXT,
@@ -736,8 +736,8 @@ CREATE TABLE "Risk_trustworthiness_characteristic" (
 	PRIMARY KEY ("Risk_id", trustworthiness_characteristic),
 	FOREIGN KEY("Risk_id") REFERENCES "Risk" (id)
 );
-CREATE INDEX "ix_Risk_trustworthiness_characteristic_trustworthiness_characteristic" ON "Risk_trustworthiness_characteristic" (trustworthiness_characteristic);
 CREATE INDEX "ix_Risk_trustworthiness_characteristic_Risk_id" ON "Risk_trustworthiness_characteristic" ("Risk_id");
+CREATE INDEX "ix_Risk_trustworthiness_characteristic_trustworthiness_characteristic" ON "Risk_trustworthiness_characteristic" (trustworthiness_characteristic);
 
 CREATE TABLE "Risk_see_also" (
 	"Risk_id" TEXT,
@@ -754,8 +754,8 @@ CREATE TABLE "ResidualRisk_lifecycle_stage" (
 	PRIMARY KEY ("ResidualRisk_id", lifecycle_stage),
 	FOREIGN KEY("ResidualRisk_id") REFERENCES "ResidualRisk" (id)
 );
-CREATE INDEX "ix_ResidualRisk_lifecycle_stage_ResidualRisk_id" ON "ResidualRisk_lifecycle_stage" ("ResidualRisk_id");
 CREATE INDEX "ix_ResidualRisk_lifecycle_stage_lifecycle_stage" ON "ResidualRisk_lifecycle_stage" (lifecycle_stage);
+CREATE INDEX "ix_ResidualRisk_lifecycle_stage_ResidualRisk_id" ON "ResidualRisk_lifecycle_stage" ("ResidualRisk_id");
 
 CREATE TABLE "ResidualRisk_trustworthiness_characteristic" (
 	"ResidualRisk_id" TEXT,
@@ -772,8 +772,8 @@ CREATE TABLE "ResidualRisk_see_also" (
 	PRIMARY KEY ("ResidualRisk_id", see_also),
 	FOREIGN KEY("ResidualRisk_id") REFERENCES "ResidualRisk" (id)
 );
-CREATE INDEX "ix_ResidualRisk_see_also_see_also" ON "ResidualRisk_see_also" (see_also);
 CREATE INDEX "ix_ResidualRisk_see_also_ResidualRisk_id" ON "ResidualRisk_see_also" ("ResidualRisk_id");
+CREATE INDEX "ix_ResidualRisk_see_also_see_also" ON "ResidualRisk_see_also" (see_also);
 
 CREATE TABLE "PlaybookEntry_ai_actors" (
 	"PlaybookEntry_id" INTEGER,
@@ -790,8 +790,8 @@ CREATE TABLE "PlaybookEntry_topic" (
 	PRIMARY KEY ("PlaybookEntry_id", topic),
 	FOREIGN KEY("PlaybookEntry_id") REFERENCES "PlaybookEntry" (id)
 );
-CREATE INDEX "ix_PlaybookEntry_topic_topic" ON "PlaybookEntry_topic" (topic);
 CREATE INDEX "ix_PlaybookEntry_topic_PlaybookEntry_id" ON "PlaybookEntry_topic" ("PlaybookEntry_id");
+CREATE INDEX "ix_PlaybookEntry_topic_topic" ON "PlaybookEntry_topic" (topic);
 
 CREATE TABLE "AiRmfFramework_see_also" (
 	"AiRmfFramework_id" TEXT,
@@ -821,8 +821,8 @@ CREATE TABLE "AiSystemDimension_see_also" (
 	PRIMARY KEY ("AiSystemDimension_id", see_also),
 	FOREIGN KEY("AiSystemDimension_id") REFERENCES "AiSystemDimension" (id)
 );
-CREATE INDEX "ix_AiSystemDimension_see_also_see_also" ON "AiSystemDimension_see_also" (see_also);
 CREATE INDEX "ix_AiSystemDimension_see_also_AiSystemDimension_id" ON "AiSystemDimension_see_also" ("AiSystemDimension_id");
+CREATE INDEX "ix_AiSystemDimension_see_also_see_also" ON "AiSystemDimension_see_also" (see_also);
 
 CREATE TABLE "AiLifecycleStage_see_also" (
 	"AiLifecycleStage_id" TEXT,
@@ -830,8 +830,8 @@ CREATE TABLE "AiLifecycleStage_see_also" (
 	PRIMARY KEY ("AiLifecycleStage_id", see_also),
 	FOREIGN KEY("AiLifecycleStage_id") REFERENCES "AiLifecycleStage" (id)
 );
-CREATE INDEX "ix_AiLifecycleStage_see_also_AiLifecycleStage_id" ON "AiLifecycleStage_see_also" ("AiLifecycleStage_id");
 CREATE INDEX "ix_AiLifecycleStage_see_also_see_also" ON "AiLifecycleStage_see_also" (see_also);
+CREATE INDEX "ix_AiLifecycleStage_see_also_AiLifecycleStage_id" ON "AiLifecycleStage_see_also" ("AiLifecycleStage_id");
 
 CREATE TABLE "AiActorTask_typical_actors" (
 	"AiActorTask_id" TEXT,
@@ -839,8 +839,8 @@ CREATE TABLE "AiActorTask_typical_actors" (
 	PRIMARY KEY ("AiActorTask_id", typical_actors),
 	FOREIGN KEY("AiActorTask_id") REFERENCES "AiActorTask" (id)
 );
-CREATE INDEX "ix_AiActorTask_typical_actors_AiActorTask_id" ON "AiActorTask_typical_actors" ("AiActorTask_id");
 CREATE INDEX "ix_AiActorTask_typical_actors_typical_actors" ON "AiActorTask_typical_actors" (typical_actors);
+CREATE INDEX "ix_AiActorTask_typical_actors_AiActorTask_id" ON "AiActorTask_typical_actors" ("AiActorTask_id");
 
 CREATE TABLE "AiActorTask_lifecycle_stage" (
 	"AiActorTask_id" TEXT,
@@ -866,18 +866,18 @@ CREATE TABLE "AiActorTask_see_also" (
 	PRIMARY KEY ("AiActorTask_id", see_also),
 	FOREIGN KEY("AiActorTask_id") REFERENCES "AiActorTask" (id)
 );
-CREATE INDEX "ix_AiActorTask_see_also_AiActorTask_id" ON "AiActorTask_see_also" ("AiActorTask_id");
 CREATE INDEX "ix_AiActorTask_see_also_see_also" ON "AiActorTask_see_also" (see_also);
+CREATE INDEX "ix_AiActorTask_see_also_AiActorTask_id" ON "AiActorTask_see_also" ("AiActorTask_id");
 
 CREATE TABLE "Impact_affects" (
 	"Impact_id" TEXT,
 	affects_id TEXT,
 	PRIMARY KEY ("Impact_id", affects_id),
 	FOREIGN KEY("Impact_id") REFERENCES "Impact" (id),
-	FOREIGN KEY(affects_id) REFERENCES "NamedThing" (id)
+	FOREIGN KEY(affects_id) REFERENCES "NamedThingRMF" (id)
 );
-CREATE INDEX "ix_Impact_affects_affects_id" ON "Impact_affects" (affects_id);
 CREATE INDEX "ix_Impact_affects_Impact_id" ON "Impact_affects" ("Impact_id");
+CREATE INDEX "ix_Impact_affects_affects_id" ON "Impact_affects" (affects_id);
 
 CREATE TABLE "Impact_see_also" (
 	"Impact_id" TEXT,
@@ -885,8 +885,8 @@ CREATE TABLE "Impact_see_also" (
 	PRIMARY KEY ("Impact_id", see_also),
 	FOREIGN KEY("Impact_id") REFERENCES "Impact" (id)
 );
-CREATE INDEX "ix_Impact_see_also_see_also" ON "Impact_see_also" (see_also);
 CREATE INDEX "ix_Impact_see_also_Impact_id" ON "Impact_see_also" ("Impact_id");
+CREATE INDEX "ix_Impact_see_also_see_also" ON "Impact_see_also" (see_also);
 
 CREATE TABLE "RiskMeasurementChallenge_see_also" (
 	"RiskMeasurementChallenge_id" TEXT,
@@ -912,8 +912,8 @@ CREATE TABLE "Function_see_also" (
 	PRIMARY KEY ("Function_id", see_also),
 	FOREIGN KEY("Function_id") REFERENCES "Function" (id)
 );
-CREATE INDEX "ix_Function_see_also_Function_id" ON "Function_see_also" ("Function_id");
 CREATE INDEX "ix_Function_see_also_see_also" ON "Function_see_also" (see_also);
+CREATE INDEX "ix_Function_see_also_Function_id" ON "Function_see_also" ("Function_id");
 
 CREATE TABLE "AiRmfProfile_see_also" (
 	"AiRmfProfile_id" TEXT,
@@ -921,8 +921,8 @@ CREATE TABLE "AiRmfProfile_see_also" (
 	PRIMARY KEY ("AiRmfProfile_id", see_also),
 	FOREIGN KEY("AiRmfProfile_id") REFERENCES "AiRmfProfile" (id)
 );
-CREATE INDEX "ix_AiRmfProfile_see_also_see_also" ON "AiRmfProfile_see_also" (see_also);
 CREATE INDEX "ix_AiRmfProfile_see_also_AiRmfProfile_id" ON "AiRmfProfile_see_also" ("AiRmfProfile_id");
+CREATE INDEX "ix_AiRmfProfile_see_also_see_also" ON "AiRmfProfile_see_also" (see_also);
 
 CREATE TABLE "RmfAttribute_see_also" (
 	"RmfAttribute_id" TEXT,
@@ -983,8 +983,8 @@ CREATE TABLE "Subcategory_trustworthiness_characteristic" (
 	PRIMARY KEY ("Subcategory_id", trustworthiness_characteristic),
 	FOREIGN KEY("Subcategory_id") REFERENCES "Subcategory" (id)
 );
-CREATE INDEX "ix_Subcategory_trustworthiness_characteristic_trustworthiness_characteristic" ON "Subcategory_trustworthiness_characteristic" (trustworthiness_characteristic);
 CREATE INDEX "ix_Subcategory_trustworthiness_characteristic_Subcategory_id" ON "Subcategory_trustworthiness_characteristic" ("Subcategory_id");
+CREATE INDEX "ix_Subcategory_trustworthiness_characteristic_trustworthiness_characteristic" ON "Subcategory_trustworthiness_characteristic" (trustworthiness_characteristic);
 
 CREATE TABLE "Subcategory_lifecycle_stage" (
 	"Subcategory_id" TEXT,
@@ -992,8 +992,8 @@ CREATE TABLE "Subcategory_lifecycle_stage" (
 	PRIMARY KEY ("Subcategory_id", lifecycle_stage),
 	FOREIGN KEY("Subcategory_id") REFERENCES "Subcategory" (id)
 );
-CREATE INDEX "ix_Subcategory_lifecycle_stage_lifecycle_stage" ON "Subcategory_lifecycle_stage" (lifecycle_stage);
 CREATE INDEX "ix_Subcategory_lifecycle_stage_Subcategory_id" ON "Subcategory_lifecycle_stage" ("Subcategory_id");
+CREATE INDEX "ix_Subcategory_lifecycle_stage_lifecycle_stage" ON "Subcategory_lifecycle_stage" (lifecycle_stage);
 
 CREATE TABLE "Subcategory_topics" (
 	"Subcategory_id" TEXT,
@@ -1010,8 +1010,8 @@ CREATE TABLE "Subcategory_ai_actor_categories" (
 	PRIMARY KEY ("Subcategory_id", ai_actor_categories),
 	FOREIGN KEY("Subcategory_id") REFERENCES "Subcategory" (id)
 );
-CREATE INDEX "ix_Subcategory_ai_actor_categories_Subcategory_id" ON "Subcategory_ai_actor_categories" ("Subcategory_id");
 CREATE INDEX "ix_Subcategory_ai_actor_categories_ai_actor_categories" ON "Subcategory_ai_actor_categories" (ai_actor_categories);
+CREATE INDEX "ix_Subcategory_ai_actor_categories_Subcategory_id" ON "Subcategory_ai_actor_categories" ("Subcategory_id");
 
 CREATE TABLE "Subcategory_see_also" (
 	"Subcategory_id" TEXT,

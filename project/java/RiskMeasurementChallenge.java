@@ -15,7 +15,7 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class RiskMeasurementChallenge extends NamedThing {
+public class RiskMeasurementChallenge extends NamedThingRMF {
 
   private String challengeKind;
 

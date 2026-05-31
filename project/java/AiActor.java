@@ -17,7 +17,7 @@ and guidance (OECD 2019).
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class AiActor extends NamedThing {
+public class AiActor extends NamedThingRMF {
 
   private List<String> actorTask;
   private List<String> lifecycleStage;

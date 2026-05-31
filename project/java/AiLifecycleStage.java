@@ -16,7 +16,7 @@ Validate, Deploy and Use, or Operate and Monitor.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class AiLifecycleStage extends NamedThing {
+public class AiLifecycleStage extends NamedThingRMF {
 
   private String stageKind;
   private Boolean includesTevv;

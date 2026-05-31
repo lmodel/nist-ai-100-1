@@ -1,4 +1,4 @@
-export type NamedThingId = string;
+export type NamedThingRMFId = string;
 export type AiSystemId = string;
 export type AiSystemDimensionId = string;
 export type AiLifecycleStageId = string;
@@ -352,7 +352,7 @@ export enum ImpactSignEnum {
 /**
  * A generic grouping for any identifiable AI RMF element.
  */
-export interface NamedThing {
+export interface NamedThingRMF {
     /** A unique identifier for an element. */
     id: string,
     /** A short human-readable name. */
@@ -374,7 +374,7 @@ environments. AI systems are designed to operate with varying
 levels of autonomy (Adapted from OECD Recommendation on AI:2019;
 ISO/IEC 22989:2022).
  */
-export interface AiSystem extends NamedThing {
+export interface AiSystem extends NamedThingRMF {
     /** The AI lifecycle stage(s) the element applies to. */
     lifecycle_stage?: string,
     /** The AI system dimension the element applies to. */
@@ -387,7 +387,7 @@ export interface AiSystem extends NamedThing {
 Application Context, Data and Input, AI Model, Task and Output,
 or People and Planet.
  */
-export interface AiSystemDimension extends NamedThing {
+export interface AiSystemDimension extends NamedThingRMF {
     /** Which AI system dimension an `AiSystemDimension` instance represents. */
     dimension_kind: string,
 }
@@ -398,7 +398,7 @@ export interface AiSystemDimension extends NamedThing {
 Collect and Process Data, Build and Use Model, Verify and
 Validate, Deploy and Use, or Operate and Monitor.
  */
-export interface AiLifecycleStage extends NamedThing {
+export interface AiLifecycleStage extends NamedThingRMF {
     /** Which AI lifecycle stage an `AiLifecycleStage` instance represents. */
     stage_kind: string,
     /** Whether the lifecycle stage incorporates TEVV activities. */
@@ -412,7 +412,7 @@ system lifecycle. AI actors include those who deploy or operate
 AI as well as those who inform via formal or quasi-formal norms
 and guidance (OECD 2019).
  */
-export interface AiActor extends NamedThing {
+export interface AiActor extends NamedThingRMF {
     /** AI actor task category. */
     actor_task?: string,
     /** The AI lifecycle stage(s) the element applies to. */
@@ -431,7 +431,7 @@ Validation (TEVV) actor / task. */
 task is associated with one or more lifecycle stages and a
 typical set of actor roles.
  */
-export interface AiActorTask extends NamedThing {
+export interface AiActorTask extends NamedThingRMF {
     /** Which AI actor task category an `AiActorTask` instance represents. */
     task_kind: string,
     /** Representative actor roles that perform an AI actor task. */
@@ -450,7 +450,7 @@ considering negative impact, risk is a function of (1) the
 negative impact or magnitude of harm and (2) the likelihood of
 occurrence (Adapted from ISO 31000:2018; OMB Circular A-130:2016).
  */
-export interface Risk extends NamedThing {
+export interface Risk extends NamedThingRMF {
     /** Estimated probability of the event occurring (0.0 to 1.0). The
 AI RMF leaves quantification approaches to the implementer. */
     likelihood?: number,
@@ -479,7 +479,7 @@ text or qualitative scale). */
  * A positive, negative, or both consequence of an AI system. Impacts
 can manifest as opportunities (positive) or threats (negative).
  */
-export interface Impact extends NamedThing {
+export interface Impact extends NamedThingRMF {
     /** Whether the impact is positive, negative, or both. */
     impact_sign?: string,
     /** Magnitude or degree of consequences if the event occurs (free
@@ -490,7 +490,7 @@ AI RMF leaves quantification approaches to the implementer. */
     likelihood?: number,
     /** Entities (people, organizations, ecosystems) the risk or harm
 may affect. */
-    affects?: NamedThingId[],
+    affects?: NamedThingRMFId[],
 }
 
 
@@ -499,7 +499,7 @@ may affect. */
 groups, communities, organizations, society, the environment, or
 the planet (Figure 1).
  */
-export interface Harm extends NamedThing {
+export interface Harm extends NamedThingRMF {
     /** The high-level harm category (people / organization / ecosystem). */
     harm_category?: string,
     /** The sub-category when harm is to people (individual / group / societal). */
@@ -509,7 +509,7 @@ text or qualitative scale). */
     magnitude?: string,
     /** Entities (people, organizations, ecosystems) the risk or harm
 may affect. */
-    affects?: NamedThingId[],
+    affects?: NamedThingRMFId[],
 }
 
 
@@ -529,7 +529,7 @@ to achieve its objectives (Adapted from ISO Guide 73). Risk
 tolerance is highly contextual and application- and use-case
 specific.
  */
-export interface RiskTolerance extends NamedThing {
+export interface RiskTolerance extends NamedThingRMF {
     /** Free-text statement of a risk tolerance level or threshold. */
     tolerance_statement?: string,
     /** Legal or regulatory requirements influencing a risk tolerance. */
@@ -541,7 +541,7 @@ export interface RiskTolerance extends NamedThing {
  * A challenge that complicates measurement of AI risks
 (Part 1 §1.2.1).
  */
-export interface RiskMeasurementChallenge extends NamedThing {
+export interface RiskMeasurementChallenge extends NamedThingRMF {
     /** Which risk-measurement challenge a `RiskMeasurementChallenge` represents. */
     challenge_kind: string,
 }
@@ -553,7 +553,7 @@ export interface RiskMeasurementChallenge extends NamedThing {
 individually does not guarantee trustworthiness, and tradeoffs
 are usually involved.
  */
-export interface TrustworthinessCharacteristic extends NamedThing {
+export interface TrustworthinessCharacteristic extends NamedThingRMF {
     /** Which trustworthiness characteristic a `TrustworthinessCharacteristic` represents. */
     characteristic_kind: string,
     /** True when this characteristic is a necessary condition for
@@ -572,7 +572,7 @@ amplified by AI systems. NIST identifies three major categories:
 systemic, computational/statistical, and human-cognitive
 (Part 1 §3.7; NIST SP 1270).
  */
-export interface Bias extends NamedThing {
+export interface Bias extends NamedThingRMF {
     /** Category or categories of bias addressed. */
     bias_category?: string,
 }
@@ -584,7 +584,7 @@ management activities at the highest level. GOVERN applies across
 all stages; MAP, MEASURE, and MANAGE apply to AI-system-specific
 contexts and lifecycle stages.
  */
-export interface Function extends NamedThing {
+export interface Function extends NamedThingRMF {
     /** The function code (GOVERN, MAP, MEASURE, or MANAGE). */
     function_code: string,
     /** Categories that belong to a Function. */
@@ -598,7 +598,7 @@ Policies, processes, procedures, and practices ... are in place,
 transparent, and implemented effectively"). Categories group
 related subcategories.
  */
-export interface Category extends NamedThing {
+export interface Category extends NamedThingRMF {
     /** Identifier of a Category (e.g., "GOVERN 1"). */
     category_id?: string,
     /** The outcome statement of a Category or Subcategory - the desired
@@ -615,7 +615,7 @@ Legal and regulatory requirements involving AI are understood,
 managed, and documented"). Subcategories express specific
 outcomes.
  */
-export interface Subcategory extends NamedThing {
+export interface Subcategory extends NamedThingRMF {
     /** Identifier of a Subcategory (e.g., "GOVERN 1.1"). */
     subcategory_id?: string,
     /** The outcome statement of a Category or Subcategory - the desired
@@ -657,7 +657,7 @@ requirements, risk tolerance, and resources of the user (§6).
 Profiles may be use-case-specific, temporal (current or target),
 or cross-sectoral.
  */
-export interface AiRmfProfile extends NamedThing {
+export interface AiRmfProfile extends NamedThingRMF {
     /** The kind of AI RMF Profile. */
     profile_type: string,
     /** For temporal current profiles - how AI is currently being managed
@@ -681,7 +681,7 @@ consensus-driven, plain language, common language, easily usable,
 universally applicable, outcome-focused, leveraging existing
 standards, law- and regulation-agnostic, living document).
  */
-export interface RmfAttribute extends NamedThing {
+export interface RmfAttribute extends NamedThingRMF {
 }
 
 
@@ -692,7 +692,7 @@ drift, opacity, scale and complexity, pre-trained model
 uncertainty, emergent properties, privacy aggregation, or
 environmental cost.
  */
-export interface AiSpecificRisk extends NamedThing {
+export interface AiSpecificRisk extends NamedThingRMF {
 }
 
 
@@ -703,7 +703,7 @@ responsibilities, systemic and human-cognitive biases in design,
 variability of human-AI interaction outcomes, complexity of
 presenting AI system information to humans.
  */
-export interface HumanAiInteractionIssue extends NamedThing {
+export interface HumanAiInteractionIssue extends NamedThingRMF {
 }
 
 
@@ -765,7 +765,7 @@ export interface PlaybookCollection {
 AI 100-1, January 2023). The Framework is intended to be a
 living document, employing a two-number versioning system (major.minor).
  */
-export interface AiRmfDocument extends NamedThing {
+export interface AiRmfDocument extends NamedThingRMF {
     /** Version identifier of the document. */
     version?: string,
     /** The publisher of the document (e.g., NIST). */
@@ -787,7 +787,7 @@ lifecycle, actors, risks, harms), profiles, and Framework
 attributes. Designed for serialising the Framework or a tailored
 instance of it as a single JSON / YAML document.
  */
-export interface AiRmfFramework extends NamedThing {
+export interface AiRmfFramework extends NamedThingRMF {
     /** Publication metadata of the framework instance. */
     document?: AiRmfDocument,
     /** The four AI RMF Core functions and their content. */

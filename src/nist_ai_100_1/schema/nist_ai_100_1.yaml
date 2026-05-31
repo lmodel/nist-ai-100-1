@@ -57,7 +57,7 @@ subsets:
   base:
     description: |-
       Schema-infrastructure elements shared across the framework:
-      identifier slots, the abstract `NamedThing` root, publication
+      identifier slots, the abstract `NamedThingRMF` root, publication
       metadata, and the top-level `AiRmfFramework` container. Not a
       section of NIST AI 100-1 itself - distinct from `framework_core`
       (Part 2, §5 "AI RMF Core").
@@ -660,7 +660,7 @@ slots:
     in_subset: [risk_and_harm]
 
   affects:
-    range: NamedThing
+    range: NamedThingRMF
     multivalued: true
     description: |-
       Entities (people, organizations, ecosystems) the risk or harm
@@ -1045,7 +1045,7 @@ classes:
   # --------------------------------------------------------------------------
   # Root and abstract base
   # --------------------------------------------------------------------------
-  NamedThing:
+  NamedThingRMF:
     abstract: true
     description: A generic grouping for any identifiable AI RMF element.
     slots:
@@ -1063,7 +1063,7 @@ classes:
   # AI System and lifecycle
   # --------------------------------------------------------------------------
   AiSystem:
-    is_a: NamedThing
+    is_a: NamedThingRMF
     description: |-
       An engineered or machine-based system that can, for a given set
       of objectives, generate outputs such as predictions,
@@ -1079,7 +1079,7 @@ classes:
       - schema:SoftwareApplication
 
   AiSystemDimension:
-    is_a: NamedThing
+    is_a: NamedThingRMF
     description: |-
       A socio-technical dimension of an AI system (Figure 2):
       Application Context, Data and Input, AI Model, Task and Output,
@@ -1089,7 +1089,7 @@ classes:
     in_subset: [lifecycle]
 
   AiLifecycleStage:
-    is_a: NamedThing
+    is_a: NamedThingRMF
     description: |-
       A stage of the AI lifecycle (Figure 2): Plan and Design,
       Collect and Process Data, Build and Use Model, Verify and
@@ -1100,7 +1100,7 @@ classes:
     in_subset: [lifecycle]
 
   AiActor:
-    is_a: NamedThing
+    is_a: NamedThingRMF
     description: |-
       An organization or individual that plays an active role in the AI
       system lifecycle. AI actors include those who deploy or operate
@@ -1120,7 +1120,7 @@ classes:
       - iso27001:InterestedParty
 
   AiActorTask:
-    is_a: NamedThing
+    is_a: NamedThingRMF
     description: |-
       A category of task performed by AI actors (Appendix A). Each
       task is associated with one or more lifecycle stages and a
@@ -1136,7 +1136,7 @@ classes:
   # Risk, Impact, Harm
   # --------------------------------------------------------------------------
   Risk:
-    is_a: NamedThing
+    is_a: NamedThingRMF
     description: |-
       The composite measure of an event's probability of occurring and
       the magnitude or degree of the consequences of that event. When
@@ -1160,7 +1160,7 @@ classes:
       - iso29100:PrivacyRisk
 
   Impact:
-    is_a: NamedThing
+    is_a: NamedThingRMF
     description: |-
       A positive, negative, or both consequence of an AI system. Impacts
       can manifest as opportunities (positive) or threats (negative).
@@ -1174,7 +1174,7 @@ classes:
       - iso27001:ImpactRating
 
   Harm:
-    is_a: NamedThing
+    is_a: NamedThingRMF
     description: |-
       A negative impact that may be experienced by individuals,
       groups, communities, organizations, society, the environment, or
@@ -1201,7 +1201,7 @@ classes:
       - iso27001:Risk
 
   RiskTolerance:
-    is_a: NamedThing
+    is_a: NamedThingRMF
     description: |-
       The organization's or AI actor's readiness to bear risk in order
       to achieve its objectives (Adapted from ISO Guide 73). Risk
@@ -1215,7 +1215,7 @@ classes:
       - iso27001:RiskLevel
 
   RiskMeasurementChallenge:
-    is_a: NamedThing
+    is_a: NamedThingRMF
     description: |-
       A challenge that complicates measurement of AI risks
       (Part 1 §1.2.1).
@@ -1227,7 +1227,7 @@ classes:
   # Trustworthiness
   # --------------------------------------------------------------------------
   TrustworthinessCharacteristic:
-    is_a: NamedThing
+    is_a: NamedThingRMF
     description: |-
       A characteristic of a trustworthy AI system (Figure 4 / Part 1
       §3). The seven characteristics are inter-related; addressing them
@@ -1240,7 +1240,7 @@ classes:
     in_subset: [trustworthiness]
 
   Bias:
-    is_a: NamedThing
+    is_a: NamedThingRMF
     description: |-
       A form of AI bias - a deviation that may be perpetuated or
       amplified by AI systems. NIST identifies three major categories:
@@ -1256,7 +1256,7 @@ classes:
   # AI RMF Core - Functions, Categories, Subcategories
   # --------------------------------------------------------------------------
   Function:
-    is_a: NamedThing
+    is_a: NamedThingRMF
     description: |-
       A top-level AI RMF Core function. Each function organizes AI risk
       management activities at the highest level. GOVERN applies across
@@ -1278,7 +1278,7 @@ classes:
       - gist_linkml:Function
 
   Category:
-    is_a: NamedThing
+    is_a: NamedThingRMF
     description: |-
       A category within an AI RMF Core function (e.g., "GOVERN 1:
       Policies, processes, procedures, and practices ... are in place,
@@ -1303,7 +1303,7 @@ classes:
       - nist_csf:CSFCategory
 
   Subcategory:
-    is_a: NamedThing
+    is_a: NamedThingRMF
     description: |-
       A subcategory within an AI RMF Core category (e.g., "GOVERN 1.1:
       Legal and regulatory requirements involving AI are understood,
@@ -1336,7 +1336,7 @@ classes:
   # Profiles
   # --------------------------------------------------------------------------
   AiRmfProfile:
-    is_a: NamedThing
+    is_a: NamedThingRMF
     description: |-
       An implementation of the AI RMF Functions, Categories, and
       Subcategories for a specific setting or application based on the
@@ -1359,7 +1359,7 @@ classes:
   # AI RMF Attributes (Appendix D)
   # --------------------------------------------------------------------------
   RmfAttribute:
-    is_a: NamedThing
+    is_a: NamedThingRMF
     description: |-
       A design attribute of the AI RMF (Appendix D) - one of the
       qualities the Framework strives to embody (e.g., risk-based,
@@ -1374,7 +1374,7 @@ classes:
   # Appendix B / C: Distinctions and Human-AI interaction
   # --------------------------------------------------------------------------
   AiSpecificRisk:
-    is_a: NamedThing
+    is_a: NamedThingRMF
     description: |-
       A risk that is new or increased for AI-based technology compared
       to traditional software (Appendix B) - e.g., data quality, model
@@ -1386,7 +1386,7 @@ classes:
       - iso27001:Risk
 
   HumanAiInteractionIssue:
-    is_a: NamedThing
+    is_a: NamedThingRMF
     description: |-
       An issue that merits further consideration in human-AI
       interaction (Appendix C) - e.g., clear human roles and
@@ -1478,7 +1478,7 @@ classes:
   # Publication metadata
   # --------------------------------------------------------------------------
   AiRmfDocument:
-    is_a: NamedThing
+    is_a: NamedThingRMF
     description: |-
       Publication metadata for an instance of the AI RMF (e.g., NIST
       AI 100-1, January 2023). The Framework is intended to be a
@@ -1499,7 +1499,7 @@ classes:
   # Container / tree root
   # --------------------------------------------------------------------------
   AiRmfFramework:
-    is_a: NamedThing
+    is_a: NamedThingRMF
     tree_root: true
     description: |-
       Root container that bundles the AI RMF Core (Functions) with

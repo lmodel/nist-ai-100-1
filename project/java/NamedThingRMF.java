@@ -14,7 +14,7 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public abstract class NamedThing  {
+public abstract class NamedThingRMF  {
 
   private URI id;
   private String name;

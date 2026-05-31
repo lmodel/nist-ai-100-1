@@ -43,10 +43,10 @@ data shape.""" .
 nist_ai_100_1:PlaybookCollection a owl:Class ;
     rdfs:label "PlaybookCollection" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:allValuesFrom nist_ai_100_1:PlaybookEntry ;
             owl:onProperty nist_ai_100_1:entries ],
         [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:PlaybookEntry ;
+            owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:entries ] ;
     skos:definition """A container for a set of PlaybookEntry instances - the
 serialisation root for an AI RMF Playbook companion document.
@@ -57,10 +57,10 @@ the canonical tree-root for the schema is ``AiRmfFramework``.""" ;
 nist_ai_100_1:ResidualRisk a owl:Class ;
     rdfs:label "ResidualRisk" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:allValuesFrom xsd:string ;
             owl:onProperty nist_ai_100_1:is_residual ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
+            owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:is_residual ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
@@ -89,36 +89,36 @@ nist_ai_100_1:function_kind a owl:ObjectProperty ;
 nist_ai_100_1:AiActor a owl:Class ;
     rdfs:label "AiActor" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:AudienceEnum ;
-            owl:onProperty nist_ai_100_1:audience ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:is_tevv ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:is_tevv ],
+            owl:onProperty nist_ai_100_1:lifecycle_stage ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:boolean ;
             owl:onProperty nist_ai_100_1:is_tevv ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:lifecycle_stage ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:actor_task ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:audience ],
         [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_100_1:AiLifecycleStageEnum ;
             owl:onProperty nist_ai_100_1:lifecycle_stage ],
         [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AudienceEnum ;
+            owl:onProperty nist_ai_100_1:audience ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:audience ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:is_tevv ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:audience ],
         [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_100_1:AiActorTaskEnum ;
             owl:onProperty nist_ai_100_1:actor_task ],
-        nist_ai_100_1:NamedThing ;
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:is_tevv ],
+        nist_ai_100_1:NamedThingRMF ;
     skos:closeMatch prov:Agent,
         foaf:Agent ;
     skos:definition """An organization or individual that plays an active role in the AI
@@ -132,75 +132,75 @@ and guidance (OECD 2019).""" ;
 nist_ai_100_1:AiRmfFramework a owl:Class ;
     rdfs:label "AiRmfFramework" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:profiles ],
+        [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_100_1:AiRmfProfile ;
             owl:onProperty nist_ai_100_1:profiles ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:functions ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:attributes_ ],
         [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:RmfAttribute ;
-            owl:onProperty nist_ai_100_1:attributes_ ],
+            owl:allValuesFrom nist_ai_100_1:RiskMeasurementChallenge ;
+            owl:onProperty nist_ai_100_1:risk_measurement_challenges ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:actor_tasks ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:dimensions ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:lifecycle_stages ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:human_ai_interaction_issues ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:risk_measurement_challenges ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:document ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:ai_specific_risks ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:HumanAiInteractionIssue ;
-            owl:onProperty nist_ai_100_1:human_ai_interaction_issues ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:trustworthiness_characteristics ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:AiSystemDimension ;
-            owl:onProperty nist_ai_100_1:dimensions ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:profiles ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:RiskMeasurementChallenge ;
-            owl:onProperty nist_ai_100_1:risk_measurement_challenges ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:Function ;
-            owl:onProperty nist_ai_100_1:functions ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:TrustworthinessCharacteristic ;
-            owl:onProperty nist_ai_100_1:trustworthiness_characteristics ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:AiSpecificRisk ;
             owl:onProperty nist_ai_100_1:ai_specific_risks ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty nist_ai_100_1:document ],
         [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:AiLifecycleStage ;
-            owl:onProperty nist_ai_100_1:lifecycle_stages ],
-        [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_100_1:AiActorTask ;
             owl:onProperty nist_ai_100_1:actor_tasks ],
         [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:functions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:RmfAttribute ;
+            owl:onProperty nist_ai_100_1:attributes_ ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiSpecificRisk ;
+            owl:onProperty nist_ai_100_1:ai_specific_risks ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiLifecycleStage ;
+            owl:onProperty nist_ai_100_1:lifecycle_stages ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:TrustworthinessCharacteristic ;
+            owl:onProperty nist_ai_100_1:trustworthiness_characteristics ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:HumanAiInteractionIssue ;
+            owl:onProperty nist_ai_100_1:human_ai_interaction_issues ],
+        [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_100_1:AiRmfDocument ;
             owl:onProperty nist_ai_100_1:document ],
-        nist_ai_100_1:NamedThing ;
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:document ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:human_ai_interaction_issues ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:trustworthiness_characteristics ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:dimensions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:Function ;
+            owl:onProperty nist_ai_100_1:functions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiSystemDimension ;
+            owl:onProperty nist_ai_100_1:dimensions ],
+        nist_ai_100_1:NamedThingRMF ;
     skos:closeMatch nist_csf:CSFDocument,
         nist_sp_800_53:Catalog,
         oscal_catalog:Catalog ;
@@ -214,12 +214,12 @@ instance of it as a single JSON / YAML document.""" ;
 nist_ai_100_1:Bias a owl:Class ;
     rdfs:label "Bias" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:bias_category ],
-        [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_100_1:BiasCategoryEnum ;
             owl:onProperty nist_ai_100_1:bias_category ],
-        nist_ai_100_1:NamedThing ;
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:bias_category ],
+        nist_ai_100_1:NamedThingRMF ;
     skos:definition """A form of AI bias - a deviation that may be perpetuated or
 amplified by AI systems. NIST identifies three major categories:
 systemic, computational/statistical, and human-cognitive
@@ -230,39 +230,39 @@ systemic, computational/statistical, and human-cognitive
 nist_ai_100_1:Harm a owl:Class ;
     rdfs:label "Harm" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:HarmCategoryEnum ;
-            owl:onProperty nist_ai_100_1:harm_category ],
-        [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty nist_ai_100_1:magnitude ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:harm_category ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:affects ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:harm_to_people_subcategory ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:harm_to_people_subcategory ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:NamedThing ;
-            owl:onProperty nist_ai_100_1:affects ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:harm_category ],
         [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_100_1:HarmToPeopleSubcategoryEnum ;
             owl:onProperty nist_ai_100_1:harm_to_people_subcategory ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:affects ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:NamedThingRMF ;
+            owl:onProperty nist_ai_100_1:affects ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:harm_category ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:harm_category ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:harm_to_people_subcategory ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:HarmCategoryEnum ;
+            owl:onProperty nist_ai_100_1:harm_category ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:magnitude ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:harm_to_people_subcategory ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty nist_ai_100_1:magnitude ],
-        nist_ai_100_1:NamedThing ;
+        nist_ai_100_1:NamedThingRMF ;
     skos:definition """A negative impact that may be experienced by individuals,
 groups, communities, organizations, society, the environment, or
 the planet (Figure 1).""" ;
@@ -271,24 +271,24 @@ the planet (Figure 1).""" ;
 nist_ai_100_1:RiskTolerance a owl:Class ;
     rdfs:label "RiskTolerance" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:legal_basis ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:tolerance_statement ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty nist_ai_100_1:legal_basis ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:legal_basis ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:legal_basis ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:tolerance_statement ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty nist_ai_100_1:tolerance_statement ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:tolerance_statement ],
-        nist_ai_100_1:NamedThing ;
+        nist_ai_100_1:NamedThingRMF ;
     skos:closeMatch iso27001:RiskLevel ;
     skos:definition """The organization's or AI actor's readiness to bear risk in order
 to achieve its objectives (Adapted from ISO Guide 73). Risk
@@ -589,80 +589,11 @@ psychological safety, or economic opportunity.""" .
 nist_ai_100_1:PlaybookEntry a owl:Class ;
     rdfs:label "PlaybookEntry" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:section_ref ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom xsd:string ;
             owl:onProperty nist_ai_100_1:description ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:section_ref ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:section_about ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:section_about ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:title ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:category ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:ai_actors ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:section_ref ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:description ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:topic ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:ai_actors ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:category ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:section_doc ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:title ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:description ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:section_actions ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:section_doc ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:section_actions ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:type ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:section_doc ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:type ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:type ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:category ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:title ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:topic ],
@@ -670,8 +601,77 @@ nist_ai_100_1:PlaybookEntry a owl:Class ;
             owl:maxCardinality 1 ;
             owl:onProperty nist_ai_100_1:section_actions ],
         [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:title ],
+        [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:section_about ] ;
+            owl:onProperty nist_ai_100_1:category ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:topic ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:section_about ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:section_about ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:ai_actors ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:section_doc ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:category ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:section_actions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:section_actions ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:section_doc ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:category ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:section_ref ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:title ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:section_doc ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:section_about ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:section_ref ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:section_ref ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:title ] ;
     owl:hasKey ( nist_ai_100_1:title ) ;
     skos:closeMatch nist_csf:CSFSubcategory ;
     skos:definition """A single AI RMF Playbook entry - an enrichment of a Core
@@ -712,56 +712,53 @@ application (e.g., a hiring profile, a fair housing profile).""" .
 nist_ai_100_1:Risk a owl:Class ;
     rdfs:label "Risk" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:TrustworthinessCharacteristicEnum ;
+            owl:onProperty nist_ai_100_1:trustworthiness_characteristic ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:impact_sign ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:risk_response ],
         [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:trustworthiness_characteristic ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiSystem ;
+            owl:onProperty nist_ai_100_1:affects_system ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:related_impacts ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:likelihood ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:RiskResponseEnum ;
             owl:onProperty nist_ai_100_1:risk_response ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:likelihood ],
         [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:TrustworthinessCharacteristicEnum ;
-            owl:onProperty nist_ai_100_1:trustworthiness_characteristic ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:magnitude ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:magnitude ],
+            owl:onProperty nist_ai_100_1:risk_response ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty nist_ai_100_1:magnitude ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:trustworthiness_characteristic ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty nist_ai_100_1:is_residual ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:impact_sign ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:likelihood ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:related_impacts ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:affects_system ],
         [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_100_1:Impact ;
             owl:onProperty nist_ai_100_1:related_impacts ],
         [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:lifecycle_stage ],
+        [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_100_1:AiLifecycleStageEnum ;
             owl:onProperty nist_ai_100_1:lifecycle_stage ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:impact_sign ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:is_residual ],
+            owl:onProperty nist_ai_100_1:magnitude ],
         [ a owl:Restriction ;
             owl:allValuesFrom [ a rdfs:Datatype ;
                     owl:intersectionOf ( xsd:float [ a rdfs:Datatype ;
@@ -771,24 +768,27 @@ nist_ai_100_1:Risk a owl:Class ;
                                 owl:withRestrictions ( [ xsd:maxInclusive 1e+00 ] ) ] ) ] ;
             owl:onProperty nist_ai_100_1:likelihood ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:affects_system ],
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:magnitude ],
         [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:RiskResponseEnum ;
-            owl:onProperty nist_ai_100_1:risk_response ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:AiSystem ;
-            owl:onProperty nist_ai_100_1:affects_system ],
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:is_residual ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:lifecycle_stage ],
+            owl:onProperty nist_ai_100_1:impact_sign ],
         [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_100_1:ImpactSignEnum ;
             owl:onProperty nist_ai_100_1:impact_sign ],
         [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:affects_system ],
+        [ a owl:Restriction ;
             owl:allValuesFrom xsd:boolean ;
             owl:onProperty nist_ai_100_1:is_residual ],
-        nist_ai_100_1:NamedThing ;
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:affects_system ],
+        nist_ai_100_1:NamedThingRMF ;
     skos:definition """The composite measure of an event's probability of occurring and
 the magnitude or degree of the consequences of that event. When
 considering negative impact, risk is a function of (1) the
@@ -1066,33 +1066,33 @@ nist_ai_100_1:typical_actors a owl:DatatypeProperty ;
 nist_ai_100_1:AiActorTask a owl:Class ;
     rdfs:label "AiActorTask" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:ai_dimension ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:AiLifecycleStageEnum ;
-            owl:onProperty nist_ai_100_1:lifecycle_stage ],
-        [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty nist_ai_100_1:task_kind ],
         [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:AiSystemDimensionEnum ;
-            owl:onProperty nist_ai_100_1:ai_dimension ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:typical_actors ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:AiActorTaskEnum ;
-            owl:onProperty nist_ai_100_1:task_kind ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:lifecycle_stage ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:ai_dimension ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty nist_ai_100_1:typical_actors ],
         [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiSystemDimensionEnum ;
+            owl:onProperty nist_ai_100_1:ai_dimension ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiActorTaskEnum ;
+            owl:onProperty nist_ai_100_1:task_kind ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty nist_ai_100_1:task_kind ],
-        nist_ai_100_1:NamedThing ;
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:typical_actors ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiLifecycleStageEnum ;
+            owl:onProperty nist_ai_100_1:lifecycle_stage ],
+        nist_ai_100_1:NamedThingRMF ;
     skos:definition """A category of task performed by AI actors (Appendix A). Each
 task is associated with one or more lifecycle stages and a
 typical set of actor roles.""" ;
@@ -1101,24 +1101,24 @@ typical set of actor roles.""" ;
 nist_ai_100_1:AiLifecycleStage a owl:Class ;
     rdfs:label "AiLifecycleStage" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:includes_tevv ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty nist_ai_100_1:includes_tevv ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty nist_ai_100_1:stage_kind ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:boolean ;
+            owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:includes_tevv ],
         [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_100_1:AiLifecycleStageEnum ;
             owl:onProperty nist_ai_100_1:stage_kind ],
         [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty nist_ai_100_1:includes_tevv ],
+        [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty nist_ai_100_1:stage_kind ],
-        nist_ai_100_1:NamedThing ;
+        nist_ai_100_1:NamedThingRMF ;
     skos:definition """A stage of the AI lifecycle (Figure 2): Plan and Design,
 Collect and Process Data, Build and Use Model, Verify and
 Validate, Deploy and Use, or Operate and Monitor.""" ;
@@ -1130,48 +1130,48 @@ nist_ai_100_1:AiRmfDocument a owl:Class ;
             owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:version ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:publisher ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:anyURI ;
-            owl:onProperty nist_ai_100_1:source ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:published_date ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:version ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:publisher ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty nist_ai_100_1:publisher ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:published_date ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:doi ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:source ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:version ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:doi ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:anyURI ;
             owl:onProperty nist_ai_100_1:doi ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:date ;
             owl:onProperty nist_ai_100_1:published_date ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:version ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:publisher ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:source ],
-        nist_ai_100_1:NamedThing ;
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:source ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:doi ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty nist_ai_100_1:source ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:published_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:version ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty nist_ai_100_1:doi ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:publisher ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:published_date ],
+        nist_ai_100_1:NamedThingRMF ;
     skos:closeMatch nist_csf:CSFMetadata ;
     skos:definition """Publication metadata for an instance of the AI RMF (e.g., NIST
 AI 100-1, January 2023). The Framework is intended to be a
@@ -1183,13 +1183,13 @@ nist_ai_100_1:AiRmfProfile a owl:Class ;
     rdfs:label "AiRmfProfile" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:sector ],
+            owl:onProperty nist_ai_100_1:target_state ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:sector ],
+            owl:allValuesFrom nist_ai_100_1:Subcategory ;
+            owl:onProperty nist_ai_100_1:addresses ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:current_state ],
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:target_state ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:target_state ],
@@ -1197,33 +1197,33 @@ nist_ai_100_1:AiRmfProfile a owl:Class ;
             owl:minCardinality 1 ;
             owl:onProperty nist_ai_100_1:profile_type ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:addresses ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty nist_ai_100_1:profile_type ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:target_state ],
+            owl:onProperty nist_ai_100_1:sector ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:current_state ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:current_state ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:sector ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:current_state ],
         [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_100_1:ProfileTypeEnum ;
             owl:onProperty nist_ai_100_1:profile_type ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:current_state ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:target_state ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:current_state ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:Subcategory ;
+            owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:addresses ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:sector ],
-        nist_ai_100_1:NamedThing ;
+        nist_ai_100_1:NamedThingRMF ;
     skos:closeMatch nist_sp_800_53:ProfileDocument ;
     skos:definition """An implementation of the AI RMF Functions, Categories, and
 Subcategories for a specific setting or application based on the
@@ -1235,7 +1235,7 @@ or cross-sectoral.""" ;
 
 nist_ai_100_1:AiSpecificRisk a owl:Class ;
     rdfs:label "AiSpecificRisk" ;
-    rdfs:subClassOf nist_ai_100_1:NamedThing ;
+    rdfs:subClassOf nist_ai_100_1:NamedThingRMF ;
     skos:broadMatch iso27001:Risk ;
     skos:definition """A risk that is new or increased for AI-based technology compared
 to traditional software (Appendix B) - e.g., data quality, model
@@ -1250,15 +1250,15 @@ nist_ai_100_1:AiSystem a owl:Class ;
             owl:allValuesFrom nist_ai_100_1:AiSystemDimensionEnum ;
             owl:onProperty nist_ai_100_1:ai_dimension ],
         [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:AiLifecycleStageEnum ;
-            owl:onProperty nist_ai_100_1:lifecycle_stage ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:lifecycle_stage ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:ai_dimension ],
-        nist_ai_100_1:NamedThing ;
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:lifecycle_stage ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:AiLifecycleStageEnum ;
+            owl:onProperty nist_ai_100_1:lifecycle_stage ],
+        nist_ai_100_1:NamedThingRMF ;
     skos:closeMatch schema1:SoftwareApplication ;
     skos:definition """An engineered or machine-based system that can, for a given set
 of objectives, generate outputs such as predictions,
@@ -1271,15 +1271,15 @@ ISO/IEC 22989:2022).""" ;
 nist_ai_100_1:AiSystemDimension a owl:Class ;
     rdfs:label "AiSystemDimension" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 1 ;
+            owl:maxCardinality 1 ;
             owl:onProperty nist_ai_100_1:dimension_kind ],
         [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_100_1:AiSystemDimensionEnum ;
             owl:onProperty nist_ai_100_1:dimension_kind ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 1 ;
             owl:onProperty nist_ai_100_1:dimension_kind ],
-        nist_ai_100_1:NamedThing ;
+        nist_ai_100_1:NamedThingRMF ;
     skos:definition """A socio-technical dimension of an AI system (Figure 2):
 Application Context, Data and Input, AI Model, Task and Output,
 or People and Planet.""" ;
@@ -1289,22 +1289,25 @@ nist_ai_100_1:Category a owl:Class ;
     rdfs:label "Category" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:Subcategory ;
-            owl:onProperty nist_ai_100_1:subcategories ],
+            owl:onProperty nist_ai_100_1:outcome ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty nist_ai_100_1:category_id ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:category_id ],
+            owl:onProperty nist_ai_100_1:outcome ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:outcome ],
+            owl:onProperty nist_ai_100_1:id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:Subcategory ;
+            owl:onProperty nist_ai_100_1:subcategories ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:outcome ],
+            owl:onProperty nist_ai_100_1:subcategories ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty nist_ai_100_1:id ],
@@ -1312,15 +1315,12 @@ nist_ai_100_1:Category a owl:Class ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty nist_ai_100_1:category_id ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:subcategories ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:id ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty nist_ai_100_1:outcome ],
-        nist_ai_100_1:NamedThing ;
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:category_id ],
+        nist_ai_100_1:NamedThingRMF ;
     skos:definition """A category within an AI RMF Core function (e.g., "GOVERN 1:
 Policies, processes, procedures, and practices ... are in place,
 transparent, and implemented effectively"). Categories group
@@ -1331,21 +1331,21 @@ related subcategories.""" ;
 nist_ai_100_1:Function a owl:Class ;
     rdfs:label "Function" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:Category ;
-            owl:onProperty nist_ai_100_1:categories ],
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:function_code ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty nist_ai_100_1:function_code ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:Category ;
+            owl:onProperty nist_ai_100_1:categories ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty nist_ai_100_1:function_code ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:categories ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:function_code ],
-        nist_ai_100_1:NamedThing ;
+        nist_ai_100_1:NamedThingRMF ;
     skos:definition """A top-level AI RMF Core function. Each function organizes AI risk
 management activities at the highest level. GOVERN applies across
 all stages; MAP, MEASURE, and MANAGE apply to AI-system-specific
@@ -1356,7 +1356,7 @@ contexts and lifecycle stages.""" ;
 
 nist_ai_100_1:HumanAiInteractionIssue a owl:Class ;
     rdfs:label "HumanAiInteractionIssue" ;
-    rdfs:subClassOf nist_ai_100_1:NamedThing ;
+    rdfs:subClassOf nist_ai_100_1:NamedThingRMF ;
     skos:definition """An issue that merits further consideration in human-AI
 interaction (Appendix C) - e.g., clear human roles and
 responsibilities, systemic and human-cognitive biases in design,
@@ -1368,26 +1368,20 @@ presenting AI system information to humans.""" ;
 nist_ai_100_1:Impact a owl:Class ;
     rdfs:label "Impact" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:affects ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:impact_sign ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:likelihood ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:magnitude ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:likelihood ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:magnitude ],
-        [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty nist_ai_100_1:magnitude ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:magnitude ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:likelihood ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_100_1:ImpactSignEnum ;
+            owl:onProperty nist_ai_100_1:impact_sign ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:affects ],
         [ a owl:Restriction ;
             owl:allValuesFrom [ a rdfs:Datatype ;
                     owl:intersectionOf ( xsd:float [ a rdfs:Datatype ;
@@ -1397,15 +1391,21 @@ nist_ai_100_1:Impact a owl:Class ;
                                 owl:withRestrictions ( [ xsd:maxInclusive 1e+00 ] ) ] ) ] ;
             owl:onProperty nist_ai_100_1:likelihood ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:impact_sign ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:impact_sign ],
         [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:NamedThing ;
+            owl:allValuesFrom nist_ai_100_1:NamedThingRMF ;
             owl:onProperty nist_ai_100_1:affects ],
         [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_100_1:ImpactSignEnum ;
-            owl:onProperty nist_ai_100_1:impact_sign ],
-        nist_ai_100_1:NamedThing ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:likelihood ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:magnitude ],
+        nist_ai_100_1:NamedThingRMF ;
     skos:definition """A positive, negative, or both consequence of an AI system. Impacts
 can manifest as opportunities (positive) or threats (negative).""" ;
     skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> ;
@@ -1417,19 +1417,19 @@ nist_ai_100_1:RiskMeasurementChallenge a owl:Class ;
             owl:minCardinality 1 ;
             owl:onProperty nist_ai_100_1:challenge_kind ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:challenge_kind ],
-        [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_100_1:RiskMeasurementChallengeEnum ;
             owl:onProperty nist_ai_100_1:challenge_kind ],
-        nist_ai_100_1:NamedThing ;
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:challenge_kind ],
+        nist_ai_100_1:NamedThingRMF ;
     skos:definition """A challenge that complicates measurement of AI risks
 (Part 1 §1.2.1).""" ;
     skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
 
 nist_ai_100_1:RmfAttribute a owl:Class ;
     rdfs:label "RmfAttribute" ;
-    rdfs:subClassOf nist_ai_100_1:NamedThing ;
+    rdfs:subClassOf nist_ai_100_1:NamedThingRMF ;
     skos:definition """A design attribute of the AI RMF (Appendix D) - one of the
 qualities the Framework strives to embody (e.g., risk-based,
 consensus-driven, plain language, common language, easily usable,
@@ -1441,8 +1441,17 @@ standards, law- and regulation-agnostic, living document).""" ;
 nist_ai_100_1:TrustworthinessCharacteristic a owl:Class ;
     rdfs:label "TrustworthinessCharacteristic" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty nist_ai_100_1:characteristic_kind ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:is_cross_cutting ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:is_base_condition ],
+            owl:onProperty nist_ai_100_1:is_cross_cutting ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:characteristic_kind ],
         [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_100_1:TrustworthinessCharacteristicEnum ;
             owl:onProperty nist_ai_100_1:characteristic_kind ],
@@ -1453,21 +1462,12 @@ nist_ai_100_1:TrustworthinessCharacteristic a owl:Class ;
             owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:is_base_condition ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:characteristic_kind ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty nist_ai_100_1:characteristic_kind ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:is_cross_cutting ],
-        [ a owl:Restriction ;
             owl:allValuesFrom xsd:boolean ;
             owl:onProperty nist_ai_100_1:is_base_condition ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:is_cross_cutting ],
-        nist_ai_100_1:NamedThing ;
+            owl:onProperty nist_ai_100_1:is_base_condition ],
+        nist_ai_100_1:NamedThingRMF ;
     skos:definition """A characteristic of a trustworthy AI system (Figure 4 / Part 1
 §3). The seven characteristics are inter-related; addressing them
 individually does not guarantee trustworthiness, and tradeoffs
@@ -1737,7 +1737,7 @@ nist_ai_100_1:AudienceEnum a owl:Class ;
 
 nist_ai_100_1:affects a owl:ObjectProperty ;
     rdfs:label "affects" ;
-    rdfs:range nist_ai_100_1:NamedThing ;
+    rdfs:range nist_ai_100_1:NamedThingRMF ;
     skos:definition """Entities (people, organizations, ecosystems) the risk or harm
 may affect.""" ;
     skos:inScheme <https://w3id.org/lmodel/nist-ai-100-1> .
@@ -1797,93 +1797,93 @@ nist_ai_100_1:HarmToPeopleSubcategoryEnum a owl:Class ;
 nist_ai_100_1:Subcategory a owl:Class ;
     rdfs:label "Subcategory" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:about_text ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty nist_ai_100_1:id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:lifecycle_stage ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:outcome ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:id ],
+            owl:onProperty nist_ai_100_1:documentation_questions ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:references_text ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:suggested_actions_text ],
+            owl:onProperty nist_ai_100_1:subcategory_id ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom xsd:string ;
             owl:onProperty nist_ai_100_1:outcome ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:documentation_questions ],
+            owl:onProperty nist_ai_100_1:about_text ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:subcategory_id ],
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:suggested_actions_text ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:ai_actor_categories ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:subcategory_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:trustworthiness_characteristic ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:suggested_actions_text ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:about_text ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty nist_ai_100_1:references_text ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:suggested_actions_text ],
+            owl:onProperty nist_ai_100_1:references_text ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:subcategory_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:topics ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:topics ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:ai_actor_categories ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:documentation_questions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:id ],
         [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_100_1:AiLifecycleStageEnum ;
             owl:onProperty nist_ai_100_1:lifecycle_stage ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:topics ],
+            owl:onProperty nist_ai_100_1:suggested_actions_text ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:about_text ],
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:documentation_questions ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:outcome ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty nist_ai_100_1:id ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:ai_actor_categories ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:suggested_actions_text ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:about_text ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:references_text ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:subcategory_id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:lifecycle_stage ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:documentation_questions ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:outcome ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:topics ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:trustworthiness_characteristic ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:subcategory_id ],
-        [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_100_1:TrustworthinessCharacteristicEnum ;
             owl:onProperty nist_ai_100_1:trustworthiness_characteristic ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:about_text ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:outcome ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:documentation_questions ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:references_text ],
-        nist_ai_100_1:NamedThing ;
+        nist_ai_100_1:NamedThingRMF ;
     skos:closeMatch nist_sp_800_53:Control,
         oscal_catalog:Control ;
     skos:definition """A subcategory within an AI RMF Core category (e.g., "GOVERN 1.1:
@@ -2068,51 +2068,51 @@ illustrated in Figure 3.""" ;
         <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#TEVV>,
         <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#THIRD_PARTY_ENTITIES> .
 
-nist_ai_100_1:NamedThing a owl:Class ;
-    rdfs:label "NamedThing" ;
+nist_ai_100_1:NamedThingRMF a owl:Class ;
+    rdfs:label "NamedThingRMF" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom xsd:anyURI ;
-            owl:onProperty nist_ai_100_1:id ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty nist_ai_100_1:description ],
+        [ owl:unionOf ( nist_ai_100_1:AiActor nist_ai_100_1:AiActorTask nist_ai_100_1:AiLifecycleStage nist_ai_100_1:AiRmfDocument nist_ai_100_1:AiRmfFramework nist_ai_100_1:AiRmfProfile nist_ai_100_1:AiSpecificRisk nist_ai_100_1:AiSystem nist_ai_100_1:AiSystemDimension nist_ai_100_1:Bias nist_ai_100_1:Category nist_ai_100_1:Function nist_ai_100_1:Harm nist_ai_100_1:HumanAiInteractionIssue nist_ai_100_1:Impact nist_ai_100_1:Risk nist_ai_100_1:RiskMeasurementChallenge nist_ai_100_1:RiskTolerance nist_ai_100_1:RmfAttribute nist_ai_100_1:Subcategory nist_ai_100_1:TrustworthinessCharacteristic ) ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:see_also ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty nist_ai_100_1:title ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty nist_ai_100_1:see_also ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:id ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty nist_ai_100_1:id ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:anyURI ;
-            owl:onProperty nist_ai_100_1:see_also ],
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:title ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:description ],
+            owl:onProperty nist_ai_100_1:name ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:title ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
             owl:onProperty nist_ai_100_1:id ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:title ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:name ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:name ],
-        [ owl:unionOf ( nist_ai_100_1:AiActor nist_ai_100_1:AiActorTask nist_ai_100_1:AiLifecycleStage nist_ai_100_1:AiRmfDocument nist_ai_100_1:AiRmfFramework nist_ai_100_1:AiRmfProfile nist_ai_100_1:AiSpecificRisk nist_ai_100_1:AiSystem nist_ai_100_1:AiSystemDimension nist_ai_100_1:Bias nist_ai_100_1:Category nist_ai_100_1:Function nist_ai_100_1:Harm nist_ai_100_1:HumanAiInteractionIssue nist_ai_100_1:Impact nist_ai_100_1:Risk nist_ai_100_1:RiskMeasurementChallenge nist_ai_100_1:RiskTolerance nist_ai_100_1:RmfAttribute nist_ai_100_1:Subcategory nist_ai_100_1:TrustworthinessCharacteristic ) ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:title ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:see_also ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:description ] ;
+            owl:onProperty nist_ai_100_1:name ] ;
     skos:closeMatch schema1:Thing ;
     skos:definition "A generic grouping for any identifiable AI RMF element." ;
     skos:exactMatch schema1:Thing ;
@@ -2121,12 +2121,12 @@ nist_ai_100_1:NamedThing a owl:Class ;
 xsd:string a rdfs:Datatype ;
     owl:equivalentClass [ a rdfs:Datatype ;
             owl:onDatatype xsd:string ;
-            owl:withRestrictions ( [ xsd:pattern "^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+\\.[0-9]+$" ] ) ],
+            owl:withRestrictions ( [ xsd:pattern "^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+$" ] ) ],
         [ a rdfs:Datatype ;
             owl:onDatatype xsd:string ;
             owl:withRestrictions ( [ xsd:pattern "^(GOVERN|MAP|MEASURE|MANAGE)$" ] ) ],
         [ a rdfs:Datatype ;
             owl:onDatatype xsd:string ;
-            owl:withRestrictions ( [ xsd:pattern "^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+$" ] ) ] .
+            owl:withRestrictions ( [ xsd:pattern "^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+\\.[0-9]+$" ] ) ] .
 
 

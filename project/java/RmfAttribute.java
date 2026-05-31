@@ -18,7 +18,7 @@ standards, law- and regulation-agnostic, living document).
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class RmfAttribute extends NamedThing {
+public class RmfAttribute extends NamedThingRMF {
 
 
 

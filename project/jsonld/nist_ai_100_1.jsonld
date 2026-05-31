@@ -102,7 +102,7 @@
     {
       "name": "base",
       "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/Base",
-      "description": "Schema-infrastructure elements shared across the framework:\nidentifier slots, the abstract `NamedThing` root, publication\nmetadata, and the top-level `AiRmfFramework` container. Not a\nsection of NIST AI 100-1 itself - distinct from `framework_core`\n(Part 2, \u00a75 \"AI RMF Core\").",
+      "description": "Schema-infrastructure elements shared across the framework:\nidentifier slots, the abstract `NamedThingRMF` root, publication\nmetadata, and the top-level `AiRmfFramework` container. Not a\nsection of NIST AI 100-1 itself - distinct from `framework_core`\n(Part 2, \u00a75 \"AI RMF Core\").",
       "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "@type": "SubsetDefinition"
     },
@@ -936,9 +936,9 @@
       ],
       "slot_uri": "http://schema.org/identifier",
       "identifier": true,
-      "owner": "NamedThing",
+      "owner": "NamedThingRMF",
       "domain_of": [
-        "NamedThing"
+        "NamedThingRMF"
       ],
       "range": "uriorcurie",
       "required": true,
@@ -956,9 +956,9 @@
         "http://www.w3.org/2000/01/rdf-schema#label"
       ],
       "slot_uri": "http://www.w3.org/2000/01/rdf-schema#label",
-      "owner": "NamedThing",
+      "owner": "NamedThingRMF",
       "domain_of": [
-        "NamedThing"
+        "NamedThingRMF"
       ],
       "range": "string",
       "@type": "SlotDefinition"
@@ -975,9 +975,9 @@
         "http://purl.org/dc/terms/title"
       ],
       "slot_uri": "http://purl.org/dc/terms/title",
-      "owner": "NamedThing",
+      "owner": "NamedThingRMF",
       "domain_of": [
-        "NamedThing"
+        "NamedThingRMF"
       ],
       "range": "string",
       "@type": "SlotDefinition"
@@ -994,9 +994,9 @@
         "http://purl.org/dc/terms/description"
       ],
       "slot_uri": "http://purl.org/dc/terms/description",
-      "owner": "NamedThing",
+      "owner": "NamedThingRMF",
       "domain_of": [
-        "NamedThing"
+        "NamedThingRMF"
       ],
       "range": "string",
       "@type": "SlotDefinition"
@@ -1032,9 +1032,9 @@
         "http://www.w3.org/2000/01/rdf-schema#seeAlso"
       ],
       "slot_uri": "http://www.w3.org/2000/01/rdf-schema#seeAlso",
-      "owner": "NamedThing",
+      "owner": "NamedThingRMF",
       "domain_of": [
-        "NamedThing"
+        "NamedThingRMF"
       ],
       "range": "uriorcurie",
       "multivalued": true,
@@ -1253,7 +1253,7 @@
         "Impact",
         "Harm"
       ],
-      "range": "NamedThing",
+      "range": "NamedThingRMF",
       "multivalued": true,
       "@type": "SlotDefinition"
     },
@@ -2398,8 +2398,8 @@
   ],
   "classes": [
     {
-      "name": "NamedThing",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/NamedThing",
+      "name": "NamedThingRMF",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/NamedThingRMF",
       "description": "A generic grouping for any identifiable AI RMF element.",
       "in_subset": [
         "base"
@@ -2434,7 +2434,7 @@
       "close_mappings": [
         "schema:SoftwareApplication"
       ],
-      "is_a": "NamedThing",
+      "is_a": "NamedThingRMF",
       "slots": [
         "id",
         "name",
@@ -2456,7 +2456,7 @@
         "lifecycle"
       ],
       "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "is_a": "NamedThing",
+      "is_a": "NamedThingRMF",
       "slots": [
         "id",
         "name",
@@ -2477,7 +2477,7 @@
         "lifecycle"
       ],
       "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "is_a": "NamedThing",
+      "is_a": "NamedThingRMF",
       "slots": [
         "id",
         "name",
@@ -2507,7 +2507,7 @@
         "stix:Identity",
         "iso27001:InterestedParty"
       ],
-      "is_a": "NamedThing",
+      "is_a": "NamedThingRMF",
       "slots": [
         "id",
         "name",
@@ -2531,7 +2531,7 @@
         "lifecycle"
       ],
       "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "is_a": "NamedThing",
+      "is_a": "NamedThingRMF",
       "slots": [
         "id",
         "name",
@@ -2561,7 +2561,7 @@
       "related_mappings": [
         "iso29100:PrivacyRisk"
       ],
-      "is_a": "NamedThing",
+      "is_a": "NamedThingRMF",
       "slots": [
         "id",
         "name",
@@ -2593,7 +2593,7 @@
       "narrow_mappings": [
         "iso27001:ImpactRating"
       ],
-      "is_a": "NamedThing",
+      "is_a": "NamedThingRMF",
       "slots": [
         "id",
         "name",
@@ -2617,7 +2617,7 @@
         "risk_and_harm"
       ],
       "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "is_a": "NamedThing",
+      "is_a": "NamedThingRMF",
       "slots": [
         "id",
         "name",
@@ -2676,7 +2676,7 @@
       "close_mappings": [
         "iso27001:RiskLevel"
       ],
-      "is_a": "NamedThing",
+      "is_a": "NamedThingRMF",
       "slots": [
         "id",
         "name",
@@ -2698,7 +2698,7 @@
         "risk_and_harm"
       ],
       "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "is_a": "NamedThing",
+      "is_a": "NamedThingRMF",
       "slots": [
         "id",
         "name",
@@ -2719,7 +2719,7 @@
         "trustworthiness"
       ],
       "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "is_a": "NamedThing",
+      "is_a": "NamedThingRMF",
       "slots": [
         "id",
         "name",
@@ -2745,7 +2745,7 @@
       "related_mappings": [
         "iso29100:PrivacyPrinciple"
       ],
-      "is_a": "NamedThing",
+      "is_a": "NamedThingRMF",
       "slots": [
         "id",
         "name",
@@ -2772,7 +2772,7 @@
       "related_mappings": [
         "gist_linkml:Function"
       ],
-      "is_a": "NamedThing",
+      "is_a": "NamedThingRMF",
       "slots": [
         "id",
         "name",
@@ -2797,7 +2797,7 @@
       "exact_mappings": [
         "nist_csf:CSFCategory"
       ],
-      "is_a": "NamedThing",
+      "is_a": "NamedThingRMF",
       "slots": [
         "name",
         "title",
@@ -2827,7 +2827,7 @@
         "oscal_catalog:Control",
         "nist_sp_800_53:Control"
       ],
-      "is_a": "NamedThing",
+      "is_a": "NamedThingRMF",
       "slots": [
         "name",
         "title",
@@ -2863,7 +2863,7 @@
       "close_mappings": [
         "nist_sp_800_53:ProfileDocument"
       ],
-      "is_a": "NamedThing",
+      "is_a": "NamedThingRMF",
       "slots": [
         "id",
         "name",
@@ -2891,7 +2891,7 @@
       "related_mappings": [
         "nist_csf:CSFProperty"
       ],
-      "is_a": "NamedThing",
+      "is_a": "NamedThingRMF",
       "slots": [
         "id",
         "name",
@@ -2914,7 +2914,7 @@
       "broad_mappings": [
         "iso27001:Risk"
       ],
-      "is_a": "NamedThing",
+      "is_a": "NamedThingRMF",
       "slots": [
         "id",
         "name",
@@ -2937,7 +2937,7 @@
       "related_mappings": [
         "iso27001:InterestedParty"
       ],
-      "is_a": "NamedThing",
+      "is_a": "NamedThingRMF",
       "slots": [
         "id",
         "name",
@@ -3078,7 +3078,7 @@
       "related_mappings": [
         "schema:CreativeWork"
       ],
-      "is_a": "NamedThing",
+      "is_a": "NamedThingRMF",
       "slots": [
         "id",
         "name",
@@ -3108,7 +3108,7 @@
         "oscal_catalog:Catalog",
         "nist_sp_800_53:Catalog"
       ],
-      "is_a": "NamedThing",
+      "is_a": "NamedThingRMF",
       "slots": [
         "id",
         "name",
@@ -3135,9 +3135,9 @@
   ],
   "metamodel_version": "1.11.0",
   "source_file": "nist_ai_100_1.yaml",
-  "source_file_date": "2026-05-29T06:34:48",
-  "source_file_size": 51436,
-  "generation_date": "2026-05-29T06:45:54",
+  "source_file_date": "2026-05-31T02:00:39",
+  "source_file_size": 51508,
+  "generation_date": "2026-05-31T02:00:50",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/nist_ai_100_1.context.jsonld",

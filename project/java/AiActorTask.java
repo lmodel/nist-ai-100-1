@@ -16,7 +16,7 @@ typical set of actor roles.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class AiActorTask extends NamedThing {
+public class AiActorTask extends NamedThingRMF {
 
   private String taskKind;
   private List<String> typicalActors;

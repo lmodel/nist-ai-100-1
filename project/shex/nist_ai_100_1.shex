@@ -54,7 +54,7 @@ linkml:Jsonpath xsd:string
 linkml:Sparqlpath xsd:string
 
 <AiActor> CLOSED {
-    (  $<AiActor_tes> (  &<NamedThing_tes> ;
+    (  $<AiActor_tes> (  &<NamedThingRMF_tes> ;
           rdf:type [ schema1:Thing ] ? ;
           <actor_task> [ <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#AI_DESIGN>
              <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#AI_DEVELOPMENT>
@@ -86,7 +86,7 @@ linkml:Sparqlpath xsd:string
 }
 
 <AiActorTask> CLOSED {
-    (  $<AiActorTask_tes> (  &<NamedThing_tes> ;
+    (  $<AiActorTask_tes> (  &<NamedThingRMF_tes> ;
           rdf:type [ schema1:Thing ] ? ;
           <task_kind> [ <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#AI_DESIGN>
              <https://w3id.org/lmodel/nist-ai-100-1/AiActorTaskEnum#AI_DEVELOPMENT>
@@ -121,7 +121,7 @@ linkml:Sparqlpath xsd:string
 }
 
 <AiLifecycleStage> CLOSED {
-    (  $<AiLifecycleStage_tes> (  &<NamedThing_tes> ;
+    (  $<AiLifecycleStage_tes> (  &<NamedThingRMF_tes> ;
           rdf:type [ schema1:Thing ] ? ;
           <stage_kind> [ <https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum#PLAN_AND_DESIGN>
              <https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum#COLLECT_AND_PROCESS_DATA>
@@ -136,7 +136,7 @@ linkml:Sparqlpath xsd:string
 }
 
 <AiRmfDocument> CLOSED {
-    (  $<AiRmfDocument_tes> (  &<NamedThing_tes> ;
+    (  $<AiRmfDocument_tes> (  &<NamedThingRMF_tes> ;
           rdf:type [ schema1:Thing ] ? ;
           schema1:version @linkml:String ? ;
           dcterms:publisher @linkml:String ? ;
@@ -149,7 +149,7 @@ linkml:Sparqlpath xsd:string
 }
 
 <AiRmfFramework> CLOSED {
-    (  $<AiRmfFramework_tes> (  &<NamedThing_tes> ;
+    (  $<AiRmfFramework_tes> (  &<NamedThingRMF_tes> ;
           rdf:type [ schema1:Thing ] ? ;
           <document> @<AiRmfDocument> ? ;
           <functions> @<Function> * ;
@@ -168,7 +168,7 @@ linkml:Sparqlpath xsd:string
 }
 
 <AiRmfProfile> CLOSED {
-    (  $<AiRmfProfile_tes> (  &<NamedThing_tes> ;
+    (  $<AiRmfProfile_tes> (  &<NamedThingRMF_tes> ;
           rdf:type [ schema1:Thing ] ? ;
           <profile_type> [ <https://w3id.org/lmodel/nist-ai-100-1/ProfileTypeEnum#USE_CASE>
              <https://w3id.org/lmodel/nist-ai-100-1/ProfileTypeEnum#TEMPORAL_CURRENT>
@@ -184,7 +184,7 @@ linkml:Sparqlpath xsd:string
 }
 
 <AiSpecificRisk> CLOSED {
-    (  $<AiSpecificRisk_tes> (  &<NamedThing_tes> ;
+    (  $<AiSpecificRisk_tes> (  &<NamedThingRMF_tes> ;
           rdf:type [ schema1:Thing ] ?
        ) ;
        rdf:type [ <AiSpecificRisk> ]
@@ -192,7 +192,7 @@ linkml:Sparqlpath xsd:string
 }
 
 <AiSystem> CLOSED {
-    (  $<AiSystem_tes> (  &<NamedThing_tes> ;
+    (  $<AiSystem_tes> (  &<NamedThingRMF_tes> ;
           rdf:type [ schema1:Thing ] ? ;
           <lifecycle_stage> [ <https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum#PLAN_AND_DESIGN>
              <https://w3id.org/lmodel/nist-ai-100-1/AiLifecycleStageEnum#COLLECT_AND_PROCESS_DATA>
@@ -211,7 +211,7 @@ linkml:Sparqlpath xsd:string
 }
 
 <AiSystemDimension> CLOSED {
-    (  $<AiSystemDimension_tes> (  &<NamedThing_tes> ;
+    (  $<AiSystemDimension_tes> (  &<NamedThingRMF_tes> ;
           rdf:type [ schema1:Thing ] ? ;
           <dimension_kind> [ <https://w3id.org/lmodel/nist-ai-100-1/AiSystemDimensionEnum#APPLICATION_CONTEXT>
              <https://w3id.org/lmodel/nist-ai-100-1/AiSystemDimensionEnum#DATA_AND_INPUT>
@@ -224,7 +224,7 @@ linkml:Sparqlpath xsd:string
 }
 
 <Bias> CLOSED {
-    (  $<Bias_tes> (  &<NamedThing_tes> ;
+    (  $<Bias_tes> (  &<NamedThingRMF_tes> ;
           rdf:type [ schema1:Thing ] ? ;
           <bias_category> [ <https://w3id.org/lmodel/nist-ai-100-1/BiasCategoryEnum#SYSTEMIC>
              <https://w3id.org/lmodel/nist-ai-100-1/BiasCategoryEnum#COMPUTATIONAL_AND_STATISTICAL>
@@ -235,7 +235,7 @@ linkml:Sparqlpath xsd:string
 }
 
 <Category> CLOSED {
-    (  $<Category_tes> (  &<NamedThing_tes> ;
+    (  $<Category_tes> (  &<NamedThingRMF_tes> ;
           rdf:type [ schema1:Thing ] ? ;
           <category_id> @<CategoryCode> ? ;
           <outcome> @linkml:String ? ;
@@ -246,7 +246,7 @@ linkml:Sparqlpath xsd:string
 }
 
 <Function> CLOSED {
-    (  $<Function_tes> (  &<NamedThing_tes> ;
+    (  $<Function_tes> (  &<NamedThingRMF_tes> ;
           rdf:type [ schema1:Thing ] ? ;
           <function_code> @<FunctionCode> ;
           <categories> @<Category> *
@@ -256,7 +256,7 @@ linkml:Sparqlpath xsd:string
 }
 
 <Harm> CLOSED {
-    (  $<Harm_tes> (  &<NamedThing_tes> ;
+    (  $<Harm_tes> (  &<NamedThingRMF_tes> ;
           rdf:type [ schema1:Thing ] ? ;
           <harm_category> [ <https://w3id.org/lmodel/nist-ai-100-1/HarmCategoryEnum#HARM_TO_PEOPLE>
              <https://w3id.org/lmodel/nist-ai-100-1/HarmCategoryEnum#HARM_TO_AN_ORGANIZATION>
@@ -265,14 +265,14 @@ linkml:Sparqlpath xsd:string
              <https://w3id.org/lmodel/nist-ai-100-1/HarmToPeopleSubcategoryEnum#GROUP_OR_COMMUNITY>
              <https://w3id.org/lmodel/nist-ai-100-1/HarmToPeopleSubcategoryEnum#SOCIETAL> ] ? ;
           <magnitude> @linkml:String ? ;
-          <affects> @<NamedThing> *
+          <affects> @<NamedThingRMF> *
        ) ;
        rdf:type [ <Harm> ]
     )
 }
 
 <HumanAiInteractionIssue> CLOSED {
-    (  $<HumanAiInteractionIssue_tes> (  &<NamedThing_tes> ;
+    (  $<HumanAiInteractionIssue_tes> (  &<NamedThingRMF_tes> ;
           rdf:type [ schema1:Thing ] ?
        ) ;
        rdf:type [ <HumanAiInteractionIssue> ]
@@ -280,28 +280,28 @@ linkml:Sparqlpath xsd:string
 }
 
 <Impact> CLOSED {
-    (  $<Impact_tes> (  &<NamedThing_tes> ;
+    (  $<Impact_tes> (  &<NamedThingRMF_tes> ;
           rdf:type [ schema1:Thing ] ? ;
           <impact_sign> [ <https://w3id.org/lmodel/nist-ai-100-1/ImpactSignEnum#POSITIVE>
              <https://w3id.org/lmodel/nist-ai-100-1/ImpactSignEnum#NEGATIVE>
              <https://w3id.org/lmodel/nist-ai-100-1/ImpactSignEnum#MIXED> ] ? ;
           <magnitude> @linkml:String ? ;
           <likelihood> @linkml:Float ? ;
-          <affects> @<NamedThing> *
+          <affects> @<NamedThingRMF> *
        ) ;
        rdf:type [ <Impact> ]
     )
 }
 
-<NamedThing>  (
+<NamedThingRMF>  (
     @<AiActor> OR @<AiActorTask> OR @<AiLifecycleStage> OR @<AiRmfDocument> OR @<AiRmfFramework> OR @<AiRmfProfile> OR
     @<AiSpecificRisk> OR @<AiSystem> OR @<AiSystemDimension> OR @<Bias> OR @<Category> OR @<Function> OR @<Harm> OR
     @<HumanAiInteractionIssue> OR @<Impact> OR @<Risk> OR @<RiskMeasurementChallenge> OR @<RiskTolerance> OR @<RmfAttribute> OR
     @<Subcategory> OR @<TrustworthinessCharacteristic>
 )
 
-<NamedThing_struct> {
-    (  $<NamedThing_tes> (  rdfs:label @linkml:String ? ;
+<NamedThingRMF_struct> {
+    (  $<NamedThingRMF_tes> (  rdfs:label @linkml:String ? ;
           dcterms:title @linkml:String ? ;
           dcterms:description @linkml:String ? ;
           rdfs:seeAlso @linkml:Uriorcurie *
@@ -343,7 +343,7 @@ linkml:Sparqlpath xsd:string
 
 <Risk>  (
     CLOSED {
-       (  $<Risk_tes> (  &<NamedThing_tes> ;
+       (  $<Risk_tes> (  &<NamedThingRMF_tes> ;
              rdf:type [ schema1:Thing ] ? ;
              <likelihood> @linkml:Float ? ;
              <magnitude> @linkml:String ? ;
@@ -378,7 +378,7 @@ linkml:Sparqlpath xsd:string
 )
 
 <RiskMeasurementChallenge> CLOSED {
-    (  $<RiskMeasurementChallenge_tes> (  &<NamedThing_tes> ;
+    (  $<RiskMeasurementChallenge_tes> (  &<NamedThingRMF_tes> ;
           rdf:type [ schema1:Thing ] ? ;
           <challenge_kind> [
              <https://w3id.org/lmodel/nist-ai-100-1/RiskMeasurementChallengeEnum#THIRD_PARTY_SOFTWARE_HARDWARE_AND_DATA>
@@ -394,7 +394,7 @@ linkml:Sparqlpath xsd:string
 }
 
 <RiskTolerance> CLOSED {
-    (  $<RiskTolerance_tes> (  &<NamedThing_tes> ;
+    (  $<RiskTolerance_tes> (  &<NamedThingRMF_tes> ;
           rdf:type [ schema1:Thing ] ? ;
           <tolerance_statement> @linkml:String ? ;
           <legal_basis> @linkml:String ?
@@ -404,7 +404,7 @@ linkml:Sparqlpath xsd:string
 }
 
 <RmfAttribute> CLOSED {
-    (  $<RmfAttribute_tes> (  &<NamedThing_tes> ;
+    (  $<RmfAttribute_tes> (  &<NamedThingRMF_tes> ;
           rdf:type [ schema1:Thing ] ?
        ) ;
        rdf:type [ <RmfAttribute> ]
@@ -412,7 +412,7 @@ linkml:Sparqlpath xsd:string
 }
 
 <Subcategory> CLOSED {
-    (  $<Subcategory_tes> (  &<NamedThing_tes> ;
+    (  $<Subcategory_tes> (  &<NamedThingRMF_tes> ;
           rdf:type [ schema1:Thing ] ? ;
           <subcategory_id> @<SubcategoryCode> ? ;
           <outcome> @linkml:String ? ;
@@ -442,7 +442,7 @@ linkml:Sparqlpath xsd:string
 }
 
 <TrustworthinessCharacteristic> CLOSED {
-    (  $<TrustworthinessCharacteristic_tes> (  &<NamedThing_tes> ;
+    (  $<TrustworthinessCharacteristic_tes> (  &<NamedThingRMF_tes> ;
           rdf:type [ schema1:Thing ] ? ;
           <characteristic_kind> [ <https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#VALID_AND_RELIABLE>
              <https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum#SAFE>

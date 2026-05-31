@@ -19,7 +19,7 @@ ISO/IEC 22989:2022).
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class AiSystem extends NamedThing {
+public class AiSystem extends NamedThingRMF {
 
   private List<String> lifecycleStage;
   private List<String> aiDimension;

@@ -1,5 +1,5 @@
 # Auto generated from nist_ai_100_1.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-05-29T06:52:16
+# Generation date: 2026-05-31T02:01:09
 # Schema: nist-ai-100-1
 #
 # id: https://w3id.org/lmodel/nist-ai-100-1
@@ -122,39 +122,39 @@ class SubcategoryCode(String):
 
 
 # Class references
-class NamedThingId(URIorCURIE):
+class NamedThingRMFId(URIorCURIE):
     pass
 
 
-class AiSystemId(NamedThingId):
+class AiSystemId(NamedThingRMFId):
     pass
 
 
-class AiSystemDimensionId(NamedThingId):
+class AiSystemDimensionId(NamedThingRMFId):
     pass
 
 
-class AiLifecycleStageId(NamedThingId):
+class AiLifecycleStageId(NamedThingRMFId):
     pass
 
 
-class AiActorId(NamedThingId):
+class AiActorId(NamedThingRMFId):
     pass
 
 
-class AiActorTaskId(NamedThingId):
+class AiActorTaskId(NamedThingRMFId):
     pass
 
 
-class RiskId(NamedThingId):
+class RiskId(NamedThingRMFId):
     pass
 
 
-class ImpactId(NamedThingId):
+class ImpactId(NamedThingRMFId):
     pass
 
 
-class HarmId(NamedThingId):
+class HarmId(NamedThingRMFId):
     pass
 
 
@@ -162,60 +162,60 @@ class ResidualRiskId(RiskId):
     pass
 
 
-class RiskToleranceId(NamedThingId):
+class RiskToleranceId(NamedThingRMFId):
     pass
 
 
-class RiskMeasurementChallengeId(NamedThingId):
+class RiskMeasurementChallengeId(NamedThingRMFId):
     pass
 
 
-class TrustworthinessCharacteristicId(NamedThingId):
+class TrustworthinessCharacteristicId(NamedThingRMFId):
     pass
 
 
-class BiasId(NamedThingId):
+class BiasId(NamedThingRMFId):
     pass
 
 
-class FunctionId(NamedThingId):
+class FunctionId(NamedThingRMFId):
     pass
 
 
-class CategoryId(NamedThingId):
+class CategoryId(NamedThingRMFId):
     pass
 
 
-class SubcategoryId(NamedThingId):
+class SubcategoryId(NamedThingRMFId):
     pass
 
 
-class AiRmfProfileId(NamedThingId):
+class AiRmfProfileId(NamedThingRMFId):
     pass
 
 
-class RmfAttributeId(NamedThingId):
+class RmfAttributeId(NamedThingRMFId):
     pass
 
 
-class AiSpecificRiskId(NamedThingId):
+class AiSpecificRiskId(NamedThingRMFId):
     pass
 
 
-class HumanAiInteractionIssueId(NamedThingId):
+class HumanAiInteractionIssueId(NamedThingRMFId):
     pass
 
 
-class AiRmfDocumentId(NamedThingId):
+class AiRmfDocumentId(NamedThingRMFId):
     pass
 
 
-class AiRmfFrameworkId(NamedThingId):
+class AiRmfFrameworkId(NamedThingRMFId):
     pass
 
 
 @dataclass(repr=False)
-class NamedThing(YAMLRoot):
+class NamedThingRMF(YAMLRoot):
     """
     A generic grouping for any identifiable AI RMF element.
     """
@@ -223,10 +223,10 @@ class NamedThing(YAMLRoot):
 
     class_class_uri: ClassVar[URIRef] = SCHEMA["Thing"]
     class_class_curie: ClassVar[str] = "schema:Thing"
-    class_name: ClassVar[str] = "NamedThing"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.NamedThing
+    class_name: ClassVar[str] = "NamedThingRMF"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.NamedThingRMF
 
-    id: Union[str, NamedThingId] = None
+    id: Union[str, NamedThingRMFId] = None
     name: Optional[str] = None
     title: Optional[str] = None
     description: Optional[str] = None
@@ -235,8 +235,8 @@ class NamedThing(YAMLRoot):
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, NamedThingId):
-            self.id = NamedThingId(self.id)
+        if not isinstance(self.id, NamedThingRMFId):
+            self.id = NamedThingRMFId(self.id)
 
         if self.name is not None and not isinstance(self.name, str):
             self.name = str(self.name)
@@ -255,7 +255,7 @@ class NamedThing(YAMLRoot):
 
 
 @dataclass(repr=False)
-class AiSystem(NamedThing):
+class AiSystem(NamedThingRMF):
     """
     An engineered or machine-based system that can, for a given set
     of objectives, generate outputs such as predictions,
@@ -293,7 +293,7 @@ class AiSystem(NamedThing):
 
 
 @dataclass(repr=False)
-class AiSystemDimension(NamedThing):
+class AiSystemDimension(NamedThingRMF):
     """
     A socio-technical dimension of an AI system (Figure 2):
     Application Context, Data and Input, AI Model, Task and Output,
@@ -324,7 +324,7 @@ class AiSystemDimension(NamedThing):
 
 
 @dataclass(repr=False)
-class AiLifecycleStage(NamedThing):
+class AiLifecycleStage(NamedThingRMF):
     """
     A stage of the AI lifecycle (Figure 2): Plan and Design,
     Collect and Process Data, Build and Use Model, Verify and
@@ -359,7 +359,7 @@ class AiLifecycleStage(NamedThing):
 
 
 @dataclass(repr=False)
-class AiActor(NamedThing):
+class AiActor(NamedThingRMF):
     """
     An organization or individual that plays an active role in the AI
     system lifecycle. AI actors include those who deploy or operate
@@ -403,7 +403,7 @@ class AiActor(NamedThing):
 
 
 @dataclass(repr=False)
-class AiActorTask(NamedThing):
+class AiActorTask(NamedThingRMF):
     """
     A category of task performed by AI actors (Appendix A). Each
     task is associated with one or more lifecycle stages and a
@@ -449,7 +449,7 @@ class AiActorTask(NamedThing):
 
 
 @dataclass(repr=False)
-class Risk(NamedThing):
+class Risk(NamedThingRMF):
     """
     The composite measure of an event's probability of occurring and
     the magnitude or degree of the consequences of that event. When
@@ -513,7 +513,7 @@ class Risk(NamedThing):
 
 
 @dataclass(repr=False)
-class Impact(NamedThing):
+class Impact(NamedThingRMF):
     """
     A positive, negative, or both consequence of an AI system. Impacts
     can manifest as opportunities (positive) or threats (negative).
@@ -529,7 +529,7 @@ class Impact(NamedThing):
     impact_sign: Optional[Union[str, "ImpactSignEnum"]] = None
     magnitude: Optional[str] = None
     likelihood: Optional[float] = None
-    affects: Optional[Union[Union[str, NamedThingId], list[Union[str, NamedThingId]]]] = empty_list()
+    affects: Optional[Union[Union[str, NamedThingRMFId], list[Union[str, NamedThingRMFId]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -548,13 +548,13 @@ class Impact(NamedThing):
 
         if not isinstance(self.affects, list):
             self.affects = [self.affects] if self.affects is not None else []
-        self.affects = [v if isinstance(v, NamedThingId) else NamedThingId(v) for v in self.affects]
+        self.affects = [v if isinstance(v, NamedThingRMFId) else NamedThingRMFId(v) for v in self.affects]
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Harm(NamedThing):
+class Harm(NamedThingRMF):
     """
     A negative impact that may be experienced by individuals,
     groups, communities, organizations, society, the environment, or
@@ -571,7 +571,7 @@ class Harm(NamedThing):
     harm_category: Optional[Union[str, "HarmCategoryEnum"]] = None
     harm_to_people_subcategory: Optional[Union[str, "HarmToPeopleSubcategoryEnum"]] = None
     magnitude: Optional[str] = None
-    affects: Optional[Union[Union[str, NamedThingId], list[Union[str, NamedThingId]]]] = empty_list()
+    affects: Optional[Union[Union[str, NamedThingRMFId], list[Union[str, NamedThingRMFId]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -590,7 +590,7 @@ class Harm(NamedThing):
 
         if not isinstance(self.affects, list):
             self.affects = [self.affects] if self.affects is not None else []
-        self.affects = [v if isinstance(v, NamedThingId) else NamedThingId(v) for v in self.affects]
+        self.affects = [v if isinstance(v, NamedThingRMFId) else NamedThingRMFId(v) for v in self.affects]
 
         super().__post_init__(**kwargs)
 
@@ -626,7 +626,7 @@ class ResidualRisk(Risk):
 
 
 @dataclass(repr=False)
-class RiskTolerance(NamedThing):
+class RiskTolerance(NamedThingRMF):
     """
     The organization's or AI actor's readiness to bear risk in order
     to achieve its objectives (Adapted from ISO Guide 73). Risk
@@ -660,7 +660,7 @@ class RiskTolerance(NamedThing):
 
 
 @dataclass(repr=False)
-class RiskMeasurementChallenge(NamedThing):
+class RiskMeasurementChallenge(NamedThingRMF):
     """
     A challenge that complicates measurement of AI risks
     (Part 1 §1.2.1).
@@ -690,7 +690,7 @@ class RiskMeasurementChallenge(NamedThing):
 
 
 @dataclass(repr=False)
-class TrustworthinessCharacteristic(NamedThing):
+class TrustworthinessCharacteristic(NamedThingRMF):
     """
     A characteristic of a trustworthy AI system (Figure 4 / Part 1
     §3). The seven characteristics are inter-related; addressing them
@@ -730,7 +730,7 @@ class TrustworthinessCharacteristic(NamedThing):
 
 
 @dataclass(repr=False)
-class Bias(NamedThing):
+class Bias(NamedThingRMF):
     """
     A form of AI bias - a deviation that may be perpetuated or
     amplified by AI systems. NIST identifies three major categories:
@@ -761,7 +761,7 @@ class Bias(NamedThing):
 
 
 @dataclass(repr=False)
-class Function(NamedThing):
+class Function(NamedThingRMF):
     """
     A top-level AI RMF Core function. Each function organizes AI risk
     management activities at the highest level. GOVERN applies across
@@ -796,7 +796,7 @@ class Function(NamedThing):
 
 
 @dataclass(repr=False)
-class Category(NamedThing):
+class Category(NamedThingRMF):
     """
     A category within an AI RMF Core function (e.g., "GOVERN 1:
     Policies, processes, procedures, and practices ... are in place,
@@ -833,7 +833,7 @@ class Category(NamedThing):
 
 
 @dataclass(repr=False)
-class Subcategory(NamedThing):
+class Subcategory(NamedThingRMF):
     """
     A subcategory within an AI RMF Core category (e.g., "GOVERN 1.1:
     Legal and regulatory requirements involving AI are understood,
@@ -903,7 +903,7 @@ class Subcategory(NamedThing):
 
 
 @dataclass(repr=False)
-class AiRmfProfile(NamedThing):
+class AiRmfProfile(NamedThingRMF):
     """
     An implementation of the AI RMF Functions, Categories, and
     Subcategories for a specific setting or application based on the
@@ -953,7 +953,7 @@ class AiRmfProfile(NamedThing):
 
 
 @dataclass(repr=False)
-class RmfAttribute(NamedThing):
+class RmfAttribute(NamedThingRMF):
     """
     A design attribute of the AI RMF (Appendix D) - one of the
     qualities the Framework strives to embody (e.g., risk-based,
@@ -980,7 +980,7 @@ class RmfAttribute(NamedThing):
 
 
 @dataclass(repr=False)
-class AiSpecificRisk(NamedThing):
+class AiSpecificRisk(NamedThingRMF):
     """
     A risk that is new or increased for AI-based technology compared
     to traditional software (Appendix B) - e.g., data quality, model
@@ -1007,7 +1007,7 @@ class AiSpecificRisk(NamedThing):
 
 
 @dataclass(repr=False)
-class HumanAiInteractionIssue(NamedThing):
+class HumanAiInteractionIssue(NamedThingRMF):
     """
     An issue that merits further consideration in human-AI
     interaction (Appendix C) - e.g., clear human roles and
@@ -1124,7 +1124,7 @@ class PlaybookCollection(YAMLRoot):
 
 
 @dataclass(repr=False)
-class AiRmfDocument(NamedThing):
+class AiRmfDocument(NamedThingRMF):
     """
     Publication metadata for an instance of the AI RMF (e.g., NIST
     AI 100-1, January 2023). The Framework is intended to be a
@@ -1169,7 +1169,7 @@ class AiRmfDocument(NamedThing):
 
 
 @dataclass(repr=False)
-class AiRmfFramework(NamedThing):
+class AiRmfFramework(NamedThingRMF):
     """
     Root container that bundles the AI RMF Core (Functions) with
     foundational concepts (trustworthiness characteristics,
@@ -1740,7 +1740,7 @@ slots.harm_to_people_subcategory = Slot(uri=NIST_AI_100_1.harm_to_people_subcate
                    model_uri=NIST_AI_100_1.harm_to_people_subcategory, domain=None, range=Optional[Union[str, "HarmToPeopleSubcategoryEnum"]])
 
 slots.affects = Slot(uri=NIST_AI_100_1.affects, name="affects", curie=NIST_AI_100_1.curie('affects'),
-                   model_uri=NIST_AI_100_1.affects, domain=None, range=Optional[Union[Union[str, NamedThingId], list[Union[str, NamedThingId]]]])
+                   model_uri=NIST_AI_100_1.affects, domain=None, range=Optional[Union[Union[str, NamedThingRMFId], list[Union[str, NamedThingRMFId]]]])
 
 slots.risk_response = Slot(uri=NIST_AI_100_1.risk_response, name="risk_response", curie=NIST_AI_100_1.curie('risk_response'),
                    model_uri=NIST_AI_100_1.risk_response, domain=None, range=Optional[Union[str, "RiskResponseEnum"]])

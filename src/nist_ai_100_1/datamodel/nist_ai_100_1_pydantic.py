@@ -158,7 +158,7 @@ linkml_meta = LinkMLMeta({'default_prefix': 'nist_ai_100_1',
                  'base': {'description': 'Schema-infrastructure elements shared '
                                          'across the framework:\n'
                                          'identifier slots, the abstract '
-                                         '`NamedThing` root, publication\n'
+                                         '`NamedThingRMF` root, publication\n'
                                          'metadata, and the top-level '
                                          '`AiRmfFramework` container. Not a\n'
                                          'section of NIST AI 100-1 itself - '
@@ -724,7 +724,7 @@ class ImpactSignEnum(str, Enum):
 
 
 
-class NamedThing(ConfiguredBaseModel):
+class NamedThingRMF(ConfiguredBaseModel):
     """
     A generic grouping for any identifiable AI RMF element.
     """
@@ -734,20 +734,24 @@ class NamedThing(ConfiguredBaseModel):
          'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['base']})
 
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
-class AiSystem(NamedThing):
+class AiSystem(NamedThingRMF):
     """
     An engineered or machine-based system that can, for a given set
     of objectives, generate outputs such as predictions,
@@ -763,20 +767,24 @@ class AiSystem(NamedThing):
     lifecycle_stage: Optional[list[AiLifecycleStageEnum]] = Field(default=None, description="""The AI lifecycle stage(s) the element applies to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiSystem', 'AiActor', 'AiActorTask', 'Risk', 'Subcategory'],
          'in_subset': ['lifecycle']} })
     ai_dimension: Optional[list[AiSystemDimensionEnum]] = Field(default=None, description="""The AI system dimension the element applies to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiSystem', 'AiActorTask'], 'in_subset': ['lifecycle']} })
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
-class AiSystemDimension(NamedThing):
+class AiSystemDimension(NamedThingRMF):
     """
     A socio-technical dimension of an AI system (Figure 2):
     Application Context, Data and Input, AI Model, Task and Output,
@@ -786,20 +794,24 @@ class AiSystemDimension(NamedThing):
          'in_subset': ['lifecycle']})
 
     dimension_kind: AiSystemDimensionEnum = Field(default=..., description="""Which AI system dimension an `AiSystemDimension` instance represents.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiSystemDimension'], 'in_subset': ['lifecycle']} })
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
-class AiLifecycleStage(NamedThing):
+class AiLifecycleStage(NamedThingRMF):
     """
     A stage of the AI lifecycle (Figure 2): Plan and Design,
     Collect and Process Data, Build and Use Model, Verify and
@@ -810,20 +822,24 @@ class AiLifecycleStage(NamedThing):
 
     stage_kind: AiLifecycleStageEnum = Field(default=..., description="""Which AI lifecycle stage an `AiLifecycleStage` instance represents.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiLifecycleStage'], 'in_subset': ['lifecycle']} })
     includes_tevv: Optional[bool] = Field(default=None, description="""Whether the lifecycle stage incorporates TEVV activities.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiLifecycleStage'], 'in_subset': ['lifecycle']} })
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
-class AiActor(NamedThing):
+class AiActor(NamedThingRMF):
     """
     An organization or individual that plays an active role in the AI
     system lifecycle. AI actors include those who deploy or operate
@@ -842,20 +858,24 @@ class AiActor(NamedThing):
 Validation (TEVV) actor / task.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiActor'], 'in_subset': ['lifecycle']} })
     audience: Optional[AudienceEnum] = Field(default=None, description="""Whether the actor is part of the *primary* AI RMF audience or the
 *informing* People-and-Planet audience.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiActor'], 'in_subset': ['lifecycle']} })
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
-class AiActorTask(NamedThing):
+class AiActorTask(NamedThingRMF):
     """
     A category of task performed by AI actors (Appendix A). Each
     task is associated with one or more lifecycle stages and a
@@ -869,20 +889,24 @@ class AiActorTask(NamedThing):
     lifecycle_stage: Optional[list[AiLifecycleStageEnum]] = Field(default=None, description="""The AI lifecycle stage(s) the element applies to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiSystem', 'AiActor', 'AiActorTask', 'Risk', 'Subcategory'],
          'in_subset': ['lifecycle']} })
     ai_dimension: Optional[list[AiSystemDimensionEnum]] = Field(default=None, description="""The AI system dimension the element applies to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiSystem', 'AiActorTask'], 'in_subset': ['lifecycle']} })
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
-class Risk(NamedThing):
+class Risk(NamedThingRMF):
     """
     The composite measure of an event's probability of occurring and
     the magnitude or degree of the consequences of that event. When
@@ -914,20 +938,24 @@ text or qualitative scale).""", json_schema_extra = { "linkml_meta": {'close_map
     trustworthiness_characteristic: Optional[list[TrustworthinessCharacteristicEnum]] = Field(default=None, description="""Trustworthiness characteristic(s) the element pertains to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Risk', 'Subcategory'], 'in_subset': ['trustworthiness']} })
     related_impacts: Optional[list[Impact]] = Field(default=None, description="""The impacts that contribute to a risk.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Risk'], 'in_subset': ['risk_and_harm']} })
     affects_system: Optional[str] = Field(default=None, description="""The AI system a risk pertains to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Risk'], 'in_subset': ['risk_and_harm']} })
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
-class Impact(NamedThing):
+class Impact(NamedThingRMF):
     """
     A positive, negative, or both consequence of an AI system. Impacts
     can manifest as opportunities (positive) or threats (negative).
@@ -947,20 +975,24 @@ AI RMF leaves quantification approaches to the implementer.""", ge=0.0, le=1.0, 
          'in_subset': ['risk_and_harm']} })
     affects: Optional[list[str]] = Field(default=None, description="""Entities (people, organizations, ecosystems) the risk or harm
 may affect.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Impact', 'Harm'], 'in_subset': ['risk_and_harm']} })
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
-class Harm(NamedThing):
+class Harm(NamedThingRMF):
     """
     A negative impact that may be experienced by individuals,
     groups, communities, organizations, society, the environment, or
@@ -977,17 +1009,21 @@ text or qualitative scale).""", json_schema_extra = { "linkml_meta": {'close_map
          'in_subset': ['risk_and_harm']} })
     affects: Optional[list[str]] = Field(default=None, description="""Entities (people, organizations, ecosystems) the risk or harm
 may affect.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Impact', 'Harm'], 'in_subset': ['risk_and_harm']} })
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
 class ResidualRisk(Risk):
@@ -1021,20 +1057,24 @@ text or qualitative scale).""", json_schema_extra = { "linkml_meta": {'close_map
     trustworthiness_characteristic: Optional[list[TrustworthinessCharacteristicEnum]] = Field(default=None, description="""Trustworthiness characteristic(s) the element pertains to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Risk', 'Subcategory'], 'in_subset': ['trustworthiness']} })
     related_impacts: Optional[list[Impact]] = Field(default=None, description="""The impacts that contribute to a risk.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Risk'], 'in_subset': ['risk_and_harm']} })
     affects_system: Optional[str] = Field(default=None, description="""The AI system a risk pertains to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Risk'], 'in_subset': ['risk_and_harm']} })
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
-class RiskTolerance(NamedThing):
+class RiskTolerance(NamedThingRMF):
     """
     The organization's or AI actor's readiness to bear risk in order
     to achieve its objectives (Adapted from ISO Guide 73). Risk
@@ -1047,20 +1087,24 @@ class RiskTolerance(NamedThing):
 
     tolerance_statement: Optional[str] = Field(default=None, description="""Free-text statement of a risk tolerance level or threshold.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RiskTolerance'], 'in_subset': ['risk_and_harm']} })
     legal_basis: Optional[str] = Field(default=None, description="""Legal or regulatory requirements influencing a risk tolerance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RiskTolerance'], 'in_subset': ['risk_and_harm']} })
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
-class RiskMeasurementChallenge(NamedThing):
+class RiskMeasurementChallenge(NamedThingRMF):
     """
     A challenge that complicates measurement of AI risks
     (Part 1 §1.2.1).
@@ -1069,20 +1113,24 @@ class RiskMeasurementChallenge(NamedThing):
          'in_subset': ['risk_and_harm']})
 
     challenge_kind: RiskMeasurementChallengeEnum = Field(default=..., description="""Which risk-measurement challenge a `RiskMeasurementChallenge` represents.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RiskMeasurementChallenge'], 'in_subset': ['risk_and_harm']} })
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
-class TrustworthinessCharacteristic(NamedThing):
+class TrustworthinessCharacteristic(NamedThingRMF):
     """
     A characteristic of a trustworthy AI system (Figure 4 / Part 1
     §3). The seven characteristics are inter-related; addressing them
@@ -1101,20 +1149,24 @@ of all others).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Trustwo
     is_cross_cutting: Optional[bool] = Field(default=None, description="""True when this characteristic relates to all others
 (Accountable and Transparent; shown vertically in Figure 4).""", json_schema_extra = { "linkml_meta": {'domain_of': ['TrustworthinessCharacteristic'],
          'in_subset': ['trustworthiness']} })
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
-class Bias(NamedThing):
+class Bias(NamedThingRMF):
     """
     A form of AI bias - a deviation that may be perpetuated or
     amplified by AI systems. NIST identifies three major categories:
@@ -1126,20 +1178,24 @@ class Bias(NamedThing):
          'related_mappings': ['iso29100:PrivacyPrinciple']})
 
     bias_category: Optional[list[BiasCategoryEnum]] = Field(default=None, description="""Category or categories of bias addressed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Bias'], 'in_subset': ['trustworthiness']} })
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
-class Function(NamedThing):
+class Function(NamedThingRMF):
     """
     A top-level AI RMF Core function. Each function organizes AI risk
     management activities at the highest level. GOVERN applies across
@@ -1158,20 +1214,24 @@ class Function(NamedThing):
 
     function_code: str = Field(default=..., description="""The function code (GOVERN, MAP, MEASURE, or MANAGE).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Function'], 'in_subset': ['framework_core']} })
     categories: Optional[list[Category]] = Field(default=None, description="""Categories that belong to a Function.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Function'], 'in_subset': ['framework_core']} })
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
-class Category(NamedThing):
+class Category(NamedThingRMF):
     """
     A category within an AI RMF Core function (e.g., \"GOVERN 1:
     Policies, processes, procedures, and practices ... are in place,
@@ -1198,20 +1258,24 @@ result of carrying out its actions.""", json_schema_extra = { "linkml_meta": {'c
          'in_subset': ['framework_core']} })
     subcategories: Optional[list[Subcategory]] = Field(default=None, description="""Subcategories that belong to a Category.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Category'], 'in_subset': ['framework_core']} })
     id: str = Field(default=..., description="""Identifier for the category, typically using the
-\"FUNCTION N\" form (e.g., \"GOVERN 1\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+\"FUNCTION N\" form (e.g., \"GOVERN 1\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
-class Subcategory(NamedThing):
+class Subcategory(NamedThingRMF):
     """
     A subcategory within an AI RMF Core category (e.g., \"GOVERN 1.1:
     Legal and regulatory requirements involving AI are understood,
@@ -1252,20 +1316,24 @@ preserving the original case used in the AI RMF Playbook
 (e.g., \"Governance and Oversight\", \"TEVV\"). For controlled
 enum values see `actor_task` (range AiActorTaskEnum).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Subcategory'], 'in_subset': ['playbook']} })
     id: str = Field(default=..., description="""Identifier for the subcategory in the \"FUNCTION N.M\" form
-(e.g., \"GOVERN 1.1\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+(e.g., \"GOVERN 1.1\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
-class AiRmfProfile(NamedThing):
+class AiRmfProfile(NamedThingRMF):
     """
     An implementation of the AI RMF Functions, Categories, and
     Subcategories for a specific setting or application based on the
@@ -1286,20 +1354,24 @@ desired AI risk management goals.""", json_schema_extra = { "linkml_meta": {'dom
     sector: Optional[str] = Field(default=None, description="""The sector, industry, technology, or end-use application a
 profile addresses (e.g., \"hiring\", \"fair housing\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfProfile'], 'in_subset': ['profiles']} })
     addresses: Optional[list[str]] = Field(default=None, description="""Subcategories that a profile implements or addresses.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfProfile'], 'in_subset': ['profiles']} })
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
-class RmfAttribute(NamedThing):
+class RmfAttribute(NamedThingRMF):
     """
     A design attribute of the AI RMF (Appendix D) - one of the
     qualities the Framework strives to embody (e.g., risk-based,
@@ -1311,20 +1383,24 @@ class RmfAttribute(NamedThing):
          'in_subset': ['attributes'],
          'related_mappings': ['nist_csf:CSFProperty']})
 
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
-class AiSpecificRisk(NamedThing):
+class AiSpecificRisk(NamedThingRMF):
     """
     A risk that is new or increased for AI-based technology compared
     to traditional software (Appendix B) - e.g., data quality, model
@@ -1336,20 +1412,24 @@ class AiSpecificRisk(NamedThing):
          'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['ai_risk_distinctions']})
 
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
-class HumanAiInteractionIssue(NamedThing):
+class HumanAiInteractionIssue(NamedThingRMF):
     """
     An issue that merits further consideration in human-AI
     interaction (Appendix C) - e.g., clear human roles and
@@ -1361,17 +1441,21 @@ class HumanAiInteractionIssue(NamedThing):
          'in_subset': ['human_ai_interaction'],
          'related_mappings': ['iso27001:InterestedParty']})
 
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
 class PlaybookEntry(ConfiguredBaseModel):
@@ -1394,10 +1478,10 @@ class PlaybookEntry(ConfiguredBaseModel):
 (Title case - \"Govern\", \"Map\", \"Measure\", \"Manage\"). For
 the controlled enum see `function_kind`.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlaybookEntry']} })
     title: Optional[str] = Field(default=None, description="""Subcategory identifier (e.g., \"GOVERN 1.1\"). Mirrors the
-AI RMF Subcategory `subcategory_id`.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry']} })
+AI RMF Subcategory `subcategory_id`.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry']} })
     category: Optional[str] = Field(default=None, description="""Category code in the form \"FUNCTION-N\" (e.g., \"GOVERN-1\")
 as used in the Playbook.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlaybookEntry']} })
-    description: Optional[str] = Field(default=None, description="""Outcome statement of the subcategory.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry']} })
+    description: Optional[str] = Field(default=None, description="""Outcome statement of the subcategory.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry']} })
     section_about: Optional[str] = Field(default=None, description="""Free-text discussion (\"About\" section).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlaybookEntry']} })
     section_actions: Optional[str] = Field(default=None, description="""Bulleted suggested actions (\"Actions\" section).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlaybookEntry']} })
     section_doc: Optional[str] = Field(default=None, description="""Documentation questions and transparency resources
@@ -1423,7 +1507,7 @@ class PlaybookCollection(ConfiguredBaseModel):
     entries: Optional[list[PlaybookEntry]] = Field(default=None, description="""The Playbook entries in a `PlaybookCollection`.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlaybookCollection'], 'in_subset': ['playbook']} })
 
 
-class AiRmfDocument(NamedThing):
+class AiRmfDocument(NamedThingRMF):
     """
     Publication metadata for an instance of the AI RMF (e.g., NIST
     AI 100-1, January 2023). The Framework is intended to be a
@@ -1448,20 +1532,24 @@ class AiRmfDocument(NamedThing):
 or section it originated from).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfDocument'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:source'} })
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
-class AiRmfFramework(NamedThing):
+class AiRmfFramework(NamedThingRMF):
     """
     Root container that bundles the AI RMF Core (Functions) with
     foundational concepts (trustworthiness characteristics,
@@ -1490,22 +1578,26 @@ class AiRmfFramework(NamedThing):
     risk_measurement_challenges: Optional[list[RiskMeasurementChallenge]] = Field(default=None, description="""Identified challenges in measuring AI risk.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfFramework'], 'in_subset': ['risk_and_harm']} })
     ai_specific_risks: Optional[list[AiSpecificRisk]] = Field(default=None, description="""AI-specific risks compared to traditional software (Appendix B).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfFramework'], 'in_subset': ['ai_risk_distinctions']} })
     human_ai_interaction_issues: Optional[list[HumanAiInteractionIssue]] = Field(default=None, description="""Human-AI interaction considerations (Appendix C).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfFramework'], 'in_subset': ['human_ai_interaction']} })
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'PlaybookEntry'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF', 'PlaybookEntry'],
          'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingRMF'],
+         'in_subset': ['base'],
+         'slot_uri': 'rdfs:seeAlso'} })
 
 
 # Model rebuild
 # see https://pydantic-docs.helpmanual.io/usage/models/#rebuilding-a-model
-NamedThing.model_rebuild()
+NamedThingRMF.model_rebuild()
 AiSystem.model_rebuild()
 AiSystemDimension.model_rebuild()
 AiLifecycleStage.model_rebuild()

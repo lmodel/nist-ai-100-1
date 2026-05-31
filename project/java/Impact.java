@@ -15,12 +15,12 @@ can manifest as opportunities (positive) or threats (negative).
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class Impact extends NamedThing {
+public class Impact extends NamedThingRMF {
 
   private String impactSign;
   private String magnitude;
   private Float likelihood;
-  private List<NamedThing> affects;
+  private List<NamedThingRMF> affects;
 
 
 }

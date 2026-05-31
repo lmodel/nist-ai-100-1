@@ -18,7 +18,7 @@ environmental cost.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class AiSpecificRisk extends NamedThing {
+public class AiSpecificRisk extends NamedThingRMF {
 
 
 

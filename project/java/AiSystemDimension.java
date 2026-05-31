@@ -16,7 +16,7 @@ or People and Planet.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class AiSystemDimension extends NamedThing {
+public class AiSystemDimension extends NamedThingRMF {
 
   private String dimensionKind;
 

@@ -30,7 +30,7 @@
 #   - https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf
 # mapping_date: 2026-05-14
 subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	comment
-nist_ai_100_1:NamedThing	NamedThing	skos:closeMatch	schema:Thing	Thing	semapv:LLMBasedMatching	Generic root class; both are top-level abstractions.
+nist_ai_100_1:NamedThingRMF	NamedThingRMF	skos:closeMatch	schema:Thing	Thing	semapv:LLMBasedMatching	Generic root class; both are top-level abstractions.
 nist_ai_100_1:AiRmfFramework	AiRmfFramework	skos:closeMatch	nist_csf:CSFDocument	CSFDocument	semapv:LLMBasedMatching	Root container of an AI RMF document; analogous to CSF document root.
 nist_ai_100_1:AiRmfFramework	AiRmfFramework	skos:closeMatch	oscal_catalog:Catalog	Catalog	semapv:LLMBasedMatching	Both are top-level structured catalogs of framework outcomes.
 nist_ai_100_1:AiRmfFramework	AiRmfFramework	skos:closeMatch	nist_sp_800_53:Catalog	Catalog	semapv:LLMBasedMatching	NIST SP 800-53 catalog is the analogous structure for SP 800-53 controls.
