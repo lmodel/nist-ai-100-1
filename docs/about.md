@@ -20,11 +20,11 @@ The schema is split into two import modules so the framework has one canonical b
 | Tree root | `AiRmfFramework` |
 | Source document | NIST AI 100-1 (January 2023), DOI [10.6028/NIST.AI.100-1](https://doi.org/10.6028/NIST.AI.100-1) |
 | Coverage | Part 1 (Framing Risk, Audience, Trustworthiness), Part 2 (AI RMF Core, Profiles), Appendix A (Actor Tasks), Appendix B (AI vs traditional software risk), Appendix C (Human-AI interaction), Appendix D (Framework attributes), plus the AI RMF Playbook companion data shape |
-| Size | 25 classes, 77 slots, 13 enums, 3 types, 10 subsets |
+| Size | 25 classes, 77 slots, 14 enums, 3 types, 10 subsets |
 | Lint | Clean (`linkml-lint`) |
 | Tests | 6 valid fixtures pass (`pytest` via `just test`); 4 counter-example fixtures fail as expected (`just test-data`); third-party NIST AI RMF Playbook (72 records) validated as `PlaybookCollection` in a separate pytest run (`just test-third-party`, also wired into `just test`) |
-| Mappings | SSSOM TSV at `src/nist_ai_100_1/mappings/nist_ai_100_1.sssom.tsv`; `scripts/verify_mappings.py --strict` reports `missing=0 extra=0 unknown=0` against NIST CSF v2, NIST SP 800-53, OSCAL catalog/profile, ISO 27001, ISO 29100, GIST, schema.org, PROV, FOAF, DCTERMS |
-| Last verified | 2026-05-28 |
+| Mappings | Two SSSOM TSVs under `src/nist_ai_100_1/mappings/`: element-level mappings (`nist_ai_100_1.sssom.tsv`) and cross-framework category alignments (`nist_ai_rmf.sssom.tsv`, carried on the `CategoryEnum` permissible values for `GOVERN-1` … `MANAGE-4`). `scripts/verify_mappings.py --strict` reports `missing=0 extra=0 unknown=0` (7 sibling-schema subjects in `nist_ai_rmf` / `nist_ai_600_1` skipped). Targets: NIST CSF v2, NIST SP 800-53, OSCAL catalog/profile, ISO 27001, ISO 29100, GIST, STIX, schema.org, PROV, FOAF, DCTERMS, plus EU AI Act, SOC 2 TSC, OWASP LLM Top 10, OWASP ASI Top 10, and Microsoft AGT ATF |
+| Last verified | 2026-05-31 |
 
 ## Subsets
 
@@ -34,8 +34,8 @@ The schema is partitioned into ten subsets so consumers can adopt only the parts
 - `trustworthiness` (Part 1 §3),
 - `lifecycle` (Part 1 §2, Figures 2-3, Appendix A),
 - `risk_and_harm` (Part 1 §1),
-- `profiles` (Part 2 §6),
-- `attributes` (Appendix D),
+- `profile_constructs` (Part 2 §6),
+- `framework_attributes` (Appendix D),
 - `ai_risk_distinctions` (Appendix B),
 - `human_ai_interaction` (Appendix C),
 - `playbook` (companion resource).

@@ -1,6 +1,8 @@
 {
+   "agt_atf": "https://github.com/microsoft/agent-governance-toolkit/blob/main/docs/compliance/atf-conformance-assessment.md#",
    "dcterms": "http://purl.org/dc/terms/",
    "doi": "https://doi.org/",
+   "eu_ai_act": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj#",
    "foaf": "http://xmlns.com/foaf/0.1/",
    "gist_linkml": "https://w3id.org/lmodel/gist/",
    "iso27001": "https://w3id.org/lmodel/iso27001/",
@@ -12,11 +14,14 @@
    "nist_sp_800_53": "https://w3id.org/lmodel/nist-sp-800-53/",
    "oscal_catalog": "https://w3id.org/lmodel/oscal_catalog/",
    "oscal_profile": "https://w3id.org/lmodel/oscal_profile/",
+   "owasp_asi": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/asi-",
+   "owasp_llm": "https://genai.owasp.org/resource/owasp-top-10-for-llm-applications/llm-",
    "prov": "http://www.w3.org/ns/prov#",
    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
    "schema": "http://schema.org/",
    "skos": "http://www.w3.org/2004/02/skos/core#",
+   "soc2": "https://w3id.org/lmodel/soc2-tsc/",
    "stix": "https://w3id.org/lmodel/stix/",
    "xsd": "http://www.w3.org/2001/XMLSchema#",
    "NamedThing": {

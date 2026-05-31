@@ -43,6 +43,13 @@ prefixes:
   gist_linkml: https://w3id.org/lmodel/gist/
   stix: https://w3id.org/lmodel/stix/
   doi: https://doi.org/
+  # External frameworks cross-referenced by the umbrella SSSOM mapping set
+  # (src/nist_ai_100_1/mappings/nist_ai_rmf.sssom.tsv).
+  eu_ai_act: https://eur-lex.europa.eu/eli/reg/2024/1689/oj#
+  soc2: https://w3id.org/lmodel/soc2-tsc/
+  owasp_asi: https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/asi-
+  owasp_llm: https://genai.owasp.org/resource/owasp-top-10-for-llm-applications/llm-
+  agt_atf: https://github.com/microsoft/agent-governance-toolkit/blob/main/docs/compliance/atf-conformance-assessment.md#
 
 default_prefix: nist_ai_100_1
 default_range: string
@@ -76,12 +83,12 @@ subsets:
       measurement challenges, and risk response options (Part 1, §1
       "Framing Risk", incl. §1.2 Challenges).
 
-  profiles:
+  profile_constructs:
     description: |-
       AI RMF profile constructs (Part 2, §6): use-case profiles,
       temporal (current / target) profiles, and cross-sectoral profiles.
 
-  attributes:
+  framework_attributes:
     description: |-
       Design attributes of the AI RMF (Appendix D "Attributes of the
       AI RMF") - the qualities the Framework strives to embody.
@@ -160,6 +167,149 @@ enums:
           regular basis and as defined by the GOVERN function; risk
           treatment includes plans to respond to, recover from, and
           communicate about incidents or events.
+
+  CategoryEnum:
+    description: |-
+      The AI RMF Core categories (Part 2, §5) - the second-level groupings
+      within each Function, keyed by the compact "FUNCTION-N" code. Cross-
+      framework alignments (EU AI Act, SOC 2, OWASP LLM/ASI, Microsoft AGT
+      ATF) are attached as SSSOM mappings and are sourced from
+      src/nist_ai_100_1/mappings/nist_ai_rmf.sssom.tsv.
+    in_subset: [framework_core]
+    permissible_values:
+      GOVERN-1:
+        description: |-
+          Policies, processes, procedures, and practices across the organization
+          related to the mapping, measuring, and managing of AI risks are in
+          place, transparent, and implemented effectively.
+        related_mappings:
+          - eu_ai_act:Article9
+          - soc2:CC6.1
+          - agt_atf:A-1
+          - soc2:CC3.2
+          - agt_atf:A-3
+      GOVERN-2:
+        description: |-
+          Accountability structures are in place so that the appropriate teams
+          and individuals are empowered, responsible, and trained for mapping,
+          measuring, and managing AI risks.
+        related_mappings:
+          - eu_ai_act:Article12
+          - soc2:CC4.1
+          - agt_atf:A-5
+      GOVERN-3:
+        description: |-
+          Workforce diversity, equity, inclusion, and accessibility processes
+          are prioritized in the mapping, measuring, and managing of AI risks
+          throughout the lifecycle.
+        related_mappings:
+          - eu_ai_act:Article14
+      GOVERN-4:
+        description: |-
+          Organizational teams are committed to a culture that considers and
+          communicates AI risk.
+      GOVERN-5:
+        description: |-
+          Processes are in place for robust engagement with relevant AI actors.
+      GOVERN-6:
+        description: |-
+          Policies and procedures are in place to address AI risks and benefits
+          arising from third-party software and data and other supply chain
+          issues.
+        close_mappings:
+          - owasp_asi:04
+        related_mappings:
+          - eu_ai_act:Article28
+          - soc2:CC9.2
+          - owasp_llm:05
+      MAP-1:
+        description: |-
+          Context is established and understood.
+        related_mappings:
+          - eu_ai_act:Article9
+          - agt_atf:B-1
+      MAP-2:
+        description: |-
+          Categorization of the AI system is performed.
+        related_mappings:
+          - eu_ai_act:Article6
+          - agt_atf:A-3
+      MAP-3:
+        description: |-
+          AI capabilities, targeted usage, goals, and expected benefits and
+          costs compared with appropriate benchmarks are understood.
+        related_mappings:
+          - eu_ai_act:Article9
+      MAP-4:
+        description: |-
+          Risks and benefits are mapped for all components of the AI system
+          including third-party software and data.
+        related_mappings:
+          - eu_ai_act:Article9
+          - soc2:CC3.2
+          - owasp_asi:01
+      MAP-5:
+        description: |-
+          Impacts to individuals, groups, communities, organizations, and
+          society are characterized.
+        related_mappings:
+          - eu_ai_act:Article10
+          - soc2:P1
+          - owasp_llm:08
+      MEASURE-1:
+        description: |-
+          Appropriate methods and metrics are identified and applied.
+        related_mappings:
+          - eu_ai_act:Article9
+          - soc2:CC4.1
+      MEASURE-2:
+        description: |-
+          AI systems are evaluated for trustworthy characteristics.
+        related_mappings:
+          - eu_ai_act:Article9
+          - soc2:CC7.1
+      MEASURE-3:
+        description: |-
+          Mechanisms for tracking identified AI risks over time are in place.
+        related_mappings:
+          - eu_ai_act:Article9
+          - soc2:CC7.2
+      MEASURE-4:
+        description: |-
+          Feedback about efficacy of measurement is gathered and assessed.
+        related_mappings:
+          - eu_ai_act:Article9
+          - soc2:CC4.2
+      MANAGE-1:
+        description: |-
+          AI risks based on assessments and other analytical output from the MAP
+          and MEASURE functions are prioritized, responded to, and managed.
+        related_mappings:
+          - eu_ai_act:Article14
+          - soc2:CC7.3
+          - owasp_asi:08
+      MANAGE-2:
+        description: |-
+          Strategies to maximize AI benefits and minimize negative impacts are
+          planned, prepared, implemented, documented, and informed by input from
+          relevant AI actors.
+      MANAGE-3:
+        description: |-
+          AI risks and benefits from third-party entities are managed.
+        close_mappings:
+          - owasp_asi:04
+        related_mappings:
+          - eu_ai_act:Article28
+          - soc2:CC9.2
+      MANAGE-4:
+        description: |-
+          Risk treatments, including response and recovery, and communication
+          plans for the identified and measured AI risks are documented and
+          monitored regularly.
+        related_mappings:
+          - eu_ai_act:Article72
+          - soc2:CC7.1
+          - owasp_llm:09
 
   AiLifecycleStageEnum:
     description: |-
@@ -424,7 +574,7 @@ enums:
   ProfileTypeEnum:
     description: |-
       Types of AI RMF Profile (§6).
-    in_subset: [profiles]
+    in_subset: [profile_constructs]
     permissible_values:
       USE_CASE:
         description: |-
@@ -641,21 +791,21 @@ slots:
     range: ProfileTypeEnum
     required: true
     description: The kind of AI RMF Profile.
-    in_subset: [profiles]
+    in_subset: [profile_constructs]
 
   target_state:
     range: string
     description: |-
       For temporal target profiles - the outcomes needed to achieve the
       desired AI risk management goals.
-    in_subset: [profiles]
+    in_subset: [profile_constructs]
 
   current_state:
     range: string
     description: |-
       For temporal current profiles - how AI is currently being managed
       and related risks in terms of current outcomes.
-    in_subset: [profiles]
+    in_subset: [profile_constructs]
 
   # ----- Document / publication slots -----
 
@@ -738,7 +888,7 @@ slots:
     in_subset: [framework_core]
 
   category_code:
-    range: string
+    range: CategoryEnum
     description: |-
       Compact category code in the form "FUNCTION-N" (e.g.,
       "GOVERN-1") as used in the AI RMF Playbook.
@@ -834,13 +984,13 @@ slots:
     description: |-
       The sector, industry, technology, or end-use application a
       profile addresses (e.g., "hiring", "fair housing").
-    in_subset: [profiles]
+    in_subset: [profile_constructs]
 
   addresses:
     range: Subcategory
     multivalued: true
     description: Subcategories that a profile implements or addresses.
-    in_subset: [profiles]
+    in_subset: [profile_constructs]
 
   # ----- Playbook container slot -----
 
@@ -906,18 +1056,15 @@ slots:
     inlined: true
     inlined_as_list: true
     description: AI RMF profiles defined alongside this Framework instance.
-    in_subset: [profiles]
+    in_subset: [profile_constructs]
 
-  attributes_:
+  attributes:
     range: RmfAttribute
     multivalued: true
     inlined: true
     inlined_as_list: true
     description: Design attributes of the AI RMF (Appendix D).
-    slot_uri: nist_ai_100_1:attributes
-    aliases:
-      - rmf_attributes
-    in_subset: [attributes]
+    in_subset: [framework_attributes]
 
   risk_measurement_challenges:
     range: RiskMeasurementChallenge
@@ -1242,7 +1389,7 @@ classes:
       - target_state
       - sector
       - addresses
-    in_subset: [profiles]
+    in_subset: [profile_constructs]
     exact_mappings:
       - oscal_profile:Profile
     close_mappings:
@@ -1259,7 +1406,7 @@ classes:
       consensus-driven, plain language, common language, easily usable,
       universally applicable, outcome-focused, leveraging existing
       standards, law- and regulation-agnostic, living document).
-    in_subset: [attributes]
+    in_subset: [framework_attributes]
     related_mappings:
       - nist_csf:CSFProperty
 
@@ -1408,7 +1555,7 @@ classes:
       - dimensions
       - actor_tasks
       - profiles
-      - attributes_
+      - attributes
       - risk_measurement_challenges
       - ai_specific_risks
       - human_ai_interaction_issues
