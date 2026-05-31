@@ -98,7 +98,7 @@ subsets:
     name: base
     definition_uri: https://w3id.org/lmodel/nist-ai-100-1/Base
     description: "Schema-infrastructure elements shared across the framework:\nidentifier\
-      \ slots, the abstract `NamedThing` root, publication\nmetadata, and the top-level\
+      \ slots, the abstract `NamedThingRMF` root, publication\nmetadata, and the top-level\
       \ `AiRmfFramework` container. Not a\nsection of NIST AI 100-1 itself - distinct\
       \ from `framework_core`\n(Part 2, \xA75 \"AI RMF Core\")."
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
@@ -1016,9 +1016,9 @@ slots:
     - schema:identifier
     slot_uri: schema:identifier
     identifier: true
-    owner: NamedThing
+    owner: NamedThingRMF
     domain_of:
-    - NamedThing
+    - NamedThingRMF
     range: uriorcurie
     required: true
   name:
@@ -1031,9 +1031,9 @@ slots:
     mappings:
     - rdfs:label
     slot_uri: rdfs:label
-    owner: NamedThing
+    owner: NamedThingRMF
     domain_of:
-    - NamedThing
+    - NamedThingRMF
     range: string
   title:
     name: title
@@ -1045,9 +1045,9 @@ slots:
     mappings:
     - dcterms:title
     slot_uri: dcterms:title
-    owner: NamedThing
+    owner: NamedThingRMF
     domain_of:
-    - NamedThing
+    - NamedThingRMF
     range: string
   description:
     name: description
@@ -1059,9 +1059,9 @@ slots:
     mappings:
     - dcterms:description
     slot_uri: dcterms:description
-    owner: NamedThing
+    owner: NamedThingRMF
     domain_of:
-    - NamedThing
+    - NamedThingRMF
     range: string
   source:
     name: source
@@ -1089,9 +1089,9 @@ slots:
     mappings:
     - rdfs:seeAlso
     slot_uri: rdfs:seeAlso
-    owner: NamedThing
+    owner: NamedThingRMF
     domain_of:
-    - NamedThing
+    - NamedThingRMF
     range: uriorcurie
     multivalued: true
   function_code:
@@ -1266,7 +1266,7 @@ slots:
     domain_of:
     - Impact
     - Harm
-    range: NamedThing
+    range: NamedThingRMF
     multivalued: true
   risk_response:
     name: risk_response
@@ -2211,9 +2211,9 @@ slots:
     range: uriorcurie
     required: true
 classes:
-  NamedThing:
-    name: NamedThing
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/NamedThing
+  NamedThingRMF:
+    name: NamedThingRMF
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/NamedThingRMF
     description: A generic grouping for any identifiable AI RMF element.
     in_subset:
     - base
@@ -2249,7 +2249,7 @@ classes:
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
     close_mappings:
     - schema:SoftwareApplication
-    is_a: NamedThing
+    is_a: NamedThingRMF
     slots:
     - id
     - name
@@ -2270,7 +2270,7 @@ classes:
     in_subset:
     - lifecycle
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
-    is_a: NamedThing
+    is_a: NamedThingRMF
     slots:
     - id
     - name
@@ -2290,7 +2290,7 @@ classes:
     in_subset:
     - lifecycle
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
-    is_a: NamedThing
+    is_a: NamedThingRMF
     slots:
     - id
     - name
@@ -2319,7 +2319,7 @@ classes:
     related_mappings:
     - stix:Identity
     - iso27001:InterestedParty
-    is_a: NamedThing
+    is_a: NamedThingRMF
     slots:
     - id
     - name
@@ -2342,7 +2342,7 @@ classes:
     in_subset:
     - lifecycle
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
-    is_a: NamedThing
+    is_a: NamedThingRMF
     slots:
     - id
     - name
@@ -2373,7 +2373,7 @@ classes:
     - iso27001:Risk
     related_mappings:
     - iso29100:PrivacyRisk
-    is_a: NamedThing
+    is_a: NamedThingRMF
     slots:
     - id
     - name
@@ -2401,7 +2401,7 @@ classes:
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
     narrow_mappings:
     - iso27001:ImpactRating
-    is_a: NamedThing
+    is_a: NamedThingRMF
     slots:
     - id
     - name
@@ -2424,7 +2424,7 @@ classes:
     in_subset:
     - risk_and_harm
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
-    is_a: NamedThing
+    is_a: NamedThingRMF
     slots:
     - id
     - name
@@ -2487,7 +2487,7 @@ classes:
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
     close_mappings:
     - iso27001:RiskLevel
-    is_a: NamedThing
+    is_a: NamedThingRMF
     slots:
     - id
     - name
@@ -2505,7 +2505,7 @@ classes:
     in_subset:
     - risk_and_harm
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
-    is_a: NamedThing
+    is_a: NamedThingRMF
     slots:
     - id
     - name
@@ -2523,7 +2523,7 @@ classes:
     in_subset:
     - trustworthiness
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
-    is_a: NamedThing
+    is_a: NamedThingRMF
     slots:
     - id
     - name
@@ -2545,7 +2545,7 @@ classes:
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
     related_mappings:
     - iso29100:PrivacyPrinciple
-    is_a: NamedThing
+    is_a: NamedThingRMF
     slots:
     - id
     - name
@@ -2571,7 +2571,7 @@ classes:
     - nist_csf:CSFFunction
     related_mappings:
     - gist_linkml:Function
-    is_a: NamedThing
+    is_a: NamedThingRMF
     slots:
     - id
     - name
@@ -2603,7 +2603,7 @@ classes:
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_csf:CSFCategory
-    is_a: NamedThing
+    is_a: NamedThingRMF
     slots:
     - name
     - title
@@ -2644,7 +2644,7 @@ classes:
     close_mappings:
     - oscal_catalog:Control
     - nist_sp_800_53:Control
-    is_a: NamedThing
+    is_a: NamedThingRMF
     slots:
     - name
     - title
@@ -2682,7 +2682,7 @@ classes:
     - oscal_profile:Profile
     close_mappings:
     - nist_sp_800_53:ProfileDocument
-    is_a: NamedThing
+    is_a: NamedThingRMF
     slots:
     - id
     - name
@@ -2712,7 +2712,7 @@ classes:
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
     related_mappings:
     - nist_csf:CSFProperty
-    is_a: NamedThing
+    is_a: NamedThingRMF
     slots:
     - id
     - name
@@ -2737,7 +2737,7 @@ classes:
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
     broad_mappings:
     - iso27001:Risk
-    is_a: NamedThing
+    is_a: NamedThingRMF
     slots:
     - id
     - name
@@ -2762,7 +2762,7 @@ classes:
     from_schema: https://w3id.org/lmodel/nist-ai-100-1
     related_mappings:
     - iso27001:InterestedParty
-    is_a: NamedThing
+    is_a: NamedThingRMF
     slots:
     - id
     - name
@@ -2897,7 +2897,7 @@ classes:
     - nist_csf:CSFMetadata
     related_mappings:
     - schema:CreativeWork
-    is_a: NamedThing
+    is_a: NamedThingRMF
     slots:
     - id
     - name
@@ -2929,7 +2929,7 @@ classes:
     - nist_csf:CSFDocument
     - oscal_catalog:Catalog
     - nist_sp_800_53:Catalog
-    is_a: NamedThing
+    is_a: NamedThingRMF
     slots:
     - id
     - name
@@ -2951,7 +2951,7 @@ classes:
     tree_root: true
 metamodel_version: 1.11.0
 source_file: nist_ai_100_1.yaml
-source_file_date: '2026-05-29T07:20:17'
-source_file_size: 51436
-generation_date: '2026-05-29T07:20:30'
+source_file_date: '2026-05-31T01:02:32'
+source_file_size: 51508
+generation_date: '2026-05-31T01:02:43'
 
