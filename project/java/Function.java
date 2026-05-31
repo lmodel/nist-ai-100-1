@@ -17,7 +17,7 @@ contexts and lifecycle stages.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class Function extends NamedThingRMF {
+public class Function extends NamedThing {
 
   private String functionCode;
   private List<Category> categories;

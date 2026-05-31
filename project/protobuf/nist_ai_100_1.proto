@@ -200,7 +200,7 @@ message Harm
   harmCategoryEnum harmCategory = 0
   harmToPeopleSubcategoryEnum harmToPeopleSubcategory = 0
   string magnitude = 0
- repeated  namedThingRMF affects = 0
+ repeated  namedThing affects = 0
  }
 // An issue that merits further consideration in human-AI
 // interaction (Appendix C) - e.g., clear human roles and
@@ -227,7 +227,7 @@ message Impact
   impactSignEnum impactSign = 0
   string magnitude = 0
   float likelihood = 0
- repeated  namedThingRMF affects = 0
+ repeated  namedThing affects = 0
  }
 // A container for a set of PlaybookEntry instances - the
 // serialisation root for an AI RMF Playbook companion document.

@@ -1,0 +1,174 @@
+---
+id: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
+name: nist-ai-rmf-common
+title: NIST AI RMF Common Base
+description: |-
+  Shared base vocabulary for the NIST AI Risk Management Framework
+  family. Factored out of NIST AI 100-1 so that the GAI Profile
+  (NIST AI 600-1) and the `nist-ai-rmf` umbrella can import a single,
+  canonical definition of the framework's identity and trustworthiness
+  scaffolding instead of re-inlining their own copies (which collide
+  when both are merged into one namespace).
+
+  Hosted in the `nist-ai-100-1` repository and resolvable via the
+  existing `nist_ai_100_1:schema/` w3id redirect; consumers import it
+  as `nist_ai_100_1:schema/nist_ai_rmf_common`.
+license: Apache-2.0
+source: https://doi.org/10.6028/NIST.AI.100-1
+version: 1.0.0
+see_also:
+  - https://doi.org/10.6028/NIST.AI.100-1
+  - https://www.nist.gov/itl/ai-risk-management-framework
+
+prefixes:
+  nist_ai_100_1: https://w3id.org/lmodel/nist-ai-100-1/
+  linkml: https://w3id.org/linkml/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: nist_ai_100_1
+default_range: string
+
+imports:
+  - linkml:types
+
+# ============================================================================
+# Subsets
+# ============================================================================
+subsets:
+  base:
+    description: |-
+      Schema-infrastructure elements shared across the framework:
+      identifier slots and the abstract `NamedThing` root.
+
+  trustworthiness:
+    description: |-
+      Characteristics of trustworthy AI systems (NIST AI 100-1 Part 1,
+      §3): Valid and Reliable, Safe, Secure and Resilient, Accountable
+      and Transparent, Explainable and Interpretable, Privacy-Enhanced,
+      and Fair with Harmful Bias Managed.
+
+# ============================================================================
+# Types - custom scalars
+# ============================================================================
+types:
+  SubcategoryCode:
+    typeof: string
+    base: str
+    uri: xsd:string
+    pattern: "^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+\\.[0-9]+$"
+    description: Identifier for a Core subcategory (e.g., "GOVERN 1.1").
+
+# ============================================================================
+# Enums
+# ============================================================================
+enums:
+  TrustworthinessCharacteristicEnum:
+    description: |-
+      The seven characteristics of trustworthy AI systems described in
+      Figure 4 and Part 1 §3.
+    in_subset: [trustworthiness]
+    permissible_values:
+      VALID_AND_RELIABLE:
+        description: |-
+          Confirmation that requirements for a specific intended use have
+          been fulfilled (validation) and that the system performs as
+          required without failure (reliability). A necessary condition of
+          trustworthiness and the base for other characteristics.
+      SAFE:
+        description: |-
+          The system does not, under defined conditions, lead to a state
+          in which human life, health, property, or the environment is
+          endangered.
+      SECURE_AND_RESILIENT:
+        description: |-
+          The system can withstand unexpected adverse events or changes
+          (resilient) and maintain confidentiality, integrity, and
+          availability through protection mechanisms (secure).
+      ACCOUNTABLE_AND_TRANSPARENT:
+        description: |-
+          Trustworthy AI depends on accountability, which presupposes
+          transparency - the extent to which information about an AI
+          system and its outputs is available to those interacting with
+          it.
+      EXPLAINABLE_AND_INTERPRETABLE:
+        description: |-
+          Explainability concerns the mechanisms underlying an AI system's
+          operation; interpretability concerns the meaning of its output
+          in context.
+      PRIVACY_ENHANCED:
+        description: |-
+          Norms and practices that help safeguard human autonomy,
+          identity, and dignity - including anonymity, confidentiality,
+          and control over personal information.
+      FAIR_WITH_HARMFUL_BIAS_MANAGED:
+        description: |-
+          Concerns for equality and equity by addressing issues such as
+          harmful bias and discrimination, and recognising that
+          perceptions of fairness differ across cultures and
+          applications.
+
+# ============================================================================
+# Slots
+# ============================================================================
+slots:
+  id:
+    identifier: true
+    range: uriorcurie
+    required: true
+    description: A unique identifier for an element.
+    slot_uri: schema:identifier
+    in_subset: [base]
+
+  name:
+    range: string
+    description: A short human-readable name.
+    slot_uri: rdfs:label
+    in_subset: [base]
+
+  title:
+    range: string
+    description: A human-readable title.
+    slot_uri: dcterms:title
+    in_subset: [base]
+
+  description:
+    range: string
+    description: A human-readable description.
+    slot_uri: dcterms:description
+    in_subset: [base]
+
+  see_also:
+    range: uriorcurie
+    multivalued: true
+    description: Related references.
+    slot_uri: rdfs:seeAlso
+    in_subset: [base]
+
+  trustworthiness_characteristic:
+    range: TrustworthinessCharacteristicEnum
+    multivalued: true
+    description: |-
+      Trustworthiness characteristic(s) the element pertains to.
+    in_subset: [trustworthiness]
+
+# ============================================================================
+# Classes
+# ============================================================================
+classes:
+  NamedThing:
+    abstract: true
+    description: A generic grouping for any identifiable AI RMF element.
+    slots:
+      - id
+      - name
+      - title
+      - description
+      - see_also
+    class_uri: schema:Thing
+    in_subset: [base]
+    close_mappings:
+      - schema:Thing

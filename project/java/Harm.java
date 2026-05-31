@@ -16,12 +16,12 @@ the planet (Figure 1).
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class Harm extends NamedThingRMF {
+public class Harm extends NamedThing {
 
   private String harmCategory;
   private String harmToPeopleSubcategory;
   private String magnitude;
-  private List<NamedThingRMF> affects;
+  private List<NamedThing> affects;
 
 
 }

@@ -18,7 +18,7 @@ or cross-sectoral.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class AiRmfProfile extends NamedThingRMF {
+public class AiRmfProfile extends NamedThing {
 
   private String profileType;
   private String currentState;

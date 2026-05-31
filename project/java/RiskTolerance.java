@@ -17,7 +17,7 @@ specific.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class RiskTolerance extends NamedThingRMF {
+public class RiskTolerance extends NamedThing {
 
   private String toleranceStatement;
   private String legalBasis;

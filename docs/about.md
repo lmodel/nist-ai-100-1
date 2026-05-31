@@ -2,10 +2,14 @@
 
 LinkML schema for the **NIST Artificial Intelligence Risk Management Framework (AI RMF 1.0)**, published as [NIST AI 100-1](https://doi.org/10.6028/NIST.AI.100-1) (January 2023).
 
-This is a standalone module covering the AI RMF 1.0 core publication
-only. The Generative AI Profile (NIST AI 600-1) lives in the sibling
-`nist-ai-600-1` repository, and the umbrella distribution that bundles
-both lives in `nist-ai-rmf`.
+This module covers the AI RMF 1.0 core publication. The Generative AI Profile (NIST AI 600-1) lives in the sibling `nist-ai-600-1` repository, and the umbrella distribution that bundles both lives in `nist-ai-rmf`.
+
+## Design
+
+The schema is split into two import modules so the framework has one canonical base instead of colliding copies re-inlined per repo:
+
+- **`nist_ai_rmf_common`** ([`schema/nist_ai_rmf_common.yaml`](https://github.com/lmodel/nist-ai-100-1/blob/main/src/nist_ai_100_1/schema/nist_ai_rmf_common.yaml)) — the shared base vocabulary: the abstract `NamedThing` root, the `id`/`name`/`title`/`description`/`see_also` slots, the `SubcategoryCode` type, and `TrustworthinessCharacteristicEnum`. Hosted here and imported by `nist-ai-600-1` and the `nist-ai-rmf` umbrella.
+- **`nist_ai_100_1`** — the AI RMF 1.0 content, importing common. All concept classes derive from `NamedThing`.
 
 ## Status
 
@@ -24,8 +28,7 @@ both lives in `nist-ai-rmf`.
 
 ## Subsets
 
-The schema is partitioned into ten subsets so consumers can adopt only
-the parts they need:
+The schema is partitioned into ten subsets so consumers can adopt only the parts they need:
 
 - `base`, `framework_core` (Part 2 §5),
 - `trustworthiness` (Part 1 §3),

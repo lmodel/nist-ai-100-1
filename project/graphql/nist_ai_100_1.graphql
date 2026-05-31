@@ -276,7 +276,7 @@ type Harm
     harmCategory: HarmCategoryEnum
     harmToPeopleSubcategory: HarmToPeopleSubcategoryEnum
     magnitude: String
-    affects: [NamedThingRMF]
+    affects: [NamedThing]
   }
 
 type HumanAiInteractionIssue
@@ -298,10 +298,10 @@ type Impact
     impactSign: ImpactSignEnum
     magnitude: String
     likelihood: Float
-    affects: [NamedThingRMF]
+    affects: [NamedThing]
   }
 
-interface NamedThingRMF
+interface NamedThing
   {
     id: String!
     name: String

@@ -1,5 +1,5 @@
 # Auto generated from nist_ai_100_1.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-05-31T02:01:09
+# Generation date: 2026-05-31T03:01:08
 # Schema: nist-ai-100-1
 #
 # id: https://w3id.org/lmodel/nist-ai-100-1
@@ -122,39 +122,39 @@ class SubcategoryCode(String):
 
 
 # Class references
-class NamedThingRMFId(URIorCURIE):
+class NamedThingId(URIorCURIE):
     pass
 
 
-class AiSystemId(NamedThingRMFId):
+class AiSystemId(NamedThingId):
     pass
 
 
-class AiSystemDimensionId(NamedThingRMFId):
+class AiSystemDimensionId(NamedThingId):
     pass
 
 
-class AiLifecycleStageId(NamedThingRMFId):
+class AiLifecycleStageId(NamedThingId):
     pass
 
 
-class AiActorId(NamedThingRMFId):
+class AiActorId(NamedThingId):
     pass
 
 
-class AiActorTaskId(NamedThingRMFId):
+class AiActorTaskId(NamedThingId):
     pass
 
 
-class RiskId(NamedThingRMFId):
+class RiskId(NamedThingId):
     pass
 
 
-class ImpactId(NamedThingRMFId):
+class ImpactId(NamedThingId):
     pass
 
 
-class HarmId(NamedThingRMFId):
+class HarmId(NamedThingId):
     pass
 
 
@@ -162,875 +162,56 @@ class ResidualRiskId(RiskId):
     pass
 
 
-class RiskToleranceId(NamedThingRMFId):
+class RiskToleranceId(NamedThingId):
     pass
 
 
-class RiskMeasurementChallengeId(NamedThingRMFId):
+class RiskMeasurementChallengeId(NamedThingId):
     pass
 
 
-class TrustworthinessCharacteristicId(NamedThingRMFId):
+class TrustworthinessCharacteristicId(NamedThingId):
     pass
 
 
-class BiasId(NamedThingRMFId):
+class BiasId(NamedThingId):
     pass
 
 
-class FunctionId(NamedThingRMFId):
+class FunctionId(NamedThingId):
     pass
 
 
-class CategoryId(NamedThingRMFId):
+class CategoryId(NamedThingId):
     pass
 
 
-class SubcategoryId(NamedThingRMFId):
+class SubcategoryId(NamedThingId):
     pass
 
 
-class AiRmfProfileId(NamedThingRMFId):
+class AiRmfProfileId(NamedThingId):
     pass
 
 
-class RmfAttributeId(NamedThingRMFId):
+class RmfAttributeId(NamedThingId):
     pass
 
 
-class AiSpecificRiskId(NamedThingRMFId):
+class AiSpecificRiskId(NamedThingId):
     pass
 
 
-class HumanAiInteractionIssueId(NamedThingRMFId):
+class HumanAiInteractionIssueId(NamedThingId):
     pass
 
 
-class AiRmfDocumentId(NamedThingRMFId):
+class AiRmfDocumentId(NamedThingId):
     pass
 
 
-class AiRmfFrameworkId(NamedThingRMFId):
+class AiRmfFrameworkId(NamedThingId):
     pass
-
-
-@dataclass(repr=False)
-class NamedThingRMF(YAMLRoot):
-    """
-    A generic grouping for any identifiable AI RMF element.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = SCHEMA["Thing"]
-    class_class_curie: ClassVar[str] = "schema:Thing"
-    class_name: ClassVar[str] = "NamedThingRMF"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.NamedThingRMF
-
-    id: Union[str, NamedThingRMFId] = None
-    name: Optional[str] = None
-    title: Optional[str] = None
-    description: Optional[str] = None
-    see_also: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, NamedThingRMFId):
-            self.id = NamedThingRMFId(self.id)
-
-        if self.name is not None and not isinstance(self.name, str):
-            self.name = str(self.name)
-
-        if self.title is not None and not isinstance(self.title, str):
-            self.title = str(self.title)
-
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
-
-        if not isinstance(self.see_also, list):
-            self.see_also = [self.see_also] if self.see_also is not None else []
-        self.see_also = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.see_also]
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class AiSystem(NamedThingRMF):
-    """
-    An engineered or machine-based system that can, for a given set
-    of objectives, generate outputs such as predictions,
-    recommendations, or decisions influencing real or virtual
-    environments. AI systems are designed to operate with varying
-    levels of autonomy (Adapted from OECD Recommendation on AI:2019;
-    ISO/IEC 22989:2022).
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiSystem"]
-    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiSystem"
-    class_name: ClassVar[str] = "AiSystem"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.AiSystem
-
-    id: Union[str, AiSystemId] = None
-    lifecycle_stage: Optional[Union[Union[str, "AiLifecycleStageEnum"], list[Union[str, "AiLifecycleStageEnum"]]]] = empty_list()
-    ai_dimension: Optional[Union[Union[str, "AiSystemDimensionEnum"], list[Union[str, "AiSystemDimensionEnum"]]]] = empty_list()
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, AiSystemId):
-            self.id = AiSystemId(self.id)
-
-        if not isinstance(self.lifecycle_stage, list):
-            self.lifecycle_stage = [self.lifecycle_stage] if self.lifecycle_stage is not None else []
-        self.lifecycle_stage = [v if isinstance(v, AiLifecycleStageEnum) else AiLifecycleStageEnum(v) for v in self.lifecycle_stage]
-
-        if not isinstance(self.ai_dimension, list):
-            self.ai_dimension = [self.ai_dimension] if self.ai_dimension is not None else []
-        self.ai_dimension = [v if isinstance(v, AiSystemDimensionEnum) else AiSystemDimensionEnum(v) for v in self.ai_dimension]
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class AiSystemDimension(NamedThingRMF):
-    """
-    A socio-technical dimension of an AI system (Figure 2):
-    Application Context, Data and Input, AI Model, Task and Output,
-    or People and Planet.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiSystemDimension"]
-    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiSystemDimension"
-    class_name: ClassVar[str] = "AiSystemDimension"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.AiSystemDimension
-
-    id: Union[str, AiSystemDimensionId] = None
-    dimension_kind: Union[str, "AiSystemDimensionEnum"] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, AiSystemDimensionId):
-            self.id = AiSystemDimensionId(self.id)
-
-        if self._is_empty(self.dimension_kind):
-            self.MissingRequiredField("dimension_kind")
-        if not isinstance(self.dimension_kind, AiSystemDimensionEnum):
-            self.dimension_kind = AiSystemDimensionEnum(self.dimension_kind)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class AiLifecycleStage(NamedThingRMF):
-    """
-    A stage of the AI lifecycle (Figure 2): Plan and Design,
-    Collect and Process Data, Build and Use Model, Verify and
-    Validate, Deploy and Use, or Operate and Monitor.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiLifecycleStage"]
-    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiLifecycleStage"
-    class_name: ClassVar[str] = "AiLifecycleStage"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.AiLifecycleStage
-
-    id: Union[str, AiLifecycleStageId] = None
-    stage_kind: Union[str, "AiLifecycleStageEnum"] = None
-    includes_tevv: Optional[Union[bool, Bool]] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, AiLifecycleStageId):
-            self.id = AiLifecycleStageId(self.id)
-
-        if self._is_empty(self.stage_kind):
-            self.MissingRequiredField("stage_kind")
-        if not isinstance(self.stage_kind, AiLifecycleStageEnum):
-            self.stage_kind = AiLifecycleStageEnum(self.stage_kind)
-
-        if self.includes_tevv is not None and not isinstance(self.includes_tevv, Bool):
-            self.includes_tevv = Bool(self.includes_tevv)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class AiActor(NamedThingRMF):
-    """
-    An organization or individual that plays an active role in the AI
-    system lifecycle. AI actors include those who deploy or operate
-    AI as well as those who inform via formal or quasi-formal norms
-    and guidance (OECD 2019).
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiActor"]
-    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiActor"
-    class_name: ClassVar[str] = "AiActor"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.AiActor
-
-    id: Union[str, AiActorId] = None
-    actor_task: Optional[Union[Union[str, "AiActorTaskEnum"], list[Union[str, "AiActorTaskEnum"]]]] = empty_list()
-    lifecycle_stage: Optional[Union[Union[str, "AiLifecycleStageEnum"], list[Union[str, "AiLifecycleStageEnum"]]]] = empty_list()
-    is_tevv: Optional[Union[bool, Bool]] = None
-    audience: Optional[Union[str, "AudienceEnum"]] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, AiActorId):
-            self.id = AiActorId(self.id)
-
-        if not isinstance(self.actor_task, list):
-            self.actor_task = [self.actor_task] if self.actor_task is not None else []
-        self.actor_task = [v if isinstance(v, AiActorTaskEnum) else AiActorTaskEnum(v) for v in self.actor_task]
-
-        if not isinstance(self.lifecycle_stage, list):
-            self.lifecycle_stage = [self.lifecycle_stage] if self.lifecycle_stage is not None else []
-        self.lifecycle_stage = [v if isinstance(v, AiLifecycleStageEnum) else AiLifecycleStageEnum(v) for v in self.lifecycle_stage]
-
-        if self.is_tevv is not None and not isinstance(self.is_tevv, Bool):
-            self.is_tevv = Bool(self.is_tevv)
-
-        if self.audience is not None and not isinstance(self.audience, AudienceEnum):
-            self.audience = AudienceEnum(self.audience)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class AiActorTask(NamedThingRMF):
-    """
-    A category of task performed by AI actors (Appendix A). Each
-    task is associated with one or more lifecycle stages and a
-    typical set of actor roles.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiActorTask"]
-    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiActorTask"
-    class_name: ClassVar[str] = "AiActorTask"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.AiActorTask
-
-    id: Union[str, AiActorTaskId] = None
-    task_kind: Union[str, "AiActorTaskEnum"] = None
-    typical_actors: Optional[Union[str, list[str]]] = empty_list()
-    lifecycle_stage: Optional[Union[Union[str, "AiLifecycleStageEnum"], list[Union[str, "AiLifecycleStageEnum"]]]] = empty_list()
-    ai_dimension: Optional[Union[Union[str, "AiSystemDimensionEnum"], list[Union[str, "AiSystemDimensionEnum"]]]] = empty_list()
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, AiActorTaskId):
-            self.id = AiActorTaskId(self.id)
-
-        if self._is_empty(self.task_kind):
-            self.MissingRequiredField("task_kind")
-        if not isinstance(self.task_kind, AiActorTaskEnum):
-            self.task_kind = AiActorTaskEnum(self.task_kind)
-
-        if not isinstance(self.typical_actors, list):
-            self.typical_actors = [self.typical_actors] if self.typical_actors is not None else []
-        self.typical_actors = [v if isinstance(v, str) else str(v) for v in self.typical_actors]
-
-        if not isinstance(self.lifecycle_stage, list):
-            self.lifecycle_stage = [self.lifecycle_stage] if self.lifecycle_stage is not None else []
-        self.lifecycle_stage = [v if isinstance(v, AiLifecycleStageEnum) else AiLifecycleStageEnum(v) for v in self.lifecycle_stage]
-
-        if not isinstance(self.ai_dimension, list):
-            self.ai_dimension = [self.ai_dimension] if self.ai_dimension is not None else []
-        self.ai_dimension = [v if isinstance(v, AiSystemDimensionEnum) else AiSystemDimensionEnum(v) for v in self.ai_dimension]
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class Risk(NamedThingRMF):
-    """
-    The composite measure of an event's probability of occurring and
-    the magnitude or degree of the consequences of that event. When
-    considering negative impact, risk is a function of (1) the
-    negative impact or magnitude of harm and (2) the likelihood of
-    occurrence (Adapted from ISO 31000:2018; OMB Circular A-130:2016).
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["Risk"]
-    class_class_curie: ClassVar[str] = "nist_ai_100_1:Risk"
-    class_name: ClassVar[str] = "Risk"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.Risk
-
-    id: Union[str, RiskId] = None
-    likelihood: Optional[float] = None
-    magnitude: Optional[str] = None
-    impact_sign: Optional[Union[str, "ImpactSignEnum"]] = None
-    is_residual: Optional[Union[bool, Bool]] = None
-    risk_response: Optional[Union[str, "RiskResponseEnum"]] = None
-    lifecycle_stage: Optional[Union[Union[str, "AiLifecycleStageEnum"], list[Union[str, "AiLifecycleStageEnum"]]]] = empty_list()
-    trustworthiness_characteristic: Optional[Union[Union[str, "TrustworthinessCharacteristicEnum"], list[Union[str, "TrustworthinessCharacteristicEnum"]]]] = empty_list()
-    related_impacts: Optional[Union[dict[Union[str, ImpactId], Union[dict, "Impact"]], list[Union[dict, "Impact"]]]] = empty_dict()
-    affects_system: Optional[Union[str, AiSystemId]] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, RiskId):
-            self.id = RiskId(self.id)
-
-        if self.likelihood is not None and not isinstance(self.likelihood, float):
-            self.likelihood = float(self.likelihood)
-
-        if self.magnitude is not None and not isinstance(self.magnitude, str):
-            self.magnitude = str(self.magnitude)
-
-        if self.impact_sign is not None and not isinstance(self.impact_sign, ImpactSignEnum):
-            self.impact_sign = ImpactSignEnum(self.impact_sign)
-
-        if self.is_residual is not None and not isinstance(self.is_residual, Bool):
-            self.is_residual = Bool(self.is_residual)
-
-        if self.risk_response is not None and not isinstance(self.risk_response, RiskResponseEnum):
-            self.risk_response = RiskResponseEnum(self.risk_response)
-
-        if not isinstance(self.lifecycle_stage, list):
-            self.lifecycle_stage = [self.lifecycle_stage] if self.lifecycle_stage is not None else []
-        self.lifecycle_stage = [v if isinstance(v, AiLifecycleStageEnum) else AiLifecycleStageEnum(v) for v in self.lifecycle_stage]
-
-        if not isinstance(self.trustworthiness_characteristic, list):
-            self.trustworthiness_characteristic = [self.trustworthiness_characteristic] if self.trustworthiness_characteristic is not None else []
-        self.trustworthiness_characteristic = [v if isinstance(v, TrustworthinessCharacteristicEnum) else TrustworthinessCharacteristicEnum(v) for v in self.trustworthiness_characteristic]
-
-        self._normalize_inlined_as_list(slot_name="related_impacts", slot_type=Impact, key_name="id", keyed=True)
-
-        if self.affects_system is not None and not isinstance(self.affects_system, AiSystemId):
-            self.affects_system = AiSystemId(self.affects_system)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class Impact(NamedThingRMF):
-    """
-    A positive, negative, or both consequence of an AI system. Impacts
-    can manifest as opportunities (positive) or threats (negative).
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["Impact"]
-    class_class_curie: ClassVar[str] = "nist_ai_100_1:Impact"
-    class_name: ClassVar[str] = "Impact"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.Impact
-
-    id: Union[str, ImpactId] = None
-    impact_sign: Optional[Union[str, "ImpactSignEnum"]] = None
-    magnitude: Optional[str] = None
-    likelihood: Optional[float] = None
-    affects: Optional[Union[Union[str, NamedThingRMFId], list[Union[str, NamedThingRMFId]]]] = empty_list()
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, ImpactId):
-            self.id = ImpactId(self.id)
-
-        if self.impact_sign is not None and not isinstance(self.impact_sign, ImpactSignEnum):
-            self.impact_sign = ImpactSignEnum(self.impact_sign)
-
-        if self.magnitude is not None and not isinstance(self.magnitude, str):
-            self.magnitude = str(self.magnitude)
-
-        if self.likelihood is not None and not isinstance(self.likelihood, float):
-            self.likelihood = float(self.likelihood)
-
-        if not isinstance(self.affects, list):
-            self.affects = [self.affects] if self.affects is not None else []
-        self.affects = [v if isinstance(v, NamedThingRMFId) else NamedThingRMFId(v) for v in self.affects]
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class Harm(NamedThingRMF):
-    """
-    A negative impact that may be experienced by individuals,
-    groups, communities, organizations, society, the environment, or
-    the planet (Figure 1).
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["Harm"]
-    class_class_curie: ClassVar[str] = "nist_ai_100_1:Harm"
-    class_name: ClassVar[str] = "Harm"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.Harm
-
-    id: Union[str, HarmId] = None
-    harm_category: Optional[Union[str, "HarmCategoryEnum"]] = None
-    harm_to_people_subcategory: Optional[Union[str, "HarmToPeopleSubcategoryEnum"]] = None
-    magnitude: Optional[str] = None
-    affects: Optional[Union[Union[str, NamedThingRMFId], list[Union[str, NamedThingRMFId]]]] = empty_list()
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, HarmId):
-            self.id = HarmId(self.id)
-
-        if self.harm_category is not None and not isinstance(self.harm_category, HarmCategoryEnum):
-            self.harm_category = HarmCategoryEnum(self.harm_category)
-
-        if self.harm_to_people_subcategory is not None and not isinstance(self.harm_to_people_subcategory, HarmToPeopleSubcategoryEnum):
-            self.harm_to_people_subcategory = HarmToPeopleSubcategoryEnum(self.harm_to_people_subcategory)
-
-        if self.magnitude is not None and not isinstance(self.magnitude, str):
-            self.magnitude = str(self.magnitude)
-
-        if not isinstance(self.affects, list):
-            self.affects = [self.affects] if self.affects is not None else []
-        self.affects = [v if isinstance(v, NamedThingRMFId) else NamedThingRMFId(v) for v in self.affects]
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class ResidualRisk(Risk):
-    """
-    Risk remaining after risk treatment (ISO Guide 73). Documenting
-    residual risks helps system providers consider risks of deploying
-    the AI product and informs end users about potential negative
-    impacts.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["ResidualRisk"]
-    class_class_curie: ClassVar[str] = "nist_ai_100_1:ResidualRisk"
-    class_name: ClassVar[str] = "ResidualRisk"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.ResidualRisk
-
-    id: Union[str, ResidualRiskId] = None
-    is_residual: Optional[Union[bool, Bool]] = True
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, ResidualRiskId):
-            self.id = ResidualRiskId(self.id)
-
-        if self.is_residual is not None and not isinstance(self.is_residual, Bool):
-            self.is_residual = Bool(self.is_residual)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class RiskTolerance(NamedThingRMF):
-    """
-    The organization's or AI actor's readiness to bear risk in order
-    to achieve its objectives (Adapted from ISO Guide 73). Risk
-    tolerance is highly contextual and application- and use-case
-    specific.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["RiskTolerance"]
-    class_class_curie: ClassVar[str] = "nist_ai_100_1:RiskTolerance"
-    class_name: ClassVar[str] = "RiskTolerance"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.RiskTolerance
-
-    id: Union[str, RiskToleranceId] = None
-    tolerance_statement: Optional[str] = None
-    legal_basis: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, RiskToleranceId):
-            self.id = RiskToleranceId(self.id)
-
-        if self.tolerance_statement is not None and not isinstance(self.tolerance_statement, str):
-            self.tolerance_statement = str(self.tolerance_statement)
-
-        if self.legal_basis is not None and not isinstance(self.legal_basis, str):
-            self.legal_basis = str(self.legal_basis)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class RiskMeasurementChallenge(NamedThingRMF):
-    """
-    A challenge that complicates measurement of AI risks
-    (Part 1 §1.2.1).
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["RiskMeasurementChallenge"]
-    class_class_curie: ClassVar[str] = "nist_ai_100_1:RiskMeasurementChallenge"
-    class_name: ClassVar[str] = "RiskMeasurementChallenge"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.RiskMeasurementChallenge
-
-    id: Union[str, RiskMeasurementChallengeId] = None
-    challenge_kind: Union[str, "RiskMeasurementChallengeEnum"] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, RiskMeasurementChallengeId):
-            self.id = RiskMeasurementChallengeId(self.id)
-
-        if self._is_empty(self.challenge_kind):
-            self.MissingRequiredField("challenge_kind")
-        if not isinstance(self.challenge_kind, RiskMeasurementChallengeEnum):
-            self.challenge_kind = RiskMeasurementChallengeEnum(self.challenge_kind)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class TrustworthinessCharacteristic(NamedThingRMF):
-    """
-    A characteristic of a trustworthy AI system (Figure 4 / Part 1
-    §3). The seven characteristics are inter-related; addressing them
-    individually does not guarantee trustworthiness, and tradeoffs
-    are usually involved.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["TrustworthinessCharacteristic"]
-    class_class_curie: ClassVar[str] = "nist_ai_100_1:TrustworthinessCharacteristic"
-    class_name: ClassVar[str] = "TrustworthinessCharacteristic"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.TrustworthinessCharacteristic
-
-    id: Union[str, TrustworthinessCharacteristicId] = None
-    characteristic_kind: Union[str, "TrustworthinessCharacteristicEnum"] = None
-    is_base_condition: Optional[Union[bool, Bool]] = None
-    is_cross_cutting: Optional[Union[bool, Bool]] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, TrustworthinessCharacteristicId):
-            self.id = TrustworthinessCharacteristicId(self.id)
-
-        if self._is_empty(self.characteristic_kind):
-            self.MissingRequiredField("characteristic_kind")
-        if not isinstance(self.characteristic_kind, TrustworthinessCharacteristicEnum):
-            self.characteristic_kind = TrustworthinessCharacteristicEnum(self.characteristic_kind)
-
-        if self.is_base_condition is not None and not isinstance(self.is_base_condition, Bool):
-            self.is_base_condition = Bool(self.is_base_condition)
-
-        if self.is_cross_cutting is not None and not isinstance(self.is_cross_cutting, Bool):
-            self.is_cross_cutting = Bool(self.is_cross_cutting)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class Bias(NamedThingRMF):
-    """
-    A form of AI bias - a deviation that may be perpetuated or
-    amplified by AI systems. NIST identifies three major categories:
-    systemic, computational/statistical, and human-cognitive
-    (Part 1 §3.7; NIST SP 1270).
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["Bias"]
-    class_class_curie: ClassVar[str] = "nist_ai_100_1:Bias"
-    class_name: ClassVar[str] = "Bias"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.Bias
-
-    id: Union[str, BiasId] = None
-    bias_category: Optional[Union[Union[str, "BiasCategoryEnum"], list[Union[str, "BiasCategoryEnum"]]]] = empty_list()
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, BiasId):
-            self.id = BiasId(self.id)
-
-        if not isinstance(self.bias_category, list):
-            self.bias_category = [self.bias_category] if self.bias_category is not None else []
-        self.bias_category = [v if isinstance(v, BiasCategoryEnum) else BiasCategoryEnum(v) for v in self.bias_category]
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class Function(NamedThingRMF):
-    """
-    A top-level AI RMF Core function. Each function organizes AI risk
-    management activities at the highest level. GOVERN applies across
-    all stages; MAP, MEASURE, and MANAGE apply to AI-system-specific
-    contexts and lifecycle stages.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["Function"]
-    class_class_curie: ClassVar[str] = "nist_ai_100_1:Function"
-    class_name: ClassVar[str] = "Function"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.Function
-
-    id: Union[str, FunctionId] = None
-    function_code: Union[str, FunctionCode] = None
-    categories: Optional[Union[dict[Union[str, CategoryId], Union[dict, "Category"]], list[Union[dict, "Category"]]]] = empty_dict()
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, FunctionId):
-            self.id = FunctionId(self.id)
-
-        if self._is_empty(self.function_code):
-            self.MissingRequiredField("function_code")
-        if not isinstance(self.function_code, FunctionCode):
-            self.function_code = FunctionCode(self.function_code)
-
-        self._normalize_inlined_as_list(slot_name="categories", slot_type=Category, key_name="id", keyed=True)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class Category(NamedThingRMF):
-    """
-    A category within an AI RMF Core function (e.g., "GOVERN 1:
-    Policies, processes, procedures, and practices ... are in place,
-    transparent, and implemented effectively"). Categories group
-    related subcategories.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["Category"]
-    class_class_curie: ClassVar[str] = "nist_ai_100_1:Category"
-    class_name: ClassVar[str] = "Category"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.Category
-
-    id: Union[str, CategoryId] = None
-    category_id: Optional[Union[str, CategoryCode]] = None
-    outcome: Optional[str] = None
-    subcategories: Optional[Union[dict[Union[str, SubcategoryId], Union[dict, "Subcategory"]], list[Union[dict, "Subcategory"]]]] = empty_dict()
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, CategoryId):
-            self.id = CategoryId(self.id)
-
-        if self.category_id is not None and not isinstance(self.category_id, CategoryCode):
-            self.category_id = CategoryCode(self.category_id)
-
-        if self.outcome is not None and not isinstance(self.outcome, str):
-            self.outcome = str(self.outcome)
-
-        self._normalize_inlined_as_list(slot_name="subcategories", slot_type=Subcategory, key_name="id", keyed=True)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class Subcategory(NamedThingRMF):
-    """
-    A subcategory within an AI RMF Core category (e.g., "GOVERN 1.1:
-    Legal and regulatory requirements involving AI are understood,
-    managed, and documented"). Subcategories express specific
-    outcomes.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["Subcategory"]
-    class_class_curie: ClassVar[str] = "nist_ai_100_1:Subcategory"
-    class_name: ClassVar[str] = "Subcategory"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.Subcategory
-
-    id: Union[str, SubcategoryId] = None
-    subcategory_id: Optional[Union[str, SubcategoryCode]] = None
-    outcome: Optional[str] = None
-    trustworthiness_characteristic: Optional[Union[Union[str, "TrustworthinessCharacteristicEnum"], list[Union[str, "TrustworthinessCharacteristicEnum"]]]] = empty_list()
-    lifecycle_stage: Optional[Union[Union[str, "AiLifecycleStageEnum"], list[Union[str, "AiLifecycleStageEnum"]]]] = empty_list()
-    about_text: Optional[str] = None
-    suggested_actions_text: Optional[str] = None
-    documentation_questions: Optional[str] = None
-    references_text: Optional[str] = None
-    topics: Optional[Union[str, list[str]]] = empty_list()
-    ai_actor_categories: Optional[Union[str, list[str]]] = empty_list()
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, SubcategoryId):
-            self.id = SubcategoryId(self.id)
-
-        if self.subcategory_id is not None and not isinstance(self.subcategory_id, SubcategoryCode):
-            self.subcategory_id = SubcategoryCode(self.subcategory_id)
-
-        if self.outcome is not None and not isinstance(self.outcome, str):
-            self.outcome = str(self.outcome)
-
-        if not isinstance(self.trustworthiness_characteristic, list):
-            self.trustworthiness_characteristic = [self.trustworthiness_characteristic] if self.trustworthiness_characteristic is not None else []
-        self.trustworthiness_characteristic = [v if isinstance(v, TrustworthinessCharacteristicEnum) else TrustworthinessCharacteristicEnum(v) for v in self.trustworthiness_characteristic]
-
-        if not isinstance(self.lifecycle_stage, list):
-            self.lifecycle_stage = [self.lifecycle_stage] if self.lifecycle_stage is not None else []
-        self.lifecycle_stage = [v if isinstance(v, AiLifecycleStageEnum) else AiLifecycleStageEnum(v) for v in self.lifecycle_stage]
-
-        if self.about_text is not None and not isinstance(self.about_text, str):
-            self.about_text = str(self.about_text)
-
-        if self.suggested_actions_text is not None and not isinstance(self.suggested_actions_text, str):
-            self.suggested_actions_text = str(self.suggested_actions_text)
-
-        if self.documentation_questions is not None and not isinstance(self.documentation_questions, str):
-            self.documentation_questions = str(self.documentation_questions)
-
-        if self.references_text is not None and not isinstance(self.references_text, str):
-            self.references_text = str(self.references_text)
-
-        if not isinstance(self.topics, list):
-            self.topics = [self.topics] if self.topics is not None else []
-        self.topics = [v if isinstance(v, str) else str(v) for v in self.topics]
-
-        if not isinstance(self.ai_actor_categories, list):
-            self.ai_actor_categories = [self.ai_actor_categories] if self.ai_actor_categories is not None else []
-        self.ai_actor_categories = [v if isinstance(v, str) else str(v) for v in self.ai_actor_categories]
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class AiRmfProfile(NamedThingRMF):
-    """
-    An implementation of the AI RMF Functions, Categories, and
-    Subcategories for a specific setting or application based on the
-    requirements, risk tolerance, and resources of the user (§6).
-    Profiles may be use-case-specific, temporal (current or target),
-    or cross-sectoral.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiRmfProfile"]
-    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiRmfProfile"
-    class_name: ClassVar[str] = "AiRmfProfile"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.AiRmfProfile
-
-    id: Union[str, AiRmfProfileId] = None
-    profile_type: Union[str, "ProfileTypeEnum"] = None
-    current_state: Optional[str] = None
-    target_state: Optional[str] = None
-    sector: Optional[str] = None
-    addresses: Optional[Union[Union[str, SubcategoryId], list[Union[str, SubcategoryId]]]] = empty_list()
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, AiRmfProfileId):
-            self.id = AiRmfProfileId(self.id)
-
-        if self._is_empty(self.profile_type):
-            self.MissingRequiredField("profile_type")
-        if not isinstance(self.profile_type, ProfileTypeEnum):
-            self.profile_type = ProfileTypeEnum(self.profile_type)
-
-        if self.current_state is not None and not isinstance(self.current_state, str):
-            self.current_state = str(self.current_state)
-
-        if self.target_state is not None and not isinstance(self.target_state, str):
-            self.target_state = str(self.target_state)
-
-        if self.sector is not None and not isinstance(self.sector, str):
-            self.sector = str(self.sector)
-
-        if not isinstance(self.addresses, list):
-            self.addresses = [self.addresses] if self.addresses is not None else []
-        self.addresses = [v if isinstance(v, SubcategoryId) else SubcategoryId(v) for v in self.addresses]
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class RmfAttribute(NamedThingRMF):
-    """
-    A design attribute of the AI RMF (Appendix D) - one of the
-    qualities the Framework strives to embody (e.g., risk-based,
-    consensus-driven, plain language, common language, easily usable,
-    universally applicable, outcome-focused, leveraging existing
-    standards, law- and regulation-agnostic, living document).
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["RmfAttribute"]
-    class_class_curie: ClassVar[str] = "nist_ai_100_1:RmfAttribute"
-    class_name: ClassVar[str] = "RmfAttribute"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.RmfAttribute
-
-    id: Union[str, RmfAttributeId] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, RmfAttributeId):
-            self.id = RmfAttributeId(self.id)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class AiSpecificRisk(NamedThingRMF):
-    """
-    A risk that is new or increased for AI-based technology compared
-    to traditional software (Appendix B) - e.g., data quality, model
-    drift, opacity, scale and complexity, pre-trained model
-    uncertainty, emergent properties, privacy aggregation, or
-    environmental cost.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiSpecificRisk"]
-    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiSpecificRisk"
-    class_name: ClassVar[str] = "AiSpecificRisk"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.AiSpecificRisk
-
-    id: Union[str, AiSpecificRiskId] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, AiSpecificRiskId):
-            self.id = AiSpecificRiskId(self.id)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class HumanAiInteractionIssue(NamedThingRMF):
-    """
-    An issue that merits further consideration in human-AI
-    interaction (Appendix C) - e.g., clear human roles and
-    responsibilities, systemic and human-cognitive biases in design,
-    variability of human-AI interaction outcomes, complexity of
-    presenting AI system information to humans.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["HumanAiInteractionIssue"]
-    class_class_curie: ClassVar[str] = "nist_ai_100_1:HumanAiInteractionIssue"
-    class_name: ClassVar[str] = "HumanAiInteractionIssue"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.HumanAiInteractionIssue
-
-    id: Union[str, HumanAiInteractionIssueId] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, HumanAiInteractionIssueId):
-            self.id = HumanAiInteractionIssueId(self.id)
-
-        super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
@@ -1124,7 +305,826 @@ class PlaybookCollection(YAMLRoot):
 
 
 @dataclass(repr=False)
-class AiRmfDocument(NamedThingRMF):
+class NamedThing(YAMLRoot):
+    """
+    A generic grouping for any identifiable AI RMF element.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = SCHEMA["Thing"]
+    class_class_curie: ClassVar[str] = "schema:Thing"
+    class_name: ClassVar[str] = "NamedThing"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.NamedThing
+
+    id: Union[str, NamedThingId] = None
+    name: Optional[str] = None
+    title: Optional[str] = None
+    description: Optional[str] = None
+    see_also: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, NamedThingId):
+            self.id = NamedThingId(self.id)
+
+        if self.name is not None and not isinstance(self.name, str):
+            self.name = str(self.name)
+
+        if self.title is not None and not isinstance(self.title, str):
+            self.title = str(self.title)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        if not isinstance(self.see_also, list):
+            self.see_also = [self.see_also] if self.see_also is not None else []
+        self.see_also = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.see_also]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class AiSystem(NamedThing):
+    """
+    An engineered or machine-based system that can, for a given set
+    of objectives, generate outputs such as predictions,
+    recommendations, or decisions influencing real or virtual
+    environments. AI systems are designed to operate with varying
+    levels of autonomy (Adapted from OECD Recommendation on AI:2019;
+    ISO/IEC 22989:2022).
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiSystem"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiSystem"
+    class_name: ClassVar[str] = "AiSystem"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.AiSystem
+
+    id: Union[str, AiSystemId] = None
+    lifecycle_stage: Optional[Union[Union[str, "AiLifecycleStageEnum"], list[Union[str, "AiLifecycleStageEnum"]]]] = empty_list()
+    ai_dimension: Optional[Union[Union[str, "AiSystemDimensionEnum"], list[Union[str, "AiSystemDimensionEnum"]]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, AiSystemId):
+            self.id = AiSystemId(self.id)
+
+        if not isinstance(self.lifecycle_stage, list):
+            self.lifecycle_stage = [self.lifecycle_stage] if self.lifecycle_stage is not None else []
+        self.lifecycle_stage = [v if isinstance(v, AiLifecycleStageEnum) else AiLifecycleStageEnum(v) for v in self.lifecycle_stage]
+
+        if not isinstance(self.ai_dimension, list):
+            self.ai_dimension = [self.ai_dimension] if self.ai_dimension is not None else []
+        self.ai_dimension = [v if isinstance(v, AiSystemDimensionEnum) else AiSystemDimensionEnum(v) for v in self.ai_dimension]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class AiSystemDimension(NamedThing):
+    """
+    A socio-technical dimension of an AI system (Figure 2):
+    Application Context, Data and Input, AI Model, Task and Output,
+    or People and Planet.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiSystemDimension"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiSystemDimension"
+    class_name: ClassVar[str] = "AiSystemDimension"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.AiSystemDimension
+
+    id: Union[str, AiSystemDimensionId] = None
+    dimension_kind: Union[str, "AiSystemDimensionEnum"] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, AiSystemDimensionId):
+            self.id = AiSystemDimensionId(self.id)
+
+        if self._is_empty(self.dimension_kind):
+            self.MissingRequiredField("dimension_kind")
+        if not isinstance(self.dimension_kind, AiSystemDimensionEnum):
+            self.dimension_kind = AiSystemDimensionEnum(self.dimension_kind)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class AiLifecycleStage(NamedThing):
+    """
+    A stage of the AI lifecycle (Figure 2): Plan and Design,
+    Collect and Process Data, Build and Use Model, Verify and
+    Validate, Deploy and Use, or Operate and Monitor.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiLifecycleStage"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiLifecycleStage"
+    class_name: ClassVar[str] = "AiLifecycleStage"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.AiLifecycleStage
+
+    id: Union[str, AiLifecycleStageId] = None
+    stage_kind: Union[str, "AiLifecycleStageEnum"] = None
+    includes_tevv: Optional[Union[bool, Bool]] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, AiLifecycleStageId):
+            self.id = AiLifecycleStageId(self.id)
+
+        if self._is_empty(self.stage_kind):
+            self.MissingRequiredField("stage_kind")
+        if not isinstance(self.stage_kind, AiLifecycleStageEnum):
+            self.stage_kind = AiLifecycleStageEnum(self.stage_kind)
+
+        if self.includes_tevv is not None and not isinstance(self.includes_tevv, Bool):
+            self.includes_tevv = Bool(self.includes_tevv)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class AiActor(NamedThing):
+    """
+    An organization or individual that plays an active role in the AI
+    system lifecycle. AI actors include those who deploy or operate
+    AI as well as those who inform via formal or quasi-formal norms
+    and guidance (OECD 2019).
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiActor"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiActor"
+    class_name: ClassVar[str] = "AiActor"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.AiActor
+
+    id: Union[str, AiActorId] = None
+    actor_task: Optional[Union[Union[str, "AiActorTaskEnum"], list[Union[str, "AiActorTaskEnum"]]]] = empty_list()
+    lifecycle_stage: Optional[Union[Union[str, "AiLifecycleStageEnum"], list[Union[str, "AiLifecycleStageEnum"]]]] = empty_list()
+    is_tevv: Optional[Union[bool, Bool]] = None
+    audience: Optional[Union[str, "AudienceEnum"]] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, AiActorId):
+            self.id = AiActorId(self.id)
+
+        if not isinstance(self.actor_task, list):
+            self.actor_task = [self.actor_task] if self.actor_task is not None else []
+        self.actor_task = [v if isinstance(v, AiActorTaskEnum) else AiActorTaskEnum(v) for v in self.actor_task]
+
+        if not isinstance(self.lifecycle_stage, list):
+            self.lifecycle_stage = [self.lifecycle_stage] if self.lifecycle_stage is not None else []
+        self.lifecycle_stage = [v if isinstance(v, AiLifecycleStageEnum) else AiLifecycleStageEnum(v) for v in self.lifecycle_stage]
+
+        if self.is_tevv is not None and not isinstance(self.is_tevv, Bool):
+            self.is_tevv = Bool(self.is_tevv)
+
+        if self.audience is not None and not isinstance(self.audience, AudienceEnum):
+            self.audience = AudienceEnum(self.audience)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class AiActorTask(NamedThing):
+    """
+    A category of task performed by AI actors (Appendix A). Each
+    task is associated with one or more lifecycle stages and a
+    typical set of actor roles.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiActorTask"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiActorTask"
+    class_name: ClassVar[str] = "AiActorTask"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.AiActorTask
+
+    id: Union[str, AiActorTaskId] = None
+    task_kind: Union[str, "AiActorTaskEnum"] = None
+    typical_actors: Optional[Union[str, list[str]]] = empty_list()
+    lifecycle_stage: Optional[Union[Union[str, "AiLifecycleStageEnum"], list[Union[str, "AiLifecycleStageEnum"]]]] = empty_list()
+    ai_dimension: Optional[Union[Union[str, "AiSystemDimensionEnum"], list[Union[str, "AiSystemDimensionEnum"]]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, AiActorTaskId):
+            self.id = AiActorTaskId(self.id)
+
+        if self._is_empty(self.task_kind):
+            self.MissingRequiredField("task_kind")
+        if not isinstance(self.task_kind, AiActorTaskEnum):
+            self.task_kind = AiActorTaskEnum(self.task_kind)
+
+        if not isinstance(self.typical_actors, list):
+            self.typical_actors = [self.typical_actors] if self.typical_actors is not None else []
+        self.typical_actors = [v if isinstance(v, str) else str(v) for v in self.typical_actors]
+
+        if not isinstance(self.lifecycle_stage, list):
+            self.lifecycle_stage = [self.lifecycle_stage] if self.lifecycle_stage is not None else []
+        self.lifecycle_stage = [v if isinstance(v, AiLifecycleStageEnum) else AiLifecycleStageEnum(v) for v in self.lifecycle_stage]
+
+        if not isinstance(self.ai_dimension, list):
+            self.ai_dimension = [self.ai_dimension] if self.ai_dimension is not None else []
+        self.ai_dimension = [v if isinstance(v, AiSystemDimensionEnum) else AiSystemDimensionEnum(v) for v in self.ai_dimension]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class Risk(NamedThing):
+    """
+    The composite measure of an event's probability of occurring and
+    the magnitude or degree of the consequences of that event. When
+    considering negative impact, risk is a function of (1) the
+    negative impact or magnitude of harm and (2) the likelihood of
+    occurrence (Adapted from ISO 31000:2018; OMB Circular A-130:2016).
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["Risk"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:Risk"
+    class_name: ClassVar[str] = "Risk"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.Risk
+
+    id: Union[str, RiskId] = None
+    likelihood: Optional[float] = None
+    magnitude: Optional[str] = None
+    impact_sign: Optional[Union[str, "ImpactSignEnum"]] = None
+    is_residual: Optional[Union[bool, Bool]] = None
+    risk_response: Optional[Union[str, "RiskResponseEnum"]] = None
+    lifecycle_stage: Optional[Union[Union[str, "AiLifecycleStageEnum"], list[Union[str, "AiLifecycleStageEnum"]]]] = empty_list()
+    trustworthiness_characteristic: Optional[Union[Union[str, "TrustworthinessCharacteristicEnum"], list[Union[str, "TrustworthinessCharacteristicEnum"]]]] = empty_list()
+    related_impacts: Optional[Union[dict[Union[str, ImpactId], Union[dict, "Impact"]], list[Union[dict, "Impact"]]]] = empty_dict()
+    affects_system: Optional[Union[str, AiSystemId]] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, RiskId):
+            self.id = RiskId(self.id)
+
+        if self.likelihood is not None and not isinstance(self.likelihood, float):
+            self.likelihood = float(self.likelihood)
+
+        if self.magnitude is not None and not isinstance(self.magnitude, str):
+            self.magnitude = str(self.magnitude)
+
+        if self.impact_sign is not None and not isinstance(self.impact_sign, ImpactSignEnum):
+            self.impact_sign = ImpactSignEnum(self.impact_sign)
+
+        if self.is_residual is not None and not isinstance(self.is_residual, Bool):
+            self.is_residual = Bool(self.is_residual)
+
+        if self.risk_response is not None and not isinstance(self.risk_response, RiskResponseEnum):
+            self.risk_response = RiskResponseEnum(self.risk_response)
+
+        if not isinstance(self.lifecycle_stage, list):
+            self.lifecycle_stage = [self.lifecycle_stage] if self.lifecycle_stage is not None else []
+        self.lifecycle_stage = [v if isinstance(v, AiLifecycleStageEnum) else AiLifecycleStageEnum(v) for v in self.lifecycle_stage]
+
+        if not isinstance(self.trustworthiness_characteristic, list):
+            self.trustworthiness_characteristic = [self.trustworthiness_characteristic] if self.trustworthiness_characteristic is not None else []
+        self.trustworthiness_characteristic = [v if isinstance(v, TrustworthinessCharacteristicEnum) else TrustworthinessCharacteristicEnum(v) for v in self.trustworthiness_characteristic]
+
+        self._normalize_inlined_as_list(slot_name="related_impacts", slot_type=Impact, key_name="id", keyed=True)
+
+        if self.affects_system is not None and not isinstance(self.affects_system, AiSystemId):
+            self.affects_system = AiSystemId(self.affects_system)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class Impact(NamedThing):
+    """
+    A positive, negative, or both consequence of an AI system. Impacts
+    can manifest as opportunities (positive) or threats (negative).
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["Impact"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:Impact"
+    class_name: ClassVar[str] = "Impact"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.Impact
+
+    id: Union[str, ImpactId] = None
+    impact_sign: Optional[Union[str, "ImpactSignEnum"]] = None
+    magnitude: Optional[str] = None
+    likelihood: Optional[float] = None
+    affects: Optional[Union[Union[str, NamedThingId], list[Union[str, NamedThingId]]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, ImpactId):
+            self.id = ImpactId(self.id)
+
+        if self.impact_sign is not None and not isinstance(self.impact_sign, ImpactSignEnum):
+            self.impact_sign = ImpactSignEnum(self.impact_sign)
+
+        if self.magnitude is not None and not isinstance(self.magnitude, str):
+            self.magnitude = str(self.magnitude)
+
+        if self.likelihood is not None and not isinstance(self.likelihood, float):
+            self.likelihood = float(self.likelihood)
+
+        if not isinstance(self.affects, list):
+            self.affects = [self.affects] if self.affects is not None else []
+        self.affects = [v if isinstance(v, NamedThingId) else NamedThingId(v) for v in self.affects]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class Harm(NamedThing):
+    """
+    A negative impact that may be experienced by individuals,
+    groups, communities, organizations, society, the environment, or
+    the planet (Figure 1).
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["Harm"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:Harm"
+    class_name: ClassVar[str] = "Harm"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.Harm
+
+    id: Union[str, HarmId] = None
+    harm_category: Optional[Union[str, "HarmCategoryEnum"]] = None
+    harm_to_people_subcategory: Optional[Union[str, "HarmToPeopleSubcategoryEnum"]] = None
+    magnitude: Optional[str] = None
+    affects: Optional[Union[Union[str, NamedThingId], list[Union[str, NamedThingId]]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, HarmId):
+            self.id = HarmId(self.id)
+
+        if self.harm_category is not None and not isinstance(self.harm_category, HarmCategoryEnum):
+            self.harm_category = HarmCategoryEnum(self.harm_category)
+
+        if self.harm_to_people_subcategory is not None and not isinstance(self.harm_to_people_subcategory, HarmToPeopleSubcategoryEnum):
+            self.harm_to_people_subcategory = HarmToPeopleSubcategoryEnum(self.harm_to_people_subcategory)
+
+        if self.magnitude is not None and not isinstance(self.magnitude, str):
+            self.magnitude = str(self.magnitude)
+
+        if not isinstance(self.affects, list):
+            self.affects = [self.affects] if self.affects is not None else []
+        self.affects = [v if isinstance(v, NamedThingId) else NamedThingId(v) for v in self.affects]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class ResidualRisk(Risk):
+    """
+    Risk remaining after risk treatment (ISO Guide 73). Documenting
+    residual risks helps system providers consider risks of deploying
+    the AI product and informs end users about potential negative
+    impacts.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["ResidualRisk"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:ResidualRisk"
+    class_name: ClassVar[str] = "ResidualRisk"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.ResidualRisk
+
+    id: Union[str, ResidualRiskId] = None
+    is_residual: Optional[Union[bool, Bool]] = True
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, ResidualRiskId):
+            self.id = ResidualRiskId(self.id)
+
+        if self.is_residual is not None and not isinstance(self.is_residual, Bool):
+            self.is_residual = Bool(self.is_residual)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class RiskTolerance(NamedThing):
+    """
+    The organization's or AI actor's readiness to bear risk in order
+    to achieve its objectives (Adapted from ISO Guide 73). Risk
+    tolerance is highly contextual and application- and use-case
+    specific.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["RiskTolerance"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:RiskTolerance"
+    class_name: ClassVar[str] = "RiskTolerance"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.RiskTolerance
+
+    id: Union[str, RiskToleranceId] = None
+    tolerance_statement: Optional[str] = None
+    legal_basis: Optional[str] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, RiskToleranceId):
+            self.id = RiskToleranceId(self.id)
+
+        if self.tolerance_statement is not None and not isinstance(self.tolerance_statement, str):
+            self.tolerance_statement = str(self.tolerance_statement)
+
+        if self.legal_basis is not None and not isinstance(self.legal_basis, str):
+            self.legal_basis = str(self.legal_basis)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class RiskMeasurementChallenge(NamedThing):
+    """
+    A challenge that complicates measurement of AI risks
+    (Part 1 §1.2.1).
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["RiskMeasurementChallenge"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:RiskMeasurementChallenge"
+    class_name: ClassVar[str] = "RiskMeasurementChallenge"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.RiskMeasurementChallenge
+
+    id: Union[str, RiskMeasurementChallengeId] = None
+    challenge_kind: Union[str, "RiskMeasurementChallengeEnum"] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, RiskMeasurementChallengeId):
+            self.id = RiskMeasurementChallengeId(self.id)
+
+        if self._is_empty(self.challenge_kind):
+            self.MissingRequiredField("challenge_kind")
+        if not isinstance(self.challenge_kind, RiskMeasurementChallengeEnum):
+            self.challenge_kind = RiskMeasurementChallengeEnum(self.challenge_kind)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class TrustworthinessCharacteristic(NamedThing):
+    """
+    A characteristic of a trustworthy AI system (Figure 4 / Part 1
+    §3). The seven characteristics are inter-related; addressing them
+    individually does not guarantee trustworthiness, and tradeoffs
+    are usually involved.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["TrustworthinessCharacteristic"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:TrustworthinessCharacteristic"
+    class_name: ClassVar[str] = "TrustworthinessCharacteristic"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.TrustworthinessCharacteristic
+
+    id: Union[str, TrustworthinessCharacteristicId] = None
+    characteristic_kind: Union[str, "TrustworthinessCharacteristicEnum"] = None
+    is_base_condition: Optional[Union[bool, Bool]] = None
+    is_cross_cutting: Optional[Union[bool, Bool]] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, TrustworthinessCharacteristicId):
+            self.id = TrustworthinessCharacteristicId(self.id)
+
+        if self._is_empty(self.characteristic_kind):
+            self.MissingRequiredField("characteristic_kind")
+        if not isinstance(self.characteristic_kind, TrustworthinessCharacteristicEnum):
+            self.characteristic_kind = TrustworthinessCharacteristicEnum(self.characteristic_kind)
+
+        if self.is_base_condition is not None and not isinstance(self.is_base_condition, Bool):
+            self.is_base_condition = Bool(self.is_base_condition)
+
+        if self.is_cross_cutting is not None and not isinstance(self.is_cross_cutting, Bool):
+            self.is_cross_cutting = Bool(self.is_cross_cutting)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class Bias(NamedThing):
+    """
+    A form of AI bias - a deviation that may be perpetuated or
+    amplified by AI systems. NIST identifies three major categories:
+    systemic, computational/statistical, and human-cognitive
+    (Part 1 §3.7; NIST SP 1270).
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["Bias"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:Bias"
+    class_name: ClassVar[str] = "Bias"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.Bias
+
+    id: Union[str, BiasId] = None
+    bias_category: Optional[Union[Union[str, "BiasCategoryEnum"], list[Union[str, "BiasCategoryEnum"]]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, BiasId):
+            self.id = BiasId(self.id)
+
+        if not isinstance(self.bias_category, list):
+            self.bias_category = [self.bias_category] if self.bias_category is not None else []
+        self.bias_category = [v if isinstance(v, BiasCategoryEnum) else BiasCategoryEnum(v) for v in self.bias_category]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class Function(NamedThing):
+    """
+    A top-level AI RMF Core function. Each function organizes AI risk
+    management activities at the highest level. GOVERN applies across
+    all stages; MAP, MEASURE, and MANAGE apply to AI-system-specific
+    contexts and lifecycle stages.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["Function"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:Function"
+    class_name: ClassVar[str] = "Function"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.Function
+
+    id: Union[str, FunctionId] = None
+    function_code: Union[str, FunctionCode] = None
+    categories: Optional[Union[dict[Union[str, CategoryId], Union[dict, "Category"]], list[Union[dict, "Category"]]]] = empty_dict()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, FunctionId):
+            self.id = FunctionId(self.id)
+
+        if self._is_empty(self.function_code):
+            self.MissingRequiredField("function_code")
+        if not isinstance(self.function_code, FunctionCode):
+            self.function_code = FunctionCode(self.function_code)
+
+        self._normalize_inlined_as_list(slot_name="categories", slot_type=Category, key_name="id", keyed=True)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class Category(NamedThing):
+    """
+    A category within an AI RMF Core function (e.g., "GOVERN 1:
+    Policies, processes, procedures, and practices ... are in place,
+    transparent, and implemented effectively"). Categories group
+    related subcategories.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["Category"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:Category"
+    class_name: ClassVar[str] = "Category"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.Category
+
+    id: Union[str, CategoryId] = None
+    category_id: Optional[Union[str, CategoryCode]] = None
+    outcome: Optional[str] = None
+    subcategories: Optional[Union[dict[Union[str, SubcategoryId], Union[dict, "Subcategory"]], list[Union[dict, "Subcategory"]]]] = empty_dict()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, CategoryId):
+            self.id = CategoryId(self.id)
+
+        if self.category_id is not None and not isinstance(self.category_id, CategoryCode):
+            self.category_id = CategoryCode(self.category_id)
+
+        if self.outcome is not None and not isinstance(self.outcome, str):
+            self.outcome = str(self.outcome)
+
+        self._normalize_inlined_as_list(slot_name="subcategories", slot_type=Subcategory, key_name="id", keyed=True)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class Subcategory(NamedThing):
+    """
+    A subcategory within an AI RMF Core category (e.g., "GOVERN 1.1:
+    Legal and regulatory requirements involving AI are understood,
+    managed, and documented"). Subcategories express specific
+    outcomes.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["Subcategory"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:Subcategory"
+    class_name: ClassVar[str] = "Subcategory"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.Subcategory
+
+    id: Union[str, SubcategoryId] = None
+    subcategory_id: Optional[Union[str, SubcategoryCode]] = None
+    outcome: Optional[str] = None
+    trustworthiness_characteristic: Optional[Union[Union[str, "TrustworthinessCharacteristicEnum"], list[Union[str, "TrustworthinessCharacteristicEnum"]]]] = empty_list()
+    lifecycle_stage: Optional[Union[Union[str, "AiLifecycleStageEnum"], list[Union[str, "AiLifecycleStageEnum"]]]] = empty_list()
+    about_text: Optional[str] = None
+    suggested_actions_text: Optional[str] = None
+    documentation_questions: Optional[str] = None
+    references_text: Optional[str] = None
+    topics: Optional[Union[str, list[str]]] = empty_list()
+    ai_actor_categories: Optional[Union[str, list[str]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, SubcategoryId):
+            self.id = SubcategoryId(self.id)
+
+        if self.subcategory_id is not None and not isinstance(self.subcategory_id, SubcategoryCode):
+            self.subcategory_id = SubcategoryCode(self.subcategory_id)
+
+        if self.outcome is not None and not isinstance(self.outcome, str):
+            self.outcome = str(self.outcome)
+
+        if not isinstance(self.trustworthiness_characteristic, list):
+            self.trustworthiness_characteristic = [self.trustworthiness_characteristic] if self.trustworthiness_characteristic is not None else []
+        self.trustworthiness_characteristic = [v if isinstance(v, TrustworthinessCharacteristicEnum) else TrustworthinessCharacteristicEnum(v) for v in self.trustworthiness_characteristic]
+
+        if not isinstance(self.lifecycle_stage, list):
+            self.lifecycle_stage = [self.lifecycle_stage] if self.lifecycle_stage is not None else []
+        self.lifecycle_stage = [v if isinstance(v, AiLifecycleStageEnum) else AiLifecycleStageEnum(v) for v in self.lifecycle_stage]
+
+        if self.about_text is not None and not isinstance(self.about_text, str):
+            self.about_text = str(self.about_text)
+
+        if self.suggested_actions_text is not None and not isinstance(self.suggested_actions_text, str):
+            self.suggested_actions_text = str(self.suggested_actions_text)
+
+        if self.documentation_questions is not None and not isinstance(self.documentation_questions, str):
+            self.documentation_questions = str(self.documentation_questions)
+
+        if self.references_text is not None and not isinstance(self.references_text, str):
+            self.references_text = str(self.references_text)
+
+        if not isinstance(self.topics, list):
+            self.topics = [self.topics] if self.topics is not None else []
+        self.topics = [v if isinstance(v, str) else str(v) for v in self.topics]
+
+        if not isinstance(self.ai_actor_categories, list):
+            self.ai_actor_categories = [self.ai_actor_categories] if self.ai_actor_categories is not None else []
+        self.ai_actor_categories = [v if isinstance(v, str) else str(v) for v in self.ai_actor_categories]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class AiRmfProfile(NamedThing):
+    """
+    An implementation of the AI RMF Functions, Categories, and
+    Subcategories for a specific setting or application based on the
+    requirements, risk tolerance, and resources of the user (§6).
+    Profiles may be use-case-specific, temporal (current or target),
+    or cross-sectoral.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiRmfProfile"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiRmfProfile"
+    class_name: ClassVar[str] = "AiRmfProfile"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.AiRmfProfile
+
+    id: Union[str, AiRmfProfileId] = None
+    profile_type: Union[str, "ProfileTypeEnum"] = None
+    current_state: Optional[str] = None
+    target_state: Optional[str] = None
+    sector: Optional[str] = None
+    addresses: Optional[Union[Union[str, SubcategoryId], list[Union[str, SubcategoryId]]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, AiRmfProfileId):
+            self.id = AiRmfProfileId(self.id)
+
+        if self._is_empty(self.profile_type):
+            self.MissingRequiredField("profile_type")
+        if not isinstance(self.profile_type, ProfileTypeEnum):
+            self.profile_type = ProfileTypeEnum(self.profile_type)
+
+        if self.current_state is not None and not isinstance(self.current_state, str):
+            self.current_state = str(self.current_state)
+
+        if self.target_state is not None and not isinstance(self.target_state, str):
+            self.target_state = str(self.target_state)
+
+        if self.sector is not None and not isinstance(self.sector, str):
+            self.sector = str(self.sector)
+
+        if not isinstance(self.addresses, list):
+            self.addresses = [self.addresses] if self.addresses is not None else []
+        self.addresses = [v if isinstance(v, SubcategoryId) else SubcategoryId(v) for v in self.addresses]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class RmfAttribute(NamedThing):
+    """
+    A design attribute of the AI RMF (Appendix D) - one of the
+    qualities the Framework strives to embody (e.g., risk-based,
+    consensus-driven, plain language, common language, easily usable,
+    universally applicable, outcome-focused, leveraging existing
+    standards, law- and regulation-agnostic, living document).
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["RmfAttribute"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:RmfAttribute"
+    class_name: ClassVar[str] = "RmfAttribute"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.RmfAttribute
+
+    id: Union[str, RmfAttributeId] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, RmfAttributeId):
+            self.id = RmfAttributeId(self.id)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class AiSpecificRisk(NamedThing):
+    """
+    A risk that is new or increased for AI-based technology compared
+    to traditional software (Appendix B) - e.g., data quality, model
+    drift, opacity, scale and complexity, pre-trained model
+    uncertainty, emergent properties, privacy aggregation, or
+    environmental cost.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiSpecificRisk"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiSpecificRisk"
+    class_name: ClassVar[str] = "AiSpecificRisk"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.AiSpecificRisk
+
+    id: Union[str, AiSpecificRiskId] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, AiSpecificRiskId):
+            self.id = AiSpecificRiskId(self.id)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class HumanAiInteractionIssue(NamedThing):
+    """
+    An issue that merits further consideration in human-AI
+    interaction (Appendix C) - e.g., clear human roles and
+    responsibilities, systemic and human-cognitive biases in design,
+    variability of human-AI interaction outcomes, complexity of
+    presenting AI system information to humans.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["HumanAiInteractionIssue"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:HumanAiInteractionIssue"
+    class_name: ClassVar[str] = "HumanAiInteractionIssue"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.HumanAiInteractionIssue
+
+    id: Union[str, HumanAiInteractionIssueId] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, HumanAiInteractionIssueId):
+            self.id = HumanAiInteractionIssueId(self.id)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class AiRmfDocument(NamedThing):
     """
     Publication metadata for an instance of the AI RMF (e.g., NIST
     AI 100-1, January 2023). The Framework is intended to be a
@@ -1169,7 +1169,7 @@ class AiRmfDocument(NamedThingRMF):
 
 
 @dataclass(repr=False)
-class AiRmfFramework(NamedThingRMF):
+class AiRmfFramework(NamedThing):
     """
     Root container that bundles the AI RMF Core (Functions) with
     foundational concepts (trustworthiness characteristics,
@@ -1426,56 +1426,6 @@ other AI actors.""")
 illustrated in Figure 3.""",
     )
 
-class TrustworthinessCharacteristicEnum(EnumDefinitionImpl):
-    """
-    The seven characteristics of trustworthy AI systems described in
-    Figure 4 and Part 1 §3.
-    """
-    VALID_AND_RELIABLE = PermissibleValue(
-        text="VALID_AND_RELIABLE",
-        description="""Confirmation that requirements for a specific intended use have
-been fulfilled (validation) and that the system performs as
-required without failure (reliability). A necessary condition of
-trustworthiness and the base for other characteristics.""")
-    SAFE = PermissibleValue(
-        text="SAFE",
-        description="""The system does not, under defined conditions, lead to a state
-in which human life, health, property, or the environment is
-endangered.""")
-    SECURE_AND_RESILIENT = PermissibleValue(
-        text="SECURE_AND_RESILIENT",
-        description="""The system can withstand unexpected adverse events or changes
-(resilient) and maintain confidentiality, integrity, and
-availability through protection mechanisms (secure).""")
-    ACCOUNTABLE_AND_TRANSPARENT = PermissibleValue(
-        text="ACCOUNTABLE_AND_TRANSPARENT",
-        description="""Trustworthy AI depends on accountability, which presupposes
-transparency - the extent to which information about an AI
-system and its outputs is available to those interacting with
-it.""")
-    EXPLAINABLE_AND_INTERPRETABLE = PermissibleValue(
-        text="EXPLAINABLE_AND_INTERPRETABLE",
-        description="""Explainability concerns the mechanisms underlying an AI system's
-operation; interpretability concerns the meaning of its output
-in context.""")
-    PRIVACY_ENHANCED = PermissibleValue(
-        text="PRIVACY_ENHANCED",
-        description="""Norms and practices that help safeguard human autonomy,
-identity, and dignity - including anonymity, confidentiality,
-and control over personal information.""")
-    FAIR_WITH_HARMFUL_BIAS_MANAGED = PermissibleValue(
-        text="FAIR_WITH_HARMFUL_BIAS_MANAGED",
-        description="""Concerns for equality and equity by addressing issues such as
-harmful bias and discrimination, and recognising that
-perceptions of fairness differ across cultures and
-applications.""")
-
-    _defn = EnumDefinition(
-        name="TrustworthinessCharacteristicEnum",
-        description="""The seven characteristics of trustworthy AI systems described in
-Figure 4 and Part 1 §3.""",
-    )
-
 class HarmCategoryEnum(EnumDefinitionImpl):
     """
     High-level categories of harm related to AI systems (Figure 1).
@@ -1684,27 +1634,62 @@ class ImpactSignEnum(EnumDefinitionImpl):
 (Part 1 §1.1).""",
     )
 
+class TrustworthinessCharacteristicEnum(EnumDefinitionImpl):
+    """
+    The seven characteristics of trustworthy AI systems described in
+    Figure 4 and Part 1 §3.
+    """
+    VALID_AND_RELIABLE = PermissibleValue(
+        text="VALID_AND_RELIABLE",
+        description="""Confirmation that requirements for a specific intended use have
+been fulfilled (validation) and that the system performs as
+required without failure (reliability). A necessary condition of
+trustworthiness and the base for other characteristics.""")
+    SAFE = PermissibleValue(
+        text="SAFE",
+        description="""The system does not, under defined conditions, lead to a state
+in which human life, health, property, or the environment is
+endangered.""")
+    SECURE_AND_RESILIENT = PermissibleValue(
+        text="SECURE_AND_RESILIENT",
+        description="""The system can withstand unexpected adverse events or changes
+(resilient) and maintain confidentiality, integrity, and
+availability through protection mechanisms (secure).""")
+    ACCOUNTABLE_AND_TRANSPARENT = PermissibleValue(
+        text="ACCOUNTABLE_AND_TRANSPARENT",
+        description="""Trustworthy AI depends on accountability, which presupposes
+transparency - the extent to which information about an AI
+system and its outputs is available to those interacting with
+it.""")
+    EXPLAINABLE_AND_INTERPRETABLE = PermissibleValue(
+        text="EXPLAINABLE_AND_INTERPRETABLE",
+        description="""Explainability concerns the mechanisms underlying an AI system's
+operation; interpretability concerns the meaning of its output
+in context.""")
+    PRIVACY_ENHANCED = PermissibleValue(
+        text="PRIVACY_ENHANCED",
+        description="""Norms and practices that help safeguard human autonomy,
+identity, and dignity - including anonymity, confidentiality,
+and control over personal information.""")
+    FAIR_WITH_HARMFUL_BIAS_MANAGED = PermissibleValue(
+        text="FAIR_WITH_HARMFUL_BIAS_MANAGED",
+        description="""Concerns for equality and equity by addressing issues such as
+harmful bias and discrimination, and recognising that
+perceptions of fairness differ across cultures and
+applications.""")
+
+    _defn = EnumDefinition(
+        name="TrustworthinessCharacteristicEnum",
+        description="""The seven characteristics of trustworthy AI systems described in
+Figure 4 and Part 1 §3.""",
+    )
+
 # Slots
 class slots:
     pass
 
-slots.id = Slot(uri=SCHEMA.identifier, name="id", curie=SCHEMA.curie('identifier'),
-                   model_uri=NIST_AI_100_1.id, domain=None, range=URIRef)
-
-slots.name = Slot(uri=RDFS.label, name="name", curie=RDFS.curie('label'),
-                   model_uri=NIST_AI_100_1.name, domain=None, range=Optional[str])
-
-slots.title = Slot(uri=DCTERMS.title, name="title", curie=DCTERMS.curie('title'),
-                   model_uri=NIST_AI_100_1.title, domain=None, range=Optional[str])
-
-slots.description = Slot(uri=DCTERMS.description, name="description", curie=DCTERMS.curie('description'),
-                   model_uri=NIST_AI_100_1.description, domain=None, range=Optional[str])
-
 slots.source = Slot(uri=DCTERMS.source, name="source", curie=DCTERMS.curie('source'),
                    model_uri=NIST_AI_100_1.source, domain=None, range=Optional[Union[str, URIorCURIE]])
-
-slots.see_also = Slot(uri=RDFS.seeAlso, name="see_also", curie=RDFS.curie('seeAlso'),
-                   model_uri=NIST_AI_100_1.see_also, domain=None, range=Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]])
 
 slots.function_code = Slot(uri=NIST_AI_100_1.function_code, name="function_code", curie=NIST_AI_100_1.curie('function_code'),
                    model_uri=NIST_AI_100_1.function_code, domain=None, range=Union[str, FunctionCode])
@@ -1740,7 +1725,7 @@ slots.harm_to_people_subcategory = Slot(uri=NIST_AI_100_1.harm_to_people_subcate
                    model_uri=NIST_AI_100_1.harm_to_people_subcategory, domain=None, range=Optional[Union[str, "HarmToPeopleSubcategoryEnum"]])
 
 slots.affects = Slot(uri=NIST_AI_100_1.affects, name="affects", curie=NIST_AI_100_1.curie('affects'),
-                   model_uri=NIST_AI_100_1.affects, domain=None, range=Optional[Union[Union[str, NamedThingRMFId], list[Union[str, NamedThingRMFId]]]])
+                   model_uri=NIST_AI_100_1.affects, domain=None, range=Optional[Union[Union[str, NamedThingId], list[Union[str, NamedThingId]]]])
 
 slots.risk_response = Slot(uri=NIST_AI_100_1.risk_response, name="risk_response", curie=NIST_AI_100_1.curie('risk_response'),
                    model_uri=NIST_AI_100_1.risk_response, domain=None, range=Optional[Union[str, "RiskResponseEnum"]])
@@ -1762,9 +1747,6 @@ slots.is_tevv = Slot(uri=NIST_AI_100_1.is_tevv, name="is_tevv", curie=NIST_AI_10
 
 slots.audience = Slot(uri=NIST_AI_100_1.audience, name="audience", curie=NIST_AI_100_1.curie('audience'),
                    model_uri=NIST_AI_100_1.audience, domain=None, range=Optional[Union[str, "AudienceEnum"]])
-
-slots.trustworthiness_characteristic = Slot(uri=NIST_AI_100_1.trustworthiness_characteristic, name="trustworthiness_characteristic", curie=NIST_AI_100_1.curie('trustworthiness_characteristic'),
-                   model_uri=NIST_AI_100_1.trustworthiness_characteristic, domain=None, range=Optional[Union[Union[str, "TrustworthinessCharacteristicEnum"], list[Union[str, "TrustworthinessCharacteristicEnum"]]]])
 
 slots.bias_category = Slot(uri=NIST_AI_100_1.bias_category, name="bias_category", curie=NIST_AI_100_1.curie('bias_category'),
                    model_uri=NIST_AI_100_1.bias_category, domain=None, range=Optional[Union[Union[str, "BiasCategoryEnum"], list[Union[str, "BiasCategoryEnum"]]]])
@@ -1894,6 +1876,24 @@ slots.ai_specific_risks = Slot(uri=NIST_AI_100_1.ai_specific_risks, name="ai_spe
 
 slots.human_ai_interaction_issues = Slot(uri=NIST_AI_100_1.human_ai_interaction_issues, name="human_ai_interaction_issues", curie=NIST_AI_100_1.curie('human_ai_interaction_issues'),
                    model_uri=NIST_AI_100_1.human_ai_interaction_issues, domain=None, range=Optional[Union[dict[Union[str, HumanAiInteractionIssueId], Union[dict, HumanAiInteractionIssue]], list[Union[dict, HumanAiInteractionIssue]]]])
+
+slots.id = Slot(uri=SCHEMA.identifier, name="id", curie=SCHEMA.curie('identifier'),
+                   model_uri=NIST_AI_100_1.id, domain=None, range=URIRef)
+
+slots.name = Slot(uri=RDFS.label, name="name", curie=RDFS.curie('label'),
+                   model_uri=NIST_AI_100_1.name, domain=None, range=Optional[str])
+
+slots.title = Slot(uri=DCTERMS.title, name="title", curie=DCTERMS.curie('title'),
+                   model_uri=NIST_AI_100_1.title, domain=None, range=Optional[str])
+
+slots.description = Slot(uri=DCTERMS.description, name="description", curie=DCTERMS.curie('description'),
+                   model_uri=NIST_AI_100_1.description, domain=None, range=Optional[str])
+
+slots.see_also = Slot(uri=RDFS.seeAlso, name="see_also", curie=RDFS.curie('seeAlso'),
+                   model_uri=NIST_AI_100_1.see_also, domain=None, range=Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]])
+
+slots.trustworthiness_characteristic = Slot(uri=NIST_AI_100_1.trustworthiness_characteristic, name="trustworthiness_characteristic", curie=NIST_AI_100_1.curie('trustworthiness_characteristic'),
+                   model_uri=NIST_AI_100_1.trustworthiness_characteristic, domain=None, range=Optional[Union[Union[str, "TrustworthinessCharacteristicEnum"], list[Union[str, "TrustworthinessCharacteristicEnum"]]]])
 
 slots.playbookEntry__type = Slot(uri=NIST_AI_100_1.type, name="playbookEntry__type", curie=NIST_AI_100_1.curie('type'),
                    model_uri=NIST_AI_100_1.playbookEntry__type, domain=None, range=Optional[str])

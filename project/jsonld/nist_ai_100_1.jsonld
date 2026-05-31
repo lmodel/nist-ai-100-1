@@ -11,7 +11,8 @@
   "id": "https://w3id.org/lmodel/nist-ai-100-1",
   "version": "1.0.0",
   "imports": [
-    "linkml:types"
+    "linkml:types",
+    "nist_ai_rmf_common"
   ],
   "license": "Apache-2.0",
   "prefixes": [
@@ -100,23 +101,9 @@
   "default_range": "string",
   "subsets": [
     {
-      "name": "base",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/Base",
-      "description": "Schema-infrastructure elements shared across the framework:\nidentifier slots, the abstract `NamedThingRMF` root, publication\nmetadata, and the top-level `AiRmfFramework` container. Not a\nsection of NIST AI 100-1 itself - distinct from `framework_core`\n(Part 2, \u00a75 \"AI RMF Core\").",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "@type": "SubsetDefinition"
-    },
-    {
       "name": "framework_core",
       "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/FrameworkCore",
       "description": "The AI RMF Core (Part 2, \u00a75): the four high-level Functions\n(GOVERN, MAP, MEASURE, MANAGE) and their Categories and\nSubcategories - the catalog backbone of the Framework.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "@type": "SubsetDefinition"
-    },
-    {
-      "name": "trustworthiness",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/Trustworthiness",
-      "description": "Characteristics of trustworthy AI systems (Part 1, \u00a73):\nValid and Reliable, Safe, Secure and Resilient, Accountable and\nTransparent, Explainable and Interpretable, Privacy-Enhanced, and\nFair with Harmful Bias Managed.",
       "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "@type": "SubsetDefinition"
     },
@@ -168,6 +155,20 @@
       "description": "Companion-resource enrichment of an AI RMF subcategory with\nfree-text discussion (\"about\"), suggested actions, documentation\nquestions, and references - modelled after the NIST AI RMF\nPlaybook JSON shape. (Not part of NIST AI 100-1 itself; cross-\nreferenced in Part 2, \u00a75.)",
       "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "@type": "SubsetDefinition"
+    },
+    {
+      "name": "base",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/Base",
+      "description": "Schema-infrastructure elements shared across the framework:\nidentifier slots and the abstract `NamedThing` root.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
+      "@type": "SubsetDefinition"
+    },
+    {
+      "name": "trustworthiness",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/Trustworthiness",
+      "description": "Characteristics of trustworthy AI systems (NIST AI 100-1 Part 1,\n\u00a73): Valid and Reliable, Safe, Secure and Resilient, Accountable\nand Transparent, Explainable and Interpretable, Privacy-Enhanced,\nand Fair with Harmful Bias Managed.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
+      "@type": "SubsetDefinition"
     }
   ],
   "types": [
@@ -191,17 +192,6 @@
       "base": "str",
       "uri": "http://www.w3.org/2001/XMLSchema#string",
       "pattern": "^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+$",
-      "@type": "TypeDefinition"
-    },
-    {
-      "name": "SubcategoryCode",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/SubcategoryCode",
-      "description": "Identifier for a Core subcategory (e.g., \"GOVERN 1.1\").",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "typeof": "string",
-      "base": "str",
-      "uri": "http://www.w3.org/2001/XMLSchema#string",
-      "pattern": "^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+\\.[0-9]+$",
       "@type": "TypeDefinition"
     },
     {
@@ -511,6 +501,17 @@
       "uri": "http://www.w3.org/2001/XMLSchema#string",
       "repr": "str",
       "@type": "TypeDefinition"
+    },
+    {
+      "name": "SubcategoryCode",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/SubcategoryCode",
+      "description": "Identifier for a Core subcategory (e.g., \"GOVERN 1.1\").",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
+      "typeof": "string",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "pattern": "^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+\\.[0-9]+$",
+      "@type": "TypeDefinition"
     }
   ],
   "enums": [
@@ -675,45 +676,6 @@
         {
           "text": "GENERAL_PUBLIC",
           "description": "Most likely to directly experience positive and negative impacts\nof AI technologies; provides motivation for actions taken by\nother AI actors."
-        }
-      ]
-    },
-    {
-      "name": "TrustworthinessCharacteristicEnum",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum",
-      "description": "The seven characteristics of trustworthy AI systems described in\nFigure 4 and Part 1 \u00a73.",
-      "in_subset": [
-        "trustworthiness"
-      ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "permissible_values": [
-        {
-          "text": "VALID_AND_RELIABLE",
-          "description": "Confirmation that requirements for a specific intended use have\nbeen fulfilled (validation) and that the system performs as\nrequired without failure (reliability). A necessary condition of\ntrustworthiness and the base for other characteristics."
-        },
-        {
-          "text": "SAFE",
-          "description": "The system does not, under defined conditions, lead to a state\nin which human life, health, property, or the environment is\nendangered."
-        },
-        {
-          "text": "SECURE_AND_RESILIENT",
-          "description": "The system can withstand unexpected adverse events or changes\n(resilient) and maintain confidentiality, integrity, and\navailability through protection mechanisms (secure)."
-        },
-        {
-          "text": "ACCOUNTABLE_AND_TRANSPARENT",
-          "description": "Trustworthy AI depends on accountability, which presupposes\ntransparency - the extent to which information about an AI\nsystem and its outputs is available to those interacting with\nit."
-        },
-        {
-          "text": "EXPLAINABLE_AND_INTERPRETABLE",
-          "description": "Explainability concerns the mechanisms underlying an AI system's\noperation; interpretability concerns the meaning of its output\nin context."
-        },
-        {
-          "text": "PRIVACY_ENHANCED",
-          "description": "Norms and practices that help safeguard human autonomy,\nidentity, and dignity - including anonymity, confidentiality,\nand control over personal information."
-        },
-        {
-          "text": "FAIR_WITH_HARMFUL_BIAS_MANAGED",
-          "description": "Concerns for equality and equity by addressing issues such as\nharmful bias and discrimination, and recognising that\nperceptions of fairness differ across cultures and\napplications."
         }
       ]
     },
@@ -920,87 +882,48 @@
           "description": "An impact that is both positive and negative."
         }
       ]
+    },
+    {
+      "name": "TrustworthinessCharacteristicEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum",
+      "description": "The seven characteristics of trustworthy AI systems described in\nFigure 4 and Part 1 \u00a73.",
+      "in_subset": [
+        "trustworthiness"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
+      "permissible_values": [
+        {
+          "text": "VALID_AND_RELIABLE",
+          "description": "Confirmation that requirements for a specific intended use have\nbeen fulfilled (validation) and that the system performs as\nrequired without failure (reliability). A necessary condition of\ntrustworthiness and the base for other characteristics."
+        },
+        {
+          "text": "SAFE",
+          "description": "The system does not, under defined conditions, lead to a state\nin which human life, health, property, or the environment is\nendangered."
+        },
+        {
+          "text": "SECURE_AND_RESILIENT",
+          "description": "The system can withstand unexpected adverse events or changes\n(resilient) and maintain confidentiality, integrity, and\navailability through protection mechanisms (secure)."
+        },
+        {
+          "text": "ACCOUNTABLE_AND_TRANSPARENT",
+          "description": "Trustworthy AI depends on accountability, which presupposes\ntransparency - the extent to which information about an AI\nsystem and its outputs is available to those interacting with\nit."
+        },
+        {
+          "text": "EXPLAINABLE_AND_INTERPRETABLE",
+          "description": "Explainability concerns the mechanisms underlying an AI system's\noperation; interpretability concerns the meaning of its output\nin context."
+        },
+        {
+          "text": "PRIVACY_ENHANCED",
+          "description": "Norms and practices that help safeguard human autonomy,\nidentity, and dignity - including anonymity, confidentiality,\nand control over personal information."
+        },
+        {
+          "text": "FAIR_WITH_HARMFUL_BIAS_MANAGED",
+          "description": "Concerns for equality and equity by addressing issues such as\nharmful bias and discrimination, and recognising that\nperceptions of fairness differ across cultures and\napplications."
+        }
+      ]
     }
   ],
   "slots": [
-    {
-      "name": "id",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/id",
-      "description": "A unique identifier for an element.",
-      "in_subset": [
-        "base"
-      ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "mappings": [
-        "http://schema.org/identifier"
-      ],
-      "slot_uri": "http://schema.org/identifier",
-      "identifier": true,
-      "owner": "NamedThingRMF",
-      "domain_of": [
-        "NamedThingRMF"
-      ],
-      "range": "uriorcurie",
-      "required": true,
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "name",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/name",
-      "description": "A short human-readable name.",
-      "in_subset": [
-        "base"
-      ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "mappings": [
-        "http://www.w3.org/2000/01/rdf-schema#label"
-      ],
-      "slot_uri": "http://www.w3.org/2000/01/rdf-schema#label",
-      "owner": "NamedThingRMF",
-      "domain_of": [
-        "NamedThingRMF"
-      ],
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "title",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/title",
-      "description": "A human-readable title.",
-      "in_subset": [
-        "base"
-      ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "mappings": [
-        "http://purl.org/dc/terms/title"
-      ],
-      "slot_uri": "http://purl.org/dc/terms/title",
-      "owner": "NamedThingRMF",
-      "domain_of": [
-        "NamedThingRMF"
-      ],
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "description",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/description",
-      "description": "A human-readable description.",
-      "in_subset": [
-        "base"
-      ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "mappings": [
-        "http://purl.org/dc/terms/description"
-      ],
-      "slot_uri": "http://purl.org/dc/terms/description",
-      "owner": "NamedThingRMF",
-      "domain_of": [
-        "NamedThingRMF"
-      ],
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
     {
       "name": "source",
       "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/source",
@@ -1018,26 +941,6 @@
         "AiRmfDocument"
       ],
       "range": "uriorcurie",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "see_also",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/see_also",
-      "description": "Related references.",
-      "in_subset": [
-        "base"
-      ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "mappings": [
-        "http://www.w3.org/2000/01/rdf-schema#seeAlso"
-      ],
-      "slot_uri": "http://www.w3.org/2000/01/rdf-schema#seeAlso",
-      "owner": "NamedThingRMF",
-      "domain_of": [
-        "NamedThingRMF"
-      ],
-      "range": "uriorcurie",
-      "multivalued": true,
       "@type": "SlotDefinition"
     },
     {
@@ -1253,7 +1156,7 @@
         "Impact",
         "Harm"
       ],
-      "range": "NamedThingRMF",
+      "range": "NamedThing",
       "multivalued": true,
       "@type": "SlotDefinition"
     },
@@ -1378,24 +1281,6 @@
         "AiActor"
       ],
       "range": "AudienceEnum",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "trustworthiness_characteristic",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/trustworthiness_characteristic",
-      "description": "Trustworthiness characteristic(s) the element pertains to.",
-      "in_subset": [
-        "trustworthiness"
-      ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/trustworthiness_characteristic",
-      "owner": "Subcategory",
-      "domain_of": [
-        "Risk",
-        "Subcategory"
-      ],
-      "range": "TrustworthinessCharacteristicEnum",
-      "multivalued": true,
       "@type": "SlotDefinition"
     },
     {
@@ -2142,6 +2027,122 @@
       "@type": "SlotDefinition"
     },
     {
+      "name": "id",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/id",
+      "description": "A unique identifier for an element.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
+      "mappings": [
+        "http://schema.org/identifier"
+      ],
+      "slot_uri": "http://schema.org/identifier",
+      "identifier": true,
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "range": "uriorcurie",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "name",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/name",
+      "description": "A short human-readable name.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
+      "mappings": [
+        "http://www.w3.org/2000/01/rdf-schema#label"
+      ],
+      "slot_uri": "http://www.w3.org/2000/01/rdf-schema#label",
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "title",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/title",
+      "description": "A human-readable title.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
+      "mappings": [
+        "http://purl.org/dc/terms/title"
+      ],
+      "slot_uri": "http://purl.org/dc/terms/title",
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "description",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/description",
+      "description": "A human-readable description.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
+      "mappings": [
+        "http://purl.org/dc/terms/description"
+      ],
+      "slot_uri": "http://purl.org/dc/terms/description",
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "see_also",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/see_also",
+      "description": "Related references.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
+      "mappings": [
+        "http://www.w3.org/2000/01/rdf-schema#seeAlso"
+      ],
+      "slot_uri": "http://www.w3.org/2000/01/rdf-schema#seeAlso",
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "range": "uriorcurie",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "trustworthiness_characteristic",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/trustworthiness_characteristic",
+      "description": "Trustworthiness characteristic(s) the element pertains to.",
+      "in_subset": [
+        "trustworthiness"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/trustworthiness_characteristic",
+      "owner": "Subcategory",
+      "domain_of": [
+        "Risk",
+        "Subcategory"
+      ],
+      "range": "TrustworthinessCharacteristicEnum",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
       "name": "playbookEntry__type",
       "description": "Function label as serialised in the published Playbook JSON\n(Title case - \"Govern\", \"Map\", \"Measure\", \"Manage\"). For\nthe controlled enum see `function_kind`.",
       "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
@@ -2326,7 +2327,7 @@
       "in_subset": [
         "base"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
       "mappings": [
         "http://schema.org/identifier"
       ],
@@ -2376,7 +2377,7 @@
       "in_subset": [
         "base"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
       "mappings": [
         "http://schema.org/identifier"
       ],
@@ -2398,32 +2399,6 @@
   ],
   "classes": [
     {
-      "name": "NamedThingRMF",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/NamedThingRMF",
-      "description": "A generic grouping for any identifiable AI RMF element.",
-      "in_subset": [
-        "base"
-      ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "mappings": [
-        "schema:Thing"
-      ],
-      "close_mappings": [
-        "schema:Thing"
-      ],
-      "abstract": true,
-      "slots": [
-        "id",
-        "name",
-        "title",
-        "description",
-        "see_also"
-      ],
-      "slot_usage": {},
-      "class_uri": "http://schema.org/Thing",
-      "@type": "ClassDefinition"
-    },
-    {
       "name": "AiSystem",
       "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiSystem",
       "description": "An engineered or machine-based system that can, for a given set\nof objectives, generate outputs such as predictions,\nrecommendations, or decisions influencing real or virtual\nenvironments. AI systems are designed to operate with varying\nlevels of autonomy (Adapted from OECD Recommendation on AI:2019;\nISO/IEC 22989:2022).",
@@ -2434,7 +2409,7 @@
       "close_mappings": [
         "schema:SoftwareApplication"
       ],
-      "is_a": "NamedThingRMF",
+      "is_a": "NamedThing",
       "slots": [
         "id",
         "name",
@@ -2456,7 +2431,7 @@
         "lifecycle"
       ],
       "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "is_a": "NamedThingRMF",
+      "is_a": "NamedThing",
       "slots": [
         "id",
         "name",
@@ -2477,7 +2452,7 @@
         "lifecycle"
       ],
       "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "is_a": "NamedThingRMF",
+      "is_a": "NamedThing",
       "slots": [
         "id",
         "name",
@@ -2507,7 +2482,7 @@
         "stix:Identity",
         "iso27001:InterestedParty"
       ],
-      "is_a": "NamedThingRMF",
+      "is_a": "NamedThing",
       "slots": [
         "id",
         "name",
@@ -2531,7 +2506,7 @@
         "lifecycle"
       ],
       "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "is_a": "NamedThingRMF",
+      "is_a": "NamedThing",
       "slots": [
         "id",
         "name",
@@ -2561,7 +2536,7 @@
       "related_mappings": [
         "iso29100:PrivacyRisk"
       ],
-      "is_a": "NamedThingRMF",
+      "is_a": "NamedThing",
       "slots": [
         "id",
         "name",
@@ -2593,7 +2568,7 @@
       "narrow_mappings": [
         "iso27001:ImpactRating"
       ],
-      "is_a": "NamedThingRMF",
+      "is_a": "NamedThing",
       "slots": [
         "id",
         "name",
@@ -2617,7 +2592,7 @@
         "risk_and_harm"
       ],
       "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "is_a": "NamedThingRMF",
+      "is_a": "NamedThing",
       "slots": [
         "id",
         "name",
@@ -2676,7 +2651,7 @@
       "close_mappings": [
         "iso27001:RiskLevel"
       ],
-      "is_a": "NamedThingRMF",
+      "is_a": "NamedThing",
       "slots": [
         "id",
         "name",
@@ -2698,7 +2673,7 @@
         "risk_and_harm"
       ],
       "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "is_a": "NamedThingRMF",
+      "is_a": "NamedThing",
       "slots": [
         "id",
         "name",
@@ -2719,7 +2694,7 @@
         "trustworthiness"
       ],
       "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
-      "is_a": "NamedThingRMF",
+      "is_a": "NamedThing",
       "slots": [
         "id",
         "name",
@@ -2745,7 +2720,7 @@
       "related_mappings": [
         "iso29100:PrivacyPrinciple"
       ],
-      "is_a": "NamedThingRMF",
+      "is_a": "NamedThing",
       "slots": [
         "id",
         "name",
@@ -2772,7 +2747,7 @@
       "related_mappings": [
         "gist_linkml:Function"
       ],
-      "is_a": "NamedThingRMF",
+      "is_a": "NamedThing",
       "slots": [
         "id",
         "name",
@@ -2797,7 +2772,7 @@
       "exact_mappings": [
         "nist_csf:CSFCategory"
       ],
-      "is_a": "NamedThingRMF",
+      "is_a": "NamedThing",
       "slots": [
         "name",
         "title",
@@ -2827,7 +2802,7 @@
         "oscal_catalog:Control",
         "nist_sp_800_53:Control"
       ],
-      "is_a": "NamedThingRMF",
+      "is_a": "NamedThing",
       "slots": [
         "name",
         "title",
@@ -2863,7 +2838,7 @@
       "close_mappings": [
         "nist_sp_800_53:ProfileDocument"
       ],
-      "is_a": "NamedThingRMF",
+      "is_a": "NamedThing",
       "slots": [
         "id",
         "name",
@@ -2891,7 +2866,7 @@
       "related_mappings": [
         "nist_csf:CSFProperty"
       ],
-      "is_a": "NamedThingRMF",
+      "is_a": "NamedThing",
       "slots": [
         "id",
         "name",
@@ -2914,7 +2889,7 @@
       "broad_mappings": [
         "iso27001:Risk"
       ],
-      "is_a": "NamedThingRMF",
+      "is_a": "NamedThing",
       "slots": [
         "id",
         "name",
@@ -2937,7 +2912,7 @@
       "related_mappings": [
         "iso27001:InterestedParty"
       ],
-      "is_a": "NamedThingRMF",
+      "is_a": "NamedThing",
       "slots": [
         "id",
         "name",
@@ -3078,7 +3053,7 @@
       "related_mappings": [
         "schema:CreativeWork"
       ],
-      "is_a": "NamedThingRMF",
+      "is_a": "NamedThing",
       "slots": [
         "id",
         "name",
@@ -3108,7 +3083,7 @@
         "oscal_catalog:Catalog",
         "nist_sp_800_53:Catalog"
       ],
-      "is_a": "NamedThingRMF",
+      "is_a": "NamedThing",
       "slots": [
         "id",
         "name",
@@ -3131,17 +3106,44 @@
       "class_uri": "https://w3id.org/lmodel/nist-ai-100-1/AiRmfFramework",
       "tree_root": true,
       "@type": "ClassDefinition"
+    },
+    {
+      "name": "NamedThing",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/NamedThing",
+      "description": "A generic grouping for any identifiable AI RMF element.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
+      "mappings": [
+        "schema:Thing"
+      ],
+      "close_mappings": [
+        "schema:Thing"
+      ],
+      "abstract": true,
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also"
+      ],
+      "slot_usage": {},
+      "class_uri": "http://schema.org/Thing",
+      "@type": "ClassDefinition"
     }
   ],
   "metamodel_version": "1.11.0",
   "source_file": "nist_ai_100_1.yaml",
-  "source_file_date": "2026-05-31T02:00:39",
-  "source_file_size": 51508,
-  "generation_date": "2026-05-31T02:00:50",
+  "source_file_date": "2026-05-31T02:38:18",
+  "source_file_size": 47960,
+  "generation_date": "2026-05-31T03:00:14",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/nist_ai_100_1.context.jsonld",
     "https://w3id.org/linkml/types.context.jsonld",
+    "nist_ai_rmf_common.context.jsonld",
     {
       "@base": "https://w3id.org/lmodel/nist-ai-100-1/"
     }

@@ -18,7 +18,7 @@ presenting AI system information to humans.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class HumanAiInteractionIssue extends NamedThingRMF {
+public class HumanAiInteractionIssue extends NamedThing {
 
 
 

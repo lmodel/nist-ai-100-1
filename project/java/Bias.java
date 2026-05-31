@@ -17,7 +17,7 @@ systemic, computational/statistical, and human-cognitive
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class Bias extends NamedThingRMF {
+public class Bias extends NamedThing {
 
   private List<String> biasCategory;
 

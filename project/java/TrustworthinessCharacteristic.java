@@ -17,7 +17,7 @@ are usually involved.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class TrustworthinessCharacteristic extends NamedThingRMF {
+public class TrustworthinessCharacteristic extends NamedThing {
 
   private String characteristicKind;
   private Boolean isBaseCondition;

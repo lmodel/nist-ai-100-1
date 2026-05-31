@@ -18,7 +18,7 @@ instance of it as a single JSON / YAML document.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class AiRmfFramework extends NamedThingRMF {
+public class AiRmfFramework extends NamedThing {
 
   private AiRmfDocument document;
   private List<Function> functions;

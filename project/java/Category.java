@@ -17,7 +17,7 @@ related subcategories.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class Category extends NamedThingRMF {
+public class Category extends NamedThing {
 
   private String categoryId;
   private String outcome;

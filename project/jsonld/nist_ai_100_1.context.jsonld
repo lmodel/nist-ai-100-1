@@ -407,7 +407,7 @@
       "Impact": {
          "@id": "Impact"
       },
-      "NamedThingRMF": {
+      "NamedThing": {
          "@id": "schema:Thing"
       },
       "PlaybookCollection": {

@@ -18,7 +18,7 @@ occurrence (Adapted from ISO 31000:2018; OMB Circular A-130:2016).
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class Risk extends NamedThingRMF {
+public class Risk extends NamedThing {
 
   private Float likelihood;
   private String magnitude;

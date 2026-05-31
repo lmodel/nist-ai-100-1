@@ -1189,7 +1189,7 @@
             "title": "ImpactSignEnum",
             "type": "string"
         },
-        "NamedThingRMF": {
+        "NamedThing": {
             "additionalProperties": false,
             "description": "A generic grouping for any identifiable AI RMF element.",
             "properties": {
@@ -1232,7 +1232,7 @@
             "required": [
                 "id"
             ],
-            "title": "NamedThingRMF",
+            "title": "NamedThing",
             "type": "object"
         },
         "PlaybookCollection": {
