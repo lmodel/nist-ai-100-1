@@ -1,456 +1,432 @@
 {
    "@context": {
       "xsd": "http://www.w3.org/2001/XMLSchema#",
-      "agt_atf": "https://github.com/microsoft/agent-governance-toolkit/blob/main/docs/compliance/atf-conformance-assessment.md#",
-      "dcterms": "http://purl.org/dc/terms/",
-      "doi": {
-         "@type": "xsd:anyURI",
-         "@id": "doi"
-      },
-      "eu_ai_act": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj#",
-      "foaf": "http://xmlns.com/foaf/0.1/",
-      "gist_linkml": "https://w3id.org/lmodel/gist/",
       "iso27001": "https://w3id.org/lmodel/iso27001/",
-      "iso29100": "https://w3id.org/lmodel/iso29100/",
       "linkml": "https://w3id.org/linkml/",
       "nist_ai_100_1": "https://w3id.org/lmodel/nist-ai-100-1/",
-      "nist_csf": "https://w3id.org/lmodel/nist-csf-v2/",
-      "nist_sp_800_218": "https://w3id.org/lmodel/nist-sp-800-218/",
-      "nist_sp_800_53": "https://w3id.org/lmodel/nist-sp-800-53/",
-      "oscal_catalog": "https://w3id.org/lmodel/oscal_catalog/",
-      "oscal_profile": "https://w3id.org/lmodel/oscal_profile/",
-      "owasp_asi": {
-         "@id": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/asi-",
-         "@prefix": true
-      },
-      "owasp_llm": {
-         "@id": "https://genai.owasp.org/resource/owasp-top-10-for-llm-applications/llm-",
-         "@prefix": true
-      },
+      "nist_csf_v2": "https://w3id.org/lmodel/nist-csf-v2/",
+      "oscal": "https://w3id.org/lmodel/oscal/",
       "prov": "http://www.w3.org/ns/prov#",
-      "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-      "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
       "schema": "http://schema.org/",
       "skos": "http://www.w3.org/2004/02/skos/core#",
-      "soc2": "https://w3id.org/lmodel/soc2-tsc/",
-      "stix": "https://w3id.org/lmodel/stix/",
       "@vocab": "https://w3id.org/lmodel/nist-ai-100-1/",
-      "about_text": {
-         "@id": "about_text"
+      "ai_rmf_category_id": {
+         "@id": "ai_rmf_category_id"
       },
-      "actor_task": {
+      "ai_rmf_documentation_id": {
+         "@id": "ai_rmf_documentation_id"
+      },
+      "ai_rmf_function_id": {
+         "@id": "ai_rmf_function_id"
+      },
+      "ai_rmf_id": "@id",
+      "ai_rmf_likelihood": {
+         "@id": "ai_rmf_likelihood"
+      },
+      "ai_rmf_magnitude": {
+         "@id": "ai_rmf_magnitude"
+      },
+      "ai_rmf_subcategory_id": {
+         "@id": "ai_rmf_subcategory_id"
+      },
+      "ai_rmf_suggested_action_id": {
+         "@id": "ai_rmf_suggested_action_id"
+      },
+      "ai_rmf_actor_audience": {
          "@context": {
             "text": "skos:notation",
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "actor_task"
+         "@id": "ai_rmf_actor_audience"
       },
-      "actor_tasks": {
-         "@type": "@id",
-         "@id": "actor_tasks"
-      },
-      "addresses": {
-         "@type": "@id",
-         "@id": "addresses"
-      },
-      "affects": {
-         "@type": "@id",
-         "@id": "affects"
-      },
-      "affects_system": {
-         "@type": "@id",
-         "@id": "affects_system"
-      },
-      "ai_actor_categories": {
-         "@id": "ai_actor_categories"
-      },
-      "ai_dimension": {
+      "ai_rmf_actor_lifecycle_stages": {
          "@context": {
             "text": "skos:notation",
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "ai_dimension"
+         "@id": "ai_rmf_actor_lifecycle_stages"
       },
-      "ai_specific_risks": {
+      "ai_rmf_actor_tasks": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "ai_rmf_actor_tasks"
+      },
+      "ai_rmf_actor_task_is_additional_actor": {
+         "@type": "xsd:boolean",
+         "@id": "ai_rmf_actor_task_is_additional_actor"
+      },
+      "ai_rmf_actor_task_name": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "ai_rmf_actor_task_name"
+      },
+      "ai_rmf_actor_task_representative_actors": {
+         "@id": "ai_rmf_actor_task_representative_actors"
+      },
+      "ai_rmf_attribute_number": {
+         "@type": "xsd:integer",
+         "@id": "ai_rmf_attribute_number"
+      },
+      "ai_rmf_bias_categories": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "ai_rmf_bias_categories"
+      },
+      "ai_rmf_category_subcategories": {
          "@type": "@id",
-         "@id": "ai_specific_risks"
+         "@id": "ai_rmf_category_subcategories"
       },
-      "attributes": {
+      "ai_rmf_dimension_audience": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "ai_rmf_dimension_audience"
+      },
+      "ai_rmf_dimension_name": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "ai_rmf_dimension_name"
+      },
+      "ai_rmf_actor_task_list": {
          "@type": "@id",
-         "@id": "attributes"
+         "@id": "ai_rmf_actor_task_list"
       },
-      "audience": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "audience"
-      },
-      "bias_category": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "bias_category"
-      },
-      "categories": {
+      "ai_rmf_attributes": {
          "@type": "@id",
-         "@id": "categories"
+         "@id": "ai_rmf_attributes"
       },
-      "category_code": {
+      "ai_rmf_characteristics": {
+         "@type": "@id",
+         "@id": "ai_rmf_characteristics"
+      },
+      "ai_rmf_dimensions": {
+         "@type": "@id",
+         "@id": "ai_rmf_dimensions"
+      },
+      "ai_rmf_functions": {
+         "@type": "@id",
+         "@id": "ai_rmf_functions"
+      },
+      "ai_rmf_human_ai_issues": {
+         "@type": "@id",
+         "@id": "ai_rmf_human_ai_issues"
+      },
+      "ai_rmf_lifecycle_stages": {
+         "@type": "@id",
+         "@id": "ai_rmf_lifecycle_stages"
+      },
+      "ai_rmf_management_challenges": {
+         "@type": "@id",
+         "@id": "ai_rmf_management_challenges"
+      },
+      "ai_rmf_specific_risks": {
+         "@type": "@id",
+         "@id": "ai_rmf_specific_risks"
+      },
+      "ai_rmf_version": {
+         "@id": "ai_rmf_version"
+      },
+      "ai_rmf_function_categories": {
+         "@type": "@id",
+         "@id": "ai_rmf_function_categories"
+      },
+      "ai_rmf_harm_category": {
          "@context": {
             "text": "skos:notation",
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "category_code"
+         "@id": "ai_rmf_harm_category"
       },
-      "category_id": {
-         "@id": "category_id"
-      },
-      "id": "@id",
-      "challenge_kind": {
+      "ai_rmf_harm_example": {
          "@context": {
             "text": "skos:notation",
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "challenge_kind"
+         "@id": "ai_rmf_harm_example"
       },
-      "characteristic_kind": {
+      "ai_rmf_human_ai_issue_number": {
+         "@type": "xsd:integer",
+         "@id": "ai_rmf_human_ai_issue_number"
+      },
+      "ai_rmf_impact_affected_parties": {
          "@context": {
             "text": "skos:notation",
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "characteristic_kind"
+         "@id": "ai_rmf_impact_affected_parties"
       },
-      "current_state": {
-         "@id": "current_state"
+      "ai_rmf_impact_direction": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "ai_rmf_impact_direction"
+      },
+      "ai_rmf_lifecycle_stage_dimension": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "ai_rmf_lifecycle_stage_dimension"
+      },
+      "ai_rmf_lifecycle_stage_name": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "ai_rmf_lifecycle_stage_name"
+      },
+      "ai_rmf_lifecycle_stage_representative_actors": {
+         "@id": "ai_rmf_lifecycle_stage_representative_actors"
+      },
+      "ai_rmf_lifecycle_stage_tevv": {
+         "@id": "ai_rmf_lifecycle_stage_tevv"
+      },
+      "ai_rmf_management_challenge_measurement_challenges": {
+         "@type": "@id",
+         "@id": "ai_rmf_management_challenge_measurement_challenges"
+      },
+      "ai_rmf_management_challenge_name": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "ai_rmf_management_challenge_name"
+      },
+      "ai_rmf_measurement_challenge_name": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "ai_rmf_measurement_challenge_name"
+      },
+      "ai_rmf_profile_kinds": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "ai_rmf_profile_kinds"
+      },
+      "ai_rmf_profile_setting": {
+         "@id": "ai_rmf_profile_setting"
+      },
+      "ai_rmf_profile_subcategories": {
+         "@id": "ai_rmf_profile_subcategories"
+      },
+      "ai_rmf_resource_address": {
+         "@type": "xsd:anyURI",
+         "@id": "ai_rmf_resource_address"
+      },
+      "ai_rmf_resource_uuid": {
+         "@id": "ai_rmf_resource_uuid"
+      },
+      "ai_rmf_risk_characteristics": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "ai_rmf_risk_characteristics"
+      },
+      "ai_rmf_risk_impacts": {
+         "@type": "@id",
+         "@id": "ai_rmf_risk_impacts"
+      },
+      "ai_rmf_risk_lifecycle_stages": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "ai_rmf_risk_lifecycle_stages"
+      },
+      "ai_rmf_risk_responses": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "ai_rmf_risk_responses"
+      },
+      "ai_rmf_risk_system": {
+         "@type": "@id",
+         "@id": "ai_rmf_risk_system"
+      },
+      "ai_rmf_risk_tolerance_holder": {
+         "@type": "@id",
+         "@id": "ai_rmf_risk_tolerance_holder"
+      },
+      "ai_rmf_risk_tolerance_influences": {
+         "@id": "ai_rmf_risk_tolerance_influences"
+      },
+      "ai_rmf_specific_risk_position": {
+         "@type": "xsd:integer",
+         "@id": "ai_rmf_specific_risk_position"
+      },
+      "ai_rmf_subcategory_about": {
+         "@id": "ai_rmf_subcategory_about"
+      },
+      "ai_rmf_subcategory_ai_actors": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "ai_rmf_subcategory_ai_actors"
+      },
+      "ai_rmf_subcategory_documentation": {
+         "@type": "@id",
+         "@id": "ai_rmf_subcategory_documentation"
+      },
+      "ai_rmf_subcategory_references": {
+         "@type": "@id",
+         "@id": "ai_rmf_subcategory_references"
+      },
+      "ai_rmf_subcategory_suggested_actions": {
+         "@type": "@id",
+         "@id": "ai_rmf_subcategory_suggested_actions"
+      },
+      "ai_rmf_subcategory_topics": {
+         "@id": "ai_rmf_subcategory_topics"
+      },
+      "ai_rmf_subcategory_transparency_resources": {
+         "@type": "@id",
+         "@id": "ai_rmf_subcategory_transparency_resources"
+      },
+      "ai_rmf_system_lifecycle_stages": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "ai_rmf_system_lifecycle_stages"
+      },
+      "ai_rmf_characteristic_is_base": {
+         "@type": "xsd:boolean",
+         "@id": "ai_rmf_characteristic_is_base"
+      },
+      "ai_rmf_characteristic_name": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "ai_rmf_characteristic_name"
+      },
+      "ai_rmf_characteristic_relates_to_all": {
+         "@type": "xsd:boolean",
+         "@id": "ai_rmf_characteristic_relates_to_all"
+      },
+      "ai_rmf_characteristic_section": {
+         "@id": "ai_rmf_characteristic_section"
       },
       "description": {
-         "@id": "description"
-      },
-      "dimension_kind": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "dimension_kind"
-      },
-      "dimensions": {
-         "@type": "@id",
-         "@id": "dimensions"
-      },
-      "document": {
-         "@type": "@id",
-         "@id": "document"
-      },
-      "documentation_questions": {
-         "@id": "documentation_questions"
-      },
-      "entries": {
-         "@type": "@id",
-         "@id": "entries"
-      },
-      "function_code": {
-         "@id": "function_code"
-      },
-      "function_kind": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "function_kind"
-      },
-      "functions": {
-         "@type": "@id",
-         "@id": "functions"
-      },
-      "harm_category": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "harm_category"
-      },
-      "harm_to_people_subcategory": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "harm_to_people_subcategory"
-      },
-      "human_ai_interaction_issues": {
-         "@type": "@id",
-         "@id": "human_ai_interaction_issues"
-      },
-      "impact_sign": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "impact_sign"
-      },
-      "includes_tevv": {
-         "@type": "xsd:boolean",
-         "@id": "includes_tevv"
-      },
-      "is_base_condition": {
-         "@type": "xsd:boolean",
-         "@id": "is_base_condition"
-      },
-      "is_cross_cutting": {
-         "@type": "xsd:boolean",
-         "@id": "is_cross_cutting"
-      },
-      "is_residual": {
-         "@type": "xsd:boolean",
-         "@id": "is_residual"
-      },
-      "is_tevv": {
-         "@type": "xsd:boolean",
-         "@id": "is_tevv"
-      },
-      "legal_basis": {
-         "@id": "legal_basis"
-      },
-      "lifecycle_stage": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "lifecycle_stage"
-      },
-      "lifecycle_stages": {
-         "@type": "@id",
-         "@id": "lifecycle_stages"
-      },
-      "likelihood": {
-         "@type": "xsd:float",
-         "@id": "likelihood"
-      },
-      "magnitude": {
-         "@id": "magnitude"
-      },
-      "name": {
-         "@id": "rdfs:label"
-      },
-      "outcome": {
-         "@id": "outcome"
-      },
-      "ai_actors": {
-         "@id": "ai_actors"
-      },
-      "category": {
-         "@id": "category"
-      },
-      "section_about": {
-         "@id": "section_about"
-      },
-      "section_actions": {
-         "@id": "section_actions"
-      },
-      "section_doc": {
-         "@id": "section_doc"
-      },
-      "section_ref": {
-         "@id": "section_ref"
+         "@id": "schema:description"
       },
       "title": {
-         "@id": "dcterms:title"
+         "@id": "schema:name"
       },
-      "topic": {
-         "@id": "topic"
-      },
-      "type": {
-         "@id": "type"
-      },
-      "profile_type": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "profile_type"
-      },
-      "profiles": {
-         "@type": "@id",
-         "@id": "profiles"
-      },
-      "published_date": {
-         "@type": "xsd:date",
-         "@id": "dcterms:issued"
-      },
-      "publisher": {
-         "@id": "dcterms:publisher"
-      },
-      "references_text": {
-         "@id": "references_text"
-      },
-      "related_impacts": {
-         "@type": "@id",
-         "@id": "related_impacts"
-      },
-      "risk_measurement_challenges": {
-         "@type": "@id",
-         "@id": "risk_measurement_challenges"
-      },
-      "risk_response": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "risk_response"
-      },
-      "sector": {
-         "@id": "sector"
-      },
-      "see_also": {
-         "@type": "xsd:anyURI",
-         "@id": "rdfs:seeAlso"
-      },
-      "source": {
-         "@type": "xsd:anyURI",
-         "@id": "dcterms:source"
-      },
-      "stage_kind": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "stage_kind"
-      },
-      "subcategories": {
-         "@type": "@id",
-         "@id": "subcategories"
-      },
-      "subcategory_id": {
-         "@id": "subcategory_id"
-      },
-      "suggested_actions_text": {
-         "@id": "suggested_actions_text"
-      },
-      "target_state": {
-         "@id": "target_state"
-      },
-      "task_kind": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "task_kind"
-      },
-      "tolerance_statement": {
-         "@id": "tolerance_statement"
-      },
-      "topics": {
-         "@id": "topics"
-      },
-      "trustworthiness_characteristic": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "trustworthiness_characteristic"
-      },
-      "trustworthiness_characteristics": {
-         "@type": "@id",
-         "@id": "trustworthiness_characteristics"
-      },
-      "typical_actors": {
-         "@id": "typical_actors"
-      },
-      "version": {
-         "@id": "schema:version"
-      },
-      "AiActor": {
+      "AiRmfActor": {
          "@id": "AiActor"
       },
-      "AiActorTask": {
-         "@id": "AiActorTask"
+      "AiRmfActorTask": {
+         "@id": "ActorTask"
       },
-      "AiLifecycleStage": {
-         "@id": "AiLifecycleStage"
+      "AiRmfAttribute": {
+         "@id": "Attribute"
       },
-      "AiRmfDocument": {
-         "@id": "AiRmfDocument"
-      },
-      "AiRmfFramework": {
-         "@id": "AiRmfFramework"
-      },
-      "AiRmfProfile": {
-         "@id": "AiRmfProfile"
-      },
-      "AiSpecificRisk": {
-         "@id": "AiSpecificRisk"
-      },
-      "AiSystem": {
-         "@id": "AiSystem"
-      },
-      "AiSystemDimension": {
-         "@id": "AiSystemDimension"
-      },
-      "Bias": {
+      "AiRmfBias": {
          "@id": "Bias"
       },
-      "Category": {
+      "AiRmfCategory": {
          "@id": "Category"
       },
-      "Function": {
+      "AiRmfDimension": {
+         "@id": "Dimension"
+      },
+      "AiRmfDocumentationItem": {
+         "@id": "DocumentationItem"
+      },
+      "AiRmfFramework": {
+         "@id": "Framework"
+      },
+      "AiRmfFunction": {
          "@id": "Function"
       },
-      "Harm": {
+      "AiRmfHarm": {
          "@id": "Harm"
       },
-      "HumanAiInteractionIssue": {
-         "@id": "HumanAiInteractionIssue"
+      "AiRmfHumanAiIssue": {
+         "@id": "HumanAiIssue"
       },
-      "Impact": {
+      "AiRmfImpact": {
          "@id": "Impact"
       },
-      "NamedThing": {
-         "@id": "schema:Thing"
+      "AiRmfLifecycleStage": {
+         "@id": "LifecycleStage"
       },
-      "PlaybookCollection": {
-         "@id": "PlaybookCollection"
+      "AiRmfManagementChallenge": {
+         "@id": "ManagementChallenge"
       },
-      "PlaybookEntry": {
-         "@id": "PlaybookEntry"
+      "AiRmfMeasurementChallenge": {
+         "@id": "MeasurementChallenge"
       },
-      "ResidualRisk": {
+      "AiRmfProfile": {
+         "@id": "Profile"
+      },
+      "AiRmfRecord": {
+         "@id": "Record"
+      },
+      "AiRmfResidualRisk": {
          "@id": "ResidualRisk"
       },
-      "Risk": {
+      "AiRmfResource": {
+         "@id": "Resource"
+      },
+      "AiRmfRisk": {
          "@id": "Risk"
       },
-      "RiskMeasurementChallenge": {
-         "@id": "RiskMeasurementChallenge"
-      },
-      "RiskTolerance": {
+      "AiRmfRiskTolerance": {
          "@id": "RiskTolerance"
       },
-      "RmfAttribute": {
-         "@id": "RmfAttribute"
+      "AiRmfSpecificRisk": {
+         "@id": "SpecificRisk"
       },
-      "Subcategory": {
+      "AiRmfSubcategory": {
          "@id": "Subcategory"
       },
-      "TrustworthinessCharacteristic": {
+      "AiRmfSuggestedAction": {
+         "@id": "SuggestedAction"
+      },
+      "AiRmfSystem": {
+         "@id": "AiSystem"
+      },
+      "AiRmfTrustworthinessCharacteristic": {
          "@id": "TrustworthinessCharacteristic"
       }
    }
