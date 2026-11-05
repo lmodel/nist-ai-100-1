@@ -1,0 +1,257 @@
+"""Checks the upstream watch's decisions against stubbed GitHub API answers.
+
+scripts/check_upstream_release.py asks the GitHub API about
+usnistgov/oscal-content. These tests replace its one network call, `_get`,
+with a table of answers, so they run offline. They show what the report says
+when a release drops a folder, the network fails, NIST adds a file or the
+pinned tag moves.
+"""
+
+import importlib.util
+import json
+import urllib.error
+from pathlib import Path
+
+import pytest
+
+ROOT = Path(__file__).parent.parent
+SCRIPT = ROOT / "scripts" / "check_upstream_release.py"
+NEWER = "v9.0.0"
+
+
+@pytest.fixture
+def watch():
+    """A fresh copy of the script, so no test sees another's cached answers."""
+    spec = importlib.util.spec_from_file_location("watch_under_test", SCRIPT)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def _answers(watch, latest):
+    """What the API answers when nothing has changed since the pin, with
+    `latest` as the latest release, keyed by the address the script asks."""
+    api = watch.API
+    catalog_name, (catalog_path, catalog_sha) = next(
+        (n, v) for n, v in watch.PINNED_BLOBS.items() if n != "LICENSE.md"
+    )
+    licence_sha = watch.PINNED_BLOBS["LICENSE.md"][1]
+    folder = [
+        {"name": catalog_name, "type": "file", "sha": catalog_sha},
+        {"name": next(iter(watch.LEFT_OUT)), "type": "file", "sha": "0" * 40},
+    ]
+    licence = {"name": "LICENSE.md", "type": "file", "sha": licence_sha}
+    answers = {
+        f"{api}/releases/latest": {"tag_name": latest},
+        f"{api}/git/ref/tags/{watch.PINNED_TAG}": {
+            "object": {"type": "tag", "sha": "1" * 40}
+        },
+        f"{api}/git/tags/{'1' * 40}": {
+            "object": {"type": "commit", "sha": watch.PINNED_COMMIT}
+        },
+    }
+    for ref in {watch.PINNED_COMMIT, latest}:
+        answers[f"{api}/contents/{watch.PINNED_PATH}?ref={ref}"] = list(folder)
+        answers[f"{api}/contents/LICENSE.md?ref={ref}"] = licence
+        answers[f"{api}/contents/{watch.EDITIONS_PATH}?ref={ref}"] = [
+            {"name": e, "type": "dir"} for e in sorted(watch.PINNED_EDITIONS)
+        ]
+    return answers
+
+
+def _stub(watch, answers, downloads=None):
+    """Make `_get` answer from the table: an exception is raised, a missing
+    address is a 404, and anything else is returned as JSON. `_download` answers
+    each pinned address with upstream/'s own file unless `downloads` says otherwise."""
+
+    def get(url):
+        if url not in answers:
+            raise urllib.error.HTTPError(url, 404, "Not Found", None, None)
+        answer = answers[url]
+        if isinstance(answer, Exception):
+            raise answer
+        return json.dumps(answer).encode()
+
+    def download(url):
+        if downloads and url in downloads:
+            answer = downloads[url]
+            if isinstance(answer, Exception):
+                raise answer
+            return answer
+        name = next(n for n, (u, _) in watch.PINNED_DOWNLOADS.items() if u == url)
+        return (watch.UPSTREAM / name).read_bytes()
+
+    watch._get = get
+    watch._download = download
+
+
+def _run(watch, tmp_path):
+    report = tmp_path / "report.md"
+    code = watch.main(["--report", str(report)])
+    return code, report.read_text(encoding="utf-8")
+
+
+def test_nothing_changed(watch, tmp_path):
+    """With the pinned release the latest and every blob as pinned, the watch
+    reports the copy current and exits 0."""
+    _stub(watch, _answers(watch, watch.PINNED_TAG))
+    code, text = _run(watch, tmp_path)
+    assert code == 0, text
+    assert f"Latest release: {watch.PINNED_TAG}, the pinned one." in text
+    assert "2 of 2 copied files match" in text
+
+
+def test_a_release_that_drops_the_folders(watch, tmp_path):
+    """A newer release without the pinned folder or the editions folder is
+    reported as such, not as a crash."""
+    answers = _answers(watch, NEWER)
+    del answers[f"{watch.API}/contents/{watch.PINNED_PATH}?ref={NEWER}"]
+    del answers[f"{watch.API}/contents/{watch.EDITIONS_PATH}?ref={NEWER}"]
+    _stub(watch, answers)
+    code, text = _run(watch, tmp_path)
+    assert code == 1
+    assert (
+        f"**usnistgov/oscal-content {NEWER} no longer holds `{watch.PINNED_PATH}/`.**"
+        in text
+    )
+    assert (
+        f"**usnistgov/oscal-content {NEWER} no longer holds `{watch.EDITIONS_PATH}/`.**"
+        in text
+    )
+
+
+def test_a_release_that_changes_the_licence(watch, tmp_path):
+    """Every pinned file is compared at a newer release, the licence too."""
+    answers = _answers(watch, NEWER)
+    answers[f"{watch.API}/contents/LICENSE.md?ref={NEWER}"] = {
+        "name": "LICENSE.md",
+        "type": "file",
+        "sha": "2" * 40,
+    }
+    _stub(watch, answers)
+    code, text = _run(watch, tmp_path)
+    assert code == 1
+    assert f"**usnistgov/oscal-content {NEWER} changes `LICENSE.md`.**" in text
+
+
+def test_a_network_failure_still_writes_a_report(watch, tmp_path):
+    """A check that cannot reach the API is reported as unfinished, sets
+    attention, and leaves the other check to run."""
+    answers = _answers(watch, NEWER)
+    answers[f"{watch.API}/contents/{watch.EDITIONS_PATH}?ref={NEWER}"] = (
+        urllib.error.URLError("Connection refused")
+    )
+    _stub(watch, answers)
+    code, text = _run(watch, tmp_path)
+    assert code == 1
+    assert (
+        "**The editions check could not finish: <urlopen error Connection refused>.**"
+        in text
+    )
+    assert "2 of 2 copied files match" in text
+
+
+def test_a_file_nist_adds_is_information_only(watch, tmp_path):
+    """A file in the pinned folder that the copy neither holds nor leaves out
+    on purpose is reported, and is not a reason to fail."""
+    answers = _answers(watch, watch.PINNED_TAG)
+    folder = f"{watch.API}/contents/{watch.PINNED_PATH}?ref={watch.PINNED_COMMIT}"
+    answers[folder] = answers[folder] + [
+        {"name": "NIST_AI-RMF_v1_profile.json", "type": "file", "sha": "3" * 40}
+    ]
+    _stub(watch, answers)
+    code, text = _run(watch, tmp_path)
+    assert code == 0, text
+    assert "For information" in text and "`NIST_AI-RMF_v1_profile.json`" in text
+
+
+def test_a_moved_tag(watch, tmp_path):
+    """A pinned tag that names another commit sets attention."""
+    answers = _answers(watch, watch.PINNED_TAG)
+    answers[f"{watch.API}/git/tags/{'1' * 40}"] = {
+        "object": {"type": "commit", "sha": "4" * 40}
+    }
+    _stub(watch, answers)
+    code, text = _run(watch, tmp_path)
+    assert code == 1
+    assert f"**The tag {watch.PINNED_TAG} now names commit `444444444444`" in text
+
+
+def test_nist_changes_the_publication(watch, tmp_path):
+    """Other bytes at a pinned address set attention and name the file."""
+    url = watch.PINNED_DOWNLOADS["NIST.AI.100-1.pdf"][0]
+    _stub(watch, _answers(watch, watch.PINNED_TAG), {url: b"another edition"})
+    code, text = _run(watch, tmp_path)
+    assert code == 1
+    assert (
+        f"**{url} now serves other bytes than `upstream/NIST.AI.100-1.pdf`.**" in text
+    )
+    assert "`upstream/playbook.json` matches" in text
+
+
+def test_nist_changes_the_playbook(watch, tmp_path):
+    """The Playbook is compared as the publication is."""
+    url = watch.PINNED_DOWNLOADS["playbook.json"][0]
+    _stub(watch, _answers(watch, watch.PINNED_TAG), {url: b"[]"})
+    code, text = _run(watch, tmp_path)
+    assert code == 1
+    assert f"**{url} now serves other bytes than `upstream/playbook.json`.**" in text
+
+
+def test_a_failed_download_still_writes_a_report(watch, tmp_path):
+    """A download that fails is reported as unfinished, like any other check."""
+    url = watch.PINNED_DOWNLOADS["playbook.json"][0]
+    _stub(
+        watch,
+        _answers(watch, watch.PINNED_TAG),
+        {url: urllib.error.URLError("Connection refused")},
+    )
+    code, text = _run(watch, tmp_path)
+    assert code == 1
+    assert "**The downloads check could not finish" in text
+
+
+def test_a_redirect_to_plain_http_is_refused(watch):
+    """A file is followed only over https."""
+    handler = watch._HttpsOnly()
+    with pytest.raises(urllib.error.URLError):
+        handler.redirect_request(
+            None, None, 302, "Found", {}, "http://nvlpubs.nist.gov/x"
+        )
+
+
+def test_a_redirect_to_another_host_is_refused(watch):
+    """A file is followed only to a host the script reads from."""
+    handler = watch._HttpsOnly()
+    with pytest.raises(urllib.error.URLError):
+        handler.redirect_request(None, None, 302, "Found", {}, "https://example.org/x")
+
+
+def test_an_address_off_the_list_is_refused(watch):
+    """A pinned address is read only over https and only from a listed host, so a
+    changed constant cannot send the watch elsewhere."""
+    for url in ("http://nvlpubs.nist.gov/x", "https://example.org/x"):
+        with pytest.raises(urllib.error.URLError, match="refused"):
+            watch._download(url)
+
+
+def test_an_oversized_answer_is_refused(watch):
+    """An answer past the cap is not read to its end."""
+
+    class Answer:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *_):
+            return False
+
+        def read(self, size):
+            return b"x" * size
+
+    class Opener:
+        def open(self, req, timeout):
+            return Answer()
+
+    watch.urllib.request.build_opener = lambda *_: Opener()
+    with pytest.raises(urllib.error.URLError, match="more than"):
+        watch._download("https://nvlpubs.nist.gov/x")

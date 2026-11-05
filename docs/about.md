@@ -1,48 +1,41 @@
 # About nist-ai-100-1
 
-LinkML schema for the **NIST Artificial Intelligence Risk Management Framework (AI RMF 1.0)**, published as [NIST AI 100-1](https://doi.org/10.6028/NIST.AI.100-1) (January 2023).
+This page is for anyone reading the [LinkML](https://linkml.io) schema's elements: it says how they fit together, where each part comes from and what the model leaves out.
 
-This module covers the AI RMF 1.0 core publication. The Generative AI Profile (NIST AI 600-1) lives in the sibling `nist-ai-600-1` repository, and the umbrella distribution that bundles both lives in `nist-ai-rmf`.
+## How the classes fit together
 
-## Design
+`AiRmfFramework` holds one edition of the framework. Under it, the Core runs from `AiRmfFunction` to `AiRmfCategory` to `AiRmfSubcategory`, and a subcategory holds its Playbook material. Beside the Core sit the lists of Part 1 and the appendices, such as `AiRmfTrustworthinessCharacteristic` and `AiRmfSpecificRisk`.
 
-The schema is split into two import modules so the framework has one canonical base instead of colliding copies re-inlined per repo:
+Classes under `AiRmfRecord` are for an adopter's own facts: `AiRmfSystem`, `AiRmfActor`, `AiRmfRisk`, `AiRmfResidualRisk`, `AiRmfImpact`, `AiRmfHarm`, `AiRmfRiskTolerance`, `AiRmfBias` and `AiRmfProfile`. Each carries an identifier of the adopter's choosing, so one can name another, as a risk names its system and the tolerance it is judged against. The publication holds none of these records.
 
-- **`nist_ai_rmf_common`** ([`schema/nist_ai_rmf_common.yaml`](https://github.com/lmodel/nist-ai-100-1/blob/main/src/nist_ai_100_1/schema/nist_ai_rmf_common.yaml)) — the shared base vocabulary: the abstract `NamedThing` root, the `id`/`name`/`title`/`description`/`see_also` slots, the `SubcategoryCode` type, and `TrustworthinessCharacteristicEnum`. Hosted here and imported by `nist-ai-600-1` and the `nist-ai-rmf` umbrella.
-- **`nist_ai_100_1`** — the AI RMF 1.0 content, importing common. All concept classes derive from `NamedThing`.
+The modules follow that split. `nist_ai_100_1_base` holds the identifier forms, the names of the characteristics and of the AI actor tasks, and `AiRmfRecord`. `nist_ai_100_1_foundations` holds Part 1 and the appendices, `nist_ai_100_1_rmf_core` the Core and `nist_ai_100_1_profiles` the profile. A profile of the AI RMF, such as lmodel/nist-ai-600-1, imports the base and profiles modules alone.
 
-## Status
+## Where each part comes from
 
-| Aspect | State |
-|---|---|
-| Schema id | `https://w3id.org/lmodel/nist-ai-100-1` |
-| Schema version | `1.0.0` |
-| Tree root | `AiRmfFramework` |
-| Source document | NIST AI 100-1 (January 2023), DOI [10.6028/NIST.AI.100-1](https://doi.org/10.6028/NIST.AI.100-1) |
-| Coverage | Part 1 (Framing Risk, Audience, Trustworthiness), Part 2 (AI RMF Core, Profiles), Appendix A (Actor Tasks), Appendix B (AI vs traditional software risk), Appendix C (Human-AI interaction), Appendix D (Framework attributes), plus the AI RMF Playbook companion data shape |
-| Size | 25 classes, 77 slots, 14 enums, 3 types, 10 subsets |
-| Lint | Clean (`linkml-lint`) |
-| Tests | 6 valid fixtures pass (`pytest` via `just test`); 4 counter-example fixtures fail as expected (`just test-data`); third-party NIST AI RMF Playbook (72 records) validated as `PlaybookCollection` in a separate pytest run (`just test-third-party`, also wired into `just test`) |
-| Mappings | Two SSSOM TSVs under `src/nist_ai_100_1/mappings/`: element-level mappings (`nist_ai_100_1.sssom.tsv`) and cross-framework category alignments (`nist_ai_rmf.sssom.tsv`, carried on the `CategoryEnum` permissible values for `GOVERN-1` … `MANAGE-4`). `scripts/verify_mappings.py --strict` reports `missing=0 extra=0 unknown=0` (7 sibling-schema subjects in `nist_ai_rmf` / `nist_ai_600_1` skipped). Targets: NIST CSF v2, NIST SP 800-53, OSCAL catalog/profile, ISO 27001, ISO 29100, GIST, STIX, schema.org, PROV, FOAF, DCTERMS, plus EU AI Act, SOC 2 TSC, OWASP LLM Top 10, OWASP ASI Top 10, and Microsoft AGT ATF |
-| Last verified | 2026-05-31 |
+NIST publishes the Core in three places, and they differ. On this page, "the catalogue" is this project's file of records, and "NIST's catalog" is NIST's OSCAL file.
 
-## Subsets
+- **The publication's Tables 1 to 4** state each category and subcategory. The catalogue keeps these words, since the schema renders the publication.
+- **NIST's catalog in the Open Security Controls Assessment Language (OSCAL)** restates them and departs from the Tables in 44 of the 91 statements. Many are small, but some change a word: MEASURE 2.6 says "implicate" where the publication says "reflect", and GOVERN 1.2 drops "and practices". `tests/catalog_departures.yaml` lists all 44. The catalog also gives each function's one-sentence overview and the Playbook's suggested actions, discussion, documentation prompts and resources, which the catalogue takes from it.
+- **The Playbook's own file** adds the AI actor and topic tags, which the catalog lacks. For 16 subcategories its suggested actions differ from the catalog's. In MANAGE 4.2 the catalog files the actions under the discussion, and the catalogue keeps them where the catalog puts them. `upstream/` holds all three files unchanged.
 
-The schema is partitioned into ten subsets so consumers can adopt only the parts they need:
+`scripts/build_catalogue.py` writes the Core from those files. Everything else in the catalogue, Part 1 and the appendices, is written by hand, and tests hold it to the publication's lists. Appendix B's items carry names of this project's own, because the publication gives them none.
 
-- `base`, `framework_core` (Part 2 §5),
-- `trustworthiness` (Part 1 §3),
-- `lifecycle` (Part 1 §2, Figures 2-3, Appendix A),
-- `risk_and_harm` (Part 1 §1),
-- `profile_constructs` (Part 2 §6),
-- `framework_attributes` (Appendix D),
-- `ai_risk_distinctions` (Appendix B),
-- `human_ai_interaction` (Appendix C),
-- `playbook` (companion resource).
+The schema's descriptions are this project's own words. The enums' titles and the catalogue's Core and Playbook text are NIST's. [NOTICE](https://github.com/lmodel/nist-ai-100-1/blob/main/NOTICE) says on what terms.
 
-## References
+## Choices worth knowing
 
-- [NIST AI 100-1](https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf)
-- [NIST AIRC Playbook](https://airc.nist.gov/airmf-resources/playbook/)
-- [NIST AI RMF Website](https://www.nist.gov/itl/ai-risk-management-framework)
-- Related schemas: [nist-ai-600-1](https://github.com/lmodel/nist-ai-600-1) (Generative AI Profile), [nist-ai-rmf](https://github.com/lmodel/nist-ai-rmf) (umbrella distribution)
+- **Likelihood and magnitude are text.** The publication sets no scale, and the Playbook allows qualitative ones, so neither is a number.
+- **One enum holds AI actor tasks and additional AI actors.** Appendix A separates them, but the Playbook's AI Actors key and AI 600-1's AI Actor Tasks tag both kinds together. The record for each says which it is. The Playbook also files a topic, Fairness and Bias, under AI Actors for GOVERN 4.3, and the catalogue leaves that one tag out.
+- **Figure 3 has seven lifecycle stages.** Figure 2 shows six, and Figure 3 adds Use or Impacted by, under People and Planet.
+- **A profile's kinds are a list.** Section 6 describes use-case, temporal and cross-sectoral profiles without saying they exclude each other, and a current profile of one use case is both.
+
+## What is left out
+
+The schema holds none of the publication's running prose, such as the discussion of each trustworthiness characteristic or the benefits section 4 expects. It holds no definition quoted from ISO, the Organisation for Economic Co-operation and Development (OECD) or other third parties. The list of what existing frameworks cannot do, in Appendix B, is prose too. NIST's crosswalks to other frameworks and the AI RMF Roadmap are separate documents. The Generative AI Profile is lmodel/nist-ai-600-1.
+
+## Reference
+
+- [NIST AI 100-1](https://doi.org/10.6028/NIST.AI.100-1)
+- [The AI RMF site](https://www.nist.gov/itl/ai-risk-management-framework)
+- [The NIST AI RMF Playbook](https://airc.nist.gov/airmf-resources/playbook/)
+- [NIST's catalog of the AI RMF in OSCAL](https://github.com/usnistgov/oscal-content/tree/v1.6.0/nist.gov/AI100-1/ver1)

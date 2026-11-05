@@ -1,6 +1,6 @@
-package None;
+package example;
 
-/* metamodel_version: 1.11.0 */
+/* metamodel_version: 1.12.0 */
 /* version: 1.0.0 */
 import java.net.URI;
 import java.time.LocalDate;
@@ -10,27 +10,22 @@ import java.util.List;
 import lombok.*;
 
 /**
-  Root container that bundles the AI RMF Core (Functions) with
-foundational concepts (trustworthiness characteristics,
-lifecycle, actors, risks, harms), profiles, and Framework
-attributes. Designed for serialising the Framework or a tailored
-instance of it as a single JSON / YAML document.
+  One edition of the AI RMF as a whole, with the Core and the lists the publication gives.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class AiRmfFramework extends NamedThing {
+public class AiRmfFramework  {
 
-  private AiRmfDocument document;
-  private List<Function> functions;
-  private List<TrustworthinessCharacteristic> trustworthinessCharacteristics;
-  private List<AiLifecycleStage> lifecycleStages;
-  private List<AiSystemDimension> dimensions;
-  private List<AiActorTask> actorTasks;
-  private List<AiRmfProfile> profiles;
-  private List<RmfAttribute> attributes;
-  private List<RiskMeasurementChallenge> riskMeasurementChallenges;
-  private List<AiSpecificRisk> aiSpecificRisks;
-  private List<HumanAiInteractionIssue> humanAiInteractionIssues;
+  private String aiRmfVersion;
+  private List<AiRmfFunction> aiRmfFunctions;
+  private List<AiRmfTrustworthinessCharacteristic> aiRmfCharacteristics;
+  private List<AiRmfDimension> aiRmfDimensions;
+  private List<AiRmfLifecycleStage> aiRmfLifecycleStages;
+  private List<AiRmfActorTask> aiRmfActorTaskList;
+  private List<AiRmfManagementChallenge> aiRmfManagementChallenges;
+  private List<AiRmfSpecificRisk> aiRmfSpecificRisks;
+  private List<AiRmfHumanAiIssue> aiRmfHumanAiIssues;
+  private List<AiRmfAttribute> aiRmfAttributes;
 
 
 }
