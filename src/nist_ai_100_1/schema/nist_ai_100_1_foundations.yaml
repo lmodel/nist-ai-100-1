@@ -387,7 +387,7 @@ enums:
         description: What the system does and produces once deployed.
       people_and_planet:
         title: People and Planet
-        description: People's rights and the well-being of society and the planet, at the center of Figure 2.
+        description: Human rights and the well-being of society and the planet, at the center of Figure 2.
 
   AiRmfLifecycleStageName:
     description: The AI lifecycle stages in Figure 3, of which Figure 2 shows the first six.

@@ -187,7 +187,7 @@ class AiRmfActorTaskName(str, Enum):
     """
     Procurement = "procurement"
     """
-    Buying AI from another party, under financial, legal or policy authority.
+    Acquiring AI from another party, under financial, legal or policy authority.
     """
     Governance_and_Oversight = "governance_and_oversight"
     """
@@ -207,7 +207,7 @@ class AiRmfActorTaskName(str, Enum):
     """
     Other_AI_actors = "other_ai_actors"
     """
-    Those who set norms or guidance on AI risk, such as standards bodies, advocacy groups and researchers.
+    Those who may provide norms or guidance on AI risk, such as standards bodies, advocacy groups and researchers.
     """
     General_public = "general_public"
     """
@@ -237,7 +237,7 @@ class AiRmfDimensionName(str, Enum):
     """
     People_and_Planet = "people_and_planet"
     """
-    People's rights and the well-being of society and the planet, at the center of Figure 2.
+    Human rights and the well-being of society and the planet, at the center of Figure 2.
     """
 
 

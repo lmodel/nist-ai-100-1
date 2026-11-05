@@ -49,7 +49,7 @@ export enum AiRmfActorTaskName {
     Domain_Expert = "domain_expert",
     /** Assessing accountability, harmful bias, impacts, product safety, liability and security. */
     AI_Impact_Assessment = "ai_impact_assessment",
-    /** Buying AI from another party, under financial, legal or policy authority. */
+    /** Acquiring AI from another party, under financial, legal or policy authority. */
     Procurement = "procurement",
     /** Holding management, fiduciary and legal authority for the organization where the system is designed, developed or deployed. */
     Governance_and_Oversight = "governance_and_oversight",
@@ -59,7 +59,7 @@ export enum AiRmfActorTaskName {
     End_users = "end_users",
     /** Those directly or indirectly affected by the system or its output, whether or not they interact with it. */
     Affected_individualsSOLIDUScommunities = "affected_individuals_and_communities",
-    /** Those who set norms or guidance on AI risk, such as standards bodies, advocacy groups and researchers. */
+    /** Those who may provide norms or guidance on AI risk, such as standards bodies, advocacy groups and researchers. */
     Other_AI_actors = "other_ai_actors",
     /** Those most likely to experience the impacts directly, who may motivate what other AI actors do. */
     General_public = "general_public",
@@ -77,7 +77,7 @@ export enum AiRmfDimensionName {
     AI_Model = "ai_model",
     /** What the system does and produces once deployed. */
     Task_and_Output = "task_and_output",
-    /** People's rights and the well-being of society and the planet, at the center of Figure 2. */
+    /** Human rights and the well-being of society and the planet, at the center of Figure 2. */
     People_and_Planet = "people_and_planet",
 };
 /**
