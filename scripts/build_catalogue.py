@@ -158,9 +158,12 @@ def actor_names() -> dict[str, str]:
 
 
 def subcategory_record(
-    control: dict, statement: str, playbook: dict, resources: dict
+    control: dict, statement: str, playbook: dict, resources: dict, names: dict
 ) -> dict:
-    """One subcategory from its statement, its catalog control and its Playbook entry."""
+    """One subcategory from its statement, its catalog control and its Playbook entry.
+
+    `names` is what actor_names() gives, read once for all 72 subcategories.
+    """
     record = {"ai_rmf_subcategory_id": control["title"], "description": statement}
     parts = control["parts"]
     about = [p["prose"] for p in parts if p.get("class") == "about"]
@@ -192,7 +195,6 @@ def subcategory_record(
         ]
         if links:
             record[key] = links
-    names = actor_names()
     actors = [names[tag] for tag in playbook["AI Actors"] if tag not in NOT_AN_ACTOR]
     if actors:
         record["ai_rmf_subcategory_ai_actors"] = actors
@@ -210,6 +212,7 @@ def core() -> list[dict]:
     }
     resources = {r["uuid"]: r for r in catalog["back-matter"]["resources"]}
     groups = {group["id"]: group for group in catalog["groups"]}
+    names = actor_names()
     categories, subcategories = publication_statements()
     functions = []
     for name in FUNCTIONS:
@@ -230,6 +233,7 @@ def core() -> list[dict]:
                         subcategories[sub["title"]],
                         playbook[sub["title"]],
                         resources,
+                        names,
                     )
                     for sub in control["controls"]
                 ],
