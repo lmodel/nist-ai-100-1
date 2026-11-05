@@ -418,8 +418,8 @@ CREATE TABLE "AiRmfActor_ai_rmf_actor_tasks" (
 	PRIMARY KEY ("AiRmfActor_ai_rmf_id", ai_rmf_actor_tasks),
 	FOREIGN KEY("AiRmfActor_ai_rmf_id") REFERENCES "AiRmfActor" (ai_rmf_id)
 );
-CREATE INDEX "ix_AiRmfActor_ai_rmf_actor_tasks_ai_rmf_actor_tasks" ON "AiRmfActor_ai_rmf_actor_tasks" (ai_rmf_actor_tasks);
 CREATE INDEX "ix_AiRmfActor_ai_rmf_actor_tasks_AiRmfActor_ai_rmf_id" ON "AiRmfActor_ai_rmf_actor_tasks" ("AiRmfActor_ai_rmf_id");
+CREATE INDEX "ix_AiRmfActor_ai_rmf_actor_tasks_ai_rmf_actor_tasks" ON "AiRmfActor_ai_rmf_actor_tasks" (ai_rmf_actor_tasks);
 
 CREATE TABLE "AiRmfActor_ai_rmf_actor_lifecycle_stages" (
 	"AiRmfActor_ai_rmf_id" TEXT,
@@ -463,8 +463,8 @@ CREATE TABLE "AiRmfProfile_ai_rmf_profile_subcategories" (
 	PRIMARY KEY ("AiRmfProfile_ai_rmf_id", ai_rmf_profile_subcategories),
 	FOREIGN KEY("AiRmfProfile_ai_rmf_id") REFERENCES "AiRmfProfile" (ai_rmf_id)
 );
-CREATE INDEX "ix_AiRmfProfile_ai_rmf_profile_subcategories_AiRmfProfile_ai_rmf_id" ON "AiRmfProfile_ai_rmf_profile_subcategories" ("AiRmfProfile_ai_rmf_id");
 CREATE INDEX "ix_AiRmfProfile_ai_rmf_profile_subcategories_ai_rmf_profile_subcategories" ON "AiRmfProfile_ai_rmf_profile_subcategories" (ai_rmf_profile_subcategories);
+CREATE INDEX "ix_AiRmfProfile_ai_rmf_profile_subcategories_AiRmfProfile_ai_rmf_id" ON "AiRmfProfile_ai_rmf_profile_subcategories" ("AiRmfProfile_ai_rmf_id");
 
 CREATE TABLE "AiRmfMeasurementChallenge" (
 	id INTEGER NOT NULL,
@@ -525,8 +525,8 @@ CREATE TABLE "AiRmfRisk_ai_rmf_risk_characteristics" (
 	PRIMARY KEY ("AiRmfRisk_ai_rmf_id", ai_rmf_risk_characteristics),
 	FOREIGN KEY("AiRmfRisk_ai_rmf_id") REFERENCES "AiRmfRisk" (ai_rmf_id)
 );
-CREATE INDEX "ix_AiRmfRisk_ai_rmf_risk_characteristics_ai_rmf_risk_characteristics" ON "AiRmfRisk_ai_rmf_risk_characteristics" (ai_rmf_risk_characteristics);
 CREATE INDEX "ix_AiRmfRisk_ai_rmf_risk_characteristics_AiRmfRisk_ai_rmf_id" ON "AiRmfRisk_ai_rmf_risk_characteristics" ("AiRmfRisk_ai_rmf_id");
+CREATE INDEX "ix_AiRmfRisk_ai_rmf_risk_characteristics_ai_rmf_risk_characteristics" ON "AiRmfRisk_ai_rmf_risk_characteristics" (ai_rmf_risk_characteristics);
 
 CREATE TABLE "AiRmfRisk_ai_rmf_risk_lifecycle_stages" (
 	"AiRmfRisk_ai_rmf_id" TEXT,
@@ -552,8 +552,8 @@ CREATE TABLE "AiRmfResidualRisk_ai_rmf_risk_characteristics" (
 	PRIMARY KEY ("AiRmfResidualRisk_ai_rmf_id", ai_rmf_risk_characteristics),
 	FOREIGN KEY("AiRmfResidualRisk_ai_rmf_id") REFERENCES "AiRmfResidualRisk" (ai_rmf_id)
 );
-CREATE INDEX "ix_AiRmfResidualRisk_ai_rmf_risk_characteristics_AiRmfResidualRisk_ai_rmf_id" ON "AiRmfResidualRisk_ai_rmf_risk_characteristics" ("AiRmfResidualRisk_ai_rmf_id");
 CREATE INDEX "ix_AiRmfResidualRisk_ai_rmf_risk_characteristics_ai_rmf_risk_characteristics" ON "AiRmfResidualRisk_ai_rmf_risk_characteristics" (ai_rmf_risk_characteristics);
+CREATE INDEX "ix_AiRmfResidualRisk_ai_rmf_risk_characteristics_AiRmfResidualRisk_ai_rmf_id" ON "AiRmfResidualRisk_ai_rmf_risk_characteristics" ("AiRmfResidualRisk_ai_rmf_id");
 
 CREATE TABLE "AiRmfResidualRisk_ai_rmf_risk_lifecycle_stages" (
 	"AiRmfResidualRisk_ai_rmf_id" TEXT,
@@ -561,8 +561,8 @@ CREATE TABLE "AiRmfResidualRisk_ai_rmf_risk_lifecycle_stages" (
 	PRIMARY KEY ("AiRmfResidualRisk_ai_rmf_id", ai_rmf_risk_lifecycle_stages),
 	FOREIGN KEY("AiRmfResidualRisk_ai_rmf_id") REFERENCES "AiRmfResidualRisk" (ai_rmf_id)
 );
-CREATE INDEX "ix_AiRmfResidualRisk_ai_rmf_risk_lifecycle_stages_ai_rmf_risk_lifecycle_stages" ON "AiRmfResidualRisk_ai_rmf_risk_lifecycle_stages" (ai_rmf_risk_lifecycle_stages);
 CREATE INDEX "ix_AiRmfResidualRisk_ai_rmf_risk_lifecycle_stages_AiRmfResidualRisk_ai_rmf_id" ON "AiRmfResidualRisk_ai_rmf_risk_lifecycle_stages" ("AiRmfResidualRisk_ai_rmf_id");
+CREATE INDEX "ix_AiRmfResidualRisk_ai_rmf_risk_lifecycle_stages_ai_rmf_risk_lifecycle_stages" ON "AiRmfResidualRisk_ai_rmf_risk_lifecycle_stages" (ai_rmf_risk_lifecycle_stages);
 
 CREATE TABLE "AiRmfResidualRisk_ai_rmf_risk_responses" (
 	"AiRmfResidualRisk_ai_rmf_id" TEXT,
@@ -579,8 +579,8 @@ CREATE TABLE "AiRmfRiskTolerance_ai_rmf_risk_tolerance_influences" (
 	PRIMARY KEY ("AiRmfRiskTolerance_ai_rmf_id", ai_rmf_risk_tolerance_influences),
 	FOREIGN KEY("AiRmfRiskTolerance_ai_rmf_id") REFERENCES "AiRmfRiskTolerance" (ai_rmf_id)
 );
-CREATE INDEX "ix_AiRmfRiskTolerance_ai_rmf_risk_tolerance_influences_AiRmfRiskTolerance_ai_rmf_id" ON "AiRmfRiskTolerance_ai_rmf_risk_tolerance_influences" ("AiRmfRiskTolerance_ai_rmf_id");
 CREATE INDEX "ix_AiRmfRiskTolerance_ai_rmf_risk_tolerance_influences_ai_rmf_risk_tolerance_influences" ON "AiRmfRiskTolerance_ai_rmf_risk_tolerance_influences" (ai_rmf_risk_tolerance_influences);
+CREATE INDEX "ix_AiRmfRiskTolerance_ai_rmf_risk_tolerance_influences_AiRmfRiskTolerance_ai_rmf_id" ON "AiRmfRiskTolerance_ai_rmf_risk_tolerance_influences" ("AiRmfRiskTolerance_ai_rmf_id");
 
 CREATE TABLE "AiRmfSubcategory" (
 	id INTEGER NOT NULL,
@@ -647,8 +647,8 @@ CREATE TABLE "AiRmfSubcategory_ai_rmf_subcategory_ai_actors" (
 	PRIMARY KEY ("AiRmfSubcategory_id", ai_rmf_subcategory_ai_actors),
 	FOREIGN KEY("AiRmfSubcategory_id") REFERENCES "AiRmfSubcategory" (id)
 );
-CREATE INDEX "ix_AiRmfSubcategory_ai_rmf_subcategory_ai_actors_ai_rmf_subcategory_ai_actors" ON "AiRmfSubcategory_ai_rmf_subcategory_ai_actors" (ai_rmf_subcategory_ai_actors);
 CREATE INDEX "ix_AiRmfSubcategory_ai_rmf_subcategory_ai_actors_AiRmfSubcategory_id" ON "AiRmfSubcategory_ai_rmf_subcategory_ai_actors" ("AiRmfSubcategory_id");
+CREATE INDEX "ix_AiRmfSubcategory_ai_rmf_subcategory_ai_actors_ai_rmf_subcategory_ai_actors" ON "AiRmfSubcategory_ai_rmf_subcategory_ai_actors" (ai_rmf_subcategory_ai_actors);
 
 CREATE TABLE "AiRmfSubcategory_ai_rmf_subcategory_topics" (
 	"AiRmfSubcategory_id" INTEGER,
@@ -656,5 +656,5 @@ CREATE TABLE "AiRmfSubcategory_ai_rmf_subcategory_topics" (
 	PRIMARY KEY ("AiRmfSubcategory_id", ai_rmf_subcategory_topics),
 	FOREIGN KEY("AiRmfSubcategory_id") REFERENCES "AiRmfSubcategory" (id)
 );
-CREATE INDEX "ix_AiRmfSubcategory_ai_rmf_subcategory_topics_ai_rmf_subcategory_topics" ON "AiRmfSubcategory_ai_rmf_subcategory_topics" (ai_rmf_subcategory_topics);
 CREATE INDEX "ix_AiRmfSubcategory_ai_rmf_subcategory_topics_AiRmfSubcategory_id" ON "AiRmfSubcategory_ai_rmf_subcategory_topics" ("AiRmfSubcategory_id");
+CREATE INDEX "ix_AiRmfSubcategory_ai_rmf_subcategory_topics_ai_rmf_subcategory_topics" ON "AiRmfSubcategory_ai_rmf_subcategory_topics" (ai_rmf_subcategory_topics);

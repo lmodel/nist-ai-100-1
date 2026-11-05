@@ -620,7 +620,7 @@ nist_ai_100_1:AiRmfRisk a owl:Class ;
 	skos:definition "The composite measure of an event's probability and the magnitude of its consequences." ;
 	skos:exactMatch nist_ai_100_1:Risk ;
 	skos:inScheme nist_ai_100_1:nist_ai_100_1_foundations ;
-	skos:relatedMatch <https://w3id.org/lmodel/iso27001/Risk> .
+	skos:relatedMatch <https://w3id.org/lmodel/iso27001/IsmsRisk> .
 nist_ai_100_1:AiRmfRiskResponse\#accepting dcterms:title "Accepting" ;
 	a owl:Class ;
 	rdfs:label "accepting" ;

@@ -223,7 +223,7 @@ classes:
     class_uri: nist_ai_100_1:Risk
     description: The composite measure of an event's probability and the magnitude of its consequences.
     related_mappings:
-      - iso27001:Risk
+      - iso27001:IsmsRisk
     slots:
       - ai_rmf_likelihood
       - ai_rmf_magnitude

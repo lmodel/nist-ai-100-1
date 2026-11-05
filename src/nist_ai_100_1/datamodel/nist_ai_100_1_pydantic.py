@@ -960,7 +960,7 @@ class AiRmfRisk(AiRmfRecord):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'nist_ai_100_1:Risk',
          'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_foundations',
-         'related_mappings': ['iso27001:Risk']})
+         'related_mappings': ['iso27001:IsmsRisk']})
 
     ai_rmf_likelihood: Optional[str] = Field(default=None, description="""How likely the event or impact is, on whatever scale the adopter uses.""", json_schema_extra = { "linkml_meta": {'comments': ['The publication sets no scale, and the Playbook allows '
                       'qualitative ones, so this is text rather than a probability.'],

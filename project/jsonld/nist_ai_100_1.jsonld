@@ -2750,7 +2750,7 @@
         "nist_ai_100_1:Risk"
       ],
       "related_mappings": [
-        "iso27001:Risk"
+        "iso27001:IsmsRisk"
       ],
       "is_a": "AiRmfRecord",
       "slots": [
