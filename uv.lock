@@ -1041,6 +1041,7 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "jsonschema" },
     { name = "linkml" },
     { name = "pdfplumber" },
 ]
@@ -1050,6 +1051,7 @@ requires-dist = [{ name = "linkml-runtime", specifier = ">=1.9.4" }]
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "jsonschema", specifier = ">=4.26.0" },
     { name = "linkml", specifier = ">=1.12.1" },
     { name = "pdfplumber", specifier = ">=0.11.7" },
 ]
