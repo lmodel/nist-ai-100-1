@@ -32,7 +32,10 @@ UPSTREAM = ROOT / "upstream"
 ENUM_RECORDS = {
     "AiRmfCharacteristicName": ("ai_rmf_characteristics", "ai_rmf_characteristic_name"),
     "AiRmfDimensionName": ("ai_rmf_dimensions", "ai_rmf_dimension_name"),
-    "AiRmfLifecycleStageName": ("ai_rmf_lifecycle_stages", "ai_rmf_lifecycle_stage_name"),
+    "AiRmfLifecycleStageName": (
+        "ai_rmf_lifecycle_stages",
+        "ai_rmf_lifecycle_stage_name",
+    ),
     "AiRmfActorTaskName": ("ai_rmf_actor_task_list", "ai_rmf_actor_task_name"),
     "AiRmfManagementChallengeName": (
         "ai_rmf_management_challenges",
@@ -150,9 +153,13 @@ def test_catalogue_passes_the_committed_json_schema():
 
 def test_generated_models_load_the_catalogue():
     """The generated dataclasses and Pydantic models load all of it."""
-    framework = yaml_loader.load(str(CATALOGUE), target_class=dataclasses_model.AiRmfFramework)
+    framework = yaml_loader.load(
+        str(CATALOGUE), target_class=dataclasses_model.AiRmfFramework
+    )
     assert len(framework.ai_rmf_functions) == 4
-    assert len(pydantic_model.AiRmfFramework.model_validate(_doc()).ai_rmf_functions) == 4
+    assert (
+        len(pydantic_model.AiRmfFramework.model_validate(_doc()).ai_rmf_functions) == 4
+    )
 
 
 def test_core_is_what_upstream_gives():
@@ -203,7 +210,9 @@ def test_measurement_challenges_sit_under_risk_measurement():
         for record in _doc()["ai_rmf_management_challenges"]
         if "ai_rmf_management_challenge_measurement_challenges" in record
     ]
-    assert [h["ai_rmf_management_challenge_name"] for h in holders] == ["risk_measurement"]
+    assert [h["ai_rmf_management_challenge_name"] for h in holders] == [
+        "risk_measurement"
+    ]
     names = [
         item["ai_rmf_measurement_challenge_name"]
         for item in holders[0]["ai_rmf_management_challenge_measurement_challenges"]
@@ -310,7 +319,9 @@ def test_every_playbook_tag_has_a_home():
 def test_a_new_catalog_resource_is_read():
     """Only the catalog's N/A addresses go without an address."""
     empty = [
-        r for r in _oscal()["back-matter"]["resources"] if r["rlinks"][0]["href"] == "N/A"
+        r
+        for r in _oscal()["back-matter"]["resources"]
+        if r["rlinks"][0]["href"] == "N/A"
     ]
     assert len(empty) == 19
     for sub in _subcategories():
@@ -319,4 +330,6 @@ def test_a_new_catalog_resource_is_read():
             "ai_rmf_subcategory_references",
         ):
             for resource in sub.get(key, []):
-                assert resource.get("ai_rmf_resource_address", "https://").startswith("http")
+                assert resource.get("ai_rmf_resource_address", "https://").startswith(
+                    "http"
+                )

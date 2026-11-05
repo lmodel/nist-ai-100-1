@@ -58,12 +58,17 @@ def table_columns(pdf_path: Path = PDF) -> tuple[str, str]:
             ends += [
                 w["top"]
                 for w in words
-                if re.fullmatch(r"5\.\d|6\.", w["text"]) and w["x0"] < split and w["top"] > top
+                if re.fullmatch(r"5\.\d|6\.", w["text"])
+                and w["x0"] < split
+                and w["top"] > top
             ]
             bottom = min(ends) - 1 if ends else page.height - 40
-            left.append(page.crop((0, top, split, bottom)).extract_text(x_tolerance=1) or "")
+            left.append(
+                page.crop((0, top, split, bottom)).extract_text(x_tolerance=1) or ""
+            )
             right.append(
-                page.crop((split, top, page.width, bottom)).extract_text(x_tolerance=1) or ""
+                page.crop((split, top, page.width, bottom)).extract_text(x_tolerance=1)
+                or ""
             )
     return "\n".join(left), "\n".join(right)
 
@@ -141,9 +146,9 @@ def _resource(uuid: str, resources: dict[str, dict]) -> dict:
 
 def actor_names() -> dict[str, str]:
     """Each spelling of an AI actor tag, with the permissible value it names."""
-    enum = yaml.safe_load((SCHEMA_DIR / "nist_ai_100_1_base.yaml").read_text(encoding="utf-8"))[
-        "enums"
-    ]["AiRmfActorTaskName"]["permissible_values"]
+    enum = yaml.safe_load(
+        (SCHEMA_DIR / "nist_ai_100_1_base.yaml").read_text(encoding="utf-8")
+    )["enums"]["AiRmfActorTaskName"]["permissible_values"]
     names = {}
     for value, entry in enum.items():
         names[entry["title"]] = value
@@ -152,7 +157,9 @@ def actor_names() -> dict[str, str]:
     return names
 
 
-def subcategory_record(control: dict, statement: str, playbook: dict, resources: dict) -> dict:
+def subcategory_record(
+    control: dict, statement: str, playbook: dict, resources: dict
+) -> dict:
     """One subcategory from its statement, its catalog control and its Playbook entry."""
     record = {"ai_rmf_subcategory_id": control["title"], "description": statement}
     parts = control["parts"]
@@ -198,7 +205,8 @@ def core() -> list[dict]:
     """The four functions in the publication's order, with everything under them."""
     catalog = json.loads(OSCAL.read_text(encoding="utf-8"))["catalog"]
     playbook = {
-        entry["title"]: entry for entry in json.loads(PLAYBOOK.read_text(encoding="utf-8"))
+        entry["title"]: entry
+        for entry in json.loads(PLAYBOOK.read_text(encoding="utf-8"))
     }
     resources = {r["uuid"]: r for r in catalog["back-matter"]["resources"]}
     groups = {group["id"]: group for group in catalog["groups"]}
@@ -218,7 +226,10 @@ def core() -> list[dict]:
                 "description": categories[control["title"]],
                 "ai_rmf_category_subcategories": [
                     subcategory_record(
-                        sub, subcategories[sub["title"]], playbook[sub["title"]], resources
+                        sub,
+                        subcategories[sub["title"]],
+                        playbook[sub["title"]],
+                        resources,
                     )
                     for sub in control["controls"]
                 ],
@@ -230,7 +241,9 @@ def core() -> list[dict]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--check", action="store_true", help="compare, and write nothing")
+    parser.add_argument(
+        "--check", action="store_true", help="compare, and write nothing"
+    )
     args = parser.parse_args()
     document = yaml.safe_load(CATALOGUE.read_text(encoding="utf-8"))
     built = core()
@@ -241,7 +254,8 @@ def main() -> int:
         return 0
     document["ai_rmf_functions"] = built
     CATALOGUE.write_text(
-        yaml.safe_dump(document, sort_keys=False, allow_unicode=True, width=100), encoding="utf-8"
+        yaml.safe_dump(document, sort_keys=False, allow_unicode=True, width=100),
+        encoding="utf-8",
     )
     return 0
 

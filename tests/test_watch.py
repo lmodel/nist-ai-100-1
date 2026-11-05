@@ -183,7 +183,9 @@ def test_nist_changes_the_publication(watch, tmp_path):
     _stub(watch, _answers(watch, watch.PINNED_TAG), {url: b"another edition"})
     code, text = _run(watch, tmp_path)
     assert code == 1
-    assert f"**{url} now serves other bytes than `upstream/NIST.AI.100-1.pdf`.**" in text
+    assert (
+        f"**{url} now serves other bytes than `upstream/NIST.AI.100-1.pdf`.**" in text
+    )
     assert "`upstream/playbook.json` matches" in text
 
 

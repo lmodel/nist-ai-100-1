@@ -64,7 +64,9 @@ def test_downloads_match_their_pins():
     """The publication and the Playbook have the SHA-256 the watch pins."""
     watch = _watch()
     for name, (_url, sha256) in watch.PINNED_DOWNLOADS.items():
-        assert hashlib.sha256((UPSTREAM / name).read_bytes()).hexdigest() == sha256, name
+        assert hashlib.sha256((UPSTREAM / name).read_bytes()).hexdigest() == sha256, (
+            name
+        )
 
 
 def test_header_pins_match_the_watch():
