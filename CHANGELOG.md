@@ -6,6 +6,8 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-11-05
+
 ### Added
 
 - **The whole framework as records** in `src/nist_ai_100_1/data/ai-rmf-1.0.yaml`: the 4 functions, 19 categories and 72 subcategories with their Playbook material, and what Part 1 and the appendices list. `scripts/build_catalogue.py` writes the Core from `upstream/`.
