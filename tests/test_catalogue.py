@@ -115,14 +115,19 @@ def _oscal():
     return json.loads(path.read_text(encoding="utf-8"))["catalog"]
 
 
+def _words(text):
+    """A text's words, lower-cased and each between spaces, so a title matches whole
+    words and line breaks and hyphens fall away."""
+    return " " + " ".join(re.findall(r"[a-z0-9]+", re.sub(r"-\n", "", text.lower()))) + " "
+
+
 @lru_cache(maxsize=1)
-def _publication_letters():
-    """The publication's words as bare letters, so line breaks and hyphens fall away."""
+def _publication_words():
+    """The publication's words."""
     import pdfplumber
 
     with pdfplumber.open(UPSTREAM / "NIST.AI.100-1.pdf") as pdf:
-        text = " ".join(page.extract_text(x_tolerance=1) or "" for page in pdf.pages)
-    return re.sub(r"[^a-z0-9]", "", text.lower())
+        return _words("\n".join(page.extract_text(x_tolerance=1) or "" for page in pdf.pages))
 
 
 def _subcategories():
@@ -251,12 +256,11 @@ def test_figure_four_marks_two_characteristics():
 @pytest.mark.parametrize("enum", TITLED_IN_TEXT)
 def test_titles_are_the_publications(enum):
     """Each title is the publication's wording, so a typing slip fails here."""
-    letters = _publication_letters()
+    words = _publication_words()
     for value, entry in _view().get_enum(enum).permissible_values.items():
         if value == "tevv":
             continue  # Appendix A writes this title with its bold running on.
-        title = re.sub(r"[^a-z0-9]", "", entry.title.lower())
-        assert title in letters, (enum, value)
+        assert _words(entry.title) in words, (enum, value)
 
 
 def test_catalog_departs_from_the_publication_only_as_listed():
