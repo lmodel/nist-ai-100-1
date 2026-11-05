@@ -16,7 +16,7 @@ nist_ai_100_1:AiActor a sh:NodeShape ;
 	sh:property _:c14n112 , _:c14n175 , _:c14n177 , _:c14n202 , _:c14n25 , _:c14n51 ;
 	sh:targetClass nist_ai_100_1:AiActor .
 nist_ai_100_1:AiSystem a sh:NodeShape ;
-	rdfs:comment "An engineered or machine-based system that generates outputs such as predictions or decisions for given objectives, with varying autonomy." ;
+	rdfs:comment "A machine-based system that produces outputs such as predictions or decisions for given objectives, with varying autonomy." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n3 ;
 	sh:property _:c14n108 , _:c14n187 , _:c14n190 , _:c14n36 ;
@@ -124,7 +124,7 @@ nist_ai_100_1:Resource a sh:NodeShape ;
 	sh:property _:c14n54 , _:c14n62 , _:c14n64 ;
 	sh:targetClass nist_ai_100_1:Resource .
 nist_ai_100_1:Risk a sh:NodeShape ;
-	rdfs:comment "The composite measure of an event's probability and the magnitude of its consequences." ;
+	rdfs:comment "How likely an event is, combined with how severe its consequences are." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n183 ;
 	sh:property _:c14n125 , _:c14n131 , _:c14n134 , _:c14n156 , _:c14n159 , _:c14n166 , _:c14n189 , _:c14n192 , _:c14n79 , _:c14n91 ;

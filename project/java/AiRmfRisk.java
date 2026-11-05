@@ -10,7 +10,7 @@ import java.util.List;
 import lombok.*;
 
 /**
-  The composite measure of an event's probability and the magnitude of its consequences.
+  How likely an event is, combined with how severe its consequences are.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)

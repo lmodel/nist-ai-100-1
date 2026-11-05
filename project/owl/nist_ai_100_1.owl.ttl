@@ -52,7 +52,7 @@ nist_ai_100_1:AiRmfActorTaskName\#ai_design dcterms:title "AI Design" ;
 	a owl:Class ;
 	rdfs:label "ai_design" ;
 	rdfs:subClassOf nist_ai_100_1:AiRmfActorTaskName ;
-	skos:definition "Setting the system's concept and objectives, planning and design, and gathering and preparing its data." .
+	skos:definition "Setting what the system is for, planning and designing it, and gathering and preparing its data." .
 nist_ai_100_1:AiRmfActorTaskName\#ai_development dcterms:title "AI Development" ;
 	a owl:Class ;
 	rdfs:label "ai_development" ;
@@ -68,13 +68,13 @@ nist_ai_100_1:AiRmfActorTaskName\#domain_expert dcterms:title "Domain Expert" ;
 	rdfs:label "domain_expert" ;
 	rdfs:subClassOf nist_ai_100_1:AiRmfActorTaskName ;
 	skos:altLabel "Domain Experts" ;
-	skos:definition "Giving knowledge of the sector, context or application area where the system is used." .
+	skos:definition "Giving knowledge of the sector or setting where the system is used." .
 nist_ai_100_1:AiRmfActorTaskName\#end_users dcterms:title "End users" ;
 	a owl:Class ;
 	rdfs:label "end_users" ;
 	rdfs:subClassOf nist_ai_100_1:AiRmfActorTaskName ;
 	skos:altLabel "End Users" , "End-Users" ;
-	skos:definition "The individuals or groups that use the system for specific purposes, from AI experts to first-time users." .
+	skos:definition "The people or groups who use the system, whether new to technology or expert in AI." .
 nist_ai_100_1:AiRmfActorTaskName\#general_public dcterms:title "General public" ;
 	a owl:Class ;
 	rdfs:label "general_public" ;
@@ -99,12 +99,12 @@ nist_ai_100_1:AiRmfActorTaskName\#other_ai_actors dcterms:title "Other AI actors
 	a owl:Class ;
 	rdfs:label "other_ai_actors" ;
 	rdfs:subClassOf nist_ai_100_1:AiRmfActorTaskName ;
-	skos:definition "Sources of formal or quasi-formal norms or guidance, such as standards bodies, advocacy groups and researchers." .
+	skos:definition "Those who set norms or guidance on AI risk, such as standards bodies, advocacy groups and researchers." .
 nist_ai_100_1:AiRmfActorTaskName\#procurement dcterms:title "Procurement" ;
 	a owl:Class ;
 	rdfs:label "procurement" ;
 	rdfs:subClassOf nist_ai_100_1:AiRmfActorTaskName ;
-	skos:definition "Acquiring AI models, products or services from another party, under financial, legal or policy authority." .
+	skos:definition "Buying AI from another party, under financial, legal or policy authority." .
 nist_ai_100_1:AiRmfActorTaskName\#tevv dcterms:title "Test, Evaluation, Verification, and Validation (TEVV)" ;
 	a owl:Class ;
 	rdfs:label "tevv" ;
@@ -115,7 +115,7 @@ nist_ai_100_1:AiRmfActorTaskName\#third_party_entities dcterms:title "Third-part
 	a owl:Class ;
 	rdfs:label "third_party_entities" ;
 	rdfs:subClassOf nist_ai_100_1:AiRmfActorTaskName ;
-	skos:definition "External providers, developers, vendors and evaluators of data, algorithms, models, systems or services." .
+	skos:definition "Outside organizations that supply or evaluate the data, models, systems or services an organization acquires." .
 nist_ai_100_1:AiRmfActorTaskName a owl:Class ;
 	rdfs:label "AiRmfActorTaskName" ;
 	owl:unionOf _:c14n120 ;
@@ -179,7 +179,7 @@ nist_ai_100_1:AiRmfAudience\#primary dcterms:title "Primary audience" ;
 	a owl:Class ;
 	rdfs:label "primary" ;
 	rdfs:subClassOf nist_ai_100_1:AiRmfAudience ;
-	skos:definition "AI actors who perform or manage design, development, deployment, evaluation and use, and drive risk management." .
+	skos:definition "AI actors who carry out or manage work on AI systems and drive their risk management." .
 nist_ai_100_1:AiRmfAudience a owl:Class ;
 	rdfs:label "AiRmfAudience" ;
 	owl:unionOf _:c14n283 ;
@@ -233,7 +233,7 @@ nist_ai_100_1:AiRmfCharacteristicName\#explainable_and_interpretable dcterms:tit
 	rdfs:label "explainable_and_interpretable" ;
 	rdfs:subClassOf nist_ai_100_1:AiRmfCharacteristicName ;
 	skos:definition "Its working can be represented (how a decision was made) and its output understood in context (why, and what it means for the user)." .
-nist_ai_100_1:AiRmfCharacteristicName\#fair_with_harmful_bias_managed dcterms:title "Fair - with Harmful Bias Managed" ;
+nist_ai_100_1:AiRmfCharacteristicName\#fair_with_harmful_bias_managed dcterms:title "Fair – with Harmful Bias Managed" ;
 	a owl:Class ;
 	rdfs:label "fair_with_harmful_bias_managed" ;
 	rdfs:subClassOf nist_ai_100_1:AiRmfCharacteristicName ;
@@ -247,7 +247,7 @@ nist_ai_100_1:AiRmfCharacteristicName\#safe dcterms:title "Safe" ;
 	a owl:Class ;
 	rdfs:label "safe" ;
 	rdfs:subClassOf nist_ai_100_1:AiRmfCharacteristicName ;
-	skos:definition "Does not endanger human life, health, property or the environment under defined conditions." .
+	skos:definition "Keeps people, property and the environment out of danger under defined conditions." .
 nist_ai_100_1:AiRmfCharacteristicName\#secure_and_resilient dcterms:title "Secure and Resilient" ;
 	a owl:Class ;
 	rdfs:label "secure_and_resilient" ;
@@ -257,7 +257,7 @@ nist_ai_100_1:AiRmfCharacteristicName\#valid_and_reliable dcterms:title "Valid a
 	a owl:Class ;
 	rdfs:label "valid_and_reliable" ;
 	rdfs:subClassOf nist_ai_100_1:AiRmfCharacteristicName ;
-	skos:definition "Meets the requirements of its intended use, shown by objective evidence, and performs without failure over time. Figure 4 makes it a necessary condition for the others." .
+	skos:definition "Shown by evidence to meet the needs of its intended use, and works without failure over time. Figure 4 makes it a necessary condition for the others." .
 nist_ai_100_1:AiRmfCharacteristicName a owl:Class ;
 	rdfs:label "AiRmfCharacteristicName" ;
 	owl:unionOf _:c14n337 ;
@@ -289,7 +289,7 @@ nist_ai_100_1:AiRmfDimensionName\#people_and_planet dcterms:title "People and Pl
 	a owl:Class ;
 	rdfs:label "people_and_planet" ;
 	rdfs:subClassOf nist_ai_100_1:AiRmfDimensionName ;
-	skos:definition "Human rights and the broader well-being of society and the planet, at the center of Figure 2." .
+	skos:definition "People's rights and the well-being of society and the planet, at the center of Figure 2." .
 nist_ai_100_1:AiRmfDimensionName\#task_and_output dcterms:title "Task and Output" ;
 	a owl:Class ;
 	rdfs:label "task_and_output" ;
@@ -449,7 +449,7 @@ nist_ai_100_1:AiRmfLifecycleStageName\#collect_and_process_data dcterms:title "C
 	a owl:Class ;
 	rdfs:label "collect_and_process_data" ;
 	rdfs:subClassOf nist_ai_100_1:AiRmfLifecycleStageName ;
-	skos:definition "Gathering, validating and cleaning data and documenting the dataset." .
+	skos:definition "Gathering, validating and cleaning data, and recording what it holds." .
 nist_ai_100_1:AiRmfLifecycleStageName\#deploy_and_use dcterms:title "Deploy and Use" ;
 	a owl:Class ;
 	rdfs:label "deploy_and_use" ;
@@ -617,7 +617,7 @@ nist_ai_100_1:AiRmfResource a owl:Class ;
 nist_ai_100_1:AiRmfRisk a owl:Class ;
 	rdfs:label "AiRmfRisk" ;
 	rdfs:subClassOf nist_ai_100_1:AiRmfRecord , _:c14n1 , _:c14n112 , _:c14n17 , _:c14n184 , _:c14n197 , _:c14n201 , _:c14n204 , _:c14n207 , _:c14n227 , _:c14n229 , _:c14n240 , _:c14n242 , _:c14n248 , _:c14n251 , _:c14n319 , _:c14n65 , _:c14n68 ;
-	skos:definition "The composite measure of an event's probability and the magnitude of its consequences." ;
+	skos:definition "How likely an event is, combined with how severe its consequences are." ;
 	skos:exactMatch nist_ai_100_1:Risk ;
 	skos:inScheme nist_ai_100_1:nist_ai_100_1_foundations ;
 	skos:relatedMatch <https://w3id.org/lmodel/iso27001/IsmsRisk> .
@@ -678,7 +678,7 @@ nist_ai_100_1:AiRmfSuggestedAction a owl:Class ;
 nist_ai_100_1:AiRmfSystem a owl:Class ;
 	rdfs:label "AiRmfSystem" ;
 	rdfs:subClassOf nist_ai_100_1:AiRmfRecord , _:c14n126 , _:c14n294 ;
-	skos:definition "An engineered or machine-based system that generates outputs such as predictions or decisions for given objectives, with varying autonomy." ;
+	skos:definition "A machine-based system that produces outputs such as predictions or decisions for given objectives, with varying autonomy." ;
 	skos:exactMatch nist_ai_100_1:AiSystem ;
 	skos:inScheme nist_ai_100_1:nist_ai_100_1_foundations .
 nist_ai_100_1:AiRmfTrustworthinessCharacteristic a owl:Class ;

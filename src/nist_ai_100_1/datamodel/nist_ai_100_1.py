@@ -550,8 +550,8 @@ class AiRmfAttribute(YAMLRoot):
 @dataclass(repr=False)
 class AiRmfSystem(AiRmfRecord):
     """
-    An engineered or machine-based system that generates outputs such as predictions or decisions for given
-    objectives, with varying autonomy.
+    A machine-based system that produces outputs such as predictions or decisions for given objectives, with varying
+    autonomy.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -616,7 +616,7 @@ class AiRmfActor(AiRmfRecord):
 @dataclass(repr=False)
 class AiRmfRisk(AiRmfRecord):
     """
-    The composite measure of an event's probability and the magnitude of its consequences.
+    How likely an event is, combined with how severe its consequences are.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -1085,11 +1085,11 @@ class AiRmfCharacteristicName(EnumDefinitionImpl):
     valid_and_reliable = PermissibleValue(
         text="valid_and_reliable",
         title="Valid and Reliable",
-        description="""Meets the requirements of its intended use, shown by objective evidence, and performs without failure over time. Figure 4 makes it a necessary condition for the others.""")
+        description="""Shown by evidence to meet the needs of its intended use, and works without failure over time. Figure 4 makes it a necessary condition for the others.""")
     safe = PermissibleValue(
         text="safe",
         title="Safe",
-        description="Does not endanger human life, health, property or the environment under defined conditions.")
+        description="Keeps people, property and the environment out of danger under defined conditions.")
     secure_and_resilient = PermissibleValue(
         text="secure_and_resilient",
         title="Secure and Resilient",
@@ -1108,7 +1108,7 @@ class AiRmfCharacteristicName(EnumDefinitionImpl):
         description="""Guided by the norms and practices that protect human autonomy, identity and dignity, such as anonymity, confidentiality and control.""")
     fair_with_harmful_bias_managed = PermissibleValue(
         text="fair_with_harmful_bias_managed",
-        title="Fair - with Harmful Bias Managed",
+        title="Fair – with Harmful Bias Managed",
         description="""Addresses equality and equity, including harmful bias and discrimination, knowing that views of fairness differ across cultures and applications.""")
 
     _defn = EnumDefinition(
@@ -1123,7 +1123,7 @@ class AiRmfActorTaskName(EnumDefinitionImpl):
     ai_design = PermissibleValue(
         text="ai_design",
         title="AI Design",
-        description="""Setting the system's concept and objectives, planning and design, and gathering and preparing its data.""")
+        description="""Setting what the system is for, planning and designing it, and gathering and preparing its data.""")
     ai_development = PermissibleValue(
         text="ai_development",
         title="AI Development",
@@ -1147,7 +1147,7 @@ class AiRmfActorTaskName(EnumDefinitionImpl):
     domain_expert = PermissibleValue(
         text="domain_expert",
         title="Domain Expert",
-        description="Giving knowledge of the sector, context or application area where the system is used.")
+        description="Giving knowledge of the sector or setting where the system is used.")
     ai_impact_assessment = PermissibleValue(
         text="ai_impact_assessment",
         title="AI Impact Assessment",
@@ -1155,7 +1155,7 @@ class AiRmfActorTaskName(EnumDefinitionImpl):
     procurement = PermissibleValue(
         text="procurement",
         title="Procurement",
-        description="""Acquiring AI models, products or services from another party, under financial, legal or policy authority.""")
+        description="Buying AI from another party, under financial, legal or policy authority.")
     governance_and_oversight = PermissibleValue(
         text="governance_and_oversight",
         title="Governance and Oversight",
@@ -1163,11 +1163,11 @@ class AiRmfActorTaskName(EnumDefinitionImpl):
     third_party_entities = PermissibleValue(
         text="third_party_entities",
         title="Third-party entities",
-        description="""External providers, developers, vendors and evaluators of data, algorithms, models, systems or services.""")
+        description="""Outside organizations that supply or evaluate the data, models, systems or services an organization acquires.""")
     end_users = PermissibleValue(
         text="end_users",
         title="End users",
-        description="""The individuals or groups that use the system for specific purposes, from AI experts to first-time users.""")
+        description="The people or groups who use the system, whether new to technology or expert in AI.")
     affected_individuals_and_communities = PermissibleValue(
         text="affected_individuals_and_communities",
         title="Affected individuals/communities",
@@ -1175,7 +1175,7 @@ class AiRmfActorTaskName(EnumDefinitionImpl):
     other_ai_actors = PermissibleValue(
         text="other_ai_actors",
         title="Other AI actors",
-        description="""Sources of formal or quasi-formal norms or guidance, such as standards bodies, advocacy groups and researchers.""")
+        description="""Those who set norms or guidance on AI risk, such as standards bodies, advocacy groups and researchers.""")
     general_public = PermissibleValue(
         text="general_public",
         title="General public",
@@ -1209,7 +1209,7 @@ class AiRmfDimensionName(EnumDefinitionImpl):
     people_and_planet = PermissibleValue(
         text="people_and_planet",
         title="People and Planet",
-        description="Human rights and the broader well-being of society and the planet, at the center of Figure 2.")
+        description="People's rights and the well-being of society and the planet, at the center of Figure 2.")
 
     _defn = EnumDefinition(
         name="AiRmfDimensionName",
@@ -1227,7 +1227,7 @@ class AiRmfLifecycleStageName(EnumDefinitionImpl):
     collect_and_process_data = PermissibleValue(
         text="collect_and_process_data",
         title="Collect and Process Data",
-        description="Gathering, validating and cleaning data and documenting the dataset.")
+        description="Gathering, validating and cleaning data, and recording what it holds.")
     build_and_use_model = PermissibleValue(
         text="build_and_use_model",
         title="Build and Use Model",
@@ -1261,7 +1261,7 @@ class AiRmfAudience(EnumDefinitionImpl):
     primary = PermissibleValue(
         text="primary",
         title="Primary audience",
-        description="""AI actors who perform or manage design, development, deployment, evaluation and use, and drive risk management.""")
+        description="AI actors who carry out or manage work on AI systems and drive their risk management.")
     informing = PermissibleValue(
         text="informing",
         title="Informing audience",

@@ -10,7 +10,7 @@ import java.util.List;
 import lombok.*;
 
 /**
-  An engineered or machine-based system that generates outputs such as predictions or decisions for given objectives, with varying autonomy.
+  A machine-based system that produces outputs such as predictions or decisions for given objectives, with varying autonomy.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)

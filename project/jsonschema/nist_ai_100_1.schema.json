@@ -1139,7 +1139,7 @@
         },
         "AiRmfRisk": {
             "additionalProperties": false,
-            "description": "The composite measure of an event's probability and the magnitude of its consequences.",
+            "description": "How likely an event is, combined with how severe its consequences are.",
             "properties": {
                 "ai_rmf_id": {
                     "description": "The identifier an adopter gives a record of its own.",
@@ -1428,7 +1428,7 @@
         },
         "AiRmfSystem": {
             "additionalProperties": false,
-            "description": "An engineered or machine-based system that generates outputs such as predictions or decisions for given objectives, with varying autonomy.",
+            "description": "A machine-based system that produces outputs such as predictions or decisions for given objectives, with varying autonomy.",
             "properties": {
                 "ai_rmf_id": {
                     "description": "The identifier an adopter gives a record of its own.",

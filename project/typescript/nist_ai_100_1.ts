@@ -13,9 +13,9 @@ export type AiRmfProfileAiRmfId = string;
 */
 export enum AiRmfCharacteristicName {
     
-    /** Meets the requirements of its intended use, shown by objective evidence, and performs without failure over time. Figure 4 makes it a necessary condition for the others. */
+    /** Shown by evidence to meet the needs of its intended use, and works without failure over time. Figure 4 makes it a necessary condition for the others. */
     Valid_and_Reliable = "valid_and_reliable",
-    /** Does not endanger human life, health, property or the environment under defined conditions. */
+    /** Keeps people, property and the environment out of danger under defined conditions. */
     Safe = "safe",
     /** Withstands adverse events and recovers from them, and keeps confidentiality, integrity and availability through protections against attack. */
     Secure_and_Resilient = "secure_and_resilient",
@@ -26,14 +26,14 @@ export enum AiRmfCharacteristicName {
     /** Guided by the norms and practices that protect human autonomy, identity and dignity, such as anonymity, confidentiality and control. */
     Privacy_Enhanced = "privacy_enhanced",
     /** Addresses equality and equity, including harmful bias and discrimination, knowing that views of fairness differ across cultures and applications. */
-    Fair___with_Harmful_Bias_Managed = "fair_with_harmful_bias_managed",
+    Fair_EN_DASH_with_Harmful_Bias_Managed = "fair_with_harmful_bias_managed",
 };
 /**
 * The ten AI actor tasks and five additional AI actors of Appendix A.
 */
 export enum AiRmfActorTaskName {
     
-    /** Setting the system's concept and objectives, planning and design, and gathering and preparing its data. */
+    /** Setting what the system is for, planning and designing it, and gathering and preparing its data. */
     AI_Design = "ai_design",
     /** Providing the initial infrastructure, and creating, selecting, calibrating, training and testing models. */
     AI_Development = "ai_development",
@@ -45,21 +45,21 @@ export enum AiRmfActorTaskName {
     Test_Evaluation_Verification_and_Validation_LEFT_PARENTHESISTEVVRIGHT_PARENTHESIS = "tevv",
     /** Human-centered design and evaluation, involving end users and bringing context-specific norms and values into design. */
     Human_Factors = "human_factors",
-    /** Giving knowledge of the sector, context or application area where the system is used. */
+    /** Giving knowledge of the sector or setting where the system is used. */
     Domain_Expert = "domain_expert",
     /** Assessing accountability, harmful bias, impacts, product safety, liability and security. */
     AI_Impact_Assessment = "ai_impact_assessment",
-    /** Acquiring AI models, products or services from another party, under financial, legal or policy authority. */
+    /** Buying AI from another party, under financial, legal or policy authority. */
     Procurement = "procurement",
     /** Holding management, fiduciary and legal authority for the organization where the system is designed, developed or deployed. */
     Governance_and_Oversight = "governance_and_oversight",
-    /** External providers, developers, vendors and evaluators of data, algorithms, models, systems or services. */
+    /** Outside organizations that supply or evaluate the data, models, systems or services an organization acquires. */
     Third_party_entities = "third_party_entities",
-    /** The individuals or groups that use the system for specific purposes, from AI experts to first-time users. */
+    /** The people or groups who use the system, whether new to technology or expert in AI. */
     End_users = "end_users",
     /** Those directly or indirectly affected by the system or its output, whether or not they interact with it. */
     Affected_individualsSOLIDUScommunities = "affected_individuals_and_communities",
-    /** Sources of formal or quasi-formal norms or guidance, such as standards bodies, advocacy groups and researchers. */
+    /** Those who set norms or guidance on AI risk, such as standards bodies, advocacy groups and researchers. */
     Other_AI_actors = "other_ai_actors",
     /** Those most likely to experience the impacts directly, who may motivate what other AI actors do. */
     General_public = "general_public",
@@ -77,7 +77,7 @@ export enum AiRmfDimensionName {
     AI_Model = "ai_model",
     /** What the system does and produces once deployed. */
     Task_and_Output = "task_and_output",
-    /** Human rights and the broader well-being of society and the planet, at the center of Figure 2. */
+    /** People's rights and the well-being of society and the planet, at the center of Figure 2. */
     People_and_Planet = "people_and_planet",
 };
 /**
@@ -87,7 +87,7 @@ export enum AiRmfLifecycleStageName {
     
     /** Documenting the concept, objectives, assumptions, context and requirements. */
     Plan_and_Design = "plan_and_design",
-    /** Gathering, validating and cleaning data and documenting the dataset. */
+    /** Gathering, validating and cleaning data, and recording what it holds. */
     Collect_and_Process_Data = "collect_and_process_data",
     /** Creating or selecting algorithms and training models. */
     Build_and_Use_Model = "build_and_use_model",
@@ -105,7 +105,7 @@ export enum AiRmfLifecycleStageName {
 */
 export enum AiRmfAudience {
     
-    /** AI actors who perform or manage design, development, deployment, evaluation and use, and drive risk management. */
+    /** AI actors who carry out or manage work on AI systems and drive their risk management. */
     Primary_audience = "primary",
     /** AI actors in the People and Planet dimension, who inform the primary audience. */
     Informing_audience = "informing",
@@ -393,7 +393,7 @@ export interface AiRmfAttribute {
 
 
 /**
- * An engineered or machine-based system that generates outputs such as predictions or decisions for given objectives, with varying autonomy.
+ * A machine-based system that produces outputs such as predictions or decisions for given objectives, with varying autonomy.
  */
 export interface AiRmfSystem extends AiRmfRecord {
     /** The lifecycle stages the record covers. */
@@ -415,7 +415,7 @@ export interface AiRmfActor extends AiRmfRecord {
 
 
 /**
- * The composite measure of an event's probability and the magnitude of its consequences.
+ * How likely an event is, combined with how severe its consequences are.
  */
 export interface AiRmfRisk extends AiRmfRecord {
     /** How likely the event or impact is, on whatever scale the adopter uses. */

@@ -237,7 +237,7 @@ message AiRmfResource {
   // The address NIST's catalog gives the source. The catalog gives none for a few.
   string ai_rmf_resource_address = 3;
 }
-// The composite measure of an event's probability and the magnitude of its consequences.
+// How likely an event is, combined with how severe its consequences are.
 message AiRmfRisk {
   // The identifier an adopter gives a record of its own.
   string ai_rmf_id = 1;
@@ -310,7 +310,7 @@ message AiRmfSuggestedAction {
   // What the element says or is.
   string description = 2;
 }
-// An engineered or machine-based system that generates outputs such as predictions or decisions for given objectives, with varying autonomy.
+// A machine-based system that produces outputs such as predictions or decisions for given objectives, with varying autonomy.
 message AiRmfSystem {
   // The identifier an adopter gives a record of its own.
   string ai_rmf_id = 1;
