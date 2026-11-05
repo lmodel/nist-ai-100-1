@@ -16,7 +16,10 @@ import lombok.*;
 @EqualsAndHashCode(callSuper=false)
 public class AiRmfSystem extends AiRmfRecord {
 
+  private List<String> aiRmfSystemIntendedPurposes;
+  private List<String> aiRmfSystemDeploymentSettings;
   private List<String> aiRmfSystemLifecycleStages;
+  private List<AiRmfActor> aiRmfSystemActors;
 
 
 }

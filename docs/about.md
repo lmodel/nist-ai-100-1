@@ -6,7 +6,7 @@ This page is for anyone reading the [LinkML](https://linkml.io) schema's element
 
 `AiRmfFramework` holds one edition of the framework. Under it, the Core runs from `AiRmfFunction` to `AiRmfCategory` to `AiRmfSubcategory`, and a subcategory holds its Playbook material. Beside the Core sit the lists of Part 1 and the appendices, such as `AiRmfTrustworthinessCharacteristic` and `AiRmfSpecificRisk`.
 
-Classes under `AiRmfRecord` are for an adopter's own facts: `AiRmfSystem`, `AiRmfActor`, `AiRmfRisk`, `AiRmfResidualRisk`, `AiRmfImpact`, `AiRmfHarm`, `AiRmfRiskTolerance`, `AiRmfBias` and `AiRmfProfile`. Each carries an identifier of the adopter's choosing, so one can name another, as a risk names its system. The publication holds none of these records.
+Classes under `AiRmfRecord` are for an adopter's own facts: `AiRmfSystem`, `AiRmfActor`, `AiRmfRisk`, `AiRmfResidualRisk`, `AiRmfImpact`, `AiRmfHarm`, `AiRmfRiskTolerance`, `AiRmfBias` and `AiRmfProfile`. Each carries an identifier of the adopter's choosing, so one can name another, as a risk names its system and the tolerance it is judged against. The publication holds none of these records.
 
 The modules follow that split. `nist_ai_100_1_base` holds the identifier forms, the names of the characteristics and of the AI actor tasks, and `AiRmfRecord`. `nist_ai_100_1_foundations` holds Part 1 and the appendices, `nist_ai_100_1_rmf_core` the Core and `nist_ai_100_1_profiles` the profile. A profile of the AI RMF, such as lmodel/nist-ai-600-1, imports the base and profiles modules alone.
 

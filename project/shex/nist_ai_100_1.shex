@@ -356,7 +356,9 @@ linkml:Sparqlpath xsd:string
              <ai_rmf_risk_responses> [ <https://w3id.org/lmodel/nist-ai-100-1/AiRmfRiskResponse#mitigating>
                 <https://w3id.org/lmodel/nist-ai-100-1/AiRmfRiskResponse#transferring>
                 <https://w3id.org/lmodel/nist-ai-100-1/AiRmfRiskResponse#avoiding>
-                <https://w3id.org/lmodel/nist-ai-100-1/AiRmfRiskResponse#accepting> ] *
+                <https://w3id.org/lmodel/nist-ai-100-1/AiRmfRiskResponse#accepting> ] * ;
+             <ai_rmf_risk_priority> @linkml:String ? ;
+             <ai_rmf_risk_tolerance> @<AiRmfRiskTolerance> ?
           ) ;
           rdf:type [ <Risk> ]
        )
@@ -422,13 +424,16 @@ linkml:Sparqlpath xsd:string
 <AiRmfSystem> CLOSED {
     (  $<AiRmfSystem_tes> (  &<AiRmfRecord_tes> ;
           rdf:type [ <Record> ] ? ;
+          <ai_rmf_system_intended_purposes> @linkml:String * ;
+          <ai_rmf_system_deployment_settings> @linkml:String * ;
           <ai_rmf_system_lifecycle_stages> [ <https://w3id.org/lmodel/nist-ai-100-1/AiRmfLifecycleStageName#plan_and_design>
              <https://w3id.org/lmodel/nist-ai-100-1/AiRmfLifecycleStageName#collect_and_process_data>
              <https://w3id.org/lmodel/nist-ai-100-1/AiRmfLifecycleStageName#build_and_use_model>
              <https://w3id.org/lmodel/nist-ai-100-1/AiRmfLifecycleStageName#verify_and_validate>
              <https://w3id.org/lmodel/nist-ai-100-1/AiRmfLifecycleStageName#deploy_and_use>
              <https://w3id.org/lmodel/nist-ai-100-1/AiRmfLifecycleStageName#operate_and_monitor>
-             <https://w3id.org/lmodel/nist-ai-100-1/AiRmfLifecycleStageName#use_or_impacted_by> ] *
+             <https://w3id.org/lmodel/nist-ai-100-1/AiRmfLifecycleStageName#use_or_impacted_by> ] * ;
+          <ai_rmf_system_actors> @<AiRmfActor> *
        ) ;
        rdf:type [ <AiSystem> ]
     )

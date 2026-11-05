@@ -882,7 +882,10 @@ class AiRmfSystem(AiRmfRecord):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'nist_ai_100_1:AiSystem',
          'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_foundations'})
 
+    ai_rmf_system_intended_purposes: Optional[list[str]] = Field(default=None, description="""What the system is for, and its potentially beneficial uses, which MAP 1.1 asks an adopter to document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfSystem']} })
+    ai_rmf_system_deployment_settings: Optional[list[str]] = Field(default=None, description="""The settings the system is or will be deployed in, which MAP 1.1 asks an adopter to document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfSystem']} })
     ai_rmf_system_lifecycle_stages: Optional[list[AiRmfLifecycleStageName]] = Field(default=None, description="""The lifecycle stages the record covers.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfSystem']} })
+    ai_rmf_system_actors: Optional[list[str]] = Field(default=None, description="""The AI actors with a role in the system's lifecycle, such as those MAP 1.6 says elicit its requirements.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfSystem']} })
     ai_rmf_id: str = Field(default=..., description="""The identifier an adopter gives a record of its own.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfRecord']} })
     title: Optional[str] = Field(default=None, description="""The element's name.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's title, so lokf adapt folds it into "
                       "LOKF's slot and a knowledge bundle reads one title key."],
@@ -971,6 +974,10 @@ class AiRmfRisk(AiRmfRecord):
     ai_rmf_risk_characteristics: Optional[list[AiRmfCharacteristicName]] = Field(default=None, description="""The trustworthiness characteristics the risk bears on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfRisk']} })
     ai_rmf_risk_lifecycle_stages: Optional[list[AiRmfLifecycleStageName]] = Field(default=None, description="""The lifecycle stages where the risk is measured or arises.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfRisk']} })
     ai_rmf_risk_responses: Optional[list[AiRmfRiskResponse]] = Field(default=None, description="""The responses chosen for the risk.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfRisk']} })
+    ai_rmf_risk_priority: Optional[str] = Field(default=None, description="""The priority the adopter gives the risk's treatment, on whatever scale it uses, as MANAGE 1.2 asks.""", json_schema_extra = { "linkml_meta": {'comments': ['MANAGE 1.3 speaks of risks deemed high priority and the '
+                      'publication sets no scale, so this is text.'],
+         'domain_of': ['AiRmfRisk']} })
+    ai_rmf_risk_tolerance: Optional[str] = Field(default=None, description="""The risk tolerance the risk is judged against, which GOVERN 1.3 and MAP 1.5 ask an adopter to document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfRisk']} })
     ai_rmf_id: str = Field(default=..., description="""The identifier an adopter gives a record of its own.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfRecord']} })
     title: Optional[str] = Field(default=None, description="""The element's name.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's title, so lokf adapt folds it into "
                       "LOKF's slot and a knowledge bundle reads one title key."],
@@ -1020,6 +1027,10 @@ class AiRmfResidualRisk(AiRmfRisk):
     ai_rmf_risk_characteristics: Optional[list[AiRmfCharacteristicName]] = Field(default=None, description="""The trustworthiness characteristics the risk bears on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfRisk']} })
     ai_rmf_risk_lifecycle_stages: Optional[list[AiRmfLifecycleStageName]] = Field(default=None, description="""The lifecycle stages where the risk is measured or arises.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfRisk']} })
     ai_rmf_risk_responses: Optional[list[AiRmfRiskResponse]] = Field(default=None, description="""The responses chosen for the risk.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfRisk']} })
+    ai_rmf_risk_priority: Optional[str] = Field(default=None, description="""The priority the adopter gives the risk's treatment, on whatever scale it uses, as MANAGE 1.2 asks.""", json_schema_extra = { "linkml_meta": {'comments': ['MANAGE 1.3 speaks of risks deemed high priority and the '
+                      'publication sets no scale, so this is text.'],
+         'domain_of': ['AiRmfRisk']} })
+    ai_rmf_risk_tolerance: Optional[str] = Field(default=None, description="""The risk tolerance the risk is judged against, which GOVERN 1.3 and MAP 1.5 ask an adopter to document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfRisk']} })
     ai_rmf_id: str = Field(default=..., description="""The identifier an adopter gives a record of its own.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfRecord']} })
     title: Optional[str] = Field(default=None, description="""The element's name.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's title, so lokf adapt folds it into "
                       "LOKF's slot and a knowledge bundle reads one title key."],

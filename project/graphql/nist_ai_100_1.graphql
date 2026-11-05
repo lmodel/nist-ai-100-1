@@ -292,6 +292,8 @@ type AiRmfResidualRisk
     aiRmfRiskCharacteristics: [AiRmfCharacteristicName]
     aiRmfRiskLifecycleStages: [AiRmfLifecycleStageName]
     aiRmfRiskResponses: [AiRmfRiskResponse]
+    aiRmfRiskPriority: String
+    aiRmfRiskTolerance: AiRmfRiskTolerance
   }
 
 type AiRmfResource
@@ -313,6 +315,8 @@ type AiRmfRisk
     aiRmfRiskCharacteristics: [AiRmfCharacteristicName]
     aiRmfRiskLifecycleStages: [AiRmfLifecycleStageName]
     aiRmfRiskResponses: [AiRmfRiskResponse]
+    aiRmfRiskPriority: String
+    aiRmfRiskTolerance: AiRmfRiskTolerance
   }
 
 type AiRmfRiskTolerance
@@ -355,7 +359,10 @@ type AiRmfSystem
     aiRmfId: String!
     title: String
     description: String
+    aiRmfSystemIntendedPurposes: [String]
+    aiRmfSystemDeploymentSettings: [String]
     aiRmfSystemLifecycleStages: [AiRmfLifecycleStageName]
+    aiRmfSystemActors: [AiRmfActor]
   }
 
 type AiRmfTrustworthinessCharacteristic

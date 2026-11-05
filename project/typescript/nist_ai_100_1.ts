@@ -396,8 +396,14 @@ export interface AiRmfAttribute {
  * A machine-based system that produces outputs such as predictions or decisions for given objectives, with varying autonomy.
  */
 export interface AiRmfSystem extends AiRmfRecord {
+    /** What the system is for, and its potentially beneficial uses, which MAP 1.1 asks an adopter to document. */
+    ai_rmf_system_intended_purposes?: string[],
+    /** The settings the system is or will be deployed in, which MAP 1.1 asks an adopter to document. */
+    ai_rmf_system_deployment_settings?: string[],
     /** The lifecycle stages the record covers. */
     ai_rmf_system_lifecycle_stages?: string,
+    /** The AI actors with a role in the system's lifecycle, such as those MAP 1.6 says elicit its requirements. */
+    ai_rmf_system_actors?: AiRmfActorAiRmfId[],
 }
 
 
@@ -432,6 +438,10 @@ export interface AiRmfRisk extends AiRmfRecord {
     ai_rmf_risk_lifecycle_stages?: string,
     /** The responses chosen for the risk. */
     ai_rmf_risk_responses?: string,
+    /** The priority the adopter gives the risk's treatment, on whatever scale it uses, as MANAGE 1.2 asks. */
+    ai_rmf_risk_priority?: string,
+    /** The risk tolerance the risk is judged against, which GOVERN 1.3 and MAP 1.5 ask an adopter to document. */
+    ai_rmf_risk_tolerance?: AiRmfRiskToleranceAiRmfId,
 }
 
 

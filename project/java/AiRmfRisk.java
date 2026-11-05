@@ -23,6 +23,8 @@ public class AiRmfRisk extends AiRmfRecord {
   private List<String> aiRmfRiskCharacteristics;
   private List<String> aiRmfRiskLifecycleStages;
   private List<String> aiRmfRiskResponses;
+  private String aiRmfRiskPriority;
+  private AiRmfRiskTolerance aiRmfRiskTolerance;
 
 
 }

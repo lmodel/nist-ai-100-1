@@ -265,6 +265,9 @@
          },
          "@id": "ai_rmf_risk_lifecycle_stages"
       },
+      "ai_rmf_risk_priority": {
+         "@id": "ai_rmf_risk_priority"
+      },
       "ai_rmf_risk_responses": {
          "@context": {
             "text": "skos:notation",
@@ -276,6 +279,10 @@
       "ai_rmf_risk_system": {
          "@type": "@id",
          "@id": "ai_rmf_risk_system"
+      },
+      "ai_rmf_risk_tolerance": {
+         "@type": "@id",
+         "@id": "ai_rmf_risk_tolerance"
       },
       "ai_rmf_risk_tolerance_holder": {
          "@type": "@id",
@@ -317,6 +324,16 @@
       "ai_rmf_subcategory_transparency_resources": {
          "@type": "@id",
          "@id": "ai_rmf_subcategory_transparency_resources"
+      },
+      "ai_rmf_system_actors": {
+         "@type": "@id",
+         "@id": "ai_rmf_system_actors"
+      },
+      "ai_rmf_system_deployment_settings": {
+         "@id": "ai_rmf_system_deployment_settings"
+      },
+      "ai_rmf_system_intended_purposes": {
+         "@id": "ai_rmf_system_intended_purposes"
       },
       "ai_rmf_system_lifecycle_stages": {
          "@context": {

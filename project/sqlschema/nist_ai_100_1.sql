@@ -73,6 +73,8 @@
 --     * Slot: ai_rmf_likelihood Description: How likely the event or impact is, on whatever scale the adopter uses.
 --     * Slot: ai_rmf_magnitude Description: How large the consequences are, on whatever scale the adopter uses.
 --     * Slot: ai_rmf_risk_system Description: The AI system the risk concerns.
+--     * Slot: ai_rmf_risk_priority Description: The priority the adopter gives the risk's treatment, on whatever scale it uses, as MANAGE 1.2 asks.
+--     * Slot: ai_rmf_risk_tolerance Description: The risk tolerance the risk is judged against, which GOVERN 1.3 and MAP 1.5 ask an adopter to document.
 --     * Slot: ai_rmf_id Description: The identifier an adopter gives a record of its own.
 --     * Slot: title Description: The element's name.
 --     * Slot: description Description: What the element says or is.
@@ -80,6 +82,8 @@
 --     * Slot: ai_rmf_likelihood Description: How likely the event or impact is, on whatever scale the adopter uses.
 --     * Slot: ai_rmf_magnitude Description: How large the consequences are, on whatever scale the adopter uses.
 --     * Slot: ai_rmf_risk_system Description: The AI system the risk concerns.
+--     * Slot: ai_rmf_risk_priority Description: The priority the adopter gives the risk's treatment, on whatever scale it uses, as MANAGE 1.2 asks.
+--     * Slot: ai_rmf_risk_tolerance Description: The risk tolerance the risk is judged against, which GOVERN 1.3 and MAP 1.5 ask an adopter to document.
 --     * Slot: ai_rmf_id Description: The identifier an adopter gives a record of its own.
 --     * Slot: title Description: The element's name.
 --     * Slot: description Description: What the element says or is.
@@ -152,9 +156,18 @@
 -- # Class: AiRmfActorTask_ai_rmf_actor_task_representative_actors
 --     * Slot: AiRmfActorTask_id Description: Autocreated FK slot
 --     * Slot: ai_rmf_actor_task_representative_actors Description: The AI actors that Appendix A says carry out the task.
+-- # Class: AiRmfSystem_ai_rmf_system_intended_purposes
+--     * Slot: AiRmfSystem_ai_rmf_id Description: Autocreated FK slot
+--     * Slot: ai_rmf_system_intended_purposes Description: What the system is for, and its potentially beneficial uses, which MAP 1.1 asks an adopter to document.
+-- # Class: AiRmfSystem_ai_rmf_system_deployment_settings
+--     * Slot: AiRmfSystem_ai_rmf_id Description: Autocreated FK slot
+--     * Slot: ai_rmf_system_deployment_settings Description: The settings the system is or will be deployed in, which MAP 1.1 asks an adopter to document.
 -- # Class: AiRmfSystem_ai_rmf_system_lifecycle_stages
 --     * Slot: AiRmfSystem_ai_rmf_id Description: Autocreated FK slot
 --     * Slot: ai_rmf_system_lifecycle_stages Description: The lifecycle stages the record covers.
+-- # Class: AiRmfSystem_ai_rmf_system_actors
+--     * Slot: AiRmfSystem_ai_rmf_id Description: Autocreated FK slot
+--     * Slot: ai_rmf_system_actors_ai_rmf_id Description: The AI actors with a role in the system's lifecycle, such as those MAP 1.6 says elicit its requirements.
 -- # Class: AiRmfActor_ai_rmf_actor_tasks
 --     * Slot: AiRmfActor_ai_rmf_id Description: Autocreated FK slot
 --     * Slot: ai_rmf_actor_tasks Description: The tasks the actor carries out, or the additional AI actor it is.
@@ -359,30 +372,6 @@ CREATE TABLE "AiRmfAttribute" (
 );
 CREATE INDEX "ix_AiRmfAttribute_id" ON "AiRmfAttribute" (id);
 
-CREATE TABLE "AiRmfRisk" (
-	ai_rmf_likelihood TEXT,
-	ai_rmf_magnitude TEXT,
-	ai_rmf_risk_system TEXT,
-	ai_rmf_id TEXT NOT NULL,
-	title TEXT,
-	description TEXT,
-	PRIMARY KEY (ai_rmf_id),
-	FOREIGN KEY(ai_rmf_risk_system) REFERENCES "AiRmfSystem" (ai_rmf_id)
-);
-CREATE INDEX "ix_AiRmfRisk_ai_rmf_id" ON "AiRmfRisk" (ai_rmf_id);
-
-CREATE TABLE "AiRmfResidualRisk" (
-	ai_rmf_likelihood TEXT,
-	ai_rmf_magnitude TEXT,
-	ai_rmf_risk_system TEXT,
-	ai_rmf_id TEXT NOT NULL,
-	title TEXT,
-	description TEXT,
-	PRIMARY KEY (ai_rmf_id),
-	FOREIGN KEY(ai_rmf_risk_system) REFERENCES "AiRmfSystem" (ai_rmf_id)
-);
-CREATE INDEX "ix_AiRmfResidualRisk_ai_rmf_id" ON "AiRmfResidualRisk" (ai_rmf_id);
-
 CREATE TABLE "AiRmfRiskTolerance" (
 	ai_rmf_risk_tolerance_holder TEXT,
 	ai_rmf_id TEXT NOT NULL,
@@ -403,6 +392,24 @@ CREATE TABLE "AiRmfFunction" (
 );
 CREATE INDEX "ix_AiRmfFunction_id" ON "AiRmfFunction" (id);
 
+CREATE TABLE "AiRmfSystem_ai_rmf_system_intended_purposes" (
+	"AiRmfSystem_ai_rmf_id" TEXT,
+	ai_rmf_system_intended_purposes TEXT,
+	PRIMARY KEY ("AiRmfSystem_ai_rmf_id", ai_rmf_system_intended_purposes),
+	FOREIGN KEY("AiRmfSystem_ai_rmf_id") REFERENCES "AiRmfSystem" (ai_rmf_id)
+);
+CREATE INDEX "ix_AiRmfSystem_ai_rmf_system_intended_purposes_AiRmfSystem_ai_rmf_id" ON "AiRmfSystem_ai_rmf_system_intended_purposes" ("AiRmfSystem_ai_rmf_id");
+CREATE INDEX "ix_AiRmfSystem_ai_rmf_system_intended_purposes_ai_rmf_system_intended_purposes" ON "AiRmfSystem_ai_rmf_system_intended_purposes" (ai_rmf_system_intended_purposes);
+
+CREATE TABLE "AiRmfSystem_ai_rmf_system_deployment_settings" (
+	"AiRmfSystem_ai_rmf_id" TEXT,
+	ai_rmf_system_deployment_settings TEXT,
+	PRIMARY KEY ("AiRmfSystem_ai_rmf_id", ai_rmf_system_deployment_settings),
+	FOREIGN KEY("AiRmfSystem_ai_rmf_id") REFERENCES "AiRmfSystem" (ai_rmf_id)
+);
+CREATE INDEX "ix_AiRmfSystem_ai_rmf_system_deployment_settings_ai_rmf_system_deployment_settings" ON "AiRmfSystem_ai_rmf_system_deployment_settings" (ai_rmf_system_deployment_settings);
+CREATE INDEX "ix_AiRmfSystem_ai_rmf_system_deployment_settings_AiRmfSystem_ai_rmf_id" ON "AiRmfSystem_ai_rmf_system_deployment_settings" ("AiRmfSystem_ai_rmf_id");
+
 CREATE TABLE "AiRmfSystem_ai_rmf_system_lifecycle_stages" (
 	"AiRmfSystem_ai_rmf_id" TEXT,
 	ai_rmf_system_lifecycle_stages VARCHAR(24),
@@ -412,14 +419,24 @@ CREATE TABLE "AiRmfSystem_ai_rmf_system_lifecycle_stages" (
 CREATE INDEX "ix_AiRmfSystem_ai_rmf_system_lifecycle_stages_ai_rmf_system_lifecycle_stages" ON "AiRmfSystem_ai_rmf_system_lifecycle_stages" (ai_rmf_system_lifecycle_stages);
 CREATE INDEX "ix_AiRmfSystem_ai_rmf_system_lifecycle_stages_AiRmfSystem_ai_rmf_id" ON "AiRmfSystem_ai_rmf_system_lifecycle_stages" ("AiRmfSystem_ai_rmf_id");
 
+CREATE TABLE "AiRmfSystem_ai_rmf_system_actors" (
+	"AiRmfSystem_ai_rmf_id" TEXT,
+	ai_rmf_system_actors_ai_rmf_id TEXT,
+	PRIMARY KEY ("AiRmfSystem_ai_rmf_id", ai_rmf_system_actors_ai_rmf_id),
+	FOREIGN KEY("AiRmfSystem_ai_rmf_id") REFERENCES "AiRmfSystem" (ai_rmf_id),
+	FOREIGN KEY(ai_rmf_system_actors_ai_rmf_id) REFERENCES "AiRmfActor" (ai_rmf_id)
+);
+CREATE INDEX "ix_AiRmfSystem_ai_rmf_system_actors_AiRmfSystem_ai_rmf_id" ON "AiRmfSystem_ai_rmf_system_actors" ("AiRmfSystem_ai_rmf_id");
+CREATE INDEX "ix_AiRmfSystem_ai_rmf_system_actors_ai_rmf_system_actors_ai_rmf_id" ON "AiRmfSystem_ai_rmf_system_actors" (ai_rmf_system_actors_ai_rmf_id);
+
 CREATE TABLE "AiRmfActor_ai_rmf_actor_tasks" (
 	"AiRmfActor_ai_rmf_id" TEXT,
 	ai_rmf_actor_tasks VARCHAR(36),
 	PRIMARY KEY ("AiRmfActor_ai_rmf_id", ai_rmf_actor_tasks),
 	FOREIGN KEY("AiRmfActor_ai_rmf_id") REFERENCES "AiRmfActor" (ai_rmf_id)
 );
-CREATE INDEX "ix_AiRmfActor_ai_rmf_actor_tasks_AiRmfActor_ai_rmf_id" ON "AiRmfActor_ai_rmf_actor_tasks" ("AiRmfActor_ai_rmf_id");
 CREATE INDEX "ix_AiRmfActor_ai_rmf_actor_tasks_ai_rmf_actor_tasks" ON "AiRmfActor_ai_rmf_actor_tasks" (ai_rmf_actor_tasks);
+CREATE INDEX "ix_AiRmfActor_ai_rmf_actor_tasks_AiRmfActor_ai_rmf_id" ON "AiRmfActor_ai_rmf_actor_tasks" ("AiRmfActor_ai_rmf_id");
 
 CREATE TABLE "AiRmfActor_ai_rmf_actor_lifecycle_stages" (
 	"AiRmfActor_ai_rmf_id" TEXT,
@@ -427,8 +444,8 @@ CREATE TABLE "AiRmfActor_ai_rmf_actor_lifecycle_stages" (
 	PRIMARY KEY ("AiRmfActor_ai_rmf_id", ai_rmf_actor_lifecycle_stages),
 	FOREIGN KEY("AiRmfActor_ai_rmf_id") REFERENCES "AiRmfActor" (ai_rmf_id)
 );
-CREATE INDEX "ix_AiRmfActor_ai_rmf_actor_lifecycle_stages_AiRmfActor_ai_rmf_id" ON "AiRmfActor_ai_rmf_actor_lifecycle_stages" ("AiRmfActor_ai_rmf_id");
 CREATE INDEX "ix_AiRmfActor_ai_rmf_actor_lifecycle_stages_ai_rmf_actor_lifecycle_stages" ON "AiRmfActor_ai_rmf_actor_lifecycle_stages" (ai_rmf_actor_lifecycle_stages);
+CREATE INDEX "ix_AiRmfActor_ai_rmf_actor_lifecycle_stages_AiRmfActor_ai_rmf_id" ON "AiRmfActor_ai_rmf_actor_lifecycle_stages" ("AiRmfActor_ai_rmf_id");
 
 CREATE TABLE "AiRmfHarm_ai_rmf_impact_affected_parties" (
 	"AiRmfHarm_ai_rmf_id" TEXT,
@@ -445,8 +462,8 @@ CREATE TABLE "AiRmfBias_ai_rmf_bias_categories" (
 	PRIMARY KEY ("AiRmfBias_ai_rmf_id", ai_rmf_bias_categories),
 	FOREIGN KEY("AiRmfBias_ai_rmf_id") REFERENCES "AiRmfBias" (ai_rmf_id)
 );
-CREATE INDEX "ix_AiRmfBias_ai_rmf_bias_categories_AiRmfBias_ai_rmf_id" ON "AiRmfBias_ai_rmf_bias_categories" ("AiRmfBias_ai_rmf_id");
 CREATE INDEX "ix_AiRmfBias_ai_rmf_bias_categories_ai_rmf_bias_categories" ON "AiRmfBias_ai_rmf_bias_categories" (ai_rmf_bias_categories);
+CREATE INDEX "ix_AiRmfBias_ai_rmf_bias_categories_AiRmfBias_ai_rmf_id" ON "AiRmfBias_ai_rmf_bias_categories" ("AiRmfBias_ai_rmf_id");
 
 CREATE TABLE "AiRmfProfile_ai_rmf_profile_kinds" (
 	"AiRmfProfile_ai_rmf_id" TEXT,
@@ -463,8 +480,8 @@ CREATE TABLE "AiRmfProfile_ai_rmf_profile_subcategories" (
 	PRIMARY KEY ("AiRmfProfile_ai_rmf_id", ai_rmf_profile_subcategories),
 	FOREIGN KEY("AiRmfProfile_ai_rmf_id") REFERENCES "AiRmfProfile" (ai_rmf_id)
 );
-CREATE INDEX "ix_AiRmfProfile_ai_rmf_profile_subcategories_AiRmfProfile_ai_rmf_id" ON "AiRmfProfile_ai_rmf_profile_subcategories" ("AiRmfProfile_ai_rmf_id");
 CREATE INDEX "ix_AiRmfProfile_ai_rmf_profile_subcategories_ai_rmf_profile_subcategories" ON "AiRmfProfile_ai_rmf_profile_subcategories" (ai_rmf_profile_subcategories);
+CREATE INDEX "ix_AiRmfProfile_ai_rmf_profile_subcategories_AiRmfProfile_ai_rmf_id" ON "AiRmfProfile_ai_rmf_profile_subcategories" ("AiRmfProfile_ai_rmf_id");
 
 CREATE TABLE "AiRmfMeasurementChallenge" (
 	id INTEGER NOT NULL,
@@ -476,20 +493,35 @@ CREATE TABLE "AiRmfMeasurementChallenge" (
 );
 CREATE INDEX "ix_AiRmfMeasurementChallenge_id" ON "AiRmfMeasurementChallenge" (id);
 
-CREATE TABLE "AiRmfImpact" (
+CREATE TABLE "AiRmfRisk" (
 	ai_rmf_likelihood TEXT,
 	ai_rmf_magnitude TEXT,
-	ai_rmf_impact_direction VARCHAR(8) NOT NULL,
+	ai_rmf_risk_system TEXT,
+	ai_rmf_risk_priority TEXT,
+	ai_rmf_risk_tolerance TEXT,
 	ai_rmf_id TEXT NOT NULL,
 	title TEXT,
 	description TEXT,
-	"AiRmfRisk_ai_rmf_id" TEXT,
-	"AiRmfResidualRisk_ai_rmf_id" TEXT,
 	PRIMARY KEY (ai_rmf_id),
-	FOREIGN KEY("AiRmfRisk_ai_rmf_id") REFERENCES "AiRmfRisk" (ai_rmf_id),
-	FOREIGN KEY("AiRmfResidualRisk_ai_rmf_id") REFERENCES "AiRmfResidualRisk" (ai_rmf_id)
+	FOREIGN KEY(ai_rmf_risk_system) REFERENCES "AiRmfSystem" (ai_rmf_id),
+	FOREIGN KEY(ai_rmf_risk_tolerance) REFERENCES "AiRmfRiskTolerance" (ai_rmf_id)
 );
-CREATE INDEX "ix_AiRmfImpact_ai_rmf_id" ON "AiRmfImpact" (ai_rmf_id);
+CREATE INDEX "ix_AiRmfRisk_ai_rmf_id" ON "AiRmfRisk" (ai_rmf_id);
+
+CREATE TABLE "AiRmfResidualRisk" (
+	ai_rmf_likelihood TEXT,
+	ai_rmf_magnitude TEXT,
+	ai_rmf_risk_system TEXT,
+	ai_rmf_risk_priority TEXT,
+	ai_rmf_risk_tolerance TEXT,
+	ai_rmf_id TEXT NOT NULL,
+	title TEXT,
+	description TEXT,
+	PRIMARY KEY (ai_rmf_id),
+	FOREIGN KEY(ai_rmf_risk_system) REFERENCES "AiRmfSystem" (ai_rmf_id),
+	FOREIGN KEY(ai_rmf_risk_tolerance) REFERENCES "AiRmfRiskTolerance" (ai_rmf_id)
+);
+CREATE INDEX "ix_AiRmfResidualRisk_ai_rmf_id" ON "AiRmfResidualRisk" (ai_rmf_id);
 
 CREATE TABLE "AiRmfCategory" (
 	id INTEGER NOT NULL,
@@ -518,6 +550,40 @@ CREATE TABLE "AiRmfActorTask_ai_rmf_actor_task_representative_actors" (
 );
 CREATE INDEX "ix_AiRmfActorTask_ai_rmf_actor_task_representative_actors_ai_rmf_actor_task_representative_actors" ON "AiRmfActorTask_ai_rmf_actor_task_representative_actors" (ai_rmf_actor_task_representative_actors);
 CREATE INDEX "ix_AiRmfActorTask_ai_rmf_actor_task_representative_actors_AiRmfActorTask_id" ON "AiRmfActorTask_ai_rmf_actor_task_representative_actors" ("AiRmfActorTask_id");
+
+CREATE TABLE "AiRmfRiskTolerance_ai_rmf_risk_tolerance_influences" (
+	"AiRmfRiskTolerance_ai_rmf_id" TEXT,
+	ai_rmf_risk_tolerance_influences TEXT,
+	PRIMARY KEY ("AiRmfRiskTolerance_ai_rmf_id", ai_rmf_risk_tolerance_influences),
+	FOREIGN KEY("AiRmfRiskTolerance_ai_rmf_id") REFERENCES "AiRmfRiskTolerance" (ai_rmf_id)
+);
+CREATE INDEX "ix_AiRmfRiskTolerance_ai_rmf_risk_tolerance_influences_ai_rmf_risk_tolerance_influences" ON "AiRmfRiskTolerance_ai_rmf_risk_tolerance_influences" (ai_rmf_risk_tolerance_influences);
+CREATE INDEX "ix_AiRmfRiskTolerance_ai_rmf_risk_tolerance_influences_AiRmfRiskTolerance_ai_rmf_id" ON "AiRmfRiskTolerance_ai_rmf_risk_tolerance_influences" ("AiRmfRiskTolerance_ai_rmf_id");
+
+CREATE TABLE "AiRmfImpact" (
+	ai_rmf_likelihood TEXT,
+	ai_rmf_magnitude TEXT,
+	ai_rmf_impact_direction VARCHAR(8) NOT NULL,
+	ai_rmf_id TEXT NOT NULL,
+	title TEXT,
+	description TEXT,
+	"AiRmfRisk_ai_rmf_id" TEXT,
+	"AiRmfResidualRisk_ai_rmf_id" TEXT,
+	PRIMARY KEY (ai_rmf_id),
+	FOREIGN KEY("AiRmfRisk_ai_rmf_id") REFERENCES "AiRmfRisk" (ai_rmf_id),
+	FOREIGN KEY("AiRmfResidualRisk_ai_rmf_id") REFERENCES "AiRmfResidualRisk" (ai_rmf_id)
+);
+CREATE INDEX "ix_AiRmfImpact_ai_rmf_id" ON "AiRmfImpact" (ai_rmf_id);
+
+CREATE TABLE "AiRmfSubcategory" (
+	id INTEGER NOT NULL,
+	ai_rmf_subcategory_id TEXT NOT NULL,
+	description TEXT NOT NULL,
+	"AiRmfCategory_id" INTEGER,
+	PRIMARY KEY (id),
+	FOREIGN KEY("AiRmfCategory_id") REFERENCES "AiRmfCategory" (id)
+);
+CREATE INDEX "ix_AiRmfSubcategory_id" ON "AiRmfSubcategory" (id);
 
 CREATE TABLE "AiRmfRisk_ai_rmf_risk_characteristics" (
 	"AiRmfRisk_ai_rmf_id" TEXT,
@@ -570,36 +636,8 @@ CREATE TABLE "AiRmfResidualRisk_ai_rmf_risk_responses" (
 	PRIMARY KEY ("AiRmfResidualRisk_ai_rmf_id", ai_rmf_risk_responses),
 	FOREIGN KEY("AiRmfResidualRisk_ai_rmf_id") REFERENCES "AiRmfResidualRisk" (ai_rmf_id)
 );
-CREATE INDEX "ix_AiRmfResidualRisk_ai_rmf_risk_responses_ai_rmf_risk_responses" ON "AiRmfResidualRisk_ai_rmf_risk_responses" (ai_rmf_risk_responses);
 CREATE INDEX "ix_AiRmfResidualRisk_ai_rmf_risk_responses_AiRmfResidualRisk_ai_rmf_id" ON "AiRmfResidualRisk_ai_rmf_risk_responses" ("AiRmfResidualRisk_ai_rmf_id");
-
-CREATE TABLE "AiRmfRiskTolerance_ai_rmf_risk_tolerance_influences" (
-	"AiRmfRiskTolerance_ai_rmf_id" TEXT,
-	ai_rmf_risk_tolerance_influences TEXT,
-	PRIMARY KEY ("AiRmfRiskTolerance_ai_rmf_id", ai_rmf_risk_tolerance_influences),
-	FOREIGN KEY("AiRmfRiskTolerance_ai_rmf_id") REFERENCES "AiRmfRiskTolerance" (ai_rmf_id)
-);
-CREATE INDEX "ix_AiRmfRiskTolerance_ai_rmf_risk_tolerance_influences_AiRmfRiskTolerance_ai_rmf_id" ON "AiRmfRiskTolerance_ai_rmf_risk_tolerance_influences" ("AiRmfRiskTolerance_ai_rmf_id");
-CREATE INDEX "ix_AiRmfRiskTolerance_ai_rmf_risk_tolerance_influences_ai_rmf_risk_tolerance_influences" ON "AiRmfRiskTolerance_ai_rmf_risk_tolerance_influences" (ai_rmf_risk_tolerance_influences);
-
-CREATE TABLE "AiRmfSubcategory" (
-	id INTEGER NOT NULL,
-	ai_rmf_subcategory_id TEXT NOT NULL,
-	description TEXT NOT NULL,
-	"AiRmfCategory_id" INTEGER,
-	PRIMARY KEY (id),
-	FOREIGN KEY("AiRmfCategory_id") REFERENCES "AiRmfCategory" (id)
-);
-CREATE INDEX "ix_AiRmfSubcategory_id" ON "AiRmfSubcategory" (id);
-
-CREATE TABLE "AiRmfImpact_ai_rmf_impact_affected_parties" (
-	"AiRmfImpact_ai_rmf_id" TEXT,
-	ai_rmf_impact_affected_parties VARCHAR(13),
-	PRIMARY KEY ("AiRmfImpact_ai_rmf_id", ai_rmf_impact_affected_parties),
-	FOREIGN KEY("AiRmfImpact_ai_rmf_id") REFERENCES "AiRmfImpact" (ai_rmf_id)
-);
-CREATE INDEX "ix_AiRmfImpact_ai_rmf_impact_affected_parties_AiRmfImpact_ai_rmf_id" ON "AiRmfImpact_ai_rmf_impact_affected_parties" ("AiRmfImpact_ai_rmf_id");
-CREATE INDEX "ix_AiRmfImpact_ai_rmf_impact_affected_parties_ai_rmf_impact_affected_parties" ON "AiRmfImpact_ai_rmf_impact_affected_parties" (ai_rmf_impact_affected_parties);
+CREATE INDEX "ix_AiRmfResidualRisk_ai_rmf_risk_responses_ai_rmf_risk_responses" ON "AiRmfResidualRisk_ai_rmf_risk_responses" (ai_rmf_risk_responses);
 
 CREATE TABLE "AiRmfSuggestedAction" (
 	id INTEGER NOT NULL,
@@ -632,6 +670,15 @@ CREATE TABLE "AiRmfResource" (
 );
 CREATE INDEX "ix_AiRmfResource_id" ON "AiRmfResource" (id);
 
+CREATE TABLE "AiRmfImpact_ai_rmf_impact_affected_parties" (
+	"AiRmfImpact_ai_rmf_id" TEXT,
+	ai_rmf_impact_affected_parties VARCHAR(13),
+	PRIMARY KEY ("AiRmfImpact_ai_rmf_id", ai_rmf_impact_affected_parties),
+	FOREIGN KEY("AiRmfImpact_ai_rmf_id") REFERENCES "AiRmfImpact" (ai_rmf_id)
+);
+CREATE INDEX "ix_AiRmfImpact_ai_rmf_impact_affected_parties_ai_rmf_impact_affected_parties" ON "AiRmfImpact_ai_rmf_impact_affected_parties" (ai_rmf_impact_affected_parties);
+CREATE INDEX "ix_AiRmfImpact_ai_rmf_impact_affected_parties_AiRmfImpact_ai_rmf_id" ON "AiRmfImpact_ai_rmf_impact_affected_parties" ("AiRmfImpact_ai_rmf_id");
+
 CREATE TABLE "AiRmfSubcategory_ai_rmf_subcategory_about" (
 	"AiRmfSubcategory_id" INTEGER,
 	ai_rmf_subcategory_about TEXT,
@@ -647,8 +694,8 @@ CREATE TABLE "AiRmfSubcategory_ai_rmf_subcategory_ai_actors" (
 	PRIMARY KEY ("AiRmfSubcategory_id", ai_rmf_subcategory_ai_actors),
 	FOREIGN KEY("AiRmfSubcategory_id") REFERENCES "AiRmfSubcategory" (id)
 );
-CREATE INDEX "ix_AiRmfSubcategory_ai_rmf_subcategory_ai_actors_ai_rmf_subcategory_ai_actors" ON "AiRmfSubcategory_ai_rmf_subcategory_ai_actors" (ai_rmf_subcategory_ai_actors);
 CREATE INDEX "ix_AiRmfSubcategory_ai_rmf_subcategory_ai_actors_AiRmfSubcategory_id" ON "AiRmfSubcategory_ai_rmf_subcategory_ai_actors" ("AiRmfSubcategory_id");
+CREATE INDEX "ix_AiRmfSubcategory_ai_rmf_subcategory_ai_actors_ai_rmf_subcategory_ai_actors" ON "AiRmfSubcategory_ai_rmf_subcategory_ai_actors" (ai_rmf_subcategory_ai_actors);
 
 CREATE TABLE "AiRmfSubcategory_ai_rmf_subcategory_topics" (
 	"AiRmfSubcategory_id" INTEGER,

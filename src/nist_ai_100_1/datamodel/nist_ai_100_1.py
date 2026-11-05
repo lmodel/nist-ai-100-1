@@ -561,7 +561,10 @@ class AiRmfSystem(AiRmfRecord):
     class_model_uri: ClassVar[URIRef] = NIST_AI_100_1.AiRmfSystem
 
     ai_rmf_id: Union[str, AiRmfSystemAiRmfId] = None
+    ai_rmf_system_intended_purposes: Optional[Union[str, list[str]]] = empty_list()
+    ai_rmf_system_deployment_settings: Optional[Union[str, list[str]]] = empty_list()
     ai_rmf_system_lifecycle_stages: Optional[Union[Union[str, "AiRmfLifecycleStageName"], list[Union[str, "AiRmfLifecycleStageName"]]]] = empty_list()
+    ai_rmf_system_actors: Optional[Union[Union[str, AiRmfActorAiRmfId], list[Union[str, AiRmfActorAiRmfId]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.ai_rmf_id):
@@ -569,9 +572,21 @@ class AiRmfSystem(AiRmfRecord):
         if not isinstance(self.ai_rmf_id, AiRmfSystemAiRmfId):
             self.ai_rmf_id = AiRmfSystemAiRmfId(self.ai_rmf_id)
 
+        if not isinstance(self.ai_rmf_system_intended_purposes, list):
+            self.ai_rmf_system_intended_purposes = [self.ai_rmf_system_intended_purposes] if self.ai_rmf_system_intended_purposes is not None else []
+        self.ai_rmf_system_intended_purposes = [v if isinstance(v, str) else str(v) for v in self.ai_rmf_system_intended_purposes]
+
+        if not isinstance(self.ai_rmf_system_deployment_settings, list):
+            self.ai_rmf_system_deployment_settings = [self.ai_rmf_system_deployment_settings] if self.ai_rmf_system_deployment_settings is not None else []
+        self.ai_rmf_system_deployment_settings = [v if isinstance(v, str) else str(v) for v in self.ai_rmf_system_deployment_settings]
+
         if not isinstance(self.ai_rmf_system_lifecycle_stages, list):
             self.ai_rmf_system_lifecycle_stages = [self.ai_rmf_system_lifecycle_stages] if self.ai_rmf_system_lifecycle_stages is not None else []
         self.ai_rmf_system_lifecycle_stages = [v if isinstance(v, AiRmfLifecycleStageName) else AiRmfLifecycleStageName(v) for v in self.ai_rmf_system_lifecycle_stages]
+
+        if not isinstance(self.ai_rmf_system_actors, list):
+            self.ai_rmf_system_actors = [self.ai_rmf_system_actors] if self.ai_rmf_system_actors is not None else []
+        self.ai_rmf_system_actors = [v if isinstance(v, AiRmfActorAiRmfId) else AiRmfActorAiRmfId(v) for v in self.ai_rmf_system_actors]
 
         super().__post_init__(**kwargs)
 
@@ -633,6 +648,8 @@ class AiRmfRisk(AiRmfRecord):
     ai_rmf_risk_characteristics: Optional[Union[Union[str, "AiRmfCharacteristicName"], list[Union[str, "AiRmfCharacteristicName"]]]] = empty_list()
     ai_rmf_risk_lifecycle_stages: Optional[Union[Union[str, "AiRmfLifecycleStageName"], list[Union[str, "AiRmfLifecycleStageName"]]]] = empty_list()
     ai_rmf_risk_responses: Optional[Union[Union[str, "AiRmfRiskResponse"], list[Union[str, "AiRmfRiskResponse"]]]] = empty_list()
+    ai_rmf_risk_priority: Optional[str] = None
+    ai_rmf_risk_tolerance: Optional[Union[str, AiRmfRiskToleranceAiRmfId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.ai_rmf_id):
@@ -662,6 +679,12 @@ class AiRmfRisk(AiRmfRecord):
         if not isinstance(self.ai_rmf_risk_responses, list):
             self.ai_rmf_risk_responses = [self.ai_rmf_risk_responses] if self.ai_rmf_risk_responses is not None else []
         self.ai_rmf_risk_responses = [v if isinstance(v, AiRmfRiskResponse) else AiRmfRiskResponse(v) for v in self.ai_rmf_risk_responses]
+
+        if self.ai_rmf_risk_priority is not None and not isinstance(self.ai_rmf_risk_priority, str):
+            self.ai_rmf_risk_priority = str(self.ai_rmf_risk_priority)
+
+        if self.ai_rmf_risk_tolerance is not None and not isinstance(self.ai_rmf_risk_tolerance, AiRmfRiskToleranceAiRmfId):
+            self.ai_rmf_risk_tolerance = AiRmfRiskToleranceAiRmfId(self.ai_rmf_risk_tolerance)
 
         super().__post_init__(**kwargs)
 
@@ -1662,8 +1685,17 @@ slots.aiRmfHumanAiIssue__ai_rmf_human_ai_issue_number = Slot(uri=NIST_AI_100_1.a
 slots.aiRmfAttribute__ai_rmf_attribute_number = Slot(uri=NIST_AI_100_1.ai_rmf_attribute_number, name="aiRmfAttribute__ai_rmf_attribute_number", curie=NIST_AI_100_1.curie('ai_rmf_attribute_number'),
                    model_uri=NIST_AI_100_1.aiRmfAttribute__ai_rmf_attribute_number, domain=None, range=int)
 
+slots.aiRmfSystem__ai_rmf_system_intended_purposes = Slot(uri=NIST_AI_100_1.ai_rmf_system_intended_purposes, name="aiRmfSystem__ai_rmf_system_intended_purposes", curie=NIST_AI_100_1.curie('ai_rmf_system_intended_purposes'),
+                   model_uri=NIST_AI_100_1.aiRmfSystem__ai_rmf_system_intended_purposes, domain=None, range=Optional[Union[str, list[str]]])
+
+slots.aiRmfSystem__ai_rmf_system_deployment_settings = Slot(uri=NIST_AI_100_1.ai_rmf_system_deployment_settings, name="aiRmfSystem__ai_rmf_system_deployment_settings", curie=NIST_AI_100_1.curie('ai_rmf_system_deployment_settings'),
+                   model_uri=NIST_AI_100_1.aiRmfSystem__ai_rmf_system_deployment_settings, domain=None, range=Optional[Union[str, list[str]]])
+
 slots.aiRmfSystem__ai_rmf_system_lifecycle_stages = Slot(uri=NIST_AI_100_1.ai_rmf_system_lifecycle_stages, name="aiRmfSystem__ai_rmf_system_lifecycle_stages", curie=NIST_AI_100_1.curie('ai_rmf_system_lifecycle_stages'),
                    model_uri=NIST_AI_100_1.aiRmfSystem__ai_rmf_system_lifecycle_stages, domain=None, range=Optional[Union[Union[str, "AiRmfLifecycleStageName"], list[Union[str, "AiRmfLifecycleStageName"]]]])
+
+slots.aiRmfSystem__ai_rmf_system_actors = Slot(uri=NIST_AI_100_1.ai_rmf_system_actors, name="aiRmfSystem__ai_rmf_system_actors", curie=NIST_AI_100_1.curie('ai_rmf_system_actors'),
+                   model_uri=NIST_AI_100_1.aiRmfSystem__ai_rmf_system_actors, domain=None, range=Optional[Union[Union[str, AiRmfActorAiRmfId], list[Union[str, AiRmfActorAiRmfId]]]])
 
 slots.aiRmfActor__ai_rmf_actor_tasks = Slot(uri=NIST_AI_100_1.ai_rmf_actor_tasks, name="aiRmfActor__ai_rmf_actor_tasks", curie=NIST_AI_100_1.curie('ai_rmf_actor_tasks'),
                    model_uri=NIST_AI_100_1.aiRmfActor__ai_rmf_actor_tasks, domain=None, range=Optional[Union[Union[str, "AiRmfActorTaskName"], list[Union[str, "AiRmfActorTaskName"]]]])
@@ -1688,6 +1720,12 @@ slots.aiRmfRisk__ai_rmf_risk_lifecycle_stages = Slot(uri=NIST_AI_100_1.ai_rmf_ri
 
 slots.aiRmfRisk__ai_rmf_risk_responses = Slot(uri=NIST_AI_100_1.ai_rmf_risk_responses, name="aiRmfRisk__ai_rmf_risk_responses", curie=NIST_AI_100_1.curie('ai_rmf_risk_responses'),
                    model_uri=NIST_AI_100_1.aiRmfRisk__ai_rmf_risk_responses, domain=None, range=Optional[Union[Union[str, "AiRmfRiskResponse"], list[Union[str, "AiRmfRiskResponse"]]]])
+
+slots.aiRmfRisk__ai_rmf_risk_priority = Slot(uri=NIST_AI_100_1.ai_rmf_risk_priority, name="aiRmfRisk__ai_rmf_risk_priority", curie=NIST_AI_100_1.curie('ai_rmf_risk_priority'),
+                   model_uri=NIST_AI_100_1.aiRmfRisk__ai_rmf_risk_priority, domain=None, range=Optional[str])
+
+slots.aiRmfRisk__ai_rmf_risk_tolerance = Slot(uri=NIST_AI_100_1.ai_rmf_risk_tolerance, name="aiRmfRisk__ai_rmf_risk_tolerance", curie=NIST_AI_100_1.curie('ai_rmf_risk_tolerance'),
+                   model_uri=NIST_AI_100_1.aiRmfRisk__ai_rmf_risk_tolerance, domain=None, range=Optional[Union[str, AiRmfRiskToleranceAiRmfId]])
 
 slots.aiRmfImpact__ai_rmf_impact_direction = Slot(uri=NIST_AI_100_1.ai_rmf_impact_direction, name="aiRmfImpact__ai_rmf_impact_direction", curie=NIST_AI_100_1.curie('ai_rmf_impact_direction'),
                    model_uri=NIST_AI_100_1.aiRmfImpact__ai_rmf_impact_direction, domain=None, range=Union[str, "AiRmfImpactDirection"])
