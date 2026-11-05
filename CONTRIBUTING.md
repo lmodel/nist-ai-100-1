@@ -40,7 +40,7 @@ npx skills add noelmcloughlin/knowledge-trust-ladder --skill ktl-curator --yes  
 ## Before opening a pull request
 
 - **Edit the schema, then regenerate.** Edit `src/nist_ai_100_1/schema/`, run `just gen-project`, `just gen-doc` and `just lokf-adapt`, and commit the output. `project/`, `src/nist_ai_100_1/datamodel/`, `docs/schema/` and `.lokf/nist-ai-100-1.yaml` are generated.
-- **The publication's words stay in the data.** Table 1 to 4 statements come from the publication and the Playbook's material from NIST's catalog, through `scripts/build_catalogue.py`. `tests/catalog_departures.yaml` lists every place the catalog words a statement differently.
+- **The publication's words stay in the data.** `scripts/build_catalogue.py` takes the statements of Tables 1 to 4 from the publication and the Playbook's material from NIST's catalog. `tests/catalog_departures.yaml` lists every place the catalog words a statement differently.
 - **A list follows the publication.** Each enum value has a record, in the publication's order, and `tests/test_catalogue.py` holds both to its counts. No bound or rule of your own: the publication sets no scale for likelihood or magnitude, and neither does the schema.
 - **A mapping is read at its source.** `tests/test_schema_rules.py` holds each one to a released neighbour copy. A term with no sure match stays unmapped.
 - **Render the pinned edition.** `tests/test_upstream.py` holds the schema header, `scripts/check_upstream_release.py` and `upstream/` equal.

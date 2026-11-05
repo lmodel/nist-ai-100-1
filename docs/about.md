@@ -12,7 +12,7 @@ The modules follow that split. `nist_ai_100_1_base` holds the identifier forms, 
 
 ## Where each part comes from
 
-NIST publishes the Core in three places, and they differ.
+NIST publishes the Core in three places, and they differ. On this page, "the catalogue" is this project's file of records, and "NIST's catalog" is NIST's OSCAL file.
 
 - **The publication's Tables 1 to 4** state each category and subcategory. The catalogue keeps these words, since the schema renders the publication.
 - **NIST's catalog in the Open Security Controls Assessment Language (OSCAL)** restates them and departs from the Tables in 44 of the 91 statements. Many are small, but some change a word: MEASURE 2.6 says "implicate" where the publication says "reflect", and GOVERN 1.2 drops "and practices". `tests/catalog_departures.yaml` lists all 44. The catalog also gives each function's one-sentence overview and the Playbook's suggested actions, discussion, documentation prompts and resources, which the catalogue takes from it.

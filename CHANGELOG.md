@@ -10,7 +10,11 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 
 - **The whole framework as records** in `src/nist_ai_100_1/data/ai-rmf-1.0.yaml`: the 4 functions, 19 categories and 72 subcategories with their Playbook material, and what Part 1 and the appendices list. `scripts/build_catalogue.py` writes the Core from `upstream/`.
 - **`upstream/`**, holding the publication, NIST's OSCAL catalog at oscal-content v1.6.0 and the Playbook's file, with a weekly watch that reports a change to any of them.
-- **The seventh lifecycle stage of Figure 3**, the examples of harm to an organization and to an ecosystem in Figure 1, the affected parties of section 1.1, the four challenges of section 1.2, the additional-actor mark of Appendix A, and the representative actors of Figure 3 and Appendix A.
+- **Parts of the publication the schema lacked**:
+  - the seventh lifecycle stage of Figure 3;
+  - the examples of harm to an organization and to an ecosystem in Figure 1;
+  - the affected parties of section 1.1 and the four challenges of section 1.2;
+  - the additional-actor mark of Appendix A, and the representative actors of Figure 3 and Appendix A.
 - **Tests** that validate the whole catalogue, hold it to the publication's counts and lists, and list each place NIST's catalog departs from the publication or the Playbook. An example per class and a counter-example per constraint, each naming where it fails.
 - **`.lokf/nist-ai-100-1.yaml`, the schema's `lokf adapt` copy.** The knowledge release attaches it as `schema-<tag>-nist-ai-100-1.yaml`.
 - **The repository's Knowledge Trust Ladder (KTL) knowledge bundle and its sidecar automation**, from the KTL v0.61.0 templates with the lokf floor at 0.9.0, and a knowledge website that replaces the mkdocs site.
