@@ -118,7 +118,9 @@ def _oscal():
 def _words(text):
     """A text's words, lower-cased and each between spaces, so a title matches whole
     words and line breaks and hyphens fall away."""
-    return " " + " ".join(re.findall(r"[a-z0-9]+", re.sub(r"-\n", "", text.lower()))) + " "
+    return (
+        " " + " ".join(re.findall(r"[a-z0-9]+", re.sub(r"-\n", "", text.lower()))) + " "
+    )
 
 
 @lru_cache(maxsize=1)
@@ -127,7 +129,9 @@ def _publication_words():
     import pdfplumber
 
     with pdfplumber.open(UPSTREAM / "NIST.AI.100-1.pdf") as pdf:
-        return _words("\n".join(page.extract_text(x_tolerance=1) or "" for page in pdf.pages))
+        return _words(
+            "\n".join(page.extract_text(x_tolerance=1) or "" for page in pdf.pages)
+        )
 
 
 def _subcategories():
