@@ -36,6 +36,7 @@ import os
 import re
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 from functools import cache
 from pathlib import Path
@@ -91,11 +92,17 @@ PINNED_DOWNLOADS = {
 UPSTREAM = ROOT / "upstream"
 
 
+# The hosts a download may reach, and the most it reads. The pinned files are far smaller.
+ALLOWED_HOSTS = {"nvlpubs.nist.gov", "airc.nist.gov"}
+MAX_BYTES = 20 * 1024 * 1024
+
+
 class _HttpsOnly(urllib.request.HTTPRedirectHandler):
-    """Follow a redirect only over https."""
+    """Follow a redirect only over https, and only to a host the script reads from."""
 
     def redirect_request(self, req, fp, code, msg, headers, newurl):
-        if not newurl.startswith("https://"):
+        parts = urllib.parse.urlsplit(newurl)
+        if parts.scheme != "https" or parts.hostname not in ALLOWED_HOSTS:
             raise urllib.error.URLError(f"refused a redirect to {newurl}")
         return super().redirect_request(req, fp, code, msg, headers, newurl)
 
@@ -105,7 +112,10 @@ def _download(url: str) -> bytes:
     opener = urllib.request.build_opener(_HttpsOnly)
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     with opener.open(req, timeout=120) as resp:
-        return resp.read()
+        data = resp.read(MAX_BYTES + 1)
+    if len(data) > MAX_BYTES:
+        raise urllib.error.URLError(f"{url} answered with more than {MAX_BYTES} bytes")
+    return data
 
 
 def _get(url: str) -> bytes:
