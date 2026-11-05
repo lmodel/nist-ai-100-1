@@ -2,6 +2,7 @@
 
 ## 2026-11-05
 
+* **Changed**: Upstream watch (upstream-watch.yaml). The script now limits a redirect's host and the size of a download.
 * **Prose**: reworded 1 concept body in plain English after reading all 48. No fact, link, number or frontmatter changed.
 * **Removal**: the sidecar's first example service.
 * **Removal**: the sidecar's second example service.

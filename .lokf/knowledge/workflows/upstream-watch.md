@@ -22,7 +22,7 @@ sources:
     title: how the issue is opened
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T02:56:32Z"
+  at: "2026-11-05T03:29:55Z"
 status: draft
 ---
 
@@ -30,7 +30,7 @@ status: draft
 
 The workflow runs every Monday, and a failing check opens an issue or comments on the one already open.[^upstream-watch.yaml]
 
-The script asks the GitHub API about usnistgov/oscal-content, sending its token there alone, and downloads the publication and the Playbook with no token, following a redirect only over https.[^watch]
+The script asks the GitHub API about usnistgov/oscal-content, sending its token there alone, and downloads the publication and the Playbook with no token, following a redirect only over https to those hosts and reading at most 20 MB.[^watch]
 
 `tests/test_watch.py` runs it against stubbed answers.[^test_watch.py]
 
