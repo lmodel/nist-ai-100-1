@@ -29,7 +29,7 @@ default_range: string
 
 imports:
   - linkml:types
-  - nist_ai_100_1_base
+  - ./nist_ai_100_1_base
 
 types:
   ai_rmf_suggested_action_identifier:

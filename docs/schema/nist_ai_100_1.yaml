@@ -36,10 +36,10 @@ id: https://w3id.org/lmodel/nist-ai-100-1
 version: 1.0.0
 imports:
 - linkml:types
-- nist_ai_100_1_base
-- nist_ai_100_1_foundations
-- nist_ai_100_1_rmf_core
-- nist_ai_100_1_profiles
+- ./nist_ai_100_1_base
+- ./nist_ai_100_1_foundations
+- ./nist_ai_100_1_rmf_core
+- ./nist_ai_100_1_profiles
 license: Apache-2.0
 prefixes:
   linkml:
@@ -2782,6 +2782,6 @@ classes:
     class_uri: nist_ai_100_1:Profile
 metamodel_version: 1.12.0
 source_file: nist_ai_100_1.yaml
-source_file_date: '2026-11-05T02:18:33'
-source_file_size: 4257
+source_file_date: '2026-11-05T02:43:22'
+source_file_size: 4265
 

@@ -35,10 +35,10 @@
   "version": "1.0.0",
   "imports": [
     "linkml:types",
-    "nist_ai_100_1_base",
-    "nist_ai_100_1_foundations",
-    "nist_ai_100_1_rmf_core",
-    "nist_ai_100_1_profiles"
+    "./nist_ai_100_1_base",
+    "./nist_ai_100_1_foundations",
+    "./nist_ai_100_1_rmf_core",
+    "./nist_ai_100_1_profiles"
   ],
   "license": "Apache-2.0",
   "prefixes": [
@@ -3414,16 +3414,16 @@
   ],
   "metamodel_version": "1.12.0",
   "source_file": "nist_ai_100_1.yaml",
-  "source_file_date": "2026-11-05T02:18:33",
-  "source_file_size": 4257,
+  "source_file_date": "2026-11-05T02:43:22",
+  "source_file_size": 4265,
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/nist_ai_100_1.context.jsonld",
     "https://w3id.org/linkml/types.context.jsonld",
-    "nist_ai_100_1_base.context.jsonld",
-    "nist_ai_100_1_foundations.context.jsonld",
-    "nist_ai_100_1_rmf_core.context.jsonld",
-    "nist_ai_100_1_profiles.context.jsonld",
+    "./nist_ai_100_1_base.context.jsonld",
+    "./nist_ai_100_1_foundations.context.jsonld",
+    "./nist_ai_100_1_rmf_core.context.jsonld",
+    "./nist_ai_100_1_profiles.context.jsonld",
     {
       "@base": "https://w3id.org/lmodel/nist-ai-100-1/"
     }

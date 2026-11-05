@@ -39,10 +39,10 @@ default_range: string
 
 imports:
   - linkml:types
-  - nist_ai_100_1_base
-  - nist_ai_100_1_foundations
-  - nist_ai_100_1_rmf_core
-  - nist_ai_100_1_profiles
+  - ./nist_ai_100_1_base
+  - ./nist_ai_100_1_foundations
+  - ./nist_ai_100_1_rmf_core
+  - ./nist_ai_100_1_profiles
 
 classes:
   AiRmfFramework:

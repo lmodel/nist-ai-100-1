@@ -20,7 +20,7 @@ default_range: string
 
 imports:
   - linkml:types
-  - nist_ai_100_1_base
+  - ./nist_ai_100_1_base
 
 classes:
   AiRmfProfile:
