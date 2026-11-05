@@ -9,7 +9,8 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 ### Added
 
 - **The whole framework as records** in `src/nist_ai_100_1/data/ai-rmf-1.0.yaml`: the 4 functions, 19 categories and 72 subcategories with their Playbook material, and what Part 1 and the appendices list. `scripts/build_catalogue.py` writes the Core from `upstream/`.
-- **`upstream/`**, holding the publication, NIST's OSCAL catalog at oscal-content v1.6.0 and the Playbook's file, with a weekly watch that reports a change to any of them.
+- **`upstream/`**, holding the publication, NIST's OSCAL catalog at oscal-content v1.6.0 and the Playbook's file, with a weekly watch that reports a change to any of them. The watch reads only https addresses on NIST's hosts, at the start and after a redirect.
+- **Slots for what the Core asks an adopter to document**: a system's intended purposes, deployment settings and AI actors (MAP 1.1 and 1.6), and a risk's priority and the tolerance it is judged against (MANAGE 1.2, GOVERN 1.3 and MAP 1.5).
 - **Parts of the publication the schema lacked**:
   - the seventh lifecycle stage of Figure 3;
   - the examples of harm to an organization and to an ecosystem in Figure 1;
