@@ -20,7 +20,7 @@ status: draft
 
 # Playbook
 
-Its material hangs off `AiRmfSubcategory`.[^core] NIST publishes it as a file of its own and within its OSCAL catalog.[^about]
+`AiRmfSubcategory` holds its material.[^core] NIST publishes it as a file of its own and within its OSCAL catalog.[^about]
 
 [^core]: src/nist_ai_100_1/schema/nist_ai_100_1_rmf_core.yaml, AiRmfSubcategory
 [^about]: docs/about.md, Where each part comes from

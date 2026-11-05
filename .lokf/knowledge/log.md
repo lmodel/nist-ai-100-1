@@ -2,6 +2,7 @@
 
 ## 2026-11-05
 
+* **Prose**: reworded 1 concept body in plain English after reading all 48. No fact, link, number or frontmatter changed.
 * **Removal**: the sidecar's first example service.
 * **Removal**: the sidecar's second example service.
 * **Added**: Knowledge librarian (knowledge-librarian.yaml).
