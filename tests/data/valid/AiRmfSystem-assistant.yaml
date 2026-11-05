@@ -1,0 +1,5 @@
+ai_rmf_id: https://example.org/systems/assistant
+title: Support assistant
+ai_rmf_system_lifecycle_stages:
+  - deploy_and_use
+  - operate_and_monitor
