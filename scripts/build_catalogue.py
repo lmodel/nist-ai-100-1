@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # /// script
-# requires-python = ">=3.10"
+# requires-python = ">=3.11"
 # dependencies = ["pdfplumber>=0.11.7", "pyyaml>=6"]
 # ///
 """Write the AI RMF Core into src/nist_ai_100_1/data/ai-rmf-1.0.yaml.

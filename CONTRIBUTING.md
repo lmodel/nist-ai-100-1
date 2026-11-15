@@ -19,7 +19,7 @@ A LinkML schema of the Artificial Intelligence Risk Management Framework (AI RMF
 
 ## Development setup
 
-You need Python 3.10+, [uv](https://docs.astral.sh/uv/) and [just](https://github.com/casey/just).
+You need Python 3.11+, [uv](https://docs.astral.sh/uv/) and [just](https://github.com/casey/just).
 
 ```bash
 git clone https://github.com/lmodel/nist-ai-100-1.git

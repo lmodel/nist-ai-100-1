@@ -13,12 +13,12 @@ sources:
     title: the header comment
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T02:56:32Z"
+  at: "2026-11-15T03:08:06Z"
 status: draft
 ---
 
 # Knowledge website (knowledge-website.yaml)
 
-The `build` job runs third-party packages under a read-only token. The `deploy` job holds the Pages scopes, runs for the default branch only, and waits for `KNOWLEDGE_WEBSITE_ENABLED`.[^knowledge-website.yaml]
+The `build` job runs Hugo, Pagefind, the lokf toolkit and the repository's own site code under a read-only token. The `deploy` job holds the Pages scopes, runs for the default branch only, and waits for `KNOWLEDGE_WEBSITE_ENABLED`.[^knowledge-website.yaml]
 
 [^knowledge-website.yaml]: .github/workflows/knowledge-website.yaml, the header comment
